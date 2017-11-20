@@ -5,6 +5,7 @@ using System.Web;
 using System.Web.Mvc;
 using log4net;
 using AccountingBookBL;
+using AccountingBookCommon;
 
 namespace AccountingBookWeb.Controllers
 {
@@ -30,7 +31,30 @@ namespace AccountingBookWeb.Controllers
             //    Log.Error(exception.Message);
             //}
             //return Content(dependency.GetMessages());
-            return Content("Hello World");
+            return View();
+        }
+        public PartialViewResult CategoriesBar()
+        {
+            var categories = dependency.GetCategories();
+            return PartialView(categories);
+        }
+        public PartialViewResult Subjects(int id, bool isCategory)
+        {
+            IReadOnlyList<Subject> subjects;
+            if (isCategory)
+            {
+                subjects = dependency.GetSubjectsByCategories(id);
+            }
+            else
+            {
+                subjects = dependency.GetSubjectsBySubCategories(id);
+            }
+            return PartialView(subjects);
+        }
+        public PartialViewResult ViewSubject(int inventoryNumberSubject)
+        {
+            ViewBag.NameCategory = dependency.GetNameSubCategoryBySubjectId(inventoryNumberSubject);
+            return PartialView(dependency.GetSubjectInformationById(inventoryNumberSubject));
         }
     }
 }

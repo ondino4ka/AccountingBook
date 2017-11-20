@@ -1,0 +1,20 @@
+﻿@model IEnumerable<AccountingBookCommon.Subject>
+
+<link href="~/Content/catalog-subjects.css" rel="stylesheet" />
+
+<div class="row">
+    @foreach (var subject in Model)
+    {
+        <div onclick="getDetailsSubject(@subject.InventoryNumber)" class="col-sm-6 col-md-4">
+            <div class="subject">
+                <div class="subject-img">
+                    <a><img src="@subject.Photo" alt="No Image"></a>
+                </div>
+                <p class="subject-title">
+                    <a href="#">@subject.Name</a>
+                </p>
+                <p class="subject-desc">@subject.Description</p>
+            </div>
+        </div>
+    }
+</div>

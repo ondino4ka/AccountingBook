@@ -1,0 +1,23 @@
+﻿@model IEnumerable<AccountingBookCommon.Category>
+
+<link href="~/Content/sidebar.css" rel="stylesheet" />
+
+<div id="sidebar">
+    <h2>Categories</h2>
+    <hr />
+    <ul>
+        @foreach (var category in Model)
+        {
+
+            <li>
+                <a id="@category.Id" onclick="getSubjectsById(this, true)">@category.Name</a>
+                <ul>
+                    @foreach (var subCategory in category.SubCategories)
+                    {
+                        <li><a id="@subCategory.Id" onclick="getSubjectsById(this, false)">@subCategory.Name</a></li>
+                    }
+                </ul>
+            </li>
+        }
+    </ul>
+</div>
