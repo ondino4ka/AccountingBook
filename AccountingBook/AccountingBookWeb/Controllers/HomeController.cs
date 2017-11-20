@@ -12,24 +12,25 @@ namespace AccountingBookWeb.Controllers
     {
         private static log4net.ILog Log = LogManager.GetLogger("HomeController");
 
-        private readonly IDependency dependency;
-        public HomeController(IDependency dependency)
+        private readonly IProvider dependency;
+        public HomeController(IProvider dependency)
         {
             this.dependency = dependency;
         }
         // GET: Home
         public ActionResult Index()
         {
-            try
-            {
-                Log.Debug("Test log");
-                throw new Exception("Test Exception");
-            }
-            catch (Exception exception)
-            {
-                Log.Error(exception.Message);
-            }
-            return Content(dependency.GetMessages());
-            }
+            //try
+            //{
+            //    Log.Debug("Test log");
+            //    throw new Exception("Test Exception");
+            //}
+            //catch (Exception exception)
+            //{
+            //    Log.Error(exception.Message);
+            //}
+            //return Content(dependency.GetMessages());
+            return Content("Hello World");
         }
     }
+}

@@ -29,7 +29,7 @@ namespace AccountingBookWeb.DependencyResolution
                 c =>
                 {
                     c.AddRegistry<DefaultRegistry>();
-                    c.For<IDependency>().Use<Class1>();
+                    c.For<IProvider>().Use<Provider>();
                 });
         }
 

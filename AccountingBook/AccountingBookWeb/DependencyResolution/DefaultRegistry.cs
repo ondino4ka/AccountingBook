@@ -16,9 +16,10 @@
 // --------------------------------------------------------------------------------------------------------------------
 
 namespace AccountingBookWeb.DependencyResolution {
+    using AccountingBookData.Repositories;
     using StructureMap.Configuration.DSL;
     using StructureMap.Graph;
-	
+
     public class DefaultRegistry : Registry {
         #region Constructors and Destructors
 
@@ -30,6 +31,7 @@ namespace AccountingBookWeb.DependencyResolution {
 					scan.With(new ControllerConvention());
                 });
             //For<IExample>().Use<Example>();
+             For<IDataProvider>().Use<Data>();
         }
 
         #endregion

@@ -40,9 +40,20 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Class1.cs" />
-    <Compile Include="IDependency.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Providers\IProvider.cs" />
+    <Compile Include="Providers\Provider.cs" />
+  </ItemGroup>
+  <ItemGroup />
+  <ItemGroup>
+    <ProjectReference Include="..\AccountingBookCommon\AccountingBookCommon.csproj">
+      <Project>{28509497-c4c0-4ce5-8ce8-02aeb8f6554a}</Project>
+      <Name>AccountingBookCommon</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\AccountingBookData\AccountingBookData.csproj">
+      <Project>{28cd17f8-4a0c-4f55-ae0e-e9fdac6c824c}</Project>
+      <Name>AccountingBookData</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
