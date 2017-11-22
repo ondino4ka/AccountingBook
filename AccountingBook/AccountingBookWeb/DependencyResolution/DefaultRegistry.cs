@@ -16,7 +16,6 @@
 // --------------------------------------------------------------------------------------------------------------------
 
 namespace AccountingBookWeb.DependencyResolution {
-    using AccountingBookData.Repositories;
     using StructureMap.Configuration.DSL;
     using StructureMap.Graph;
 
@@ -30,8 +29,6 @@ namespace AccountingBookWeb.DependencyResolution {
                     scan.WithDefaultConventions();
 					scan.With(new ControllerConvention());
                 });
-            //For<IExample>().Use<Example>();
-             For<IDataProvider>().Use<Data>();
         }
 
         #endregion

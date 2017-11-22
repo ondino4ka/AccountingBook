@@ -1,13 +1,9 @@
 ﻿using AccountingBookCommon;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace AccountingBookBL
+namespace AccountingBookBL.Providers
 {
-   public interface IProvider
+    public interface IProvider
     {
         IReadOnlyList<Category> GetCategories();
         IReadOnlyList<Subject> GetSubjects();

@@ -11,6 +11,14 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AccountingBookCommon", "Acc
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AccountingBookData", "AccountingBookData\AccountingBookData.csproj", "{28CD17F8-4A0C-4F55-AE0E-E9FDAC6C824C}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AccountingBookService.Contracts", "AccountingBookService.Contracts\AccountingBookService.Contracts.csproj", "{E3668978-7803-45AE-976D-C3E2F7677F36}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AccountingBookService.Contracts.Models", "AccountingBookService.Contracts.Models\AccountingBookService.Contracts.Models.csproj", "{250A1AC2-B0F3-45C4-9E85-5C1911025616}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AccountingBookService", "AccountingBookService\AccountingBookService.csproj", "{3D49893E-96C0-46E3-8198-25507784A4FD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AccountingBookDependencies", "AccountingBookDependencies\AccountingBookDependencies.csproj", "{53168CCE-DFFD-4926-99B2-42FC45D2222B}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +41,22 @@ Global
 		{28CD17F8-4A0C-4F55-AE0E-E9FDAC6C824C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{28CD17F8-4A0C-4F55-AE0E-E9FDAC6C824C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{28CD17F8-4A0C-4F55-AE0E-E9FDAC6C824C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E3668978-7803-45AE-976D-C3E2F7677F36}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E3668978-7803-45AE-976D-C3E2F7677F36}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E3668978-7803-45AE-976D-C3E2F7677F36}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E3668978-7803-45AE-976D-C3E2F7677F36}.Release|Any CPU.Build.0 = Release|Any CPU
+		{250A1AC2-B0F3-45C4-9E85-5C1911025616}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{250A1AC2-B0F3-45C4-9E85-5C1911025616}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{250A1AC2-B0F3-45C4-9E85-5C1911025616}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{250A1AC2-B0F3-45C4-9E85-5C1911025616}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3D49893E-96C0-46E3-8198-25507784A4FD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3D49893E-96C0-46E3-8198-25507784A4FD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3D49893E-96C0-46E3-8198-25507784A4FD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3D49893E-96C0-46E3-8198-25507784A4FD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{53168CCE-DFFD-4926-99B2-42FC45D2222B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{53168CCE-DFFD-4926-99B2-42FC45D2222B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{53168CCE-DFFD-4926-99B2-42FC45D2222B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{53168CCE-DFFD-4926-99B2-42FC45D2222B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

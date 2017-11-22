@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ReferenceGroup xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" ID="bd74ec8e-0399-4e8d-bf4b-d5b3ed2caf34" xmlns="urn:schemas-microsoft-com:xml-wcfservicemap">
+  <ClientOptions>
+    <GenerateAsynchronousMethods>false</GenerateAsynchronousMethods>
+    <GenerateTaskBasedAsynchronousMethod>true</GenerateTaskBasedAsynchronousMethod>
+    <EnableDataBinding>true</EnableDataBinding>
+    <ExcludedTypes />
+    <ImportXmlTypes>false</ImportXmlTypes>
+    <GenerateInternalTypes>false</GenerateInternalTypes>
+    <GenerateMessageContracts>false</GenerateMessageContracts>
+    <NamespaceMappings />
+    <CollectionMappings />
+    <GenerateSerializableTypes>true</GenerateSerializableTypes>
+    <Serializer>Auto</Serializer>
+    <UseSerializerForFaults>true</UseSerializerForFaults>
+    <ReferenceAllAssemblies>true</ReferenceAllAssemblies>
+    <ReferencedAssemblies />
+    <ReferencedDataContractTypes />
+    <ServiceContractMappings />
+  </ClientOptions>
+  <MetadataSources>
+    <MetadataSource Address="http://localhost:1231/AccountingBookService.svc" Protocol="http" SourceId="1" />
+  </MetadataSources>
+  <Metadata>
+    <MetadataFile FileName="AccountingBookService.xsd" MetadataType="Schema" ID="269b7831-03b7-4cef-8940-c7065a2e63d4" SourceId="1" SourceUrl="http://localhost:1231/AccountingBookService.svc?xsd=xsd1" />
+    <MetadataFile FileName="AccountingBookService.disco" MetadataType="Disco" ID="9db0b090-ee44-48cf-a946-4f087ed98c30" SourceId="1" SourceUrl="http://localhost:1231/AccountingBookService.svc?disco" />
+    <MetadataFile FileName="AccountingBookService1.xsd" MetadataType="Schema" ID="f71f0589-85b1-48f8-9c09-3f028fe812f7" SourceId="1" SourceUrl="http://localhost:1231/AccountingBookService.svc?xsd=xsd0" />
+    <MetadataFile FileName="AccountingBookService.wsdl" MetadataType="Wsdl" ID="b4379c5f-1caf-4d9c-997c-63cfee108567" SourceId="1" SourceUrl="http://localhost:1231/AccountingBookService.svc?wsdl" />
+    <MetadataFile FileName="AccountingBookService2.xsd" MetadataType="Schema" ID="4063ddab-3d69-48ee-beeb-3c47dbf24121" SourceId="1" SourceUrl="http://localhost:1231/AccountingBookService.svc?xsd=xsd2" />
+  </Metadata>
+  <Extensions>
+    <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />
+    <ExtensionFile FileName="configuration.svcinfo" Name="configuration.svcinfo" />
+  </Extensions>
+</ReferenceGroup>

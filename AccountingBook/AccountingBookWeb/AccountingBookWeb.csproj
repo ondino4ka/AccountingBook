@@ -214,9 +214,9 @@
       <Project>{28509497-c4c0-4ce5-8ce8-02aeb8f6554a}</Project>
       <Name>AccountingBookCommon</Name>
     </ProjectReference>
-    <ProjectReference Include="..\AccountingBookData\AccountingBookData.csproj">
-      <Project>{28cd17f8-4a0c-4f55-ae0e-e9fdac6c824c}</Project>
-      <Name>AccountingBookData</Name>
+    <ProjectReference Include="..\AccountingBookDependencies\AccountingBookDependencies.csproj">
+      <Project>{53168cce-dffd-4926-99b2-42fc45d2222b}</Project>
+      <Name>AccountingBookDependencies</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>
