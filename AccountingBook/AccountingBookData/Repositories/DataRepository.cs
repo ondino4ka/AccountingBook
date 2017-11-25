@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using AccountingBookCommon;
 using AccountingBookData.Clients;
 
@@ -22,14 +23,21 @@ namespace AccountingBookData.Repositories
             return _client.GetSubCategories();
         }
 
-        public Subject GetSubjectInformationById(int inventoryNumberSubject)
-        {
-            return _client.GetSubjectInformationById(inventoryNumberSubject);
-        }
-
         public IReadOnlyList<Subject> GetSubjects()
         {
-            return _client.GetSubjects();
+            throw new NotImplementedException();
         }
+
+        public IReadOnlyList<Subject> GetSubjectsByCategoryOrSubCategoryId(int categoryId, bool isCategiory)
+        {
+            return _client.GetSubjectsByCategoryOrSubCategoryId(categoryId, isCategiory);
+        }
+
+        public Subject GetSubjectInformationById(int inventoryNumber)
+        {
+            return _client.GetSubjectInformationById(inventoryNumber);
+        }
+
+     
     }
 }

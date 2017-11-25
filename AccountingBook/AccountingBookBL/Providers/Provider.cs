@@ -2,6 +2,7 @@
 using System.Linq;
 using AccountingBookData.Repositories;
 using AccountingBookCommon;
+using System;
 
 namespace AccountingBookBL.Providers
 {
@@ -15,36 +16,40 @@ namespace AccountingBookBL.Providers
 
         public IReadOnlyList<Category> GetCategories()
         {
-            return _dataRepository.GetCategories();
+            IReadOnlyList<Category> categories = _dataRepository.GetCategories();
+            IReadOnlyList<SubCategory> subCategories = GetSubCategories();
+            foreach (var category in categories)
+            {
+                foreach (var subCategory in subCategories)
+                {
+                    if (category.Id == subCategory.IdCategory)
+                    {
+                        category.SubCategories.Add(subCategory);
+                    }
+                }           
+            }
+            return categories;
+        }
+
+        public IReadOnlyList<SubCategory> GetSubCategories()
+        {
+            return _dataRepository.GetSubCategories();
         }
 
         public IReadOnlyList<Subject> GetSubjects()
         {
-            return _dataRepository.GetSubjects();
+            throw new NotImplementedException();
         }
 
-        public IReadOnlyList<Subject> GetSubjectsBySubCategories(int idSubCategories)
+        public IReadOnlyList<Subject> GetSubjectsByCategoryOrSubCategoryId(int id, bool isCategory)
         {
-            var subjects = _dataRepository.GetSubjects();
-            return subjects.Where(x => x.IdSubCategory == idSubCategories).ToList();
+            return _dataRepository.GetSubjectsByCategoryOrSubCategoryId(id, isCategory);
         }
-        public IReadOnlyList<Subject> GetSubjectsByCategories(int idCategories)
+
+        public Subject GetSubjectInformationById(int inventoryNumber)
         {
-            var subCategory = _dataRepository.GetCategories().Where(x => x.Id == idCategories).SingleOrDefault().SubCategories.Where(x => x.IdCategory == idCategories).ToList();
-            var subjects = _dataRepository.GetSubjects().Where(x => subCategory.Exists(z => z.Id == x.IdSubCategory)).ToList();
+            var subjects = _dataRepository.GetSubjectInformationById(inventoryNumber);
             return subjects;
-        }
-
-        public Subject GetSubjectInformationById(int inventoryNumberSubject)
-        {
-            var subjects = _dataRepository.GetSubjectInformationById(inventoryNumberSubject);
-            return subjects;
-        }
-
-        public string GetNameSubCategoryBySubjectId(int inventoryNumberSubject)
-        {
-            string nameCategory = _dataRepository.GetSubCategories().First(x => x.Id == _dataRepository.GetSubjects().First(y => y.InventoryNumber == inventoryNumberSubject).IdSubCategory).Name;
-            return nameCategory;
-        }
+        } 
     }
 }

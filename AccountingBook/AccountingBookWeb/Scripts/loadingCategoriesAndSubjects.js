@@ -10,6 +10,6 @@ function getSubjectsById(objectCategory, isCategory) {
     }
 };
 
-function getDetailsSubject(InventoryNumber) {
-    $("#content").load('/Home/ViewSubject?inventoryNumberSubject=' + InventoryNumber);
+function getDetailsSubject(inventoryNumber) {
+    $("#content").load('/Home/ViewSubject?inventoryNumber=' + inventoryNumber);
 };

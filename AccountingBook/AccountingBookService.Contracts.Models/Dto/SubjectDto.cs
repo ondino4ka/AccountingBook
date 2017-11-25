@@ -14,7 +14,9 @@ namespace AccountingBookService.Contracts.Models.Dto
         [DataMember]
         public string State { get; set; }
         [DataMember]
-        public int IdSubCategory { get; set; }
+        public string Category { get; set; }
+        [DataMember]
+        public string SubCategory { get; set; }
         [DataMember]
         public string Photo { get; set; }
         [DataMember]

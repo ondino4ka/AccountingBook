@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using AccountingBookCommon;
 
@@ -8,7 +9,7 @@ namespace AccountingBookData.Clients
     {
         public IReadOnlyList<Category> GetCategories()
         {
-            var result = new List<Category>();
+            List<Category> result = new List<Category>();
             using (var client = new AccountingBookServiceReference.AccountingBookServiceClient())
             {
                 client.Open();
@@ -21,7 +22,7 @@ namespace AccountingBookData.Clients
 
         public IReadOnlyList<SubCategory> GetSubCategories()
         {
-            var result = new List<SubCategory>();
+            List<SubCategory> result = new List<SubCategory>();
             using (var client = new AccountingBookServiceReference.AccountingBookServiceClient())
             {
                 client.Open();
@@ -32,27 +33,33 @@ namespace AccountingBookData.Clients
             return result;
         }
 
-        public Subject GetSubjectInformationById(int inventoryNumberSubject)
+        public IReadOnlyList<Subject> GetSubjects()
         {
-            var result = new Subject();
+            throw new NotImplementedException();
+        }
+
+        public IReadOnlyList<Subject> GetSubjectsByCategoryOrSubCategoryId(int id, bool isCategory)
+        {
+            List<Subject> result = new List<Subject>();
             using (var client = new AccountingBookServiceReference.AccountingBookServiceClient())
             {
                 client.Open();
-                var data = client.GetSubjectInformationById(inventoryNumberSubject);
-                result = new Subject() { Name = data.Name, State = data.State, Description = data.Description, Photo = data.Photo, Location = data.Location, IdSubCategory = data.IdSubCategory, InventoryNumber = data.InventoryNumber };
+                var data = client.GetSubjectsByCategoryOrSubCategoryId(id, isCategory);
+                result = data == null ? result : data.Select(x => new Subject { InventoryNumber = x.InventoryNumber, Name = x.Name, Photo = x.Photo, Description = x.Description }).ToList();
                 client.Close();
             }
             return result;
         }
+     
 
-        public IReadOnlyList<Subject> GetSubjects()
+        public Subject GetSubjectInformationById(int inventoryNumber)
         {
-            var result = new List<Subject>();
+            Subject result = new Subject();
             using (var client = new AccountingBookServiceReference.AccountingBookServiceClient())
             {
                 client.Open();
-                var data = client.GetSubjects();
-                result = data == null ? result : data.Select(z => new Subject { Name = z.Name, Description = z.Description, IdSubCategory = z.IdSubCategory, InventoryNumber = z.InventoryNumber, Location = z.Location, Photo = z.Photo, State = z.State }).ToList();
+                var data = client.GetSubjectInformationById(inventoryNumber);
+                result = new Subject() { InventoryNumber = data.InventoryNumber , Name = data.Name, State = data.State, Description = data.Description, Photo = data.Photo, Location = data.Location, Category=data.Category, SubCategory = data.SubCategory};
                 client.Close();
             }
             return result;

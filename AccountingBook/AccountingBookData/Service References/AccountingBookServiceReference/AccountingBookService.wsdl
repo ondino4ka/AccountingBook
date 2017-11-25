@@ -7,12 +7,6 @@
       <xsd:import schemaLocation="http://localhost:1231/AccountingBookService.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/AccountingBookService.Contracts.Models.Dto" />
     </xsd:schema>
   </wsdl:types>
-  <wsdl:message name="IAccountingBookService_GetSubjects_InputMessage">
-    <wsdl:part name="parameters" element="tns:GetSubjects" />
-  </wsdl:message>
-  <wsdl:message name="IAccountingBookService_GetSubjects_OutputMessage">
-    <wsdl:part name="parameters" element="tns:GetSubjectsResponse" />
-  </wsdl:message>
   <wsdl:message name="IAccountingBookService_GetCategories_InputMessage">
     <wsdl:part name="parameters" element="tns:GetCategories" />
   </wsdl:message>
@@ -25,6 +19,18 @@
   <wsdl:message name="IAccountingBookService_GetSubCategories_OutputMessage">
     <wsdl:part name="parameters" element="tns:GetSubCategoriesResponse" />
   </wsdl:message>
+  <wsdl:message name="IAccountingBookService_GetSubjects_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetSubjects" />
+  </wsdl:message>
+  <wsdl:message name="IAccountingBookService_GetSubjects_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetSubjectsResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAccountingBookService_GetSubjectsByCategoryOrSubCategoryId_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetSubjectsByCategoryOrSubCategoryId" />
+  </wsdl:message>
+  <wsdl:message name="IAccountingBookService_GetSubjectsByCategoryOrSubCategoryId_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetSubjectsByCategoryOrSubCategoryIdResponse" />
+  </wsdl:message>
   <wsdl:message name="IAccountingBookService_GetSubjectInformationById_InputMessage">
     <wsdl:part name="parameters" element="tns:GetSubjectInformationById" />
   </wsdl:message>
@@ -32,10 +38,6 @@
     <wsdl:part name="parameters" element="tns:GetSubjectInformationByIdResponse" />
   </wsdl:message>
   <wsdl:portType name="IAccountingBookService">
-    <wsdl:operation name="GetSubjects">
-      <wsdl:input wsaw:Action="http://tempuri.org/IAccountingBookService/GetSubjects" message="tns:IAccountingBookService_GetSubjects_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IAccountingBookService/GetSubjectsResponse" message="tns:IAccountingBookService_GetSubjects_OutputMessage" />
-    </wsdl:operation>
     <wsdl:operation name="GetCategories">
       <wsdl:input wsaw:Action="http://tempuri.org/IAccountingBookService/GetCategories" message="tns:IAccountingBookService_GetCategories_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IAccountingBookService/GetCategoriesResponse" message="tns:IAccountingBookService_GetCategories_OutputMessage" />
@@ -44,6 +46,14 @@
       <wsdl:input wsaw:Action="http://tempuri.org/IAccountingBookService/GetSubCategories" message="tns:IAccountingBookService_GetSubCategories_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IAccountingBookService/GetSubCategoriesResponse" message="tns:IAccountingBookService_GetSubCategories_OutputMessage" />
     </wsdl:operation>
+    <wsdl:operation name="GetSubjects">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAccountingBookService/GetSubjects" message="tns:IAccountingBookService_GetSubjects_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAccountingBookService/GetSubjectsResponse" message="tns:IAccountingBookService_GetSubjects_OutputMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetSubjectsByCategoryOrSubCategoryId">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAccountingBookService/GetSubjectsByCategoryOrSubCategoryId" message="tns:IAccountingBookService_GetSubjectsByCategoryOrSubCategoryId_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAccountingBookService/GetSubjectsByCategoryOrSubCategoryIdResponse" message="tns:IAccountingBookService_GetSubjectsByCategoryOrSubCategoryId_OutputMessage" />
+    </wsdl:operation>
     <wsdl:operation name="GetSubjectInformationById">
       <wsdl:input wsaw:Action="http://tempuri.org/IAccountingBookService/GetSubjectInformationById" message="tns:IAccountingBookService_GetSubjectInformationById_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IAccountingBookService/GetSubjectInformationByIdResponse" message="tns:IAccountingBookService_GetSubjectInformationById_OutputMessage" />
@@ -51,15 +61,6 @@
   </wsdl:portType>
   <wsdl:binding name="BasicHttpBinding_IAccountingBookService" type="tns:IAccountingBookService">
     <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
-    <wsdl:operation name="GetSubjects">
-      <soap:operation soapAction="http://tempuri.org/IAccountingBookService/GetSubjects" style="document" />
-      <wsdl:input>
-        <soap:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap:body use="literal" />
-      </wsdl:output>
-    </wsdl:operation>
     <wsdl:operation name="GetCategories">
       <soap:operation soapAction="http://tempuri.org/IAccountingBookService/GetCategories" style="document" />
       <wsdl:input>
@@ -71,6 +72,24 @@
     </wsdl:operation>
     <wsdl:operation name="GetSubCategories">
       <soap:operation soapAction="http://tempuri.org/IAccountingBookService/GetSubCategories" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetSubjects">
+      <soap:operation soapAction="http://tempuri.org/IAccountingBookService/GetSubjects" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="GetSubjectsByCategoryOrSubCategoryId">
+      <soap:operation soapAction="http://tempuri.org/IAccountingBookService/GetSubjectsByCategoryOrSubCategoryId" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>

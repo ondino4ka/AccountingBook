@@ -38,21 +38,12 @@ namespace AccountingBookWeb.Controllers
         }
         public PartialViewResult Subjects(int id, bool isCategory)
         {
-            IReadOnlyList<Subject> subjects;
-            if (isCategory)
-            {
-                subjects = dependency.GetSubjectsByCategories(id);
-            }
-            else
-            {
-                subjects = dependency.GetSubjectsBySubCategories(id);
-            }
+            IReadOnlyList<Subject> subjects = dependency.GetSubjectsByCategoryOrSubCategoryId(id, isCategory);
             return PartialView(subjects);
         }
-        public PartialViewResult ViewSubject(int inventoryNumberSubject)
+        public PartialViewResult ViewSubject(int inventoryNumber)
         {
-            ViewBag.NameCategory = dependency.GetNameSubCategoryBySubjectId(inventoryNumberSubject);
-            return PartialView(dependency.GetSubjectInformationById(inventoryNumberSubject));
+            return PartialView(dependency.GetSubjectInformationById(inventoryNumber));
         }
     }
 }

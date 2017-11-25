@@ -6,11 +6,9 @@ namespace AccountingBookBL.Providers
     public interface IProvider
     {
         IReadOnlyList<Category> GetCategories();
+        IReadOnlyList<SubCategory> GetSubCategories();
         IReadOnlyList<Subject> GetSubjects();
-        IReadOnlyList<Subject> GetSubjectsBySubCategories(int idSubCategories);
-        IReadOnlyList<Subject> GetSubjectsByCategories(int idCategories);
-        Subject GetSubjectInformationById(int inventoryNumberSubject);
-        string GetNameSubCategoryBySubjectId(int inventoryNumberSubject);
-
+        IReadOnlyList<Subject> GetSubjectsByCategoryOrSubCategoryId(int id, bool isCategory);
+        Subject GetSubjectInformationById(int inventoryNumber);
     }
 }

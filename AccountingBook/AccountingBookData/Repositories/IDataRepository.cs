@@ -5,9 +5,10 @@ namespace AccountingBookData.Repositories
 {
     public interface IDataRepository
     {
-        IReadOnlyList<Subject> GetSubjects();
         IReadOnlyList<Category> GetCategories();
         IReadOnlyList<SubCategory> GetSubCategories();
-        Subject GetSubjectInformationById(int inventoryNumberSubject);
+        IReadOnlyList<Subject> GetSubjects();
+        IReadOnlyList<Subject> GetSubjectsByCategoryOrSubCategoryId(int id, bool isCategory);
+        Subject GetSubjectInformationById(int inventoryNumber);
     }
 }

@@ -11,8 +11,6 @@ namespace AccountingBookService.Contracts.Models.Dto
         [DataMember]
         public string Name { get; set; }
         [DataMember]
-        public List<SubjectDto> Subjects { get; set; }
-        [DataMember]
         public int IdCategory { get; set; }
     }
 }

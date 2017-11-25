@@ -6,14 +6,16 @@ namespace AccountingBookService.Contracts.Contracts
 {
     [ServiceContract]
     public interface IAccountingBookService
-    {
-        [OperationContract]
-        List<SubjectDto> GetSubjects();
+    {       
         [OperationContract]
         List<CategoryDto> GetCategories();
         [OperationContract]
         List<SubCategoryDto> GetSubCategories();
         [OperationContract]
-        SubjectDto GetSubjectInformationById(int inventoryNumberSubject);
+        List<SubjectDto> GetSubjects();
+        [OperationContract]
+        List<SubjectDto> GetSubjectsByCategoryOrSubCategoryId(int id, bool isCategory);  
+        [OperationContract]
+        SubjectDto GetSubjectInformationById(int inventoryNumber);
     }
 }

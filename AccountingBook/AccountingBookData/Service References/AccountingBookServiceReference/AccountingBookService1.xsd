@@ -1,18 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <xs:schema xmlns:tns="http://tempuri.org/" elementFormDefault="qualified" targetNamespace="http://tempuri.org/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
   <xs:import schemaLocation="http://localhost:1231/AccountingBookService.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/AccountingBookService.Contracts.Models.Dto" />
-  <xs:element name="GetSubjects">
-    <xs:complexType>
-      <xs:sequence />
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="GetSubjectsResponse">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/AccountingBookService.Contracts.Models.Dto" minOccurs="0" name="GetSubjectsResult" nillable="true" type="q1:ArrayOfSubjectDto" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
   <xs:element name="GetCategories">
     <xs:complexType>
       <xs:sequence />
@@ -21,7 +9,7 @@
   <xs:element name="GetCategoriesResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q2="http://schemas.datacontract.org/2004/07/AccountingBookService.Contracts.Models.Dto" minOccurs="0" name="GetCategoriesResult" nillable="true" type="q2:ArrayOfCategoryDto" />
+        <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/AccountingBookService.Contracts.Models.Dto" minOccurs="0" name="GetCategoriesResult" nillable="true" type="q1:ArrayOfCategoryDto" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -33,21 +21,48 @@
   <xs:element name="GetSubCategoriesResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q3="http://schemas.datacontract.org/2004/07/AccountingBookService.Contracts.Models.Dto" minOccurs="0" name="GetSubCategoriesResult" nillable="true" type="q3:ArrayOfSubCategoryDto" />
+        <xs:element xmlns:q2="http://schemas.datacontract.org/2004/07/AccountingBookService.Contracts.Models.Dto" minOccurs="0" name="GetSubCategoriesResult" nillable="true" type="q2:ArrayOfSubCategoryDto" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetSubjects">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetSubjectsResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q3="http://schemas.datacontract.org/2004/07/AccountingBookService.Contracts.Models.Dto" minOccurs="0" name="GetSubjectsResult" nillable="true" type="q3:ArrayOfSubjectDto" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetSubjectsByCategoryOrSubCategoryId">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="id" type="xs:int" />
+        <xs:element minOccurs="0" name="isCategory" type="xs:boolean" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetSubjectsByCategoryOrSubCategoryIdResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q4="http://schemas.datacontract.org/2004/07/AccountingBookService.Contracts.Models.Dto" minOccurs="0" name="GetSubjectsByCategoryOrSubCategoryIdResult" nillable="true" type="q4:ArrayOfSubjectDto" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="GetSubjectInformationById">
     <xs:complexType>
       <xs:sequence>
-        <xs:element minOccurs="0" name="inventoryNumberSubject" type="xs:int" />
+        <xs:element minOccurs="0" name="inventoryNumber" type="xs:int" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="GetSubjectInformationByIdResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q4="http://schemas.datacontract.org/2004/07/AccountingBookService.Contracts.Models.Dto" minOccurs="0" name="GetSubjectInformationByIdResult" nillable="true" type="q4:SubjectDto" />
+        <xs:element xmlns:q5="http://schemas.datacontract.org/2004/07/AccountingBookService.Contracts.Models.Dto" minOccurs="0" name="GetSubjectInformationByIdResult" nillable="true" type="q5:SubjectDto" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>

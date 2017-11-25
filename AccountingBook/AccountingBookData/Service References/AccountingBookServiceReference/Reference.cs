@@ -15,148 +15,6 @@ namespace AccountingBookData.AccountingBookServiceReference {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="SubjectDto", Namespace="http://schemas.datacontract.org/2004/07/AccountingBookService.Contracts.Models.Dt" +
-        "o")]
-    [System.SerializableAttribute()]
-    public partial class SubjectDto : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
-        
-        [System.NonSerializedAttribute()]
-        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string DescriptionField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private int IdSubCategoryField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private int InventoryNumberField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string LocationField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string NameField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string PhotoField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string StateField;
-        
-        [global::System.ComponentModel.BrowsableAttribute(false)]
-        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
-            get {
-                return this.extensionDataField;
-            }
-            set {
-                this.extensionDataField = value;
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string Description {
-            get {
-                return this.DescriptionField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.DescriptionField, value) != true)) {
-                    this.DescriptionField = value;
-                    this.RaisePropertyChanged("Description");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public int IdSubCategory {
-            get {
-                return this.IdSubCategoryField;
-            }
-            set {
-                if ((this.IdSubCategoryField.Equals(value) != true)) {
-                    this.IdSubCategoryField = value;
-                    this.RaisePropertyChanged("IdSubCategory");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public int InventoryNumber {
-            get {
-                return this.InventoryNumberField;
-            }
-            set {
-                if ((this.InventoryNumberField.Equals(value) != true)) {
-                    this.InventoryNumberField = value;
-                    this.RaisePropertyChanged("InventoryNumber");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string Location {
-            get {
-                return this.LocationField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.LocationField, value) != true)) {
-                    this.LocationField = value;
-                    this.RaisePropertyChanged("Location");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string Name {
-            get {
-                return this.NameField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.NameField, value) != true)) {
-                    this.NameField = value;
-                    this.RaisePropertyChanged("Name");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string Photo {
-            get {
-                return this.PhotoField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.PhotoField, value) != true)) {
-                    this.PhotoField = value;
-                    this.RaisePropertyChanged("Photo");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string State {
-            get {
-                return this.StateField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.StateField, value) != true)) {
-                    this.StateField = value;
-                    this.RaisePropertyChanged("State");
-                }
-            }
-        }
-        
-        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
-        
-        protected void RaisePropertyChanged(string propertyName) {
-            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
-            if ((propertyChanged != null)) {
-                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
-            }
-        }
-    }
-    
-    [System.Diagnostics.DebuggerStepThroughAttribute()]
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
     [System.Runtime.Serialization.DataContractAttribute(Name="CategoryDto", Namespace="http://schemas.datacontract.org/2004/07/AccountingBookService.Contracts.Models.Dt" +
         "o")]
     [System.SerializableAttribute()]
@@ -252,9 +110,6 @@ namespace AccountingBookData.AccountingBookServiceReference {
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string NameField;
         
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private AccountingBookData.AccountingBookServiceReference.SubjectDto[] SubjectsField;
-        
         [global::System.ComponentModel.BrowsableAttribute(false)]
         public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
             get {
@@ -304,15 +159,160 @@ namespace AccountingBookData.AccountingBookServiceReference {
             }
         }
         
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public AccountingBookData.AccountingBookServiceReference.SubjectDto[] Subjects {
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="SubjectDto", Namespace="http://schemas.datacontract.org/2004/07/AccountingBookService.Contracts.Models.Dt" +
+        "o")]
+    [System.SerializableAttribute()]
+    public partial class SubjectDto : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string CategoryField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string DescriptionField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int InventoryNumberField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string LocationField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string NameField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string PhotoField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string StateField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string SubCategoryField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
             get {
-                return this.SubjectsField;
+                return this.extensionDataField;
             }
             set {
-                if ((object.ReferenceEquals(this.SubjectsField, value) != true)) {
-                    this.SubjectsField = value;
-                    this.RaisePropertyChanged("Subjects");
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Category {
+            get {
+                return this.CategoryField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.CategoryField, value) != true)) {
+                    this.CategoryField = value;
+                    this.RaisePropertyChanged("Category");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Description {
+            get {
+                return this.DescriptionField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.DescriptionField, value) != true)) {
+                    this.DescriptionField = value;
+                    this.RaisePropertyChanged("Description");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int InventoryNumber {
+            get {
+                return this.InventoryNumberField;
+            }
+            set {
+                if ((this.InventoryNumberField.Equals(value) != true)) {
+                    this.InventoryNumberField = value;
+                    this.RaisePropertyChanged("InventoryNumber");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Location {
+            get {
+                return this.LocationField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.LocationField, value) != true)) {
+                    this.LocationField = value;
+                    this.RaisePropertyChanged("Location");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Name {
+            get {
+                return this.NameField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.NameField, value) != true)) {
+                    this.NameField = value;
+                    this.RaisePropertyChanged("Name");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Photo {
+            get {
+                return this.PhotoField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.PhotoField, value) != true)) {
+                    this.PhotoField = value;
+                    this.RaisePropertyChanged("Photo");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string State {
+            get {
+                return this.StateField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.StateField, value) != true)) {
+                    this.StateField = value;
+                    this.RaisePropertyChanged("State");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string SubCategory {
+            get {
+                return this.SubCategoryField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.SubCategoryField, value) != true)) {
+                    this.SubCategoryField = value;
+                    this.RaisePropertyChanged("SubCategory");
                 }
             }
         }
@@ -331,12 +331,6 @@ namespace AccountingBookData.AccountingBookServiceReference {
     [System.ServiceModel.ServiceContractAttribute(ConfigurationName="AccountingBookServiceReference.IAccountingBookService")]
     public interface IAccountingBookService {
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAccountingBookService/GetSubjects", ReplyAction="http://tempuri.org/IAccountingBookService/GetSubjectsResponse")]
-        AccountingBookData.AccountingBookServiceReference.SubjectDto[] GetSubjects();
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAccountingBookService/GetSubjects", ReplyAction="http://tempuri.org/IAccountingBookService/GetSubjectsResponse")]
-        System.Threading.Tasks.Task<AccountingBookData.AccountingBookServiceReference.SubjectDto[]> GetSubjectsAsync();
-        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAccountingBookService/GetCategories", ReplyAction="http://tempuri.org/IAccountingBookService/GetCategoriesResponse")]
         AccountingBookData.AccountingBookServiceReference.CategoryDto[] GetCategories();
         
@@ -349,11 +343,25 @@ namespace AccountingBookData.AccountingBookServiceReference {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAccountingBookService/GetSubCategories", ReplyAction="http://tempuri.org/IAccountingBookService/GetSubCategoriesResponse")]
         System.Threading.Tasks.Task<AccountingBookData.AccountingBookServiceReference.SubCategoryDto[]> GetSubCategoriesAsync();
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAccountingBookService/GetSubjectInformationById", ReplyAction="http://tempuri.org/IAccountingBookService/GetSubjectInformationByIdResponse")]
-        AccountingBookData.AccountingBookServiceReference.SubjectDto GetSubjectInformationById(int inventoryNumberSubject);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAccountingBookService/GetSubjects", ReplyAction="http://tempuri.org/IAccountingBookService/GetSubjectsResponse")]
+        AccountingBookData.AccountingBookServiceReference.SubjectDto[] GetSubjects();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAccountingBookService/GetSubjects", ReplyAction="http://tempuri.org/IAccountingBookService/GetSubjectsResponse")]
+        System.Threading.Tasks.Task<AccountingBookData.AccountingBookServiceReference.SubjectDto[]> GetSubjectsAsync();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAccountingBookService/GetSubjectsByCategoryOrSubCategoryId", ReplyAction="http://tempuri.org/IAccountingBookService/GetSubjectsByCategoryOrSubCategoryIdRes" +
+            "ponse")]
+        AccountingBookData.AccountingBookServiceReference.SubjectDto[] GetSubjectsByCategoryOrSubCategoryId(int id, bool isCategory);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAccountingBookService/GetSubjectsByCategoryOrSubCategoryId", ReplyAction="http://tempuri.org/IAccountingBookService/GetSubjectsByCategoryOrSubCategoryIdRes" +
+            "ponse")]
+        System.Threading.Tasks.Task<AccountingBookData.AccountingBookServiceReference.SubjectDto[]> GetSubjectsByCategoryOrSubCategoryIdAsync(int id, bool isCategory);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAccountingBookService/GetSubjectInformationById", ReplyAction="http://tempuri.org/IAccountingBookService/GetSubjectInformationByIdResponse")]
-        System.Threading.Tasks.Task<AccountingBookData.AccountingBookServiceReference.SubjectDto> GetSubjectInformationByIdAsync(int inventoryNumberSubject);
+        AccountingBookData.AccountingBookServiceReference.SubjectDto GetSubjectInformationById(int inventoryNumber);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAccountingBookService/GetSubjectInformationById", ReplyAction="http://tempuri.org/IAccountingBookService/GetSubjectInformationByIdResponse")]
+        System.Threading.Tasks.Task<AccountingBookData.AccountingBookServiceReference.SubjectDto> GetSubjectInformationByIdAsync(int inventoryNumber);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -383,14 +391,6 @@ namespace AccountingBookData.AccountingBookServiceReference {
                 base(binding, remoteAddress) {
         }
         
-        public AccountingBookData.AccountingBookServiceReference.SubjectDto[] GetSubjects() {
-            return base.Channel.GetSubjects();
-        }
-        
-        public System.Threading.Tasks.Task<AccountingBookData.AccountingBookServiceReference.SubjectDto[]> GetSubjectsAsync() {
-            return base.Channel.GetSubjectsAsync();
-        }
-        
         public AccountingBookData.AccountingBookServiceReference.CategoryDto[] GetCategories() {
             return base.Channel.GetCategories();
         }
@@ -407,12 +407,28 @@ namespace AccountingBookData.AccountingBookServiceReference {
             return base.Channel.GetSubCategoriesAsync();
         }
         
-        public AccountingBookData.AccountingBookServiceReference.SubjectDto GetSubjectInformationById(int inventoryNumberSubject) {
-            return base.Channel.GetSubjectInformationById(inventoryNumberSubject);
+        public AccountingBookData.AccountingBookServiceReference.SubjectDto[] GetSubjects() {
+            return base.Channel.GetSubjects();
         }
         
-        public System.Threading.Tasks.Task<AccountingBookData.AccountingBookServiceReference.SubjectDto> GetSubjectInformationByIdAsync(int inventoryNumberSubject) {
-            return base.Channel.GetSubjectInformationByIdAsync(inventoryNumberSubject);
+        public System.Threading.Tasks.Task<AccountingBookData.AccountingBookServiceReference.SubjectDto[]> GetSubjectsAsync() {
+            return base.Channel.GetSubjectsAsync();
+        }
+        
+        public AccountingBookData.AccountingBookServiceReference.SubjectDto[] GetSubjectsByCategoryOrSubCategoryId(int id, bool isCategory) {
+            return base.Channel.GetSubjectsByCategoryOrSubCategoryId(id, isCategory);
+        }
+        
+        public System.Threading.Tasks.Task<AccountingBookData.AccountingBookServiceReference.SubjectDto[]> GetSubjectsByCategoryOrSubCategoryIdAsync(int id, bool isCategory) {
+            return base.Channel.GetSubjectsByCategoryOrSubCategoryIdAsync(id, isCategory);
+        }
+        
+        public AccountingBookData.AccountingBookServiceReference.SubjectDto GetSubjectInformationById(int inventoryNumber) {
+            return base.Channel.GetSubjectInformationById(inventoryNumber);
+        }
+        
+        public System.Threading.Tasks.Task<AccountingBookData.AccountingBookServiceReference.SubjectDto> GetSubjectInformationByIdAsync(int inventoryNumber) {
+            return base.Channel.GetSubjectInformationByIdAsync(inventoryNumber);
         }
     }
 }
