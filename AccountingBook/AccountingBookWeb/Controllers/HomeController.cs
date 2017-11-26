@@ -9,26 +9,16 @@ namespace AccountingBookWeb.Controllers
 {
     public class HomeController : Controller
     {
-        private static log4net.ILog Log = LogManager.GetLogger("HomeController");
+        private static readonly log4net.ILog Log = LogManager.GetLogger("HomeController");
 
         private readonly IProvider dependency;
         public HomeController(IProvider dependency)
         {
             this.dependency = dependency;
         }
-        // GET: Home
         public ActionResult Index()
         {
-            //try
-            //{
-            //    Log.Debug("Test log");
-            //    throw new Exception("Test Exception");
-            //}
-            //catch (Exception exception)
-            //{
-            //    Log.Error(exception.Message);
-            //}
-            //return Content(dependency.GetMessages());
+            Log.Info("Controller:Home; Action:Index");
             return View();
         }
         public PartialViewResult CategoriesBar()
@@ -38,7 +28,7 @@ namespace AccountingBookWeb.Controllers
         }
         public PartialViewResult Subjects(int id, bool isCategory)
         {
-            IReadOnlyList<Subject> subjects = dependency.GetSubjectsByCategoryOrSubCategoryId(id, isCategory);
+            IReadOnlyList<SubjectDetails> subjects = dependency.GetSubjectsByCategoryOrSubCategoryId(id, isCategory);
             return PartialView(subjects);
         }
         public PartialViewResult ViewSubject(int inventoryNumber)

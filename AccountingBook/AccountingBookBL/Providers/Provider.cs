@@ -36,17 +36,17 @@ namespace AccountingBookBL.Providers
             return _dataRepository.GetSubCategories();
         }
 
-        public IReadOnlyList<Subject> GetSubjects()
+        public IReadOnlyList<SubjectDetails> GetSubjects()
         {
             throw new NotImplementedException();
         }
 
-        public IReadOnlyList<Subject> GetSubjectsByCategoryOrSubCategoryId(int id, bool isCategory)
+        public IReadOnlyList<SubjectDetails> GetSubjectsByCategoryOrSubCategoryId(int id, bool isCategory)
         {
             return _dataRepository.GetSubjectsByCategoryOrSubCategoryId(id, isCategory);
         }
 
-        public Subject GetSubjectInformationById(int inventoryNumber)
+        public SubjectDetails GetSubjectInformationById(int inventoryNumber)
         {
             var subjects = _dataRepository.GetSubjectInformationById(inventoryNumber);
             return subjects;

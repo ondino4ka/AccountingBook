@@ -171,10 +171,10 @@ namespace AccountingBookData.AccountingBookServiceReference {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="SubjectDto", Namespace="http://schemas.datacontract.org/2004/07/AccountingBookService.Contracts.Models.Dt" +
+    [System.Runtime.Serialization.DataContractAttribute(Name="SubjectDetailsDto", Namespace="http://schemas.datacontract.org/2004/07/AccountingBookService.Contracts.Models.Dt" +
         "o")]
     [System.SerializableAttribute()]
-    public partial class SubjectDto : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+    public partial class SubjectDetailsDto : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
         
         [System.NonSerializedAttribute()]
         private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
@@ -344,24 +344,24 @@ namespace AccountingBookData.AccountingBookServiceReference {
         System.Threading.Tasks.Task<AccountingBookData.AccountingBookServiceReference.SubCategoryDto[]> GetSubCategoriesAsync();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAccountingBookService/GetSubjects", ReplyAction="http://tempuri.org/IAccountingBookService/GetSubjectsResponse")]
-        AccountingBookData.AccountingBookServiceReference.SubjectDto[] GetSubjects();
+        AccountingBookData.AccountingBookServiceReference.SubjectDetailsDto[] GetSubjects();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAccountingBookService/GetSubjects", ReplyAction="http://tempuri.org/IAccountingBookService/GetSubjectsResponse")]
-        System.Threading.Tasks.Task<AccountingBookData.AccountingBookServiceReference.SubjectDto[]> GetSubjectsAsync();
+        System.Threading.Tasks.Task<AccountingBookData.AccountingBookServiceReference.SubjectDetailsDto[]> GetSubjectsAsync();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAccountingBookService/GetSubjectsByCategoryOrSubCategoryId", ReplyAction="http://tempuri.org/IAccountingBookService/GetSubjectsByCategoryOrSubCategoryIdRes" +
             "ponse")]
-        AccountingBookData.AccountingBookServiceReference.SubjectDto[] GetSubjectsByCategoryOrSubCategoryId(int id, bool isCategory);
+        AccountingBookData.AccountingBookServiceReference.SubjectDetailsDto[] GetSubjectsByCategoryOrSubCategoryId(int id, bool isCategory);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAccountingBookService/GetSubjectsByCategoryOrSubCategoryId", ReplyAction="http://tempuri.org/IAccountingBookService/GetSubjectsByCategoryOrSubCategoryIdRes" +
             "ponse")]
-        System.Threading.Tasks.Task<AccountingBookData.AccountingBookServiceReference.SubjectDto[]> GetSubjectsByCategoryOrSubCategoryIdAsync(int id, bool isCategory);
+        System.Threading.Tasks.Task<AccountingBookData.AccountingBookServiceReference.SubjectDetailsDto[]> GetSubjectsByCategoryOrSubCategoryIdAsync(int id, bool isCategory);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAccountingBookService/GetSubjectInformationById", ReplyAction="http://tempuri.org/IAccountingBookService/GetSubjectInformationByIdResponse")]
-        AccountingBookData.AccountingBookServiceReference.SubjectDto GetSubjectInformationById(int inventoryNumber);
+        AccountingBookData.AccountingBookServiceReference.SubjectDetailsDto GetSubjectInformationById(int inventoryNumber);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAccountingBookService/GetSubjectInformationById", ReplyAction="http://tempuri.org/IAccountingBookService/GetSubjectInformationByIdResponse")]
-        System.Threading.Tasks.Task<AccountingBookData.AccountingBookServiceReference.SubjectDto> GetSubjectInformationByIdAsync(int inventoryNumber);
+        System.Threading.Tasks.Task<AccountingBookData.AccountingBookServiceReference.SubjectDetailsDto> GetSubjectInformationByIdAsync(int inventoryNumber);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -407,27 +407,27 @@ namespace AccountingBookData.AccountingBookServiceReference {
             return base.Channel.GetSubCategoriesAsync();
         }
         
-        public AccountingBookData.AccountingBookServiceReference.SubjectDto[] GetSubjects() {
+        public AccountingBookData.AccountingBookServiceReference.SubjectDetailsDto[] GetSubjects() {
             return base.Channel.GetSubjects();
         }
         
-        public System.Threading.Tasks.Task<AccountingBookData.AccountingBookServiceReference.SubjectDto[]> GetSubjectsAsync() {
+        public System.Threading.Tasks.Task<AccountingBookData.AccountingBookServiceReference.SubjectDetailsDto[]> GetSubjectsAsync() {
             return base.Channel.GetSubjectsAsync();
         }
         
-        public AccountingBookData.AccountingBookServiceReference.SubjectDto[] GetSubjectsByCategoryOrSubCategoryId(int id, bool isCategory) {
+        public AccountingBookData.AccountingBookServiceReference.SubjectDetailsDto[] GetSubjectsByCategoryOrSubCategoryId(int id, bool isCategory) {
             return base.Channel.GetSubjectsByCategoryOrSubCategoryId(id, isCategory);
         }
         
-        public System.Threading.Tasks.Task<AccountingBookData.AccountingBookServiceReference.SubjectDto[]> GetSubjectsByCategoryOrSubCategoryIdAsync(int id, bool isCategory) {
+        public System.Threading.Tasks.Task<AccountingBookData.AccountingBookServiceReference.SubjectDetailsDto[]> GetSubjectsByCategoryOrSubCategoryIdAsync(int id, bool isCategory) {
             return base.Channel.GetSubjectsByCategoryOrSubCategoryIdAsync(id, isCategory);
         }
         
-        public AccountingBookData.AccountingBookServiceReference.SubjectDto GetSubjectInformationById(int inventoryNumber) {
+        public AccountingBookData.AccountingBookServiceReference.SubjectDetailsDto GetSubjectInformationById(int inventoryNumber) {
             return base.Channel.GetSubjectInformationById(inventoryNumber);
         }
         
-        public System.Threading.Tasks.Task<AccountingBookData.AccountingBookServiceReference.SubjectDto> GetSubjectInformationByIdAsync(int inventoryNumber) {
+        public System.Threading.Tasks.Task<AccountingBookData.AccountingBookServiceReference.SubjectDetailsDto> GetSubjectInformationByIdAsync(int inventoryNumber) {
             return base.Channel.GetSubjectInformationByIdAsync(inventoryNumber);
         }
     }

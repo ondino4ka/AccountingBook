@@ -7,8 +7,8 @@ namespace AccountingBookBL.Providers
     {
         IReadOnlyList<Category> GetCategories();
         IReadOnlyList<SubCategory> GetSubCategories();
-        IReadOnlyList<Subject> GetSubjects();
-        IReadOnlyList<Subject> GetSubjectsByCategoryOrSubCategoryId(int id, bool isCategory);
-        Subject GetSubjectInformationById(int inventoryNumber);
+        IReadOnlyList<SubjectDetails> GetSubjects();
+        IReadOnlyList<SubjectDetails> GetSubjectsByCategoryOrSubCategoryId(int id, bool isCategory);
+        SubjectDetails GetSubjectInformationById(int inventoryNumber);
     }
 }

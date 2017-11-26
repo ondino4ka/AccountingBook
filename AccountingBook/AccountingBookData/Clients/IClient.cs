@@ -7,8 +7,8 @@ namespace AccountingBookData.Clients
     {
         IReadOnlyList<Category> GetCategories();
         IReadOnlyList<SubCategory> GetSubCategories();
-        IReadOnlyList<Subject> GetSubjects();
-        IReadOnlyList<Subject> GetSubjectsByCategoryOrSubCategoryId(int categoryId, bool isCategory);
-        Subject GetSubjectInformationById(int inventoryNumber);
+        IReadOnlyList<SubjectDetails> GetSubjects();
+        IReadOnlyList<SubjectDetails> GetSubjectsByCategoryOrSubCategoryId(int categoryId, bool isCategory);
+        SubjectDetails GetSubjectInformationById(int inventoryNumber);
     }
 }

@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-
+﻿
 namespace AccountingBookCommon
 {
     public class SubCategory

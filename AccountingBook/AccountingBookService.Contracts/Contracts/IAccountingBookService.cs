@@ -12,10 +12,10 @@ namespace AccountingBookService.Contracts.Contracts
         [OperationContract]
         List<SubCategoryDto> GetSubCategories();
         [OperationContract]
-        List<SubjectDto> GetSubjects();
+        List<SubjectDetailsDto> GetSubjects();
         [OperationContract]
-        List<SubjectDto> GetSubjectsByCategoryOrSubCategoryId(int id, bool isCategory);  
+        List<SubjectDetailsDto> GetSubjectsByCategoryOrSubCategoryId(int id, bool isCategory);  
         [OperationContract]
-        SubjectDto GetSubjectInformationById(int inventoryNumber);
+        SubjectDetailsDto GetSubjectInformationById(int inventoryNumber);
     }
 }

@@ -44,7 +44,7 @@
   <ItemGroup>
     <Compile Include="Dto\CategoryDto.cs" />
     <Compile Include="Dto\SubCategoryDto.cs" />
-    <Compile Include="Dto\SubjectDto.cs" />
+    <Compile Include="Dto\SubjectDetailsDto.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

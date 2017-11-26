@@ -28,13 +28,13 @@
     </xs:sequence>
   </xs:complexType>
   <xs:element name="SubCategoryDto" nillable="true" type="tns:SubCategoryDto" />
-  <xs:complexType name="ArrayOfSubjectDto">
+  <xs:complexType name="ArrayOfSubjectDetailsDto">
     <xs:sequence>
-      <xs:element minOccurs="0" maxOccurs="unbounded" name="SubjectDto" nillable="true" type="tns:SubjectDto" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="SubjectDetailsDto" nillable="true" type="tns:SubjectDetailsDto" />
     </xs:sequence>
   </xs:complexType>
-  <xs:element name="ArrayOfSubjectDto" nillable="true" type="tns:ArrayOfSubjectDto" />
-  <xs:complexType name="SubjectDto">
+  <xs:element name="ArrayOfSubjectDetailsDto" nillable="true" type="tns:ArrayOfSubjectDetailsDto" />
+  <xs:complexType name="SubjectDetailsDto">
     <xs:sequence>
       <xs:element minOccurs="0" name="Category" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="Description" nillable="true" type="xs:string" />
@@ -46,5 +46,5 @@
       <xs:element minOccurs="0" name="SubCategory" nillable="true" type="xs:string" />
     </xs:sequence>
   </xs:complexType>
-  <xs:element name="SubjectDto" nillable="true" type="tns:SubjectDto" />
+  <xs:element name="SubjectDetailsDto" nillable="true" type="tns:SubjectDetailsDto" />
 </xs:schema>

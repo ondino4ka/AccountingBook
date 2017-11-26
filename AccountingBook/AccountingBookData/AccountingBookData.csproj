@@ -96,7 +96,7 @@
     <None Include="Service References\AccountingBookServiceReference\AccountingBookData.AccountingBookServiceReference.SubCategoryDto.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
-    <None Include="Service References\AccountingBookServiceReference\AccountingBookData.AccountingBookServiceReference.SubjectDto.datasource">
+    <None Include="Service References\AccountingBookServiceReference\AccountingBookData.AccountingBookServiceReference.SubjectDetailsDto.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Service References\AccountingBookServiceReference\AccountingBookService.wsdl" />

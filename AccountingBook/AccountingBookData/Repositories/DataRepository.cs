@@ -23,17 +23,17 @@ namespace AccountingBookData.Repositories
             return _client.GetSubCategories();
         }
 
-        public IReadOnlyList<Subject> GetSubjects()
+        public IReadOnlyList<SubjectDetails> GetSubjects()
         {
             throw new NotImplementedException();
         }
 
-        public IReadOnlyList<Subject> GetSubjectsByCategoryOrSubCategoryId(int categoryId, bool isCategiory)
+        public IReadOnlyList<SubjectDetails> GetSubjectsByCategoryOrSubCategoryId(int categoryId, bool isCategiory)
         {
             return _client.GetSubjectsByCategoryOrSubCategoryId(categoryId, isCategiory);
         }
 
-        public Subject GetSubjectInformationById(int inventoryNumber)
+        public SubjectDetails GetSubjectInformationById(int inventoryNumber)
         {
             return _client.GetSubjectInformationById(inventoryNumber);
         }

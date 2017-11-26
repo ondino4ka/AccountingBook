@@ -33,7 +33,7 @@
   <xs:element name="GetSubjectsResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q3="http://schemas.datacontract.org/2004/07/AccountingBookService.Contracts.Models.Dto" minOccurs="0" name="GetSubjectsResult" nillable="true" type="q3:ArrayOfSubjectDto" />
+        <xs:element xmlns:q3="http://schemas.datacontract.org/2004/07/AccountingBookService.Contracts.Models.Dto" minOccurs="0" name="GetSubjectsResult" nillable="true" type="q3:ArrayOfSubjectDetailsDto" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -48,7 +48,7 @@
   <xs:element name="GetSubjectsByCategoryOrSubCategoryIdResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q4="http://schemas.datacontract.org/2004/07/AccountingBookService.Contracts.Models.Dto" minOccurs="0" name="GetSubjectsByCategoryOrSubCategoryIdResult" nillable="true" type="q4:ArrayOfSubjectDto" />
+        <xs:element xmlns:q4="http://schemas.datacontract.org/2004/07/AccountingBookService.Contracts.Models.Dto" minOccurs="0" name="GetSubjectsByCategoryOrSubCategoryIdResult" nillable="true" type="q4:ArrayOfSubjectDetailsDto" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -62,7 +62,7 @@
   <xs:element name="GetSubjectInformationByIdResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q5="http://schemas.datacontract.org/2004/07/AccountingBookService.Contracts.Models.Dto" minOccurs="0" name="GetSubjectInformationByIdResult" nillable="true" type="q5:SubjectDto" />
+        <xs:element xmlns:q5="http://schemas.datacontract.org/2004/07/AccountingBookService.Contracts.Models.Dto" minOccurs="0" name="GetSubjectInformationByIdResult" nillable="true" type="q5:SubjectDetailsDto" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>

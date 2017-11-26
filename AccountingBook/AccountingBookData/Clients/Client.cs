@@ -33,33 +33,33 @@ namespace AccountingBookData.Clients
             return result;
         }
 
-        public IReadOnlyList<Subject> GetSubjects()
+        public IReadOnlyList<SubjectDetails> GetSubjects()
         {
             throw new NotImplementedException();
         }
 
-        public IReadOnlyList<Subject> GetSubjectsByCategoryOrSubCategoryId(int id, bool isCategory)
+        public IReadOnlyList<SubjectDetails> GetSubjectsByCategoryOrSubCategoryId(int id, bool isCategory)
         {
-            List<Subject> result = new List<Subject>();
+            List<SubjectDetails> result = new List<SubjectDetails>();
             using (var client = new AccountingBookServiceReference.AccountingBookServiceClient())
             {
                 client.Open();
                 var data = client.GetSubjectsByCategoryOrSubCategoryId(id, isCategory);
-                result = data == null ? result : data.Select(x => new Subject { InventoryNumber = x.InventoryNumber, Name = x.Name, Photo = x.Photo, Description = x.Description }).ToList();
+                result = data == null ? result : data.Select(x => new SubjectDetails { InventoryNumber = x.InventoryNumber, Name = x.Name, Photo = x.Photo, Description = x.Description }).ToList();
                 client.Close();
             }
             return result;
         }
      
 
-        public Subject GetSubjectInformationById(int inventoryNumber)
+        public SubjectDetails GetSubjectInformationById(int inventoryNumber)
         {
-            Subject result = new Subject();
+            SubjectDetails result = new SubjectDetails();
             using (var client = new AccountingBookServiceReference.AccountingBookServiceClient())
             {
                 client.Open();
                 var data = client.GetSubjectInformationById(inventoryNumber);
-                result = new Subject() { InventoryNumber = data.InventoryNumber , Name = data.Name, State = data.State, Description = data.Description, Photo = data.Photo, Location = data.Location, Category=data.Category, SubCategory = data.SubCategory};
+                result = new SubjectDetails() { InventoryNumber = data.InventoryNumber , Name = data.Name, State = data.State, Description = data.Description, Photo = data.Photo, Location = data.Location, Category=data.Category, SubCategory = data.SubCategory};
                 client.Close();
             }
             return result;
