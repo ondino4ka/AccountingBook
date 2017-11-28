@@ -1,6 +1,6 @@
 USE [master]
 GO
-/****** Object:  Database [AccountingBookDB]    Script Date: 25.11.2017 18:10:56 ******/
+/****** Object:  Database [AccountingBookDB]    Script Date: 28.11.2017 7:03:59 ******/
 CREATE DATABASE [AccountingBookDB]
  CONTAINMENT = NONE
  ON  PRIMARY 
@@ -75,12 +75,12 @@ ALTER DATABASE [AccountingBookDB] SET DELAYED_DURABILITY = DISABLED
 GO
 USE [AccountingBookDB]
 GO
-/****** Object:  User [accbook]    Script Date: 25.11.2017 18:10:56 ******/
+/****** Object:  User [accbook]    Script Date: 28.11.2017 7:03:59 ******/
 CREATE USER [accbook] FOR LOGIN [accbook] WITH DEFAULT_SCHEMA=[dbo]
 GO
 ALTER ROLE [db_owner] ADD MEMBER [accbook]
 GO
-/****** Object:  Table [dbo].[Categories]    Script Date: 25.11.2017 18:10:56 ******/
+/****** Object:  Table [dbo].[Categories]    Script Date: 28.11.2017 7:04:00 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -95,7 +95,7 @@ CREATE TABLE [dbo].[Categories](
 ) ON [PRIMARY]
 
 GO
-/****** Object:  Table [dbo].[Locations]    Script Date: 25.11.2017 18:10:56 ******/
+/****** Object:  Table [dbo].[Locations]    Script Date: 28.11.2017 7:04:00 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -110,7 +110,7 @@ CREATE TABLE [dbo].[Locations](
 ) ON [PRIMARY]
 
 GO
-/****** Object:  Table [dbo].[States]    Script Date: 25.11.2017 18:10:56 ******/
+/****** Object:  Table [dbo].[States]    Script Date: 28.11.2017 7:04:00 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -125,7 +125,7 @@ CREATE TABLE [dbo].[States](
 ) ON [PRIMARY]
 
 GO
-/****** Object:  Table [dbo].[SubCategories]    Script Date: 25.11.2017 18:10:56 ******/
+/****** Object:  Table [dbo].[SubCategories]    Script Date: 28.11.2017 7:04:00 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -141,7 +141,7 @@ CREATE TABLE [dbo].[SubCategories](
 ) ON [PRIMARY]
 
 GO
-/****** Object:  Table [dbo].[Subjects]    Script Date: 25.11.2017 18:10:56 ******/
+/****** Object:  Table [dbo].[Subjects]    Script Date: 28.11.2017 7:04:00 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -188,7 +188,7 @@ GO
 SET IDENTITY_INSERT [dbo].[States] ON 
 
 GO
-INSERT [dbo].[States] ([idState], [StateName]) VALUES (1, N'Будет приобретен')
+INSERT [dbo].[States] ([idState], [StateName]) VALUES (1, N'Will be get')
 GO
 INSERT [dbo].[States] ([idState], [StateName]) VALUES (2, N'Working')
 GO
@@ -229,29 +229,29 @@ INSERT [dbo].[SubCategories] ([idSubCategory], [Name], [idCategory]) VALUES (18,
 GO
 SET IDENTITY_INSERT [dbo].[SubCategories] OFF
 GO
-INSERT [dbo].[Subjects] ([inventoryNumber], [Name], [idState], [idSubCategory], [Photo], [Description], [idLocation]) VALUES (1, N'LG 43UJ639V', 1, 1, N'https://avatars.mds.yandex.net/get-mpic/195452/img_id6827025122946540772/orig', N'Very good tv', 1)
+INSERT [dbo].[Subjects] ([inventoryNumber], [Name], [idState], [idSubCategory], [Photo], [Description], [idLocation]) VALUES (1, N'LG 43UJ639V', 1, 1, N'1.png', N'Very good tv', 1)
 GO
-INSERT [dbo].[Subjects] ([inventoryNumber], [Name], [idState], [idSubCategory], [Photo], [Description], [idLocation]) VALUES (2, N'Samsung UE22H5600', 1, 1, N'https://avatars.mds.yandex.net/get-mpic/200316/img_id7148496232302937310/orig', N'Nice tv', 1)
+INSERT [dbo].[Subjects] ([inventoryNumber], [Name], [idState], [idSubCategory], [Photo], [Description], [idLocation]) VALUES (2, N'Samsung UE22H5600', 1, 1, N'2.png', N'Nice tv', 1)
 GO
-INSERT [dbo].[Subjects] ([inventoryNumber], [Name], [idState], [idSubCategory], [Photo], [Description], [idLocation]) VALUES (3, N'Sony Xperia P', 1, 2, N'https://avatars.mds.yandex.net/get-mpic/195452/img_id3100006917154969440/orig', N'very nice phone', 2)
+INSERT [dbo].[Subjects] ([inventoryNumber], [Name], [idState], [idSubCategory], [Photo], [Description], [idLocation]) VALUES (3, N'Sony Xperia P', 1, 2, N'3.png', N'very nice phone', 2)
 GO
-INSERT [dbo].[Subjects] ([inventoryNumber], [Name], [idState], [idSubCategory], [Photo], [Description], [idLocation]) VALUES (4, N'Sony Xperia Z3', 1, 2, N'https://avatars.mds.yandex.net/get-mpic/96484/img_id3008615484850637072/orig', N'Very very good phone', 1)
+INSERT [dbo].[Subjects] ([inventoryNumber], [Name], [idState], [idSubCategory], [Photo], [Description], [idLocation]) VALUES (4, N'Sony Xperia Z3', 1, 2, N'4.png', N'Very very good phone', 1)
 GO
-INSERT [dbo].[Subjects] ([inventoryNumber], [Name], [idState], [idSubCategory], [Photo], [Description], [idLocation]) VALUES (5, N'Canon EOS 1300D Kit', 2, 4, N'https://avatars.mds.yandex.net/get-mpic/195452/img_id7948107280802676417/orig', N'description', 2)
+INSERT [dbo].[Subjects] ([inventoryNumber], [Name], [idState], [idSubCategory], [Photo], [Description], [idLocation]) VALUES (5, N'Canon EOS 1300D Kit', 2, 4, N'5.png', N'description', 2)
 GO
-INSERT [dbo].[Subjects] ([inventoryNumber], [Name], [idState], [idSubCategory], [Photo], [Description], [idLocation]) VALUES (6, N'Canon PowerShot SX620 HS', 3, 4, N'https://avatars.mds.yandex.net/get-mpic/195452/img_id3009300450598592384/orig', N'good camera', 2)
+INSERT [dbo].[Subjects] ([inventoryNumber], [Name], [idState], [idSubCategory], [Photo], [Description], [idLocation]) VALUES (6, N'Canon PowerShot SX620 HS', 3, 4, N'6.png', N'good camera', 2)
 GO
-INSERT [dbo].[Subjects] ([inventoryNumber], [Name], [idState], [idSubCategory], [Photo], [Description], [idLocation]) VALUES (7, N'ATLANT М 7184-003', 2, 5, N'https://avatars.mds.yandex.net/get-mpic/200316/img_id465623648100938606/orig', N'good refregeration', 1)
+INSERT [dbo].[Subjects] ([inventoryNumber], [Name], [idState], [idSubCategory], [Photo], [Description], [idLocation]) VALUES (7, N'ATLANT М 7184-003', 2, 5, N'7.png', N'good refregeration', 1)
 GO
-INSERT [dbo].[Subjects] ([inventoryNumber], [Name], [idState], [idSubCategory], [Photo], [Description], [idLocation]) VALUES (8, N'"ATLANT М 7204-100', 1, 5, N'https://avatars.mds.yandex.net/get-mpic/96484/img_id3763531369097749738/orig', N'description', 1)
+INSERT [dbo].[Subjects] ([inventoryNumber], [Name], [idState], [idSubCategory], [Photo], [Description], [idLocation]) VALUES (8, N'"ATLANT М 7204-100', 1, 5, N'8.png', N'description', 1)
 GO
-INSERT [dbo].[Subjects] ([inventoryNumber], [Name], [idState], [idSubCategory], [Photo], [Description], [idLocation]) VALUES (9, N'GERMES Stash plus 60 AL', 2, 6, N'https://avatars.mds.yandex.net/get-mpic/199079/img_id6440082672219637460/orig', N'description', 2)
+INSERT [dbo].[Subjects] ([inventoryNumber], [Name], [idState], [idSubCategory], [Photo], [Description], [idLocation]) VALUES (9, N'GERMES Stash plus 60 AL', 2, 6, N'9.png', N'description', 2)
 GO
-INSERT [dbo].[Subjects] ([inventoryNumber], [Name], [idState], [idSubCategory], [Photo], [Description], [idLocation]) VALUES (10, N'GERMES Stash plus 60 IX', 3, 6, N'https://avatars.mds.yandex.net/get-mpic/199079/img_id4458285398250739306/orig', N'description', 1)
+INSERT [dbo].[Subjects] ([inventoryNumber], [Name], [idState], [idSubCategory], [Photo], [Description], [idLocation]) VALUES (10, N'GERMES Stash plus 60 IX', 3, 6, N'10.png', N'description', 1)
 GO
-INSERT [dbo].[Subjects] ([inventoryNumber], [Name], [idState], [idSubCategory], [Photo], [Description], [idLocation]) VALUES (11, N'GEFEST 6502-02 0045', 1, 7, N'https://avatars.mds.yandex.net/get-mpic/96484/img_id2040365954788044981/orig', N'description', 2)
+INSERT [dbo].[Subjects] ([inventoryNumber], [Name], [idState], [idSubCategory], [Photo], [Description], [idLocation]) VALUES (11, N'GEFEST 6502-02 0045', 1, 7, N'11.png', N'description', 2)
 GO
-INSERT [dbo].[Subjects] ([inventoryNumber], [Name], [idState], [idSubCategory], [Photo], [Description], [idLocation]) VALUES (12, N'GEFEST 3200-08', 2, 7, N'https://avatars.mds.yandex.net/get-mpic/397397/img_id5180371151626122523.jpeg/orig', N'description', 1)
+INSERT [dbo].[Subjects] ([inventoryNumber], [Name], [idState], [idSubCategory], [Photo], [Description], [idLocation]) VALUES (12, N'GEFEST 3200-08', 2, 7, N'12.png', N'description', 1)
 GO
 INSERT [dbo].[Subjects] ([inventoryNumber], [Name], [idState], [idSubCategory], [Photo], [Description], [idLocation]) VALUES (13, N'Ikea Colsta', 1, 11, NULL, N'description', 1)
 GO
@@ -283,7 +283,7 @@ INSERT [dbo].[Subjects] ([inventoryNumber], [Name], [idState], [idSubCategory], 
 GO
 INSERT [dbo].[Subjects] ([inventoryNumber], [Name], [idState], [idSubCategory], [Photo], [Description], [idLocation]) VALUES (27, N'Triton 2000', 1, 18, NULL, N'description', 1)
 GO
-INSERT [dbo].[Subjects] ([inventoryNumber], [Name], [idState], [idSubCategory], [Photo], [Description], [idLocation]) VALUES (28, N'Paisiedon 3000"', 1, 18, NULL, N'description', 1)
+INSERT [dbo].[Subjects] ([inventoryNumber], [Name], [idState], [idSubCategory], [Photo], [Description], [idLocation]) VALUES (28, N'Paisiedon 3000', 1, 18, NULL, N'description', 1)
 GO
 ALTER TABLE [dbo].[SubCategories]  WITH CHECK ADD  CONSTRAINT [FK_SubCategory_Category] FOREIGN KEY([idCategory])
 REFERENCES [dbo].[Categories] ([idCategory])
@@ -305,7 +305,7 @@ REFERENCES [dbo].[Locations] ([idLocation])
 GO
 ALTER TABLE [dbo].[Subjects] CHECK CONSTRAINT [FK_Subjects_Locations]
 GO
-/****** Object:  StoredProcedure [dbo].[SelectCategories]    Script Date: 25.11.2017 18:10:56 ******/
+/****** Object:  StoredProcedure [dbo].[SelectCategories]    Script Date: 28.11.2017 7:04:00 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -318,7 +318,7 @@ FROM [dbo].[Categories]
 END
 
 GO
-/****** Object:  StoredProcedure [dbo].[SelectSubCategories]    Script Date: 25.11.2017 18:10:56 ******/
+/****** Object:  StoredProcedure [dbo].[SelectSubCategories]    Script Date: 28.11.2017 7:04:00 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -329,7 +329,7 @@ SELECT [idSubCategory],[Name],[idCategory]
 FROM [dbo].[SubCategories]
 
 GO
-/****** Object:  StoredProcedure [dbo].[SelectSubCategoriesByCategoryId]    Script Date: 25.11.2017 18:10:56 ******/
+/****** Object:  StoredProcedure [dbo].[SelectSubCategoriesByCategoryId]    Script Date: 28.11.2017 7:04:00 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -346,7 +346,7 @@ SELECT [idSubCategory]
   WHERE SubCategories.idCategory = @categoryId 
 
 GO
-/****** Object:  StoredProcedure [dbo].[SelectSubjectInformationById]    Script Date: 25.11.2017 18:10:56 ******/
+/****** Object:  StoredProcedure [dbo].[SelectSubjectInformationById]    Script Date: 28.11.2017 7:04:00 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -368,7 +368,7 @@ WHERE dbo.Subjects.inventoryNumber = @inventoryNumber
 END
 
 GO
-/****** Object:  StoredProcedure [dbo].[SelectSubjects]    Script Date: 25.11.2017 18:10:56 ******/
+/****** Object:  StoredProcedure [dbo].[SelectSubjects]    Script Date: 28.11.2017 7:04:00 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -385,7 +385,7 @@ SELECT [inventoryNumber]
   FROM [dbo].[Subjects]
 
 GO
-/****** Object:  StoredProcedure [dbo].[SelectSubjectsByCategoryId]    Script Date: 25.11.2017 18:10:56 ******/
+/****** Object:  StoredProcedure [dbo].[SelectSubjectsByCategoryId]    Script Date: 28.11.2017 7:04:00 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -409,7 +409,7 @@ WHERE        dbo.Categories.idCategory = @categoryId
 END
 
 GO
-/****** Object:  StoredProcedure [dbo].[SelectSubjectsBySubCategoryId]    Script Date: 25.11.2017 18:10:56 ******/
+/****** Object:  StoredProcedure [dbo].[SelectSubjectsBySubCategoryId]    Script Date: 28.11.2017 7:04:00 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
