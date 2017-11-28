@@ -1,15 +1,13 @@
-﻿
-$(function () {
-    $("#categoriesBar").load('/Home/CategoriesBar');
+﻿$(function () {
+    $("#categoriesBar").load('/Category/CategoriesBar');
 })
 
-function getSubjectsById(objectCategory, isCategory) {
-    if (objectCategory != null) {
-        $("[name=category]").text("Category: " + objectCategory.text);
-        $("#content").load('/Home/Subjects?id=' + objectCategory.id + '&isCategory=' + isCategory)
-    }
+function getSubjectsById(id, name, isCategory) {       
+        $("[name=category]").text("Category: " + name);
+        $("#content").load('/Subject/Subjects?id=' + id + '&isCategory=' + isCategory)
+    
 };
 
 function getDetailsSubject(inventoryNumber) {
-    $("#content").load('/Home/ViewSubject?inventoryNumber=' + inventoryNumber);
+    $("#content").load('/Subject/ViewSubject?inventoryNumber=' + inventoryNumber);
 };

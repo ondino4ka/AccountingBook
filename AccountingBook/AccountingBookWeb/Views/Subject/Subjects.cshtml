@@ -2,13 +2,19 @@
 
 <link href="~/Content/catalog-subjects.css" rel="stylesheet" />
 
-<div class="row">
     @foreach (var subject in Model)
     {
         <div onclick="getDetailsSubject(@subject.InventoryNumber)" class="col-sm-6 col-md-4">
             <div class="subject">
                 <div class="subject-img">
-                    <a><img src="@subject.Photo" alt="No Image"></a>
+                    @if (!string.IsNullOrEmpty(subject.Photo))
+                    {
+                        <a><img src="~/Content/Images/@subject.Photo" alt="Image"></a>
+                    }
+                    else
+                    {
+                        <a><img src="~/Content/Images/no_image.png" alt="No Image"></a>
+                    }
                 </div>
                 <p class="subject-title">
                     <a href="#">@subject.Name</a>
@@ -17,4 +23,3 @@
             </div>
         </div>
     }
-</div>

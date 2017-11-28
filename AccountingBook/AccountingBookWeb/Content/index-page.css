@@ -1,12 +1,13 @@
-﻿  .container.body-content {
-        margin-left: 250px;
-    }
+﻿.container.body-content {
+    margin-left: 220px;
+}
 
-    body {
-        background: #ececec;
-    }
-    div [name=category] {
-    margin: 10px 0 20px 10px;
-    color:#000000;
-    font-weight:bold;
-    }
+body {
+    background: #ececec;
+}
+
+div [name=category] {
+    margin: 10px 0 20px 14px;
+    color: #000000;
+    font-weight: bold;
+}

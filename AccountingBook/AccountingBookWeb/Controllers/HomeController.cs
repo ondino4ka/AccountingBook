@@ -11,29 +11,15 @@ namespace AccountingBookWeb.Controllers
     {
         private static readonly log4net.ILog Log = LogManager.GetLogger("HomeController");
 
-        private readonly IProvider dependency;
-        public HomeController(IProvider dependency)
+        private readonly IProvider _provider;
+        public HomeController(IProvider provider)
         {
-            this.dependency = dependency;
+            _provider = provider;
         }
         public ActionResult Index()
         {
             Log.Info("Controller:Home; Action:Index");
             return View();
-        }
-        public PartialViewResult CategoriesBar()
-        {
-            var categories = dependency.GetCategories();
-            return PartialView(categories);
-        }
-        public PartialViewResult Subjects(int id, bool isCategory)
-        {
-            IReadOnlyList<SubjectDetails> subjects = dependency.GetSubjectsByCategoryOrSubCategoryId(id, isCategory);
-            return PartialView(subjects);
-        }
-        public PartialViewResult ViewSubject(int inventoryNumber)
-        {
-            return PartialView(dependency.GetSubjectInformationById(inventoryNumber));
-        }
+        }    
     }
 }

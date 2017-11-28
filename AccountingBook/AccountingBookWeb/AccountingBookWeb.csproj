@@ -144,6 +144,19 @@
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\catalog-subjects.css" />
+    <Content Include="Content\Images\1.png" />
+    <Content Include="Content\Images\10.png" />
+    <Content Include="Content\Images\11.png" />
+    <Content Include="Content\Images\12.png" />
+    <Content Include="Content\Images\2.png" />
+    <Content Include="Content\Images\3.png" />
+    <Content Include="Content\Images\4.png" />
+    <Content Include="Content\Images\5.png" />
+    <Content Include="Content\Images\6.png" />
+    <Content Include="Content\Images\7.png" />
+    <Content Include="Content\Images\8.png" />
+    <Content Include="Content\Images\9.png" />
+    <Content Include="Content\Images\no_image.png" />
     <Content Include="Content\index-page.css" />
     <Content Include="Content\sidebar.css" />
     <Content Include="Content\Site.css" />
@@ -151,6 +164,7 @@
     <Content Include="Global.asax" />
     <Content Include="Scripts\bootstrap.js" />
     <Content Include="Scripts\bootstrap.min.js" />
+    <None Include="Properties\PublishProfiles\kostya.pubxml" />
     <None Include="Scripts\jquery-3.2.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.2.1.js" />
     <Content Include="Scripts\jquery-3.2.1.min.js" />
@@ -163,7 +177,9 @@
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\StructuremapMvc.cs" />
+    <Compile Include="Controllers\CategoryController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\SubjectController.cs" />
     <Compile Include="DependencyResolution\ControllerConvention.cs" />
     <Compile Include="DependencyResolution\DefaultRegistry.cs" />
     <Compile Include="DependencyResolution\IoC.cs" />
@@ -191,9 +207,9 @@
     <Content Include="fonts\glyphicons-halflings-regular.eot" />
     <Content Include="Scripts\jquery-3.2.1.slim.min.map" />
     <Content Include="Scripts\jquery-3.2.1.min.map" />
-    <Content Include="Views\Home\CategoriesBar.cshtml" />
-    <Content Include="Views\Home\Subjects.cshtml" />
-    <Content Include="Views\Home\ViewSubject.cshtml" />
+    <Content Include="Views\Category\CategoriesBar.cshtml" />
+    <Content Include="Views\Subject\Subjects.cshtml" />
+    <Content Include="Views\Subject\ViewSubject.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

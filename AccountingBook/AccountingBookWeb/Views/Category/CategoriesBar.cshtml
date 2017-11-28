@@ -10,11 +10,11 @@
         {
 
             <li>
-                <a id="@category.Id" onclick="getSubjectsById(this, true)">@category.Name</a>
+                <a id="@category.Id" onclick="getSubjectsById(@category.Id, '@category.Name', true)">@category.Name</a>
                 <ul>
                     @foreach (var subCategory in category.SubCategories)
                     {
-                        <li><a id="@subCategory.Id" onclick="getSubjectsById(this, false)">@subCategory.Name</a></li>
+                        <li><a id="@subCategory.Id" onclick="getSubjectsById(@subCategory.Id, '@subCategory.Name', false)">@subCategory.Name</a></li>
                     }
                 </ul>
             </li>

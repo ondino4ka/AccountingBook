@@ -53,7 +53,7 @@
         <dd>
             @Html.DisplayFor(model => model.SubCategory)
         </dd>
-      
+
         <dt>
             @Html.DisplayNameFor(model => model.Description)
         </dt>
@@ -67,7 +67,14 @@
         </dt>
 
         <dd>
-            <img src="@Model.Photo" />
+            @if (!string.IsNullOrEmpty(Model.Photo))
+            {
+                <img src="~/Content/Images/@Model.Photo" alt="Image">
+            }
+            else
+            {
+                <p>-</p>
+            }
         </dd>
     </dl>
 </div>
