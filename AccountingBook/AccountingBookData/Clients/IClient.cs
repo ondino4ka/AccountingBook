@@ -1,14 +1,16 @@
-﻿using AccountingBookCommon;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using AccountingBookCommon;
+using AccountingBookCommon.Models;
 
 namespace AccountingBookData.Clients
 {
     public interface IClient
     {
         IReadOnlyList<Category> GetCategories();
-        IReadOnlyList<SubCategory> GetSubCategories();
         IReadOnlyList<SubjectDetails> GetSubjects();
-        IReadOnlyList<SubjectDetails> GetSubjectsByCategoryOrSubCategoryId(int categoryId, bool isCategory);
+        IReadOnlyList<SubjectDetails> GetSubjectsByCategoryId(int categoryId);
         SubjectDetails GetSubjectInformationById(int inventoryNumber);
+        User GetUserByName(string userName);
+        bool IsValidUser(string userName, string password);    
     }
 }

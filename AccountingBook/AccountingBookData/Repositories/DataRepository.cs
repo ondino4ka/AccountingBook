@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using AccountingBookCommon;
 using AccountingBookData.Clients;
+using AccountingBookCommon.Models;
 
 namespace AccountingBookData.Repositories
 {
@@ -18,19 +19,14 @@ namespace AccountingBookData.Repositories
             return _client.GetCategories();
         }
 
-        public IReadOnlyList<SubCategory> GetSubCategories()
-        {
-            return _client.GetSubCategories();
-        }
-
         public IReadOnlyList<SubjectDetails> GetSubjects()
         {
             throw new NotImplementedException();
         }
 
-        public IReadOnlyList<SubjectDetails> GetSubjectsByCategoryOrSubCategoryId(int categoryId, bool isCategiory)
+        public IReadOnlyList<SubjectDetails> GetSubjectsByCategoryId(int categoryId)
         {
-            return _client.GetSubjectsByCategoryOrSubCategoryId(categoryId, isCategiory);
+            return _client.GetSubjectsByCategoryId(categoryId);
         }
 
         public SubjectDetails GetSubjectInformationById(int inventoryNumber)
@@ -38,6 +34,14 @@ namespace AccountingBookData.Repositories
             return _client.GetSubjectInformationById(inventoryNumber);
         }
 
-     
+        public User GetUserByName(string userName)
+        {
+            return _client.GetUserByName(userName);
+        }
+
+        public bool IsValidUser(string userName, string password)
+        {
+            return _client.IsValidUser(userName, password);
+        }
     }
 }

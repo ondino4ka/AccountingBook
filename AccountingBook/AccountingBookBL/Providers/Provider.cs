@@ -1,8 +1,8 @@
-﻿using System.Collections.Generic;
+﻿using System;
 using System.Linq;
+using System.Collections.Generic;
 using AccountingBookData.Repositories;
 using AccountingBookCommon;
-using System;
 
 namespace AccountingBookBL.Providers
 {
@@ -15,35 +15,19 @@ namespace AccountingBookBL.Providers
         }
 
         public IReadOnlyList<Category> GetCategories()
-        {
-            IReadOnlyList<Category> categories = _dataRepository.GetCategories();
-            IReadOnlyList<SubCategory> subCategories = GetSubCategories();
-            foreach (var category in categories)
-            {
-                foreach (var subCategory in subCategories)
-                {
-                    if (category.Id == subCategory.IdCategory)
-                    {
-                        category.SubCategories.Add(subCategory);
-                    }
-                }           
-            }
-            return categories;
+        {  
+            return _dataRepository.GetCategories();
         }
 
-        public IReadOnlyList<SubCategory> GetSubCategories()
-        {
-            return _dataRepository.GetSubCategories();
-        }
 
         public IReadOnlyList<SubjectDetails> GetSubjects()
         {
             throw new NotImplementedException();
         }
 
-        public IReadOnlyList<SubjectDetails> GetSubjectsByCategoryOrSubCategoryId(int id, bool isCategory)
+        public IReadOnlyList<SubjectDetails> GetSubjectsByCategoryId(int categoryId)
         {
-            return _dataRepository.GetSubjectsByCategoryOrSubCategoryId(id, isCategory);
+            return _dataRepository.GetSubjectsByCategoryId(categoryId);
         }
 
         public SubjectDetails GetSubjectInformationById(int inventoryNumber)

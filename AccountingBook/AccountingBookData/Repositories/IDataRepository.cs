@@ -1,14 +1,16 @@
 ﻿using System.Collections.Generic;
 using AccountingBookCommon;
+using AccountingBookCommon.Models;
 
 namespace AccountingBookData.Repositories
 {
     public interface IDataRepository
     {
         IReadOnlyList<Category> GetCategories();
-        IReadOnlyList<SubCategory> GetSubCategories();
         IReadOnlyList<SubjectDetails> GetSubjects();
-        IReadOnlyList<SubjectDetails> GetSubjectsByCategoryOrSubCategoryId(int id, bool isCategory);
+        IReadOnlyList<SubjectDetails> GetSubjectsByCategoryId(int categoryId);
         SubjectDetails GetSubjectInformationById(int inventoryNumber);
+        User GetUserByName(string userName);
+        bool IsValidUser(string userName, string password);
     }
 }

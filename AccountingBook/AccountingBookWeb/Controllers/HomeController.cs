@@ -1,8 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Web.Mvc;
+﻿using System.Web.Mvc;
 using log4net;
-using AccountingBookCommon;
 using AccountingBookBL.Providers;
 
 namespace AccountingBookWeb.Controllers
@@ -18,7 +15,6 @@ namespace AccountingBookWeb.Controllers
         }
         public ActionResult Index()
         {
-            Log.Info("Controller:Home; Action:Index");
             return View();
         }    
     }

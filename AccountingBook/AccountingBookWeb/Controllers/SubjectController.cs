@@ -1,11 +1,8 @@
-﻿using AccountingBookBL.Providers;
-using AccountingBookCommon;
-using log4net;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
+﻿using log4net;
+using AccountingBookBL.Providers;
+
 using System.Web.Mvc;
+using System;
 
 namespace AccountingBookWeb.Controllers
 {
@@ -19,14 +16,31 @@ namespace AccountingBookWeb.Controllers
             _provider = provider;
         }
 
-        public PartialViewResult Subjects(int id, bool isCategory)
+        public PartialViewResult Subjects(int categoryId)
         {
-            return PartialView(_provider.GetSubjectsByCategoryOrSubCategoryId(id, isCategory));
+            try
+            {
+                return PartialView(_provider.GetSubjectsByCategoryId(categoryId));
+            }
+            catch (Exception ex)
+            {
+                ViewBag.Error = ex.Message;
+                return PartialView();
+            }
         }
 
         public PartialViewResult ViewSubject(int inventoryNumber)
         {
-            return PartialView(_provider.GetSubjectInformationById(inventoryNumber));
+            try
+            {
+                return PartialView(_provider.GetSubjectInformationById(inventoryNumber));
+            }
+            catch (Exception ex)
+            {
+                ViewBag.Error = ex.Message;
+                return PartialView();
+            }
+        
         }
     }
 }

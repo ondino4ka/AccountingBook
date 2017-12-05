@@ -1,50 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
-<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/AccountingBookService.Contracts.Models.Dto" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/AccountingBookService.Contracts.Models.Dto" xmlns:xs="http://www.w3.org/2001/XMLSchema">
-  <xs:complexType name="ArrayOfCategoryDto">
+<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/AccountingBookService.Contracts.Models.DtoException" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/AccountingBookService.Contracts.Models.DtoException" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:complexType name="ServiceFault">
     <xs:sequence>
-      <xs:element minOccurs="0" maxOccurs="unbounded" name="CategoryDto" nillable="true" type="tns:CategoryDto" />
+      <xs:element minOccurs="0" name="ErrorMessage" nillable="true" type="xs:string" />
     </xs:sequence>
   </xs:complexType>
-  <xs:element name="ArrayOfCategoryDto" nillable="true" type="tns:ArrayOfCategoryDto" />
-  <xs:complexType name="CategoryDto">
-    <xs:sequence>
-      <xs:element minOccurs="0" name="Id" type="xs:int" />
-      <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="SubCategories" nillable="true" type="tns:ArrayOfSubCategoryDto" />
-    </xs:sequence>
-  </xs:complexType>
-  <xs:element name="CategoryDto" nillable="true" type="tns:CategoryDto" />
-  <xs:complexType name="ArrayOfSubCategoryDto">
-    <xs:sequence>
-      <xs:element minOccurs="0" maxOccurs="unbounded" name="SubCategoryDto" nillable="true" type="tns:SubCategoryDto" />
-    </xs:sequence>
-  </xs:complexType>
-  <xs:element name="ArrayOfSubCategoryDto" nillable="true" type="tns:ArrayOfSubCategoryDto" />
-  <xs:complexType name="SubCategoryDto">
-    <xs:sequence>
-      <xs:element minOccurs="0" name="Id" type="xs:int" />
-      <xs:element minOccurs="0" name="IdCategory" type="xs:int" />
-      <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
-    </xs:sequence>
-  </xs:complexType>
-  <xs:element name="SubCategoryDto" nillable="true" type="tns:SubCategoryDto" />
-  <xs:complexType name="ArrayOfSubjectDetailsDto">
-    <xs:sequence>
-      <xs:element minOccurs="0" maxOccurs="unbounded" name="SubjectDetailsDto" nillable="true" type="tns:SubjectDetailsDto" />
-    </xs:sequence>
-  </xs:complexType>
-  <xs:element name="ArrayOfSubjectDetailsDto" nillable="true" type="tns:ArrayOfSubjectDetailsDto" />
-  <xs:complexType name="SubjectDetailsDto">
-    <xs:sequence>
-      <xs:element minOccurs="0" name="Category" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="Description" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="InventoryNumber" type="xs:int" />
-      <xs:element minOccurs="0" name="Location" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="Photo" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="State" nillable="true" type="xs:string" />
-      <xs:element minOccurs="0" name="SubCategory" nillable="true" type="xs:string" />
-    </xs:sequence>
-  </xs:complexType>
-  <xs:element name="SubjectDetailsDto" nillable="true" type="tns:SubjectDetailsDto" />
+  <xs:element name="ServiceFault" nillable="true" type="tns:ServiceFault" />
 </xs:schema>

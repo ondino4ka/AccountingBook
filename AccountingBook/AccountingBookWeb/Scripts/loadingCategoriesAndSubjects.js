@@ -2,10 +2,12 @@
     $("#categoriesBar").load('/Category/CategoriesBar');
 })
 
-function getSubjectsById(id, name, isCategory) {       
-        $("[name=category]").text("Category: " + name);
-        $("#content").load('/Subject/Subjects?id=' + id + '&isCategory=' + isCategory)
-    
+function getSubjectsByCategoryId(categoryId, categoryName) {
+    $("[name=category]").text("Category: " + name);
+    $('#before-load').show();   
+    $("#content").load('/Subject/Subjects?categoryId=' + categoryId, function (responseText, textStatus, XMLHttpRequest) {
+        $('#before-load').find('i').fadeOut().end().delay(400).fadeOut('slow');
+    })
 };
 
 function getDetailsSubject(inventoryNumber) {

@@ -3,6 +3,7 @@
   <wsdl:types>
     <xsd:schema targetNamespace="http://tempuri.org/Imports">
       <xsd:import schemaLocation="http://localhost:1231/AccountingBookService.svc?xsd=xsd0" namespace="http://tempuri.org/" />
+      <xsd:import schemaLocation="http://localhost:1231/AccountingBookService.svc?xsd=xsd3" namespace="http://schemas.datacontract.org/2004/07/AccountingBookService.Contracts.Models.DtoException" />
       <xsd:import schemaLocation="http://localhost:1231/AccountingBookService.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
       <xsd:import schemaLocation="http://localhost:1231/AccountingBookService.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/AccountingBookService.Contracts.Models.Dto" />
     </xsd:schema>
@@ -13,11 +14,8 @@
   <wsdl:message name="IAccountingBookService_GetCategories_OutputMessage">
     <wsdl:part name="parameters" element="tns:GetCategoriesResponse" />
   </wsdl:message>
-  <wsdl:message name="IAccountingBookService_GetSubCategories_InputMessage">
-    <wsdl:part name="parameters" element="tns:GetSubCategories" />
-  </wsdl:message>
-  <wsdl:message name="IAccountingBookService_GetSubCategories_OutputMessage">
-    <wsdl:part name="parameters" element="tns:GetSubCategoriesResponse" />
+  <wsdl:message name="IAccountingBookService_GetCategories_ServiceFaultFault_FaultMessage">
+    <wsdl:part xmlns:q1="http://schemas.datacontract.org/2004/07/AccountingBookService.Contracts.Models.DtoException" name="detail" element="q1:ServiceFault" />
   </wsdl:message>
   <wsdl:message name="IAccountingBookService_GetSubjects_InputMessage">
     <wsdl:part name="parameters" element="tns:GetSubjects" />
@@ -25,11 +23,17 @@
   <wsdl:message name="IAccountingBookService_GetSubjects_OutputMessage">
     <wsdl:part name="parameters" element="tns:GetSubjectsResponse" />
   </wsdl:message>
-  <wsdl:message name="IAccountingBookService_GetSubjectsByCategoryOrSubCategoryId_InputMessage">
-    <wsdl:part name="parameters" element="tns:GetSubjectsByCategoryOrSubCategoryId" />
+  <wsdl:message name="IAccountingBookService_GetSubjects_ServiceFaultFault_FaultMessage">
+    <wsdl:part xmlns:q2="http://schemas.datacontract.org/2004/07/AccountingBookService.Contracts.Models.DtoException" name="detail" element="q2:ServiceFault" />
   </wsdl:message>
-  <wsdl:message name="IAccountingBookService_GetSubjectsByCategoryOrSubCategoryId_OutputMessage">
-    <wsdl:part name="parameters" element="tns:GetSubjectsByCategoryOrSubCategoryIdResponse" />
+  <wsdl:message name="IAccountingBookService_GetSubjectsByCategoryId_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetSubjectsByCategoryId" />
+  </wsdl:message>
+  <wsdl:message name="IAccountingBookService_GetSubjectsByCategoryId_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetSubjectsByCategoryIdResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAccountingBookService_GetSubjectsByCategoryId_ServiceFaultFault_FaultMessage">
+    <wsdl:part xmlns:q3="http://schemas.datacontract.org/2004/07/AccountingBookService.Contracts.Models.DtoException" name="detail" element="q3:ServiceFault" />
   </wsdl:message>
   <wsdl:message name="IAccountingBookService_GetSubjectInformationById_InputMessage">
     <wsdl:part name="parameters" element="tns:GetSubjectInformationById" />
@@ -37,26 +41,71 @@
   <wsdl:message name="IAccountingBookService_GetSubjectInformationById_OutputMessage">
     <wsdl:part name="parameters" element="tns:GetSubjectInformationByIdResponse" />
   </wsdl:message>
+  <wsdl:message name="IAccountingBookService_GetSubjectInformationById_ServiceFaultFault_FaultMessage">
+    <wsdl:part xmlns:q4="http://schemas.datacontract.org/2004/07/AccountingBookService.Contracts.Models.DtoException" name="detail" element="q4:ServiceFault" />
+  </wsdl:message>
+  <wsdl:message name="IAccountingBookService_GetUserByName_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetUserByName" />
+  </wsdl:message>
+  <wsdl:message name="IAccountingBookService_GetUserByName_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetUserByNameResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAccountingBookService_GetUserByName_ServiceFaultFault_FaultMessage">
+    <wsdl:part xmlns:q5="http://schemas.datacontract.org/2004/07/AccountingBookService.Contracts.Models.DtoException" name="detail" element="q5:ServiceFault" />
+  </wsdl:message>
+  <wsdl:message name="IAccountingBookService_IsValidUser_InputMessage">
+    <wsdl:part name="parameters" element="tns:IsValidUser" />
+  </wsdl:message>
+  <wsdl:message name="IAccountingBookService_IsValidUser_OutputMessage">
+    <wsdl:part name="parameters" element="tns:IsValidUserResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAccountingBookService_IsValidUser_ServiceFaultFault_FaultMessage">
+    <wsdl:part xmlns:q6="http://schemas.datacontract.org/2004/07/AccountingBookService.Contracts.Models.DtoException" name="detail" element="q6:ServiceFault" />
+  </wsdl:message>
+  <wsdl:message name="IAccountingBookService_GetRolesByUserId_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetRolesByUserId" />
+  </wsdl:message>
+  <wsdl:message name="IAccountingBookService_GetRolesByUserId_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetRolesByUserIdResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAccountingBookService_GetRolesByUserId_ServiceFaultFault_FaultMessage">
+    <wsdl:part xmlns:q7="http://schemas.datacontract.org/2004/07/AccountingBookService.Contracts.Models.DtoException" name="detail" element="q7:ServiceFault" />
+  </wsdl:message>
   <wsdl:portType name="IAccountingBookService">
     <wsdl:operation name="GetCategories">
       <wsdl:input wsaw:Action="http://tempuri.org/IAccountingBookService/GetCategories" message="tns:IAccountingBookService_GetCategories_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IAccountingBookService/GetCategoriesResponse" message="tns:IAccountingBookService_GetCategories_OutputMessage" />
-    </wsdl:operation>
-    <wsdl:operation name="GetSubCategories">
-      <wsdl:input wsaw:Action="http://tempuri.org/IAccountingBookService/GetSubCategories" message="tns:IAccountingBookService_GetSubCategories_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IAccountingBookService/GetSubCategoriesResponse" message="tns:IAccountingBookService_GetSubCategories_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://tempuri.org/IAccountingBookService/GetCategoriesServiceFaultFault" name="ServiceFaultFault" message="tns:IAccountingBookService_GetCategories_ServiceFaultFault_FaultMessage" />
     </wsdl:operation>
     <wsdl:operation name="GetSubjects">
       <wsdl:input wsaw:Action="http://tempuri.org/IAccountingBookService/GetSubjects" message="tns:IAccountingBookService_GetSubjects_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IAccountingBookService/GetSubjectsResponse" message="tns:IAccountingBookService_GetSubjects_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://tempuri.org/IAccountingBookService/GetSubjectsServiceFaultFault" name="ServiceFaultFault" message="tns:IAccountingBookService_GetSubjects_ServiceFaultFault_FaultMessage" />
     </wsdl:operation>
-    <wsdl:operation name="GetSubjectsByCategoryOrSubCategoryId">
-      <wsdl:input wsaw:Action="http://tempuri.org/IAccountingBookService/GetSubjectsByCategoryOrSubCategoryId" message="tns:IAccountingBookService_GetSubjectsByCategoryOrSubCategoryId_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IAccountingBookService/GetSubjectsByCategoryOrSubCategoryIdResponse" message="tns:IAccountingBookService_GetSubjectsByCategoryOrSubCategoryId_OutputMessage" />
+    <wsdl:operation name="GetSubjectsByCategoryId">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAccountingBookService/GetSubjectsByCategoryId" message="tns:IAccountingBookService_GetSubjectsByCategoryId_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAccountingBookService/GetSubjectsByCategoryIdResponse" message="tns:IAccountingBookService_GetSubjectsByCategoryId_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://tempuri.org/IAccountingBookService/GetSubjectsByCategoryIdServiceFaultFault" name="ServiceFaultFault" message="tns:IAccountingBookService_GetSubjectsByCategoryId_ServiceFaultFault_FaultMessage" />
     </wsdl:operation>
     <wsdl:operation name="GetSubjectInformationById">
       <wsdl:input wsaw:Action="http://tempuri.org/IAccountingBookService/GetSubjectInformationById" message="tns:IAccountingBookService_GetSubjectInformationById_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IAccountingBookService/GetSubjectInformationByIdResponse" message="tns:IAccountingBookService_GetSubjectInformationById_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://tempuri.org/IAccountingBookService/GetSubjectInformationByIdServiceFaultFault" name="ServiceFaultFault" message="tns:IAccountingBookService_GetSubjectInformationById_ServiceFaultFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetUserByName">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAccountingBookService/GetUserByName" message="tns:IAccountingBookService_GetUserByName_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAccountingBookService/GetUserByNameResponse" message="tns:IAccountingBookService_GetUserByName_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://tempuri.org/IAccountingBookService/GetUserByNameServiceFaultFault" name="ServiceFaultFault" message="tns:IAccountingBookService_GetUserByName_ServiceFaultFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="IsValidUser">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAccountingBookService/IsValidUser" message="tns:IAccountingBookService_IsValidUser_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAccountingBookService/IsValidUserResponse" message="tns:IAccountingBookService_IsValidUser_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://tempuri.org/IAccountingBookService/IsValidUserServiceFaultFault" name="ServiceFaultFault" message="tns:IAccountingBookService_IsValidUser_ServiceFaultFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetRolesByUserId">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAccountingBookService/GetRolesByUserId" message="tns:IAccountingBookService_GetRolesByUserId_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAccountingBookService/GetRolesByUserIdResponse" message="tns:IAccountingBookService_GetRolesByUserId_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://tempuri.org/IAccountingBookService/GetRolesByUserIdServiceFaultFault" name="ServiceFaultFault" message="tns:IAccountingBookService_GetRolesByUserId_ServiceFaultFault_FaultMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="BasicHttpBinding_IAccountingBookService" type="tns:IAccountingBookService">
@@ -69,15 +118,9 @@
       <wsdl:output>
         <soap:body use="literal" />
       </wsdl:output>
-    </wsdl:operation>
-    <wsdl:operation name="GetSubCategories">
-      <soap:operation soapAction="http://tempuri.org/IAccountingBookService/GetSubCategories" style="document" />
-      <wsdl:input>
-        <soap:body use="literal" />
-      </wsdl:input>
-      <wsdl:output>
-        <soap:body use="literal" />
-      </wsdl:output>
+      <wsdl:fault name="ServiceFaultFault">
+        <soap:fault use="literal" name="ServiceFaultFault" namespace="" />
+      </wsdl:fault>
     </wsdl:operation>
     <wsdl:operation name="GetSubjects">
       <soap:operation soapAction="http://tempuri.org/IAccountingBookService/GetSubjects" style="document" />
@@ -87,15 +130,21 @@
       <wsdl:output>
         <soap:body use="literal" />
       </wsdl:output>
+      <wsdl:fault name="ServiceFaultFault">
+        <soap:fault use="literal" name="ServiceFaultFault" namespace="" />
+      </wsdl:fault>
     </wsdl:operation>
-    <wsdl:operation name="GetSubjectsByCategoryOrSubCategoryId">
-      <soap:operation soapAction="http://tempuri.org/IAccountingBookService/GetSubjectsByCategoryOrSubCategoryId" style="document" />
+    <wsdl:operation name="GetSubjectsByCategoryId">
+      <soap:operation soapAction="http://tempuri.org/IAccountingBookService/GetSubjectsByCategoryId" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
       <wsdl:output>
         <soap:body use="literal" />
       </wsdl:output>
+      <wsdl:fault name="ServiceFaultFault">
+        <soap:fault use="literal" name="ServiceFaultFault" namespace="" />
+      </wsdl:fault>
     </wsdl:operation>
     <wsdl:operation name="GetSubjectInformationById">
       <soap:operation soapAction="http://tempuri.org/IAccountingBookService/GetSubjectInformationById" style="document" />
@@ -105,6 +154,45 @@
       <wsdl:output>
         <soap:body use="literal" />
       </wsdl:output>
+      <wsdl:fault name="ServiceFaultFault">
+        <soap:fault use="literal" name="ServiceFaultFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="GetUserByName">
+      <soap:operation soapAction="http://tempuri.org/IAccountingBookService/GetUserByName" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="ServiceFaultFault">
+        <soap:fault use="literal" name="ServiceFaultFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="IsValidUser">
+      <soap:operation soapAction="http://tempuri.org/IAccountingBookService/IsValidUser" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="ServiceFaultFault">
+        <soap:fault use="literal" name="ServiceFaultFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="GetRolesByUserId">
+      <soap:operation soapAction="http://tempuri.org/IAccountingBookService/GetRolesByUserId" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="ServiceFaultFault">
+        <soap:fault use="literal" name="ServiceFaultFault" namespace="" />
+      </wsdl:fault>
     </wsdl:operation>
   </wsdl:binding>
   <wsdl:service name="AccountingBookService">

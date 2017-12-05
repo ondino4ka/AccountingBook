@@ -1,5 +1,6 @@
-﻿using AccountingBookBL.Providers;
-using StructureMap.Configuration.DSL;
+﻿using StructureMap.Configuration.DSL;
+using AccountingBookBL.Providers;
+using AccountingBookBL.Services;
 
 namespace AccountingBookBL.Container
 {
@@ -8,6 +9,8 @@ namespace AccountingBookBL.Container
         public BlRegistry()
         {
             For<IProvider>().Use<Provider>();
+            For<IUserProvider>().Use<UserProvider>();
+            For<ILoginService>().Use<LoginService>();
         }
     }
 }

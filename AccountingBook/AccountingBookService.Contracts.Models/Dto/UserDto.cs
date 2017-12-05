@@ -4,13 +4,11 @@ using System.Runtime.Serialization;
 namespace AccountingBookService.Contracts.Models.Dto
 {
     [DataContract]
-    public class SubCategoryDto
+    public class UserDto
     {
         [DataMember]
-        public int Id { get; set; }
+        public string UserName { get; set; }
         [DataMember]
-        public string Name { get; set; }
-        [DataMember]
-        public int IdCategory { get; set; }
+        public List<RoleDto> Roles { get; set; }
     }
 }

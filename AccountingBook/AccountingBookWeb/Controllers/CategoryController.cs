@@ -1,12 +1,14 @@
-﻿using AccountingBookBL.Providers;
-using log4net;
+﻿using System;
+using System.Linq;
 using System.Web.Mvc;
+using log4net;
+using AccountingBookBL.Providers;
 
 namespace AccountingBookWeb.Controllers
 {
     public class CategoryController : Controller
     {
-        private static readonly log4net.ILog Log = LogManager.GetLogger("CategoryController");
+        private static readonly ILog Log = LogManager.GetLogger("CategoryController");
 
         private readonly IProvider _provider;
         public CategoryController(IProvider provider)
@@ -15,8 +17,16 @@ namespace AccountingBookWeb.Controllers
         }
 
         public PartialViewResult CategoriesBar()
-        {           
-           return PartialView(_provider.GetCategories());
+        {
+            try
+            {
+                return PartialView(_provider.GetCategories().ToList());
+            }
+            catch (Exception ex)
+            {
+                ViewBag.Error = ex.Message;
+                return PartialView();
+            }          
         }
     }
 }
