@@ -12,5 +12,8 @@ namespace AccountingBookData.Repositories
         SubjectDetails GetSubjectInformationById(int inventoryNumber);
         User GetUserByName(string userName);
         bool IsValidUser(string userName, string password);
+        IReadOnlyCollection<Category> GetCategoriesByName(string category);
+        IReadOnlyCollection<SubjectDetails> GetSubjectByNameCategoryIdAndStateId(int? categoryId, int? stateId, string subjectName);
+        IReadOnlyCollection<State> GetStates();
     }
 }

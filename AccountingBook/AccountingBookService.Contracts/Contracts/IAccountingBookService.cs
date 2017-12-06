@@ -29,5 +29,14 @@ namespace AccountingBookService.Contracts.Contracts
         [OperationContract]
         [FaultContract(typeof(ServiceFault))]
         List<RoleDto> GetRolesByUserId(int userId);
+        [OperationContract]
+        [FaultContract(typeof(ServiceFault))]
+        List<CategoryDto> GetCategoriesByName(string categoryName);
+        [OperationContract]
+        [FaultContract(typeof(ServiceFault))]
+        List<SubjectDetailsDto> GetSubjectByNameCategoryIdAndStateId(int? categoryId, int? stateId, string subjectName);
+        [OperationContract]
+        [FaultContract(typeof(ServiceFault))]
+        List<StateDto> GetStates();
     }
 }

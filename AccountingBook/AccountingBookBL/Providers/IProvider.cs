@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using AccountingBookCommon;
+using AccountingBookCommon.Models;
 
 namespace AccountingBookBL.Providers
 {
@@ -9,5 +9,8 @@ namespace AccountingBookBL.Providers
         IReadOnlyList<SubjectDetails> GetSubjects();
         IReadOnlyList<SubjectDetails> GetSubjectsByCategoryId(int categoryId);
         SubjectDetails GetSubjectInformationById(int inventoryNumber);
+        IReadOnlyCollection<Category> GetCategoriesByName(string category);
+        IReadOnlyCollection<SubjectDetails> GetSubjectByNameCategoryIdAndStateId(int? categoryId, int? stateId, string subjectName);
+        IReadOnlyCollection<State> GetStates();
     }
 }

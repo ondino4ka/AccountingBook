@@ -3,6 +3,7 @@ using System.Linq;
 using System.Web.Mvc;
 using log4net;
 using AccountingBookBL.Providers;
+using AccountingBookWeb.BL.Attributes;
 
 namespace AccountingBookWeb.Controllers
 {
@@ -16,6 +17,7 @@ namespace AccountingBookWeb.Controllers
             _provider = provider;
         }
 
+        [Ajax]
         public PartialViewResult CategoriesBar()
         {
             try
@@ -27,6 +29,12 @@ namespace AccountingBookWeb.Controllers
                 ViewBag.Error = ex.Message;
                 return PartialView();
             }          
+        }
+
+        [Ajax]
+        public JsonResult GetCategoriesByName(string categoryName)
+        {
+            return Json(_provider.GetCategoriesByName(categoryName), JsonRequestBehavior.AllowGet);
         }
     }
 }

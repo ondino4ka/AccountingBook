@@ -45,6 +45,7 @@
     <Compile Include="DtoException\ServiceFault.cs" />
     <Compile Include="Dto\CategoryDto.cs" />
     <Compile Include="Dto\RoleDto.cs" />
+    <Compile Include="Dto\StateDto.cs" />
     <Compile Include="Dto\SubjectDetailsDto.cs" />
     <Compile Include="Dto\UserDto.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

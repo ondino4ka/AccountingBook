@@ -51,4 +51,17 @@
     </xs:sequence>
   </xs:complexType>
   <xs:element name="RoleDto" nillable="true" type="tns:RoleDto" />
+  <xs:complexType name="ArrayOfStateDto">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="StateDto" nillable="true" type="tns:StateDto" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfStateDto" nillable="true" type="tns:ArrayOfStateDto" />
+  <xs:complexType name="StateDto">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Id" type="xs:int" />
+      <xs:element minOccurs="0" name="StateName" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="StateDto" nillable="true" type="tns:StateDto" />
 </xs:schema>

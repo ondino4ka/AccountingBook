@@ -148,6 +148,9 @@
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\catalog-subjects.css" />
+    <Content Include="Content\css\select2-bootstrap.css" />
+    <Content Include="Content\css\select2.css" />
+    <Content Include="Content\css\select2.min.css" />
     <Content Include="Content\font-awesome.css" />
     <Content Include="Content\font-awesome.min.css" />
     <Content Include="Content\Images\1.png" />
@@ -164,6 +167,10 @@
     <Content Include="Content\Images\9.png" />
     <Content Include="Content\Images\no_image.png" />
     <Content Include="Content\index-page.css" />
+    <Content Include="Scripts\searchSubjects.js" />
+    <Content Include="Scripts\initDropDownSearch.js" />
+    <Content Include="Content\login-page.css" />
+    <Content Include="Content\search-page.css" />
     <Content Include="Content\sidebar.css" />
     <Content Include="Content\Site.css" />
     <Content Include="Content\spinner.css" />
@@ -179,22 +186,28 @@
     <Content Include="fonts\fontawesome-webfont.eot" />
     <None Include="Properties\PublishProfiles\kostya.pubxml" />
     <None Include="Scripts\jquery-3.2.1.intellisense.js" />
+    <Content Include="Scripts\i18n\en.js" />
     <Content Include="Scripts\jquery-3.2.1.js" />
     <Content Include="Scripts\jquery-3.2.1.min.js" />
     <Content Include="Scripts\jquery-3.2.1.slim.js" />
     <Content Include="Scripts\jquery-3.2.1.slim.min.js" />
-    <Content Include="Scripts\loadingCategoriesAndSubjects.js" />
+    <Content Include="Scripts\loadCategories.js" />
+    <Content Include="Scripts\loadSubjects.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <None Include="Scripts\_references.js" />
+    <Content Include="Scripts\select2.js" />
+    <Content Include="Scripts\select2.min.js" />
+    <Content Include="Scripts\subjectDetails.js" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\StructuremapMvc.cs" />
+    <Compile Include="BL\Attributes\AjaxAttribute.cs" />
+    <Compile Include="BL\Attributes\AuthorizeAttribute.cs" />
     <Compile Include="Controllers\CategoryController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
-    <Compile Include="Controllers\SearchController.cs" />
     <Compile Include="Controllers\SubjectController.cs" />
     <Compile Include="DependencyResolution\ControllerConvention.cs" />
     <Compile Include="DependencyResolution\DefaultRegistry.cs" />
@@ -204,7 +217,7 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="BL\AdminAttribute.cs" />
+    <Compile Include="BL\Attributes\AdminAttribute.cs" />
     <Compile Include="Models\LoginViewModel.cs" />
     <Compile Include="Models\UserPrincipal.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -230,7 +243,7 @@
     <Content Include="Views\Subject\Subjects.cshtml" />
     <Content Include="Views\Subject\ViewSubject.cshtml" />
     <Content Include="Views\Login\Login.cshtml" />
-    <Content Include="Views\Search\Index.cshtml" />
+    <Content Include="Views\Home\Search.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

@@ -16,6 +16,11 @@ namespace AccountingBookWeb.Controllers
         public ActionResult Index()
         {
             return View();
-        }    
+        }
+
+        public ActionResult Search()
+        {
+            return View();
+        }
     }
 }

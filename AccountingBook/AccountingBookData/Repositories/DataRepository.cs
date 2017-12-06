@@ -43,5 +43,19 @@ namespace AccountingBookData.Repositories
         {
             return _client.IsValidUser(userName, password);
         }
+        public IReadOnlyCollection<Category> GetCategoriesByName(string categoryName)
+        {
+            return _client.GetCategoriesByName(categoryName);
+        }
+
+        public IReadOnlyCollection<SubjectDetails> GetSubjectByNameCategoryIdAndStateId(int? categoryId, int? stateId, string subjectName)
+        {
+            return _client.GetSubjectByNameCategoryIdAndStateId(categoryId, stateId, subjectName);
+        }
+
+        public IReadOnlyCollection<State> GetStates()
+        {
+            return _client.GetStates();
+        }
     }
 }

@@ -159,5 +159,93 @@ namespace AccountingBookData.Clients
             }
             return result;
         }
+
+        public IReadOnlyCollection<Category> GetCategoriesByName(string categoryName)
+        {
+            var result = new List<Category>();
+            var client = new AccountingBookServiceReference.AccountingBookServiceClient();
+            try
+            {
+                client.Open();
+                var data = client.GetCategoriesByName(categoryName);
+                result = data == null ? result : data.Select(x => new Category { Id = x.Id, Name = x.Name }).ToList();
+                client.Close();
+            }
+            catch (EndpointNotFoundException endPointNotFoundException)
+            {
+                Log.Error(endPointNotFoundException.Message);
+                throw new Exception("Now the server is unavailable. Try later");
+            }
+            catch (FaultException<AccountingBookServiceReference.ServiceFault> faultException)
+            {
+                Log.Error(faultException.Detail.ErrorMessage);
+                throw new Exception("Now the server is unavailable. Try later");
+            }
+            finally
+            {
+                client.Abort();
+                Log.Info("Сonnection closed");
+            }
+            return result;
+        }
+
+
+        public IReadOnlyCollection<SubjectDetails> GetSubjectByNameCategoryIdAndStateId(int? categoryId, int? stateId, string subjectName)
+        {
+            var result = new List<SubjectDetails>();
+            var client = new AccountingBookServiceReference.AccountingBookServiceClient();
+            try
+            {
+                client.Open();
+                var data = client.GetSubjectByNameCategoryIdAndStateId(categoryId, stateId, subjectName);
+                result = data == null ? result : data.Select(x => new SubjectDetails { InventoryNumber = x.InventoryNumber, Name = x.Name, Photo = x.Photo, Description = x.Description }).ToList();
+                client.Close();
+            }
+            catch (EndpointNotFoundException endPointNotFoundException)
+            {
+                Log.Error(endPointNotFoundException.Message);
+                throw new Exception("Now the server is unavailable. Try later");
+            }
+            catch (FaultException<AccountingBookServiceReference.ServiceFault> faultException)
+            {
+                Log.Error(faultException.Detail.ErrorMessage);
+                throw new Exception("Now the server is unavailable. Try later");
+            }
+            finally
+            {
+                client.Abort();
+                Log.Info("Сonnection closed");
+            }
+            return result;
+        }
+
+        public IReadOnlyCollection<State> GetStates()
+        {
+            var result = new List<State>();
+            var client = new AccountingBookServiceReference.AccountingBookServiceClient();
+            try
+            {
+                client.Open();
+                var data = client.GetStates();
+                result = data == null ? result : data.Select(x => new State { Id = x.Id, StateName = x.StateName }).ToList();
+                client.Close();
+            }
+            catch (EndpointNotFoundException endPointNotFoundException)
+            {
+                Log.Error(endPointNotFoundException.Message);
+                throw new Exception("Now the server is unavailable. Try later");
+            }
+            catch (FaultException<AccountingBookServiceReference.ServiceFault> faultException)
+            {
+                Log.Error(faultException.Detail.ErrorMessage);
+                throw new Exception("Now the server is unavailable. Try later");
+            }
+            finally
+            {
+                client.Abort();
+                Log.Info("Сonnection closed");
+            }
+            return result;
+        }
     }
 }

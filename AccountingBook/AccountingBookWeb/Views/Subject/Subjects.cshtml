@@ -1,25 +1,14 @@
-﻿@model IEnumerable<AccountingBookCommon.SubjectDetails>
+﻿@model IEnumerable<AccountingBookCommon.Models.SubjectDetails>
 
 <link href="~/Content/catalog-subjects.css" rel="stylesheet" />
-
-<style>
-    .edit {
-        position: absolute;
-        top: 0px;
-        right: 0px;
-    }
-
-        .edit:hover {
-            box-shadow: 0 0 16px rgba(0, 0, 0, 0.5);
-        }
-</style>
+<script src="~/Scripts/subjectDetails.js"></script>
 
 @if (Model != null)
 {
     foreach (var subject in Model)
     {
         <div class="col-sm-6 col-md-4">
-            <div class="subject" onclick="getDetailsSubject(@subject.InventoryNumber)">
+            <div class="subject" onclick="getSubjectDetails(@subject.InventoryNumber)">
                 @if (HttpContext.Current.User.IsInRole("Admin") || HttpContext.Current.User.IsInRole("Edit"))
                 {
                     <div onclick="window.location.href='#'" class="edit">
@@ -48,3 +37,7 @@ else
 {
     @ViewBag.Error;
 }
+
+
+
+

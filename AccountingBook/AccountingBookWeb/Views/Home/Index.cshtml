@@ -2,7 +2,13 @@
 @{
     ViewBag.Title = "Subject";
 }
-<script src="~/Scripts/loadingCategoriesAndSubjects.js"></script>
+
+@section Scripts {
+    <script src="~/Scripts/loadCategories.js"></script>
+    <script src="~/Scripts/loadSubjects.js"></script>
+}
+
+
 <link href="~/Content/index-page.css" rel="stylesheet" />
 <link href="~/Content/font-awesome.css" rel="stylesheet" />
 <link href="~/Content/spinner.css" rel="stylesheet" />

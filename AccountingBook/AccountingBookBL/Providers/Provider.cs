@@ -2,13 +2,13 @@
 using System.Linq;
 using System.Collections.Generic;
 using AccountingBookData.Repositories;
-using AccountingBookCommon;
+using AccountingBookCommon.Models;
 
 namespace AccountingBookBL.Providers
 {
     public class Provider : IProvider
     {
-        IDataRepository _dataRepository;
+        private readonly IDataRepository _dataRepository;
         public Provider(IDataRepository dataProvider)
         {
             _dataRepository = dataProvider;
@@ -34,6 +34,21 @@ namespace AccountingBookBL.Providers
         {
             var subjects = _dataRepository.GetSubjectInformationById(inventoryNumber);
             return subjects;
-        } 
+        }
+
+        public IReadOnlyCollection<Category> GetCategoriesByName(string categoryName)
+        {
+            return _dataRepository.GetCategoriesByName(categoryName);
+        }
+
+        public IReadOnlyCollection<SubjectDetails> GetSubjectByNameCategoryIdAndStateId(int? categoryId, int? stateId, string subjectName)
+        {
+            return _dataRepository.GetSubjectByNameCategoryIdAndStateId(categoryId, stateId, subjectName);
+        }
+
+        public IReadOnlyCollection<State> GetStates()
+        {
+            return _dataRepository.GetStates();
+        }
     }
 }

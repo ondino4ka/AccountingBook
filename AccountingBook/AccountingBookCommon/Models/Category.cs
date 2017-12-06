@@ -1,5 +1,5 @@
 ﻿
-namespace AccountingBookCommon
+namespace AccountingBookCommon.Models
 {
   public class Category
     {

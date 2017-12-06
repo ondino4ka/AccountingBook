@@ -6,7 +6,7 @@ using AccountingBookWeb.Models;
 namespace AccountingBookWeb.Controllers
 {
     public class LoginController : Controller
-    {      
+    {
         private readonly ILoginService _loginService;
         public LoginController(ILoginService loginService)
         {
@@ -14,12 +14,15 @@ namespace AccountingBookWeb.Controllers
         }
         [HttpGet]
         [AllowAnonymous]
+        [BL.Attributes.Authorize]
         public ActionResult Login()
         {
             return View();
         }
 
         [HttpPost]
+        [AllowAnonymous]
+        [BL.Attributes.Authorize]
         public ActionResult Login(string userName, string password)
         {
             var result = _loginService.Login(userName, password);

@@ -1,6 +1,9 @@
-﻿@model IEnumerable<AccountingBookCommon.Category>
+﻿@model IEnumerable<AccountingBookCommon.Models.Category>
+
 
 <link href="~/Content/sidebar.css" rel="stylesheet" />
+
+
 
 <div id="sidebar">
     <h2>Categories</h2>
@@ -10,32 +13,32 @@
         if (Model.Any())
         {
             @DisplayTree(Model.Where(x => x.Pid == null).OrderBy(x => x.Name));
-            @helper DisplayTree(IEnumerable<AccountingBookCommon.Category> categories)
+            @helper DisplayTree(IEnumerable<AccountingBookCommon.Models.Category> categories)
             {
-                <ul>
-                    @foreach (var category in categories)
-                       {
-                         <li>
-                            <a id="@category.Id" onclick="getSubjectsByCategoryId(@category.Id, '@category.Name')">@category.Name</a>
-                                @{
-                                    var children = Model.Where(x => x.Pid == category.Id).OrderBy(x => x.Name).ToList();
-                                    if (children.Any())
-                                    {
-                                     @DisplayTree(children);
-                                    }
-                                 }
-                        </li>
-                        }
-                 </ul>
-             }
+    <ul>
+        @foreach (var category in categories)
+        {
+            <li class="active">
+                <a id="@category.Id" onclick="getSubjectsByCategoryId(@category.Id, '@category.Name')">@category.Name</a>
+                @{
+                    var children = Model.Where(x => x.Pid == category.Id).OrderBy(x => x.Name).ToList();
+                    if (children.Any())
+                    {
+                        @DisplayTree(children);
+                    }
+                }
+            </li>
+         }
+    </ul>
+            }
         }
         else
         {
-            <ul>Категорий нет</ul>
+            <ul>Categories not found</ul>
         }
     }
     else
     {
-        <ul>@ViewBag.Error</ul>     
+        <ul>@ViewBag.Error</ul>
     }
 </div>

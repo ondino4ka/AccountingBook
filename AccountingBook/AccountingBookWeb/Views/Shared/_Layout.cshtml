@@ -23,12 +23,12 @@
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Search subject", "Index", "Search")</li>
+                    <li>@Html.ActionLink("Search subject", "Search", "Home")</li>
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
                     @if (Request.IsAuthenticated)
                     {
-                        <li class="navbar-text" style="color:white">@HttpContext.Current.User.Identity.Name</li>
+                        <li>@Html.ActionLink(@HttpContext.Current.User.Identity.Name, "","")</li>
                         <li>@Html.ActionLink("Logout", "Logout", "Login")</li>
                     }
                     else
@@ -42,6 +42,7 @@
 
     <div class="container body-content">
         @RenderBody()
+        @RenderSection("scripts", required: false)
     </div>
 </body>
 </html>

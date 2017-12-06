@@ -1,7 +1,8 @@
 ﻿using System.Web;
 using System.Web.Mvc;
+using AccountingBookWeb.Models;
 
-namespace AccountingBookWeb.Models.BL
+namespace AccountingBookWeb.BL.Attributes
 {
     public class AdminAttribute : AuthorizeAttribute
     {

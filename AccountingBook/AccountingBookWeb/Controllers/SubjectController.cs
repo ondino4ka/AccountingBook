@@ -1,14 +1,17 @@
-﻿using log4net;
-using AccountingBookBL.Providers;
-
+﻿using System;
+using System.Web;
 using System.Web.Mvc;
-using System;
+using log4net;
+using AccountingBookBL.Providers;
+using AccountingBookWeb.BL.Attributes;
+
 
 namespace AccountingBookWeb.Controllers
 {
     public class SubjectController : Controller
     {
-        private static readonly log4net.ILog Log = LogManager.GetLogger("SubjectController");
+        private static readonly ILog Log = LogManager.GetLogger("SubjectController");
+        private const string STATES_KEY = "states_key";
 
         private readonly IProvider _provider;
         public SubjectController(IProvider provider)
@@ -16,6 +19,7 @@ namespace AccountingBookWeb.Controllers
             _provider = provider;
         }
 
+        [Ajax]
         public PartialViewResult Subjects(int categoryId)
         {
             try
@@ -29,6 +33,7 @@ namespace AccountingBookWeb.Controllers
             }
         }
 
+        [Ajax]
         public PartialViewResult ViewSubject(int inventoryNumber)
         {
             try
@@ -40,7 +45,41 @@ namespace AccountingBookWeb.Controllers
                 ViewBag.Error = ex.Message;
                 return PartialView();
             }
-        
+
         }
+
+        [Ajax]
+        public PartialViewResult GetSubjectByNameCategoryIdAndStateId(int? categoryId, int? stateId, string subjectName)
+        {
+            try
+            {
+                var subjects = _provider.GetSubjectByNameCategoryIdAndStateId(categoryId, stateId, subjectName);
+                return PartialView("Subjects", subjects);
+            }
+            catch (Exception ex)
+            {
+                ViewBag.Error = ex.Message;
+                return PartialView();
+            }
+            //return PartialView("~/Views/Subject/Subjects.cshtml", subjects);
+        }
+        [Ajax]
+        public JsonResult GetStates()
+        {
+            try
+            {
+                if (HttpRuntime.Cache.Get(STATES_KEY) == null)
+                {
+                    HttpRuntime.Cache.Insert(STATES_KEY, _provider.GetStates());
+                }
+                return Json(HttpRuntime.Cache.Get(STATES_KEY), JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception ex)
+            {
+                Log.Error(ex.Message);
+                return Json(null, JsonRequestBehavior.AllowGet);
+            }
+        }
+
     }
 }
