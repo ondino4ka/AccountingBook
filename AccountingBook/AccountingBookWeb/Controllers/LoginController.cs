@@ -1,7 +1,14 @@
-﻿using System.Web.Mvc;
+﻿using System;
+using System.Web.Mvc;
+using AccountingBookWeb.Models;
+using AccountingBookWeb.BL.Attributes;
 using AccountingBookBL.Services;
 using AccountingBookCommon.Enums;
-using AccountingBookWeb.Models;
+using AccountingBookBL.Providers;
+using System.Collections.Generic;
+using AccountingBookCommon.Models;
+using System.Linq;
+using StructureMap.Query;
 
 namespace AccountingBookWeb.Controllers
 {
@@ -25,27 +32,35 @@ namespace AccountingBookWeb.Controllers
         [BL.Attributes.Authorize]
         public ActionResult Login(string userName, string password)
         {
-            var result = _loginService.Login(userName, password);
-            if (result == LoginResult.NoError)
-            {
-                return RedirectToAction("Index", "Home");
-            }
             var model = new LoginViewModel();
-            if (result == LoginResult.EmptyCredentials)
+            try
             {
-                model.Message = "Check user name and password";
+                var result = _loginService.Login(userName, password);
+                if (result == LoginResult.NoError)
+                {
+                    return RedirectToAction("Index", "Home");
+                }
+                if (result == LoginResult.EmptyCredentials)
+                {
+                    model.Message = "Check user name and password";
+                }
+                if (result == LoginResult.InvalidCredentials)
+                {
+                    model.Message = "The user is not valid";
+                }
+                return View(model);
             }
-            if (result == LoginResult.InvalidCredentials)
+            catch (Exception exception)
             {
-                model.Message = "The user is not valid";
+                model.Message = exception.Message;
+                return View(model);
             }
-            return View(model);
         }
+ 
         public ActionResult Logout()
         {
             _loginService.Logout();
             return RedirectToAction("Index", "Home");
         }
-
     }
 }

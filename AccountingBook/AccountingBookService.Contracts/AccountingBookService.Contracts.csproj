@@ -38,6 +38,7 @@
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Web" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -46,8 +47,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Contracts\AccountingBookService.cs" />
+    <Compile Include="Contracts\AccountingBookServiceOne.cs" />
+    <Compile Include="Contracts\AccountingBookServiceTwo.cs" />
     <Compile Include="Contracts\IAccountingBookService.cs" />
+    <Compile Include="Contracts\IAddService.cs" />
+    <Compile Include="Contracts\IDeleteService.cs" />
+    <Compile Include="Contracts\IEditService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

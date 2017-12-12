@@ -10,7 +10,7 @@ namespace AccountingBookBL.Providers
         IReadOnlyList<SubjectDetails> GetSubjectsByCategoryId(int categoryId);
         SubjectDetails GetSubjectInformationById(int inventoryNumber);
         IReadOnlyCollection<Category> GetCategoriesByName(string category);
-        IReadOnlyCollection<SubjectDetails> GetSubjectByNameCategoryIdAndStateId(int? categoryId, int? stateId, string subjectName);
+        IReadOnlyCollection<SubjectDetails> GetSubjectsByNameCategoryIdAndStateId(int? categoryId, int? stateId, string subjectName);
         IReadOnlyCollection<State> GetStates();
     }
 }

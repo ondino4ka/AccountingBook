@@ -25,13 +25,12 @@ namespace AccountingBookBL.Services
             {
                 var user = _userProvider.GetUserByName(userName);
                 var userData = JsonConvert.SerializeObject(user);
-                var ticket = new FormsAuthenticationTicket(2, userName, DateTime.Now, DateTime.Now.AddHours(1), false, userData);
+                var ticket = new FormsAuthenticationTicket(2, user.Name, DateTime.Now, DateTime.Now.AddHours(1), false, userData);
                 var encTicket = FormsAuthentication.Encrypt(ticket);
                 var authCookie = new HttpCookie(FormsAuthentication.FormsCookieName, encTicket);
                 HttpContext.Current.Response.Cookies.Add(authCookie);
                 return LoginResult.NoError;
             }
-
             return LoginResult.InvalidCredentials;
         }
 

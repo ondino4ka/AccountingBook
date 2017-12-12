@@ -18,7 +18,7 @@ namespace AccountingBookWeb.Controllers
             return View();
         }
 
-        public ActionResult Search()
+        public ActionResult ChangeData()
         {
             return View();
         }

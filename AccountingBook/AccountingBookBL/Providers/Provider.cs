@@ -15,7 +15,7 @@ namespace AccountingBookBL.Providers
         }
 
         public IReadOnlyList<Category> GetCategories()
-        {  
+        {
             return _dataRepository.GetCategories();
         }
 
@@ -41,9 +41,9 @@ namespace AccountingBookBL.Providers
             return _dataRepository.GetCategoriesByName(categoryName);
         }
 
-        public IReadOnlyCollection<SubjectDetails> GetSubjectByNameCategoryIdAndStateId(int? categoryId, int? stateId, string subjectName)
+        public IReadOnlyCollection<SubjectDetails> GetSubjectsByNameCategoryIdAndStateId(int? categoryId, int? stateId, string subjectName)
         {
-            return _dataRepository.GetSubjectByNameCategoryIdAndStateId(categoryId, stateId, subjectName);
+            return _dataRepository.GetSubjectsByNameCategoryIdAndStateId(categoryId, stateId, subjectName);
         }
 
         public IReadOnlyCollection<State> GetStates()

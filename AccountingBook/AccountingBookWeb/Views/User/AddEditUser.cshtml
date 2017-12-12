@@ -1,0 +1,106 @@
+﻿@model AccountingBookWeb.Models.UserViewModel
+
+@{
+    ViewBag.Title = "CreateUser";
+}
+
+<script src="~/Scripts/jquery.validate.js"></script>
+<script src="~/Scripts/jquery.validate.unobtrusive.js"></script>
+
+
+@if (Model != null)
+{
+    <h2>@(Model.Id == 0 ? "Add" : "Edit") User</h2>
+    using (Html.BeginForm())
+    {
+        @Html.AntiForgeryToken()
+
+        <div class="form-horizontal">
+            <h4>@(Model.Name == "" ? "" : Model.Name) </h4>
+            <hr />
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            @Html.HiddenFor(model => model.Id)
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Email, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Password, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control", type = "password" } })
+                    @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.RePassword, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.RePassword, new { htmlAttributes = new { @class = "form-control", type = "password" } })
+                    @Html.ValidationMessageFor(model => model.RePassword, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Roles, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div id="roles" class="col-md-10">
+                    @Html.ValidationMessageFor(model => model.Roles, "", new { @class = "text-danger" })
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Save" class="btn btn-default" />
+                    <span>@ViewBag.Error</span>
+                </div>
+            </div>
+        </div>
+    }
+}
+else
+{
+    @ViewBag.Error;
+}
+
+
+<div>
+    @Html.ActionLink("Back to List", "SearchUsers")
+</div>
+
+<script>
+    $(function(){
+        var checkBoxHtml = '';
+        $.ajax({
+            url: '/User/GetRoles',
+            success: function (data) {
+                var myarr = @if(Model != null) { @Html.Raw(Json.Encode(@Model.Roles))};
+                for (var i = 0; i < data.length; i++) {
+                    if (myarr.includes(data[i].Id)) {
+                        checkBoxHtml = checkBoxHtml + "<input type=\"checkbox\" name=\"Roles\" value= " + [data[i].Id] + " checked=\"checked\"/> " + [data[i].Name] + " <br/>"
+                    }
+                    else
+                    {
+                        checkBoxHtml = checkBoxHtml + "<input type=\"checkbox\" name=\"Roles\" value= " + [data[i].Id] + " /> " + [data[i].Name] + " <br/>"
+                    }
+                }
+                $('#roles').prepend(checkBoxHtml);
+            },
+            error: function(jqXHR, textStatus, errorThrown){
+                checkBoxHtml = 'Now the server is unavailable. Try later';
+                $('#roles').prepend(checkBoxHtml);
+            }
+        })
+    });
+</script>

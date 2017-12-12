@@ -1,7 +1,6 @@
-﻿function initSelect2Categories(selector)
-{
+﻿function initSelect2Categories(selector) {
     $(selector).select2({
-        placeholder: "-- Category --",
+        placeholder: "-- All Categories --",
         allowClear: true,
         minimumInputLength: 2,
         ajax: {
@@ -28,11 +27,14 @@
 $.ajax({
     url: '/Subject/GetStates',
     success: function (data) {
-        console.log(data);
-        var opts = '<option>-- State --</option>';
+        var opts = '<option>-- All States --</option>';
         for (var i = 0; i < data.length; i++) {
             opts += '<option value="' + data[i].Id + '">' + data[i].StateName + '</option>';
         }
+        $('#stateId').append(opts);
+    },
+    error: function (jqXHR, textStatus, errorThrown) {
+        var opts = '<option>Now the server is unavailable. Try later</option>';
         $('#stateId').append(opts);
     }
 });

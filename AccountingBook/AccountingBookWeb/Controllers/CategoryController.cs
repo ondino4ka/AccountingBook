@@ -24,17 +24,25 @@ namespace AccountingBookWeb.Controllers
             {
                 return PartialView(_provider.GetCategories().ToList());
             }
-            catch (Exception ex)
+            catch (Exception exception)
             {
-                ViewBag.Error = ex.Message;
+                ViewBag.Error = exception.Message;
                 return PartialView();
-            }          
+            }
         }
 
         [Ajax]
         public JsonResult GetCategoriesByName(string categoryName)
         {
-            return Json(_provider.GetCategoriesByName(categoryName), JsonRequestBehavior.AllowGet);
+            try
+            {
+                return Json(_provider.GetCategoriesByName(categoryName), JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception exception)
+            {
+                Log.Error(exception.Message);
+                return Json(null, JsonRequestBehavior.AllowGet);
+            }
         }
     }
 }

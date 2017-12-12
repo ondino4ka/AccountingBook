@@ -70,6 +70,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Container\BlRegistry.cs" />
+    <Compile Include="Operations\IUserOperation.cs" />
+    <Compile Include="Operations\UserOperation.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Providers\IUserProvider.cs" />
     <Compile Include="Providers\UserProvider.cs" />
@@ -91,6 +93,7 @@
       <Name>AccountingBookData</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

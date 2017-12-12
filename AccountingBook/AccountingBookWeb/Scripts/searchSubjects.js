@@ -2,15 +2,13 @@
 
     var _inProgress = false;
 
-    function MakeSearch(subjectName, categoryId, stateId)
-    {
+    function MakeSearch(subjectName, categoryId, stateId) {
         var _subjectName = subjectName
         var _categoryId = categoryId;
         var _stateId = stateId;
         if (!_inProgress) {
-            console.log("prev");
             $.ajax({
-                url: '/Subject/GetSubjectByNameCategoryIdAndStateId',
+                url: '/Subject/GetSubjectsByNameCategoryIdAndStateId',
                 type: 'POST',
                 data: {
                     categoryId: _categoryId,

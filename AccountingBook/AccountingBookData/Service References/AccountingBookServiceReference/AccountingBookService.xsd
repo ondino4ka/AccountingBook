@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/AccountingBookService.Contracts.Models.Dto" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/AccountingBookService.Contracts.Models.Dto" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:import schemaLocation="http://localhost:2707/AccountingBookService.svc?xsd=xsd4" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
   <xs:complexType name="ArrayOfCategoryDto">
     <xs:sequence>
       <xs:element minOccurs="0" maxOccurs="unbounded" name="CategoryDto" nillable="true" type="tns:CategoryDto" />
@@ -32,25 +33,25 @@
     </xs:sequence>
   </xs:complexType>
   <xs:element name="SubjectDetailsDto" nillable="true" type="tns:SubjectDetailsDto" />
-  <xs:complexType name="UserDto">
+  <xs:complexType name="UserAuthorizationDto">
     <xs:sequence>
-      <xs:element minOccurs="0" name="Roles" nillable="true" type="tns:ArrayOfRoleDto" />
-      <xs:element minOccurs="0" name="UserName" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Roles" nillable="true" type="tns:ArrayOfRoleAuthorizationDto" />
     </xs:sequence>
   </xs:complexType>
-  <xs:element name="UserDto" nillable="true" type="tns:UserDto" />
-  <xs:complexType name="ArrayOfRoleDto">
+  <xs:element name="UserAuthorizationDto" nillable="true" type="tns:UserAuthorizationDto" />
+  <xs:complexType name="ArrayOfRoleAuthorizationDto">
     <xs:sequence>
-      <xs:element minOccurs="0" maxOccurs="unbounded" name="RoleDto" nillable="true" type="tns:RoleDto" />
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="RoleAuthorizationDto" nillable="true" type="tns:RoleAuthorizationDto" />
     </xs:sequence>
   </xs:complexType>
-  <xs:element name="ArrayOfRoleDto" nillable="true" type="tns:ArrayOfRoleDto" />
-  <xs:complexType name="RoleDto">
+  <xs:element name="ArrayOfRoleAuthorizationDto" nillable="true" type="tns:ArrayOfRoleAuthorizationDto" />
+  <xs:complexType name="RoleAuthorizationDto">
     <xs:sequence>
       <xs:element minOccurs="0" name="RoleName" nillable="true" type="xs:string" />
     </xs:sequence>
   </xs:complexType>
-  <xs:element name="RoleDto" nillable="true" type="tns:RoleDto" />
+  <xs:element name="RoleAuthorizationDto" nillable="true" type="tns:RoleAuthorizationDto" />
   <xs:complexType name="ArrayOfStateDto">
     <xs:sequence>
       <xs:element minOccurs="0" maxOccurs="unbounded" name="StateDto" nillable="true" type="tns:StateDto" />
@@ -64,4 +65,33 @@
     </xs:sequence>
   </xs:complexType>
   <xs:element name="StateDto" nillable="true" type="tns:StateDto" />
+  <xs:complexType name="ArrayOfRoleDto">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="RoleDto" nillable="true" type="tns:RoleDto" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfRoleDto" nillable="true" type="tns:ArrayOfRoleDto" />
+  <xs:complexType name="RoleDto">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Id" type="xs:int" />
+      <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="RoleDto" nillable="true" type="tns:RoleDto" />
+  <xs:complexType name="UserDto">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Email" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Id" type="xs:int" />
+      <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
+      <xs:element minOccurs="0" name="Password" nillable="true" type="xs:string" />
+      <xs:element xmlns:q1="http://schemas.microsoft.com/2003/10/Serialization/Arrays" minOccurs="0" name="Roles" nillable="true" type="q1:ArrayOfint" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="UserDto" nillable="true" type="tns:UserDto" />
+  <xs:complexType name="ArrayOfUserDto">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="UserDto" nillable="true" type="tns:UserDto" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfUserDto" nillable="true" type="tns:ArrayOfUserDto" />
 </xs:schema>

@@ -9,13 +9,12 @@ using log4net;
 using AccountingBookService.Contracts.Models.Dto;
 using AccountingBookService.Contracts.Models.DtoException;
 
-
 namespace AccountingBookService.Contracts.Contracts
 {
-    public class AccountingBookService : IAccountingBookService
+    public partial class AccountingBookService : IAccountingBookService
     {
         readonly string connectionString;
-        static string errorMessage = "Now the server is unavailable.Try later";
+        const string errorMessage = "Now the server is unavailable.Try later";
         private static readonly ILog Log = LogManager.GetLogger("AccountingBookService");
         public AccountingBookService()
         {
@@ -137,7 +136,7 @@ namespace AccountingBookService.Contracts.Contracts
                     }
                     else if (procedureName == "SelectUserByName")
                     {
-                        List<UserDto> tempList = new List<UserDto>();
+                        List<UserAuthorizationDto> tempList = new List<UserAuthorizationDto>();
                         try
                         {
 
@@ -145,7 +144,7 @@ namespace AccountingBookService.Contracts.Contracts
                             {
                                 foreach (DataRow dataRow in table.Rows)
                                 {
-                                    tempList.Add(new UserDto { UserName = (string)dataRow[1], Roles = GetRolesByUserId((int)(dataRow[0])) });
+                                    tempList.Add(new UserAuthorizationDto { Name = (string)dataRow[1], Roles = GetRolesAuthorizationByUserId((int)(dataRow[0])) });
                                 }
                             }
                         }
@@ -156,9 +155,9 @@ namespace AccountingBookService.Contracts.Contracts
                         }
                         list = tempList.Cast<T>().ToList();
                     }
-                    else if (procedureName == "SelectRolesByUserId")
+                    else if (procedureName == "SelectRolesAuthorizationByUserId")
                     {
-                        List<RoleDto> tempList = new List<RoleDto>();
+                        List<RoleAuthorizationDto> tempList = new List<RoleAuthorizationDto>();
                         try
                         {
 
@@ -166,7 +165,7 @@ namespace AccountingBookService.Contracts.Contracts
                             {
                                 foreach (DataRow dataRow in table.Rows)
                                 {
-                                    tempList.Add(new RoleDto { RoleName = (string)dataRow[0] });
+                                    tempList.Add(new RoleAuthorizationDto { RoleName = (string)dataRow[0] });
                                 }
                             }
                         }
@@ -240,6 +239,90 @@ namespace AccountingBookService.Contracts.Contracts
                         }
                         list = tempList.Cast<T>().ToList();
                     }
+                    else if (procedureName == "SelectRoles")
+                    {
+                        List<RoleDto> tempList = new List<RoleDto>();
+                        try
+                        {
+
+                            foreach (DataTable table in dataSet.Tables)
+                            {
+                                foreach (DataRow dataRow in table.Rows)
+                                {
+                                    tempList.Add(new RoleDto { Id = (int)dataRow[0], Name = (string)dataRow[1] });
+                                }
+                            }
+                        }
+                        catch (InvalidCastException invalidCastException)
+                        {
+                            Log.Error(invalidCastException.Message);
+                            throw new FaultException<ServiceFault>(new ServiceFault(errorMessage), new FaultReason("Internal error"));
+                        }
+                        list = tempList.Cast<T>().ToList();
+                    }
+                    else if (procedureName == "SelectUserById")
+                    {
+                        List<UserDto> tempList = new List<UserDto>();
+                        try
+                        {
+
+                            foreach (DataTable table in dataSet.Tables)
+                            {
+                                foreach (DataRow dataRow in table.Rows)
+                                {
+                                    tempList.Add(new UserDto { Id = (int)dataRow[0], Name = (string)dataRow[1], Password = (string)dataRow[2], Email = (string)dataRow[3], Roles = GetRolesIdByUserId((int)dataRow[0]).Select(x => x.Id).ToArray() });
+                                }
+                            }
+                        }
+                        catch (InvalidCastException invalidCastException)
+                        {
+                            Log.Error(invalidCastException.Message);
+                            throw new FaultException<ServiceFault>(new ServiceFault(errorMessage), new FaultReason("Internal error"));
+                        }
+                        list = tempList.Cast<T>().ToList();
+                    }
+
+                    else if (procedureName == "SelectRolesIdByUserId")
+                    {
+                        List<RoleDto> tempList = new List<RoleDto>();
+                        try
+                        {
+                            foreach (DataTable table in dataSet.Tables)
+                            {
+                                foreach (DataRow dataRow in table.Rows)
+                                {
+                                    tempList.Add(new RoleDto { Id = (int)dataRow[0] });
+                                }
+                            }
+                        }
+                        catch (InvalidCastException invalidCastException)
+                        {
+                            Log.Error(invalidCastException.Message);
+                            throw new FaultException<ServiceFault>(new ServiceFault(errorMessage), new FaultReason("Internal error"));
+                        }
+                        list = tempList.Cast<T>().ToList();
+                    }
+
+                    else if (procedureName == "SelectUsersByName")
+                    {
+                        List<UserDto> tempList = new List<UserDto>();
+                        try
+                        {
+                            foreach (DataTable table in dataSet.Tables)
+                            {
+                                foreach (DataRow dataRow in table.Rows)
+                                {
+                                    tempList.Add(new UserDto { Id = (int)dataRow[0], Name = (string)dataRow[1], Password = (string)dataRow[2], Email = (string)dataRow[3] });
+                                }
+                            }
+                        }
+                        catch (InvalidCastException invalidCastException)
+                        {
+                            Log.Error(invalidCastException.Message);
+                            throw new FaultException<ServiceFault>(new ServiceFault(errorMessage), new FaultReason("Internal error"));
+                        }
+                        list = tempList.Cast<T>().ToList();
+                    }                   
                 }
             }
         }
@@ -272,22 +355,22 @@ namespace AccountingBookService.Contracts.Contracts
             return subjectDto.FirstOrDefault();
         }
 
-        public UserDto GetUserByName(string userName)
+        public UserAuthorizationDto GetUserAuthorizationByName(string userName)
         {
-            List<UserDto> userDto = new List<UserDto>();
+            List<UserAuthorizationDto> userDto = new List<UserAuthorizationDto>();
             SqlParameter param = new SqlParameter { DbType = DbType.String, ParameterName = "@userName", Value = userName };
             GetDataFromDb(ref userDto, "SelectUserByName", param);
             return userDto.FirstOrDefault();
         }
 
-        public bool IsValidUser(string username, string password)
+        public bool IsValidUser(string userName, string password)
         {
             SqlParameter[] param = {
                 new SqlParameter
                 {
                    DbType = DbType.String,
                    ParameterName = "@username",
-                   Value = username
+                   Value = userName
                 },
                 new SqlParameter
                 {
@@ -318,9 +401,10 @@ namespace AccountingBookService.Contracts.Contracts
                     {
                         adapter.Fill(dataSet);
                     }
-                    catch (SqlException ex)
+                    catch (SqlException sqlException)
                     {
-                        throw new FaultException<ServiceFault>(new ServiceFault(ex.Message), new FaultReason(ex.Message));
+                        Log.Error(sqlException.Message);
+                        throw new FaultException<ServiceFault>(new ServiceFault(errorMessage), new FaultReason("Internal error"));
                     }
 
                     if ((int)resultPrameter.Value == 1)
@@ -332,11 +416,65 @@ namespace AccountingBookService.Contracts.Contracts
             return result;
         }
 
-        public List<RoleDto> GetRolesByUserId(int userId)
+        public bool IsExistsUser(int userId, string userName)
         {
-            List<RoleDto> roleDto = new List<RoleDto>();
+            SqlParameter[] param = {
+                new SqlParameter
+                {
+                   DbType = DbType.String,
+                   ParameterName = "@userName",
+                   Value = userName
+                },
+                    new SqlParameter
+                {
+                   DbType = DbType.Int32,
+                   ParameterName = "@userId",
+                   Value = userId
+                },
+            };
+
+            bool result = false;
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                using (SqlCommand command = new SqlCommand())
+                {
+                    command.Connection = connection;
+                    command.CommandType = CommandType.StoredProcedure;
+                    command.CommandText = "IsExistsUser";
+                    command.Parameters.AddRange(param);
+
+                    SqlParameter resultPrameter = new SqlParameter();
+                    resultPrameter.Direction = ParameterDirection.ReturnValue;
+                    command.Parameters.Add(resultPrameter);
+
+                    SqlDataAdapter adapter = new SqlDataAdapter(command);
+                    DataSet dataSet = new DataSet();
+
+                    try
+                    {
+                        adapter.Fill(dataSet);
+                    }
+                    catch (SqlException sqlException)
+                    {
+                        Log.Error(sqlException.Message);
+                        throw new FaultException<ServiceFault>(new ServiceFault(errorMessage), new FaultReason("Internal error"));
+                    }
+
+                    if ((int)resultPrameter.Value == 1)
+                    {
+                        result = true;
+                    }
+                }
+            }
+            return result;
+        }
+
+
+        public List<RoleAuthorizationDto> GetRolesAuthorizationByUserId(int userId)
+        {
+            List<RoleAuthorizationDto> roleDto = new List<RoleAuthorizationDto>();
             SqlParameter param = new SqlParameter { DbType = DbType.Int32, ParameterName = "@userId", Value = userId };
-            GetDataFromDb(ref roleDto, "SelectRolesByUserId", param);
+            GetDataFromDb(ref roleDto, "SelectRolesAuthorizationByUserId", param);
             return roleDto;
         }
 
@@ -347,7 +485,7 @@ namespace AccountingBookService.Contracts.Contracts
             GetDataFromDb(ref categoriesDto, "SelectCategoriesByName", param);
             return categoriesDto;
         }
-        public List<SubjectDetailsDto> GetSubjectByNameCategoryIdAndStateId(int? categoryId, int? stateId, string subjectName)
+        public List<SubjectDetailsDto> GetSubjectsByNameCategoryIdAndStateId(int? categoryId, int? stateId, string subjectName)
         {
             List<SubjectDetailsDto> categoriesDto = new List<SubjectDetailsDto>();
 
@@ -371,7 +509,7 @@ namespace AccountingBookService.Contracts.Contracts
                     Value = categoryId
                 }
             };
-     
+
             GetDataFromDb(ref categoriesDto, "SelectSubjectByNameCategoryIdAndStateId", param);
             return categoriesDto;
         }
@@ -381,6 +519,36 @@ namespace AccountingBookService.Contracts.Contracts
             List<StateDto> statesDto = new List<StateDto>();
             GetDataFromDb(ref statesDto, "SelectStates");
             return statesDto;
+        }
+
+        public List<RoleDto> GetRoles()
+        {
+            List<RoleDto> rolesDto = new List<RoleDto>();
+            GetDataFromDb(ref rolesDto, "SelectRoles");
+            return rolesDto;
+        }
+        public UserDto GetUserById(int userId)
+        {
+            List<UserDto> userDto = new List<UserDto>();
+            SqlParameter param = new SqlParameter { DbType = DbType.Int32, ParameterName = "@userId", Value = userId };
+            GetDataFromDb(ref userDto, "SelectUserById", param);
+            return userDto.FirstOrDefault();
+        }
+
+        public List<RoleDto> GetRolesIdByUserId(int userId)
+        {
+            List<RoleDto> roleDto = new List<RoleDto>();
+            SqlParameter param = new SqlParameter { DbType = DbType.Int32, ParameterName = "@userId", Value = userId };
+            GetDataFromDb(ref roleDto, "SelectRolesIdByUserId", param);
+            return roleDto;
+        }
+
+        public List<UserDto> GetUsersByName(string userName)
+        {
+            List<UserDto> userDtoList = new List<UserDto>();
+            SqlParameter param = new SqlParameter { DbType = DbType.String, ParameterName = "@userName", Value = userName };
+            GetDataFromDb(ref userDtoList, "SelectUsersByName", param);
+            return userDtoList;
         }
     }
 }

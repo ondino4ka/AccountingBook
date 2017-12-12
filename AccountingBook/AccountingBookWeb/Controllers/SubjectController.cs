@@ -20,17 +20,23 @@ namespace AccountingBookWeb.Controllers
         }
 
         [Ajax]
-        public PartialViewResult Subjects(int categoryId)
+        public PartialViewResult GetSubjectsByCategoryId(int categoryId)
         {
             try
             {
-                return PartialView(_provider.GetSubjectsByCategoryId(categoryId));
+                return PartialView("Subjects", _provider.GetSubjectsByCategoryId(categoryId));
             }
-            catch (Exception ex)
+            catch (Exception exception)
             {
-                ViewBag.Error = ex.Message;
-                return PartialView();
+                ViewBag.Error = exception.Message;
+                return PartialView("Subjects");
             }
+        }
+
+
+        public ActionResult SearchSubjects()
+        {
+            return View();
         }
 
         [Ajax]
@@ -40,28 +46,27 @@ namespace AccountingBookWeb.Controllers
             {
                 return PartialView(_provider.GetSubjectInformationById(inventoryNumber));
             }
-            catch (Exception ex)
+            catch (Exception exception)
             {
-                ViewBag.Error = ex.Message;
+                ViewBag.Error = exception.Message;
                 return PartialView();
             }
 
         }
 
         [Ajax]
-        public PartialViewResult GetSubjectByNameCategoryIdAndStateId(int? categoryId, int? stateId, string subjectName)
+        public PartialViewResult GetSubjectsByNameCategoryIdAndStateId(int? categoryId, int? stateId, string subjectName)
         {
             try
             {
-                var subjects = _provider.GetSubjectByNameCategoryIdAndStateId(categoryId, stateId, subjectName);
+                var subjects = _provider.GetSubjectsByNameCategoryIdAndStateId(categoryId, stateId, subjectName);
                 return PartialView("Subjects", subjects);
             }
-            catch (Exception ex)
+            catch (Exception exception)
             {
-                ViewBag.Error = ex.Message;
-                return PartialView();
+                ViewBag.Error = exception.Message;
+                return PartialView("Subjects");
             }
-            //return PartialView("~/Views/Subject/Subjects.cshtml", subjects);
         }
         [Ajax]
         public JsonResult GetStates()
@@ -70,16 +75,15 @@ namespace AccountingBookWeb.Controllers
             {
                 if (HttpRuntime.Cache.Get(STATES_KEY) == null)
                 {
-                    HttpRuntime.Cache.Insert(STATES_KEY, _provider.GetStates());
+                    HttpRuntime.Cache.Insert(STATES_KEY, _provider.GetStates(), null, DateTime.Now.AddMinutes(60), TimeSpan.Zero);
                 }
                 return Json(HttpRuntime.Cache.Get(STATES_KEY), JsonRequestBehavior.AllowGet);
             }
-            catch (Exception ex)
+            catch (Exception exception)
             {
-                Log.Error(ex.Message);
+                Log.Error(exception.Message);
                 return Json(null, JsonRequestBehavior.AllowGet);
             }
         }
-
     }
 }

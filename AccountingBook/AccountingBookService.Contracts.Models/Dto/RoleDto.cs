@@ -1,4 +1,5 @@
-﻿using System;using System.Runtime.Serialization;
+﻿using System.Runtime.Serialization;
+
 
 namespace AccountingBookService.Contracts.Models.Dto
 {
@@ -6,6 +7,9 @@ namespace AccountingBookService.Contracts.Models.Dto
     public class RoleDto
     {
         [DataMember]
-        public string RoleName { get; set; }
+        public int Id { get; set; }
+        [DataMember]
+        public string Name { get; set; }
     }
+
 }

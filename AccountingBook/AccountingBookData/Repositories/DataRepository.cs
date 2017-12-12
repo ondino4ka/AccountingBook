@@ -19,10 +19,6 @@ namespace AccountingBookData.Repositories
             return _client.GetCategories();
         }
 
-        public IReadOnlyList<SubjectDetails> GetSubjects()
-        {
-            throw new NotImplementedException();
-        }
 
         public IReadOnlyList<SubjectDetails> GetSubjectsByCategoryId(int categoryId)
         {
@@ -34,7 +30,7 @@ namespace AccountingBookData.Repositories
             return _client.GetSubjectInformationById(inventoryNumber);
         }
 
-        public User GetUserByName(string userName)
+        public UserAuthorization GetUserByName(string userName)
         {
             return _client.GetUserByName(userName);
         }
@@ -43,19 +39,51 @@ namespace AccountingBookData.Repositories
         {
             return _client.IsValidUser(userName, password);
         }
+
+        public bool IsExistsUser(int userId, string userName)
+        {
+            return _client.IsExistsUser(userId, userName);
+        }
+
         public IReadOnlyCollection<Category> GetCategoriesByName(string categoryName)
         {
             return _client.GetCategoriesByName(categoryName);
         }
 
-        public IReadOnlyCollection<SubjectDetails> GetSubjectByNameCategoryIdAndStateId(int? categoryId, int? stateId, string subjectName)
+        public IReadOnlyCollection<SubjectDetails> GetSubjectsByNameCategoryIdAndStateId(int? categoryId, int? stateId, string subjectName)
         {
-            return _client.GetSubjectByNameCategoryIdAndStateId(categoryId, stateId, subjectName);
+            return _client.GetSubjectsByNameCategoryIdAndStateId(categoryId, stateId, subjectName);
         }
 
         public IReadOnlyCollection<State> GetStates()
         {
             return _client.GetStates();
+        }
+        public void AddUser(User user)
+        {
+            _client.AddUser(user);
+        }
+        public void EditUser(User user)
+        {
+            _client.EditUser(user);
+        }
+        public IReadOnlyCollection<Role> GetRoles()
+        {
+            return _client.GetRoles();
+        }
+        public User GetUserById(int userId)
+        {
+            return _client.GetUserById(userId);
+        }
+
+        public IReadOnlyCollection<User> GetUsersByName(string userName)
+        {
+            return _client.GetUsersByName(userName);
+        }
+
+        public void DeleteUser(int userId)
+        {
+            _client.DeleteUser(userId);
         }
     }
 }

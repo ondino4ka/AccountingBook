@@ -5,13 +5,13 @@ namespace AccountingBookWeb.Models
 {
     public class UserPrincipal : IPrincipal
     {
-        public string UserName { get; set; }
+        public string Name { get; set; }
         public string[] Roles { get; set; }
         public IIdentity Identity{ get; private set; }
 
-        public UserPrincipal(string userName)
+        public UserPrincipal(string name)
         {
-            Identity = new GenericIdentity(userName);
+            Identity = new GenericIdentity(name);
         }
 
         public bool IsInRole(string role)

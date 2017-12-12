@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
 using System.Runtime.Serialization;
 
 namespace AccountingBookService.Contracts.Models.Dto
@@ -7,8 +9,15 @@ namespace AccountingBookService.Contracts.Models.Dto
     public class UserDto
     {
         [DataMember]
-        public string UserName { get; set; }
+        public int Id { get; set; }
         [DataMember]
-        public List<RoleDto> Roles { get; set; }
+        public string Name { get; set; }
+        [DataMember]
+        public string Email { get; set; }
+        [DataMember]
+        public string Password { get; set; }
+        [DataMember]
+        public int[] Roles { get; set; }
+
     }
 }

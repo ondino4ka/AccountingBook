@@ -7,13 +7,19 @@ namespace AccountingBookData.Repositories
     public interface IDataRepository
     {
         IReadOnlyList<Category> GetCategories();
-        IReadOnlyList<SubjectDetails> GetSubjects();
         IReadOnlyList<SubjectDetails> GetSubjectsByCategoryId(int categoryId);
         SubjectDetails GetSubjectInformationById(int inventoryNumber);
-        User GetUserByName(string userName);
+        UserAuthorization GetUserByName(string userName);
         bool IsValidUser(string userName, string password);
         IReadOnlyCollection<Category> GetCategoriesByName(string category);
-        IReadOnlyCollection<SubjectDetails> GetSubjectByNameCategoryIdAndStateId(int? categoryId, int? stateId, string subjectName);
+        IReadOnlyCollection<SubjectDetails> GetSubjectsByNameCategoryIdAndStateId(int? categoryId, int? stateId, string subjectName);
         IReadOnlyCollection<State> GetStates();
+        void AddUser(User user);
+        void EditUser(User user);
+        bool IsExistsUser(int userId, string userName);
+        IReadOnlyCollection<Role> GetRoles();
+        User GetUserById(int userId);
+        IReadOnlyCollection<User> GetUsersByName(string userName);
+        void DeleteUser(int userId);
     }
 }
