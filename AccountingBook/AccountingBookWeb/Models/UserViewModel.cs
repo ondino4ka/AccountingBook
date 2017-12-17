@@ -1,6 +1,6 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using AccountingBookCommon.Models;
 using AccountingBookWeb.BL.Attributes;
-using AccountingBookCommon.Models;
+using System.ComponentModel.DataAnnotations;
 
 namespace AccountingBookWeb.Models
 {
@@ -19,7 +19,7 @@ namespace AccountingBookWeb.Models
         public string Password { get; set; }
 
         [Display(Name = "Confirm Passsword")]
-        [System.ComponentModel.DataAnnotations.Compare("Password", ErrorMessage = "Password doesn't match.")]
+        [Compare("Password", ErrorMessage = "Password doesn't match.")]
         public string RePassword { get; set; }
 
         [RequiredArray(ErrorMessage = "Can not be empty")]

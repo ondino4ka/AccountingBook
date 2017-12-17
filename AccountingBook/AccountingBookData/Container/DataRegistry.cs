@@ -1,6 +1,6 @@
-﻿using StructureMap.Configuration.DSL;
-using AccountingBookData.Clients;
+﻿using AccountingBookData.Clients;
 using AccountingBookData.Repositories;
+using StructureMap.Configuration.DSL;
 
 namespace AccountingBookData.Container
 {

@@ -10,28 +10,31 @@
     <hr />
     @if (Model != null)
     {
+        <ul>
+            <li class="active"><a onclick="subjectVar.GetSubjectsByCategoryId(null, 'Without Category')">Without Category</a></li>
+        </ul>
         if (Model.Any())
         {
             @DisplayTree(Model.Where(x => x.Pid == null).OrderBy(x => x.Name));
             @helper DisplayTree(IEnumerable<AccountingBookCommon.Models.Category> categories)
             {
-    <ul>
-        @foreach (var category in categories)
-        {
-            <li class="active">
-                <a onclick="subjectVar.GetSubjectsByCategoryId(@category.Id, '@category.Name')">@category.Name</a>
-                @{
-                    var children = Model.Where(x => x.Pid == category.Id).OrderBy(x => x.Name).ToList();
-                    if (children.Any())
-                    {
-                        @DisplayTree(children);
-                    }
-                }
-            </li>
-         }
-    </ul>
+                <ul>
+                     @foreach (var category in categories)
+                     {
+                        <li class="active">
+                        <a onclick="subjectVar.GetSubjectsByCategoryId(@category.Id, '@category.Name')">@category.Name</a>
+                        @{
+                             var children = Model.Where(x => x.Pid == category.Id).OrderBy(x => x.Name).ToList();
+                             if (children.Any())
+                             {
+                                @DisplayTree(children);
+                             }
+                        }
+                        </li>
+                      }
+                </ul>
             }
-        }
+         }
         else
         {
             <ul>Categories not found</ul>
@@ -42,7 +45,7 @@
         <ul>@ViewBag.Error</ul>
     }
 </div>
-    
+
 <script>
     window.subjectVar = window.Subject();
 </script>

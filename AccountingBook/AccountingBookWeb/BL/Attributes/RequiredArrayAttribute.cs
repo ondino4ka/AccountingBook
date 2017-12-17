@@ -1,10 +1,9 @@
 ﻿using System.Collections;
 using System.ComponentModel.DataAnnotations;
 
-
 namespace AccountingBookWeb.BL.Attributes
 {
-    public class RequiredArray : ValidationAttribute
+    public class RequiredArrayAttribute : ValidationAttribute
     {
         public override bool IsValid(object value)
         {

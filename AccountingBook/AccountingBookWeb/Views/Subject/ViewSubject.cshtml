@@ -6,6 +6,14 @@
         <h2>Detailed view</h2>
         <div>
             <h4>Subject - @Model.Name</h4>
+            @if (HttpContext.Current.User.IsInRole("Admin") || HttpContext.Current.User.IsInRole("Edit"))
+            {
+                <div class="btn-group">
+                    <button onclick="window.location = '@Url.Action("EditSubjectInformation", "Subject", new { inventoryNumber = Model.InventoryNumber })'" type="button" class="btn btn-warning">Edit information</button>
+                    <button onclick="window.location = '@Url.Action("EditSubjectPhoto", "Subject", new { inventoryNumber = Model.InventoryNumber })'" type="button" class="btn btn-warning">Edit photo</button>
+                    <button onclick="window.location = '@Url.Action("DeleteSubject", "Subject", new { inventoryNumber = Model.InventoryNumber })'" type="button" class="btn btn-danger">Delete</button>
+                </div>
+            }
             <hr />
             <dl class="dl-horizontal">
                 <dt>
@@ -62,8 +70,8 @@
 
                 <dd>
                     @if (!string.IsNullOrEmpty(Model.Photo))
-                {
-                        <img src="~/Content/Images/@Model.Photo" alt="Image">
+                    {
+                        <img src="/Subject/GetImageSubject/?name=@Model.Photo" alt="Image">
                     }
                     else
                     {

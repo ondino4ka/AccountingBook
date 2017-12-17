@@ -47,12 +47,16 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Contracts\AccountingBookServiceOne.cs" />
-    <Compile Include="Contracts\AccountingBookServiceTwo.cs" />
-    <Compile Include="Contracts\IAccountingBookService.cs" />
-    <Compile Include="Contracts\IAddService.cs" />
-    <Compile Include="Contracts\IDeleteService.cs" />
-    <Compile Include="Contracts\IEditService.cs" />
+    <Compile Include="Contracts\AccountingBookServiceDelete.cs" />
+    <Compile Include="Contracts\AccountingBookServiceEdit.cs" />
+    <Compile Include="Contracts\AccountingBookServiceFile.cs" />
+    <Compile Include="Contracts\AccountingBookServiceGet.cs" />
+    <Compile Include="Contracts\AccountingBookServiceAdd.cs" />
+    <Compile Include="Contracts\Interface\IGetService.cs" />
+    <Compile Include="Contracts\Interface\IAddService.cs" />
+    <Compile Include="Contracts\Interface\IDeleteService.cs" />
+    <Compile Include="Contracts\Interface\IEditService.cs" />
+    <Compile Include="Contracts\Interface\IFileService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -68,6 +72,7 @@
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

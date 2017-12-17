@@ -1,5 +1,5 @@
-﻿using System.Collections.Generic;
-using AccountingBookCommon.Models;
+﻿using AccountingBookCommon.Models;
+using System.Collections.Generic;
 
 namespace AccountingBookBL.Providers
 {

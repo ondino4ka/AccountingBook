@@ -1,11 +1,11 @@
-﻿using System.Web;
+﻿using AccountingBookWeb.Models;
+using System.Web;
 using System.Web.Mvc;
 using System.Web.Routing;
-using AccountingBookWeb.Models;
 
 namespace AccountingBookWeb.BL.Attributes
 {
-    public class AuthorizeAttribute: System.Web.Mvc.AuthorizeAttribute
+    public class OnlyAnonymousAttribute: AuthorizeAttribute
     {
         public override void OnAuthorization(AuthorizationContext filterContext)
         {

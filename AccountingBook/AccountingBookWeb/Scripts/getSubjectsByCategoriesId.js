@@ -8,7 +8,6 @@
         $("[name=category]").text("Category: " + categoryName);
         $('#before-load').show();
         if (!_inProgress) {
-            console.log("jdu");
             $.ajax({
                 url: '/Subject/GetSubjectsByCategoryId',
                 type: 'GET',

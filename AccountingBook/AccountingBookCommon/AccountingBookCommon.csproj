@@ -41,10 +41,12 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Enums\LoginResult.cs" />
+    <Compile Include="Models\Location.cs" />
     <Compile Include="Models\Category.cs" />
     <Compile Include="Models\Role.cs" />
     <Compile Include="Models\RoleAuthorization.cs" />
     <Compile Include="Models\State.cs" />
+    <Compile Include="Models\Subject.cs" />
     <Compile Include="Models\SubjectDetails.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Models\UserAuthorization.cs" />

@@ -1,12 +1,12 @@
-﻿using System;
-using System.Web.Mvc;
-using System.Collections.Generic;
-using System.Linq;
+﻿using AccountingBookBL.Operations;
 using AccountingBookBL.Providers;
+using AccountingBookCommon.Models;
 using AccountingBookWeb.BL.Attributes;
 using AccountingBookWeb.Models;
-using AccountingBookCommon.Models;
-using AccountingBookBL.Operations;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Web.Mvc;
 
 namespace AccountingBookWeb.Controllers
 {
@@ -73,12 +73,13 @@ namespace AccountingBookWeb.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         [Admin]
-        public ActionResult AddEditUser(UserViewModel userForm)
+        public ActionResult AddEditUser(UserViewModel userViewModel)
         {
             try
             {
-                if (_userProvider.IsExistsUser(userForm.Id, userForm.Name))
+                if (_userProvider.IsExistsUser(userViewModel.Id, userViewModel.Name))
                 {
                     ModelState.AddModelError("Name", "A user with that name already exists");
                 }
@@ -86,17 +87,17 @@ namespace AccountingBookWeb.Controllers
             catch (Exception exception)
             {
                 ViewBag.Error = exception.Message;
-                return View(userForm);
+                return View(userViewModel);
             }
 
             if (ModelState.IsValid)
             {
                 User user = new User();
-                user.Email = userForm.Email;
-                user.Id = userForm.Id;
-                user.Name = userForm.Name;
-                user.Password = userForm.Password;
-                user.Roles = userForm.Roles;
+                user.Email = userViewModel.Email;
+                user.Id = userViewModel.Id;
+                user.Name = userViewModel.Name;
+                user.Password = userViewModel.Password;
+                user.Roles = userViewModel.Roles;
                 try
                 {
                     if (user.Id != 0)
@@ -107,28 +108,24 @@ namespace AccountingBookWeb.Controllers
                     {
                         _userOperation.AddUser(user);
                     }
-                    return RedirectToAction("ListUsers");
+                    return RedirectToAction("SearchUsers");
                 }
                 catch (Exception exception)
                 {
                     ViewBag.Error = exception.Message;
-                    return View(userForm);
+                    return View(userViewModel);
                 }
             }
-            return View(userForm);
+            return View(userViewModel);
         }
 
         [HttpGet]
         [Admin]
-        public ActionResult DeleteUser(int? Id)
+        public ActionResult DeleteUser(int Id)
         {
-            if (!Id.HasValue)
-            {
-                return HttpNotFound();
-            }
             try
             {
-                User user = _userProvider.GetUserById((int)Id);
+                User user = _userProvider.GetUserById(Id);
                 if (user != null)
                 {
                     return View(new UserViewModel(user));
@@ -146,16 +143,13 @@ namespace AccountingBookWeb.Controllers
         }
 
         [HttpPost, ActionName("DeleteUser")]
+        [ValidateAntiForgeryToken]
         [Admin]
-        public ActionResult DeleteConfirmed(int? Id)
+        public ActionResult DeleteConfirmed(int Id)
         {
-            if (!Id.HasValue)
-            {
-                return HttpNotFound();
-            }
             try
             {
-                _userOperation.DeleteUser((int)Id);
+                _userOperation.DeleteUserById(Id);
                 return RedirectToAction("ListUsers");
             }
 

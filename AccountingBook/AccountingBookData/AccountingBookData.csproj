@@ -97,6 +97,9 @@
     <None Include="Service References\AccountingBookServiceReference\AccountingBookData.AccountingBookServiceReference.CategoryDto.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
+    <None Include="Service References\AccountingBookServiceReference\AccountingBookData.AccountingBookServiceReference.LocationDto.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
     <None Include="Service References\AccountingBookServiceReference\AccountingBookData.AccountingBookServiceReference.RoleAuthorizationDto.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
@@ -107,6 +110,9 @@
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Service References\AccountingBookServiceReference\AccountingBookData.AccountingBookServiceReference.SubjectDetailsDto.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\AccountingBookServiceReference\AccountingBookData.AccountingBookServiceReference.SubjectDto.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
     <None Include="Service References\AccountingBookServiceReference\AccountingBookData.AccountingBookServiceReference.UserAuthorizationDto.datasource">

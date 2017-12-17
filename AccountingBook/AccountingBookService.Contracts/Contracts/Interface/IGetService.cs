@@ -1,25 +1,22 @@
-﻿using System.Collections.Generic;
-using System.ServiceModel;
-using AccountingBookService.Contracts.Models.Dto;
+﻿using AccountingBookService.Contracts.Models.Dto;
 using AccountingBookService.Contracts.Models.DtoException;
+using System.Collections.Generic;
+using System.ServiceModel;
 
-namespace AccountingBookService.Contracts.Contracts
+namespace AccountingBookService.Contracts.Contracts.Interface
 {
     [ServiceContract]
-    public interface IAccountingBookService
+    public interface IGetService
     {
         [OperationContract]
         [FaultContract(typeof(ServiceFault))]
         List<CategoryDto> GetCategories();
         [OperationContract]
         [FaultContract(typeof(ServiceFault))]
-        List<SubjectDetailsDto> GetSubjects();
+        List<SubjectDetailsDto> GetSubjectsByCategoryId(int? categoryId);
         [OperationContract]
         [FaultContract(typeof(ServiceFault))]
-        List<SubjectDetailsDto> GetSubjectsByCategoryId(int id);
-        [OperationContract]
-        [FaultContract(typeof(ServiceFault))]
-        SubjectDetailsDto GetSubjectInformationById(int inventoryNumber);
+        SubjectDetailsDto GetSubjectInformationByInventoryNumber(int inventoryNumber);
         [OperationContract]
         [FaultContract(typeof(ServiceFault))]
         UserAuthorizationDto GetUserAuthorizationByName(string userName);
@@ -50,5 +47,17 @@ namespace AccountingBookService.Contracts.Contracts
         [OperationContract]
         [FaultContract(typeof(ServiceFault))]
         List<UserDto> GetUsersByName(string userName);
+        [OperationContract]
+        [FaultContract(typeof(ServiceFault))]
+        List<LocationDto> GetLocations();
+
+        [OperationContract]
+        [FaultContract(typeof(ServiceFault))]
+        SubjectDto GetSubjectByInventoryNumber(int inventoryNumber);
+
+        [OperationContract]
+        [FaultContract(typeof(ServiceFault))]
+        bool IsExistsSubject(int inventoryNumber);
+
     }
 }

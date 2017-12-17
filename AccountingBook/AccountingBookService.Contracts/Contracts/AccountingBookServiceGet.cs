@@ -1,17 +1,18 @@
-﻿using System;
-using System.Linq;
-using System.Configuration;
-using System.ServiceModel;
-using System.Data;
-using System.Data.SqlClient;
-using System.Collections.Generic;
-using log4net;
+﻿using AccountingBookService.Contracts.Contracts.Interface;
 using AccountingBookService.Contracts.Models.Dto;
 using AccountingBookService.Contracts.Models.DtoException;
+using log4net;
+using System;
+using System.Collections.Generic;
+using System.Configuration;
+using System.Data;
+using System.Data.SqlClient;
+using System.Linq;
+using System.ServiceModel;
 
 namespace AccountingBookService.Contracts.Contracts
 {
-    public partial class AccountingBookService : IAccountingBookService
+    public partial class AccountingBookService : IGetService
     {
         readonly string connectionString;
         const string errorMessage = "Now the server is unavailable.Try later";
@@ -123,7 +124,16 @@ namespace AccountingBookService.Contracts.Contracts
                             {
                                 foreach (DataRow dataRow in table.Rows)
                                 {
-                                    tempList.Add(new SubjectDetailsDto { InventoryNumber = (int)dataRow[0], Name = (string)dataRow[1], State = (string)dataRow[2], Category = (string)dataRow[3], Photo = dataRow.IsNull(4) ? string.Empty : (string)dataRow[4], Description = (string)dataRow[5], Location = (string)dataRow[6] });
+                                    tempList.Add(new SubjectDetailsDto
+                                    {
+                                        InventoryNumber = (int)dataRow[0],
+                                        Name = (string)dataRow[1],
+                                        State = dataRow.IsNull(2) ? string.Empty : (string)dataRow[2],
+                                        Category = dataRow.IsNull(3) ? string.Empty : (string)dataRow[3],
+                                        Photo = dataRow.IsNull(4) ? string.Empty : (string)dataRow[4],
+                                        Description = (string)dataRow[5],
+                                        Location = dataRow.IsNull(6) ? string.Empty : (string)dataRow[6],
+                                    });
                                 }
                             }
                         }
@@ -322,7 +332,56 @@ namespace AccountingBookService.Contracts.Contracts
                             throw new FaultException<ServiceFault>(new ServiceFault(errorMessage), new FaultReason("Internal error"));
                         }
                         list = tempList.Cast<T>().ToList();
-                    }                   
+                    }
+                    else if (procedureName == "SelectLocations")
+                    {
+                        List<LocationDto> tempList = new List<LocationDto>();
+                        try
+                        {
+                            foreach (DataTable table in dataSet.Tables)
+                            {
+                                foreach (DataRow dataRow in table.Rows)
+                                {
+                                    tempList.Add(new LocationDto { Id = (int)dataRow[0], Address = (string)dataRow[1] });
+                                }
+                            }
+                        }
+                        catch (InvalidCastException invalidCastException)
+                        {
+                            Log.Error(invalidCastException.Message);
+                            throw new FaultException<ServiceFault>(new ServiceFault(errorMessage), new FaultReason("Internal error"));
+                        }
+                        list = tempList.Cast<T>().ToList();
+                    }
+                    else if (procedureName == "SelectSubjectByInventoryNumber")
+                    {
+                        List<SubjectDto> tempList = new List<SubjectDto>();
+                        try
+                        {
+                            foreach (DataTable table in dataSet.Tables)
+                            {
+                                foreach (DataRow dataRow in table.Rows)
+                                {
+                                    tempList.Add(new SubjectDto
+                                    {
+                                        InventoryNumber = (int)dataRow[0],
+                                        Name = (string)dataRow[1],
+                                        StateId = dataRow.IsNull(2) ? null : (int?)dataRow[2],
+                                        CategoryId = dataRow.IsNull(3) ? null : (int?)dataRow[3],
+                                        Description = (string)dataRow[4],
+                                        Photo = dataRow.IsNull(5) ? string.Empty : (string)dataRow[5],
+                                        LocationId = dataRow.IsNull(6) ? null : (int?)dataRow[6],
+                                    });
+                                }
+                            }
+                        }
+                        catch (InvalidCastException invalidCastException)
+                        {
+                            Log.Error(invalidCastException.Message);
+                            throw new FaultException<ServiceFault>(new ServiceFault(errorMessage), new FaultReason("Internal error"));
+                        }
+                        list = tempList.Cast<T>().ToList();
+                    }
                 }
             }
         }
@@ -334,20 +393,16 @@ namespace AccountingBookService.Contracts.Contracts
             return categoryDto;
         }
 
-        public List<SubjectDetailsDto> GetSubjects()
-        {
-            throw new NotImplementedException();
-        }
 
-        public List<SubjectDetailsDto> GetSubjectsByCategoryId(int categoryId)
+        public List<SubjectDetailsDto> GetSubjectsByCategoryId(int? categoryId)
         {
             List<SubjectDetailsDto> subjectsDto = new List<SubjectDetailsDto>();
-            SqlParameter param = new SqlParameter { DbType = DbType.Int32, ParameterName = "@categoryId", Value = categoryId };
+            SqlParameter param = new SqlParameter { SqlDbType = SqlDbType.Int, ParameterName = "@categoryId", Value = (object)categoryId ?? DBNull.Value };
             GetDataFromDb(ref subjectsDto, "SelectSubjectsByCategoryId", param);
             return subjectsDto;
         }
 
-        public SubjectDetailsDto GetSubjectInformationById(int inventoryNumber)
+        public SubjectDetailsDto GetSubjectInformationByInventoryNumber(int inventoryNumber)
         {
             List<SubjectDetailsDto> subjectDto = new List<SubjectDetailsDto>();
             SqlParameter param = new SqlParameter { DbType = DbType.Int32, ParameterName = "@inventoryNumber", Value = inventoryNumber };
@@ -549,6 +604,66 @@ namespace AccountingBookService.Contracts.Contracts
             SqlParameter param = new SqlParameter { DbType = DbType.String, ParameterName = "@userName", Value = userName };
             GetDataFromDb(ref userDtoList, "SelectUsersByName", param);
             return userDtoList;
+        }
+
+        public List<LocationDto> GetLocations()
+        {
+            List<LocationDto> addressDtoList = new List<LocationDto>();
+            GetDataFromDb(ref addressDtoList, "SelectLocations");
+            return addressDtoList;
+        }
+
+        public SubjectDto GetSubjectByInventoryNumber(int inventoryNumber)
+        {
+            List<SubjectDto> subjectDto = new List<SubjectDto>();
+            SqlParameter param = new SqlParameter { DbType = DbType.Int32, ParameterName = "@inventoryNumber", Value = inventoryNumber };
+            GetDataFromDb(ref subjectDto, "SelectSubjectByInventoryNumber", param);
+            return subjectDto.FirstOrDefault();
+        }
+
+        public bool IsExistsSubject(int inventoryNumber)
+        {
+            SqlParameter param = new SqlParameter
+            {
+                DbType = DbType.Int32,
+                ParameterName = "@inventoryNumber",
+                Value = inventoryNumber
+            };
+
+            bool result = false;
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                using (SqlCommand command = new SqlCommand())
+                {
+                    command.Connection = connection;
+                    command.CommandType = CommandType.StoredProcedure;
+                    command.CommandText = "IsExistSubject";
+                    command.Parameters.Add(param);
+
+                    SqlParameter resultPrameter = new SqlParameter();
+                    resultPrameter.Direction = ParameterDirection.ReturnValue;
+                    command.Parameters.Add(resultPrameter);
+
+                    SqlDataAdapter adapter = new SqlDataAdapter(command);
+                    DataSet dataSet = new DataSet();
+
+                    try
+                    {
+                        adapter.Fill(dataSet);
+                    }
+                    catch (SqlException sqlException)
+                    {
+                        Log.Error(sqlException.Message);
+                        throw new FaultException<ServiceFault>(new ServiceFault(errorMessage), new FaultReason("Internal error"));
+                    }
+
+                    if ((int)resultPrameter.Value == 1)
+                    {
+                        result = true;
+                    }
+                }
+            }
+            return result;
         }
     }
 }

@@ -1,14 +1,9 @@
-﻿using System;
-using System.Web.Mvc;
-using AccountingBookWeb.Models;
-using AccountingBookWeb.BL.Attributes;
-using AccountingBookBL.Services;
+﻿using AccountingBookBL.Services;
 using AccountingBookCommon.Enums;
-using AccountingBookBL.Providers;
-using System.Collections.Generic;
-using AccountingBookCommon.Models;
-using System.Linq;
-using StructureMap.Query;
+using AccountingBookWeb.BL.Attributes;
+using AccountingBookWeb.Models;
+using System;
+using System.Web.Mvc;
 
 namespace AccountingBookWeb.Controllers
 {
@@ -21,7 +16,7 @@ namespace AccountingBookWeb.Controllers
         }
         [HttpGet]
         [AllowAnonymous]
-        [BL.Attributes.Authorize]
+        [OnlyAnonymous]
         public ActionResult Login()
         {
             return View();
@@ -29,7 +24,8 @@ namespace AccountingBookWeb.Controllers
 
         [HttpPost]
         [AllowAnonymous]
-        [BL.Attributes.Authorize]
+        [OnlyAnonymous]
+        [ValidateAntiForgeryToken]
         public ActionResult Login(string userName, string password)
         {
             var model = new LoginViewModel();
@@ -56,7 +52,12 @@ namespace AccountingBookWeb.Controllers
                 return View(model);
             }
         }
- 
+
+        public ActionResult AccessDenied()
+        {
+            return View();
+        }
+
         public ActionResult Logout()
         {
             _loginService.Logout();

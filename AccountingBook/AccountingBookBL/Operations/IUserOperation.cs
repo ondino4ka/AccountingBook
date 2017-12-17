@@ -6,6 +6,6 @@ namespace AccountingBookBL.Operations
     {
         void AddUser(User user);
         void EditUser(User user);
-        void DeleteUser(int userId);
+        void DeleteUserById(int userId);
     }
 }

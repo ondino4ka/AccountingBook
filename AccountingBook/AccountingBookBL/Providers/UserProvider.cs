@@ -1,7 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using AccountingBookCommon.Models;
+﻿using AccountingBookCommon.Models;
 using AccountingBookData.Repositories;
+using System;
+using System.Collections.Generic;
 
 namespace AccountingBookBL.Providers
 {

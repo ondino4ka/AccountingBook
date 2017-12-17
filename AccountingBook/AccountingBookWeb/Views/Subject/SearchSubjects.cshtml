@@ -19,7 +19,12 @@
     <select class="form-control" id="stateId"></select>
     <button id="search" class="btn">Search</button>
     <i style="display:none" id="before-load" class="fa fa-spinner fa-spin"></i>
+    @if (HttpContext.Current.User.IsInRole("Admin") || HttpContext.Current.User.IsInRole("Edit"))
+    {
+        <button onclick="window.location = '@Url.Action("AddSubject", "Subject")'" class="btn btn-success">Create Subject</button>
+    }
 </div>
+
 <hr />
 <div class="row" id="content">
 
@@ -27,13 +32,13 @@
 
 
 <script>
-    initSelect2Categories("#categories");    
+    initSelect2Categories("categories");
     window.searchVar = window.Search();
 
     $('#search').click(function () {
         var subjectName = $("#subjectName").val();
         var categoryId = $('#categories').val();
         var stateId = $('#stateId').val();
-        searchVar.MakeSearch(subjectName, categoryId, stateId);      
-    }) 
+        searchVar.MakeSearch(subjectName, categoryId, stateId);
+    })
 </script>

@@ -152,21 +152,12 @@
     <Content Include="Content\css\select2.min.css" />
     <Content Include="Content\font-awesome.css" />
     <Content Include="Content\font-awesome.min.css" />
-    <Content Include="Content\Images\1.png" />
-    <Content Include="Content\Images\10.png" />
-    <Content Include="Content\Images\11.png" />
-    <Content Include="Content\Images\12.png" />
-    <Content Include="Content\Images\2.png" />
-    <Content Include="Content\Images\3.png" />
-    <Content Include="Content\Images\4.png" />
-    <Content Include="Content\Images\5.png" />
-    <Content Include="Content\Images\6.png" />
-    <Content Include="Content\Images\7.png" />
-    <Content Include="Content\Images\8.png" />
-    <Content Include="Content\Images\9.png" />
+    <Content Include="Content\Images\bak.png" />
     <Content Include="Content\Images\no_image.png" />
     <Content Include="Content\index-page.css" />
     <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\checkFileExtension.js" />
+    <Content Include="Scripts\initDropDownSubject.js" />
     <Content Include="Scripts\jquery.validate.js" />
     <Content Include="Scripts\jquery.validate.min.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
@@ -210,8 +201,10 @@
     <Compile Include="App_Start\StructuremapMvc.cs" />
     <Compile Include="BL\Attributes\AjaxAttribute.cs" />
     <Compile Include="BL\Attributes\AuthorizeAttribute.cs" />
-    <Compile Include="BL\Attributes\RequiredArray.cs" />
+    <Compile Include="BL\Attributes\FileExtensionsAttribute.cs" />
+    <Compile Include="BL\Attributes\RequiredArrayAttribute.cs" />
     <Compile Include="Controllers\CategoryController.cs" />
+    <Compile Include="Controllers\ErrorController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\SubjectController.cs" />
@@ -227,6 +220,8 @@
     <Compile Include="BL\Attributes\AdminAttribute.cs" />
     <Compile Include="Models\LoginViewModel.cs" />
     <Compile Include="Models\RoleViewModel.cs" />
+    <Compile Include="Models\SubjectPhotoViewModel.cs" />
+    <Compile Include="Models\SubjectViewModel.cs" />
     <Compile Include="Models\UserViewModel.cs" />
     <Compile Include="Models\UserPrincipal.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -258,6 +253,12 @@
     <Content Include="Views\User\Users.cshtml" />
     <Content Include="Views\User\DeleteUser.cshtml" />
     <Content Include="Views\User\SearchUsers.cshtml" />
+    <Content Include="Views\Subject\EditSubjectInformation.cshtml" />
+    <Content Include="Views\Subject\AddSubject.cshtml" />
+    <Content Include="Views\Error\ErrorPage.cshtml" />
+    <Content Include="Views\Login\AccessDenied.cshtml" />
+    <Content Include="Views\Subject\DeleteSubject.cshtml" />
+    <Content Include="Views\Subject\EditSubjectPhoto.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

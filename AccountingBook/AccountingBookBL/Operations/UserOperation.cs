@@ -1,12 +1,11 @@
-﻿using System;
-using AccountingBookCommon.Models;
+﻿using AccountingBookCommon.Models;
 using AccountingBookData.Repositories;
 
 namespace AccountingBookBL.Operations
 {
     public class UserOperation : IUserOperation
     {
-        IDataRepository _dataRepository;
+        private readonly IDataRepository _dataRepository;
         public UserOperation(IDataRepository dataProvider)
         {
             _dataRepository = dataProvider;
@@ -16,9 +15,9 @@ namespace AccountingBookBL.Operations
             _dataRepository.AddUser(user);
         }
 
-        public void DeleteUser(int userId)
+        public void DeleteUserById(int userId)
         {
-            _dataRepository.DeleteUser(userId);
+            _dataRepository.DeleteUserById(userId);
         }
 
         public void EditUser(User user)

@@ -14,7 +14,7 @@
     .subject:hover {
         box-shadow: 0 0 16px rgba(0, 0, 0, 0.5);
     }
-       .subject:hover .edit{
+       .subject:hover .trash{
         visibility:visible;
     }
 
@@ -38,13 +38,13 @@ img {
     overflow: hidden;
 }
 
-.edit {
+.trash {
     position: absolute;
     top: 0px;
     right: 0px;
     visibility:hidden;
 }
 
-    .edit:hover {
+    .trash:hover {
         box-shadow: 0 0 16px rgba(0, 0, 0, 0.5);
     }

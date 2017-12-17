@@ -1,7 +1,7 @@
-﻿using StructureMap.Configuration.DSL;
+﻿using AccountingBookBL.Operations;
 using AccountingBookBL.Providers;
 using AccountingBookBL.Services;
-using AccountingBookBL.Operations;
+using StructureMap.Configuration.DSL;
 
 namespace AccountingBookBL.Container
 {
@@ -13,6 +13,8 @@ namespace AccountingBookBL.Container
             For<IUserProvider>().Use<UserProvider>();
             For<ILoginService>().Use<LoginService>();
             For<IUserOperation>().Use<UserOperation>();
+            For<ISubjectOperation>().Use<SubjectOperation>();
+            For<IFileService>().Use<FileService>();
         }
     }
 }

@@ -1,5 +1,5 @@
-﻿using System.Collections.Generic;
-using AccountingBookCommon.Models;
+﻿using AccountingBookCommon.Models;
+using System.Collections.Generic;
 
 namespace AccountingBookBL.Providers
 {
@@ -7,10 +7,14 @@ namespace AccountingBookBL.Providers
     {
         IReadOnlyList<Category> GetCategories();
         IReadOnlyList<SubjectDetails> GetSubjects();
-        IReadOnlyList<SubjectDetails> GetSubjectsByCategoryId(int categoryId);
-        SubjectDetails GetSubjectInformationById(int inventoryNumber);
+        IReadOnlyList<SubjectDetails> GetSubjectsByCategoryId(int? categoryId);
+        SubjectDetails GetSubjectInformationByInventoryNumber(int inventoryNumber);
         IReadOnlyCollection<Category> GetCategoriesByName(string category);
         IReadOnlyCollection<SubjectDetails> GetSubjectsByNameCategoryIdAndStateId(int? categoryId, int? stateId, string subjectName);
         IReadOnlyCollection<State> GetStates();
+        IReadOnlyCollection<Location> GetLocations();
+
+        Subject GetSubjectByInventoryNumber(int inventoryNumber);
+        bool IsExistsSubject(int inventoryNumber);
     }
 }
