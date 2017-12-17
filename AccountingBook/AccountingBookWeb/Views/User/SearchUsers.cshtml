@@ -24,6 +24,6 @@
     window.searchVar = window.Search();
     $("#button").click(function () {      
         var _userName = $('input[name="userName"]').val();
-        searchVar.MakeSearch(_userName);
+        searchVar.MakeSearch('@Url.Action("GetUsersByName","User")?userName=' + _userName, "users");
     });
 </script>

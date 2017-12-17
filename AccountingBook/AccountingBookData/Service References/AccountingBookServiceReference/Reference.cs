@@ -958,6 +958,22 @@ namespace AccountingBookData.AccountingBookServiceReference {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IGetService/IsExistsSubject", ReplyAction="http://tempuri.org/IGetService/IsExistsSubjectResponse")]
         System.Threading.Tasks.Task<bool> IsExistsSubjectAsync(int inventoryNumber);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IGetService/GetLocationsByAddress", ReplyAction="http://tempuri.org/IGetService/GetLocationsByAddressResponse")]
+        [System.ServiceModel.FaultContractAttribute(typeof(AccountingBookData.AccountingBookServiceReference.ServiceFault), Action="http://tempuri.org/IGetService/GetLocationsByAddressServiceFaultFault", Name="ServiceFault", Namespace="http://schemas.datacontract.org/2004/07/AccountingBookService.Contracts.Models.Dt" +
+            "oException")]
+        AccountingBookData.AccountingBookServiceReference.LocationDto[] GetLocationsByAddress(string address);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IGetService/GetLocationsByAddress", ReplyAction="http://tempuri.org/IGetService/GetLocationsByAddressResponse")]
+        System.Threading.Tasks.Task<AccountingBookData.AccountingBookServiceReference.LocationDto[]> GetLocationsByAddressAsync(string address);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IGetService/GetLocationsById", ReplyAction="http://tempuri.org/IGetService/GetLocationsByIdResponse")]
+        [System.ServiceModel.FaultContractAttribute(typeof(AccountingBookData.AccountingBookServiceReference.ServiceFault), Action="http://tempuri.org/IGetService/GetLocationsByIdServiceFaultFault", Name="ServiceFault", Namespace="http://schemas.datacontract.org/2004/07/AccountingBookService.Contracts.Models.Dt" +
+            "oException")]
+        AccountingBookData.AccountingBookServiceReference.LocationDto GetLocationsById(int locationId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IGetService/GetLocationsById", ReplyAction="http://tempuri.org/IGetService/GetLocationsByIdResponse")]
+        System.Threading.Tasks.Task<AccountingBookData.AccountingBookServiceReference.LocationDto> GetLocationsByIdAsync(int locationId);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -1114,6 +1130,22 @@ namespace AccountingBookData.AccountingBookServiceReference {
         public System.Threading.Tasks.Task<bool> IsExistsSubjectAsync(int inventoryNumber) {
             return base.Channel.IsExistsSubjectAsync(inventoryNumber);
         }
+        
+        public AccountingBookData.AccountingBookServiceReference.LocationDto[] GetLocationsByAddress(string address) {
+            return base.Channel.GetLocationsByAddress(address);
+        }
+        
+        public System.Threading.Tasks.Task<AccountingBookData.AccountingBookServiceReference.LocationDto[]> GetLocationsByAddressAsync(string address) {
+            return base.Channel.GetLocationsByAddressAsync(address);
+        }
+        
+        public AccountingBookData.AccountingBookServiceReference.LocationDto GetLocationsById(int locationId) {
+            return base.Channel.GetLocationsById(locationId);
+        }
+        
+        public System.Threading.Tasks.Task<AccountingBookData.AccountingBookServiceReference.LocationDto> GetLocationsByIdAsync(int locationId) {
+            return base.Channel.GetLocationsByIdAsync(locationId);
+        }
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -1135,6 +1167,14 @@ namespace AccountingBookData.AccountingBookServiceReference {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAddService/AddSubject", ReplyAction="http://tempuri.org/IAddService/AddSubjectResponse")]
         System.Threading.Tasks.Task AddSubjectAsync(AccountingBookData.AccountingBookServiceReference.SubjectDto userDto);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAddService/AddLocation", ReplyAction="http://tempuri.org/IAddService/AddLocationResponse")]
+        [System.ServiceModel.FaultContractAttribute(typeof(AccountingBookData.AccountingBookServiceReference.ServiceFault), Action="http://tempuri.org/IAddService/AddLocationServiceFaultFault", Name="ServiceFault", Namespace="http://schemas.datacontract.org/2004/07/AccountingBookService.Contracts.Models.Dt" +
+            "oException")]
+        void AddLocation(string address);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAddService/AddLocation", ReplyAction="http://tempuri.org/IAddService/AddLocationResponse")]
+        System.Threading.Tasks.Task AddLocationAsync(string address);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -1179,6 +1219,14 @@ namespace AccountingBookData.AccountingBookServiceReference {
         public System.Threading.Tasks.Task AddSubjectAsync(AccountingBookData.AccountingBookServiceReference.SubjectDto userDto) {
             return base.Channel.AddSubjectAsync(userDto);
         }
+        
+        public void AddLocation(string address) {
+            base.Channel.AddLocation(address);
+        }
+        
+        public System.Threading.Tasks.Task AddLocationAsync(string address) {
+            return base.Channel.AddLocationAsync(address);
+        }
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -1208,6 +1256,14 @@ namespace AccountingBookData.AccountingBookServiceReference {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEditService/EditSubjectPhoto", ReplyAction="http://tempuri.org/IEditService/EditSubjectPhotoResponse")]
         System.Threading.Tasks.Task EditSubjectPhotoAsync(int inventoryNumber, string photo);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEditService/EditLocation", ReplyAction="http://tempuri.org/IEditService/EditLocationResponse")]
+        [System.ServiceModel.FaultContractAttribute(typeof(AccountingBookData.AccountingBookServiceReference.ServiceFault), Action="http://tempuri.org/IEditService/EditLocationServiceFaultFault", Name="ServiceFault", Namespace="http://schemas.datacontract.org/2004/07/AccountingBookService.Contracts.Models.Dt" +
+            "oException")]
+        void EditLocation(int locationId, string address);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEditService/EditLocation", ReplyAction="http://tempuri.org/IEditService/EditLocationResponse")]
+        System.Threading.Tasks.Task EditLocationAsync(int locationId, string address);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -1260,6 +1316,14 @@ namespace AccountingBookData.AccountingBookServiceReference {
         public System.Threading.Tasks.Task EditSubjectPhotoAsync(int inventoryNumber, string photo) {
             return base.Channel.EditSubjectPhotoAsync(inventoryNumber, photo);
         }
+        
+        public void EditLocation(int locationId, string address) {
+            base.Channel.EditLocation(locationId, address);
+        }
+        
+        public System.Threading.Tasks.Task EditLocationAsync(int locationId, string address) {
+            return base.Channel.EditLocationAsync(locationId, address);
+        }
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -1282,6 +1346,14 @@ namespace AccountingBookData.AccountingBookServiceReference {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDeleteService/DeleteSubjectByInventoryNumber", ReplyAction="http://tempuri.org/IDeleteService/DeleteSubjectByInventoryNumberResponse")]
         System.Threading.Tasks.Task DeleteSubjectByInventoryNumberAsync(int inventoryNumber);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDeleteService/DeleteLocationById", ReplyAction="http://tempuri.org/IDeleteService/DeleteLocationByIdResponse")]
+        [System.ServiceModel.FaultContractAttribute(typeof(AccountingBookData.AccountingBookServiceReference.ServiceFault), Action="http://tempuri.org/IDeleteService/DeleteLocationByIdServiceFaultFault", Name="ServiceFault", Namespace="http://schemas.datacontract.org/2004/07/AccountingBookService.Contracts.Models.Dt" +
+            "oException")]
+        void DeleteLocationById(int locationId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDeleteService/DeleteLocationById", ReplyAction="http://tempuri.org/IDeleteService/DeleteLocationByIdResponse")]
+        System.Threading.Tasks.Task DeleteLocationByIdAsync(int locationId);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -1325,6 +1397,14 @@ namespace AccountingBookData.AccountingBookServiceReference {
         
         public System.Threading.Tasks.Task DeleteSubjectByInventoryNumberAsync(int inventoryNumber) {
             return base.Channel.DeleteSubjectByInventoryNumberAsync(inventoryNumber);
+        }
+        
+        public void DeleteLocationById(int locationId) {
+            base.Channel.DeleteLocationById(locationId);
+        }
+        
+        public System.Threading.Tasks.Task DeleteLocationByIdAsync(int locationId) {
+            return base.Channel.DeleteLocationByIdAsync(locationId);
         }
     }
     

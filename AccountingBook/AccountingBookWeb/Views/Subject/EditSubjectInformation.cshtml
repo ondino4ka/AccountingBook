@@ -81,5 +81,5 @@
 <script>
     initSelectsForSubject("selectState", '/Subject/GetStates', 'StateId', @(Model.StateId == null ? 0 : Model.StateId), 'StateName');
     initSelectsForSubject("selectCategory", '/Category/GetCategoriesByName?categoryName=', 'CategoryId', @(Model.CategoryId == null ? 0 : Model.CategoryId),  'Name');
-    initSelectsForSubject("selectLocation", '/Subject/GetLocations', 'LocationId', @(Model.LocationId == null ? 0 : Model.LocationId), 'Address');
+    initSelectsForSubject("selectLocation", '/Location/GetLocations', 'LocationId', @(Model.LocationId == null ? 0 : Model.LocationId), 'Address');
 </script>

@@ -23,8 +23,7 @@ namespace AccountingBookData.Clients
         void EditUser(User user);
         IReadOnlyCollection<User> GetUsersByName(string userName);
         void DeleteUserById(int userId);
-        IReadOnlyCollection<Location> GetLocations();
-
+       
 
         Subject GetSubjectByInventoryNumber(int inventoryNumber);
         bool IsExistsSubject(int inventoryNumber);
@@ -32,6 +31,15 @@ namespace AccountingBookData.Clients
         void EditSubjectInformation(Subject subject);
         void EditSubjectPhoto(int inventoryNumber, string photo);
         void DeleteSubjectByInventoruNumber(int inventoryNumber);
+
+
+        IReadOnlyCollection<Location> GetLocations();
+        IReadOnlyCollection<Location> GetLocationsByAddress(string address);
+        Location GetLocationById(int locationId);
+        void AddtLocation(string address);
+        void EditLocation(int locationId, string address);
+        void DeleteLocationById(int locationId);
+
 
 
         void UploadPhoto(string name, byte[] photo);

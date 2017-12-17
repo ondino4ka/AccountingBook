@@ -2,22 +2,17 @@
 
     var _inProgress = false;
 
-    function MakeSearch(userName) {
-        var _userName = userName
+    function MakeSearch(urlWithParameter, selectorContainer) {
         if (!_inProgress) {
-            console.log(1231321);
             $.ajax({
-                url: '/User/GetUsersByName',
-                type: 'GET',
-                data: {
-                    userName: _userName
-                },
+                url: urlWithParameter,
+                type: 'GET',             
                 beforeSend: function () {
                     _inProgress = true;
                     $('#before-load').show();
                 },
                 success: function (result) {
-                    $("#users").html(result);
+                    $("#" + selectorContainer).html(result);
                 },
                 complete: function () {
                     _inProgress = false;

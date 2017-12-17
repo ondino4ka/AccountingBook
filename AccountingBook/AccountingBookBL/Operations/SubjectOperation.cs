@@ -7,9 +7,9 @@ namespace AccountingBookBL.Operations
     public class SubjectOperation : ISubjectOperation
     {
         private readonly IDataRepository _dataRepository;
-        public SubjectOperation(IDataRepository dataProvider)
+        public SubjectOperation(IDataRepository dataRepository)
         {
-            _dataRepository = dataProvider;
+            _dataRepository = dataRepository;
         }
         public void AddSubject(Subject subject)
         {

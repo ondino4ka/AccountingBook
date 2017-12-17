@@ -59,5 +59,12 @@ namespace AccountingBookService.Contracts.Contracts.Interface
         [FaultContract(typeof(ServiceFault))]
         bool IsExistsSubject(int inventoryNumber);
 
+        [OperationContract]
+        [FaultContract(typeof(ServiceFault))]
+        List<LocationDto> GetLocationsByAddress(string address);
+        [OperationContract]
+        [FaultContract(typeof(ServiceFault))]
+        LocationDto GetLocationsById(int locationId);
+
     }
 }

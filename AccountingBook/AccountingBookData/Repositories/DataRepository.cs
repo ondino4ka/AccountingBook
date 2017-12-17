@@ -1,7 +1,7 @@
 ﻿using AccountingBookCommon.Models;
 using AccountingBookData.Clients;
-using System;
 using System.Collections.Generic;
+using System;
 
 namespace AccountingBookData.Repositories
 {
@@ -91,15 +91,36 @@ namespace AccountingBookData.Repositories
         }
 
 
-
-
-
-
+        #region Location Operations
         public IReadOnlyCollection<Location> GetLocations()
         {
             return _client.GetLocations();
         }
+        public IReadOnlyCollection<Location> GetLocationsByAddress(string address)
+        {
+            return _client.GetLocationsByAddress(address);
+        }
+        public Location GetLocationsById(int locationId)
+        {
+            return _client.GetLocationById(locationId);
+        }
+        public void AddLocation(string address)
+        {
+            _client.AddtLocation(address);
+        }
 
+        public void EditLocation(int locationId, string address)
+        {
+            _client.EditLocation(locationId, address);
+        }
+
+        public void DeleteLocationById(int locationId)
+        {
+            _client.DeleteLocationById(locationId);
+        }
+        #endregion
+
+        #region Subject Operations
         public Subject GetSubjectByInventoryNumber(int inventoryNumber)
         {
             return _client.GetSubjectByInventoryNumber(inventoryNumber);
@@ -125,12 +146,9 @@ namespace AccountingBookData.Repositories
         {
             _client.DeleteSubjectByInventoruNumber(inventoryNumber);
         }
+        #endregion
 
-
-
-
-
-
+        #region File Operations
         public void UploadPhoto(string name, byte[] photo)
         {
             _client.UploadPhoto(name, photo);
@@ -149,5 +167,6 @@ namespace AccountingBookData.Repositories
         {
             _client.EditSubjectPhoto(inventoryNumber, photo);
         }
+        #endregion
     }
 }

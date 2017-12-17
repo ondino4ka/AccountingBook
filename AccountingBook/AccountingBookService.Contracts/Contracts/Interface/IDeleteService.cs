@@ -14,5 +14,9 @@ namespace AccountingBookService.Contracts.Contracts.Interface
         [OperationContract]
         [FaultContract(typeof(ServiceFault))]
         void DeleteSubjectByInventoryNumber(int inventoryNumber);
+
+        [OperationContract]
+        [FaultContract(typeof(ServiceFault))]
+        void DeleteLocationById(int locationId);
     }
 }

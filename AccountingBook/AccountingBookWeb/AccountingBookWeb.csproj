@@ -100,6 +100,7 @@
       <HintPath>..\packages\structuremap.web.3.1.0.133\lib\net40\StructureMap.Web.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="System.Activities" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -206,6 +207,7 @@
     <Compile Include="Controllers\CategoryController.cs" />
     <Compile Include="Controllers\ErrorController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\LocationController.cs" />
     <Compile Include="Controllers\LoginController.cs" />
     <Compile Include="Controllers\SubjectController.cs" />
     <Compile Include="Controllers\UserController.cs" />
@@ -259,6 +261,10 @@
     <Content Include="Views\Login\AccessDenied.cshtml" />
     <Content Include="Views\Subject\DeleteSubject.cshtml" />
     <Content Include="Views\Subject\EditSubjectPhoto.cshtml" />
+    <Content Include="Views\Location\SearchLocations.cshtml" />
+    <Content Include="Views\Location\Locations.cshtml" />
+    <Content Include="Views\Location\AddEditLocation.cshtml" />
+    <Content Include="Views\Location\DeleteLocation.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

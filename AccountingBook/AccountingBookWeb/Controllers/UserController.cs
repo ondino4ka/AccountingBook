@@ -150,7 +150,7 @@ namespace AccountingBookWeb.Controllers
             try
             {
                 _userOperation.DeleteUserById(Id);
-                return RedirectToAction("ListUsers");
+                return RedirectToAction("SearchUsers");
             }
 
             catch (Exception exception)

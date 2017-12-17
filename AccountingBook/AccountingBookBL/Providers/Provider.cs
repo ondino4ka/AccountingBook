@@ -8,9 +8,9 @@ namespace AccountingBookBL.Providers
     public class Provider : IProvider
     {
         private readonly IDataRepository _dataRepository;
-        public Provider(IDataRepository dataProvider)
+        public Provider(IDataRepository dataRepository)
         {
-            _dataRepository = dataProvider;
+            _dataRepository = dataRepository;
         }
 
         public IReadOnlyList<Category> GetCategories()
@@ -63,6 +63,16 @@ namespace AccountingBookBL.Providers
         public bool IsExistsSubject(int inventoryNumber)
         {
             return _dataRepository.IsExistsSubject(inventoryNumber);
+        }
+
+        public IReadOnlyCollection<Location> GetLocationsByAddress(string address)
+        {
+            return _dataRepository.GetLocationsByAddress(address);
+        }
+
+        public Location GetLocationById(int locationId)
+        {
+            return _dataRepository.GetLocationsById(locationId);
         }
     }
 }

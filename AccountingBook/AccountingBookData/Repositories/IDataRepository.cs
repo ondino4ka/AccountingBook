@@ -25,10 +25,12 @@ namespace AccountingBookData.Repositories
         IReadOnlyCollection<User> GetUsersByName(string userName);
  
 
-
         IReadOnlyCollection<Location> GetLocations();
-
-
+        IReadOnlyCollection<Location> GetLocationsByAddress(string address);
+        Location GetLocationsById(int locationId);
+        void AddLocation(string address);
+        void EditLocation(int locationId, string address);
+        void DeleteLocationById(int locationId);
 
 
 
@@ -40,11 +42,11 @@ namespace AccountingBookData.Repositories
         void DeleteSubjectByInventoryNumber(int inventoryNumber);
     
 
-
-
-
         void UploadPhoto(string name, byte[] photo);
         void DeletePhoto(string name);
         byte[] DownloadPhoto(string name);
+
+
+
     }
 }

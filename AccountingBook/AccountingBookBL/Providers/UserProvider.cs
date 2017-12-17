@@ -8,9 +8,9 @@ namespace AccountingBookBL.Providers
     public class UserProvider : IUserProvider
     {
         IDataRepository _dataRepository;
-        public UserProvider(IDataRepository dataProvider)
+        public UserProvider(IDataRepository dataRepository)
         {
-            _dataRepository = dataProvider;
+            _dataRepository = dataRepository;
         }
         public UserAuthorization GetUserByName(string userName)
         {        

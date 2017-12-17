@@ -18,5 +18,9 @@ namespace AccountingBookService.Contracts.Contracts.Interface
         [OperationContract]
         [FaultContract(typeof(ServiceFault))]
         void EditSubjectPhoto(int inventoryNumber, string photo);
+
+        [OperationContract]
+        [FaultContract(typeof(ServiceFault))]
+        void EditLocation(int locationId, string address);
     }
 }

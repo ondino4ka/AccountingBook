@@ -382,6 +382,54 @@ namespace AccountingBookService.Contracts.Contracts
                         }
                         list = tempList.Cast<T>().ToList();
                     }
+                    else if (procedureName == "SelectLocationsByAddress")
+                    {
+                        List<LocationDto> tempList = new List<LocationDto>();
+                        try
+                        {
+                            foreach (DataTable table in dataSet.Tables)
+                            {
+                                foreach (DataRow dataRow in table.Rows)
+                                {
+                                    tempList.Add(new LocationDto
+                                    {
+                                        Id = (int)dataRow[0],
+                                        Address = (string)dataRow[1]                       
+                                    });
+                                }
+                            }
+                        }
+                        catch (InvalidCastException invalidCastException)
+                        {
+                            Log.Error(invalidCastException.Message);
+                            throw new FaultException<ServiceFault>(new ServiceFault(errorMessage), new FaultReason("Internal error"));
+                        }
+                        list = tempList.Cast<T>().ToList();
+                    }
+                    else if (procedureName == "SelectLocationById")
+                    {
+                        List<LocationDto> tempList = new List<LocationDto>();
+                        try
+                        {
+                            foreach (DataTable table in dataSet.Tables)
+                            {
+                                foreach (DataRow dataRow in table.Rows)
+                                {
+                                    tempList.Add(new LocationDto
+                                    {
+                                        Id = (int)dataRow[0],
+                                        Address = (string)dataRow[1]
+                                    });
+                                }
+                            }
+                        }
+                        catch (InvalidCastException invalidCastException)
+                        {
+                            Log.Error(invalidCastException.Message);
+                            throw new FaultException<ServiceFault>(new ServiceFault(errorMessage), new FaultReason("Internal error"));
+                        }
+                        list = tempList.Cast<T>().ToList();
+                    }              
                 }
             }
         }
@@ -664,6 +712,21 @@ namespace AccountingBookService.Contracts.Contracts
                 }
             }
             return result;
+        }
+
+        public List<LocationDto> GetLocationsByAddress(string address)
+        {
+            List<LocationDto> locationsDtoList = new List<LocationDto>();
+            SqlParameter param = new SqlParameter { DbType = DbType.String, ParameterName = "@address", Value = address };
+            GetDataFromDb(ref locationsDtoList, "SelectLocationsByAddress", param);
+            return locationsDtoList;
+        }
+        public LocationDto GetLocationsById(int locationId)
+        {
+            List<LocationDto> locationDto = new List<LocationDto>();
+            SqlParameter param = new SqlParameter { DbType = DbType.Int32, ParameterName = "@idLocation", Value = locationId };
+            GetDataFromDb(ref locationDto, "SelectLocationById", param);
+            return locationDto.FirstOrDefault();
         }
     }
 }

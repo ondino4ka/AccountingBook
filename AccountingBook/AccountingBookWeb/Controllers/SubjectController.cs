@@ -94,21 +94,7 @@ namespace AccountingBookWeb.Controllers
                 Log.Error(exception.Message);
                 return Json(null, JsonRequestBehavior.AllowGet);
             }
-        }
-
-        [Ajax]
-        public JsonResult GetLocations()
-        {
-            try
-            {
-                return Json(_provider.GetLocations(), JsonRequestBehavior.AllowGet);
-            }
-            catch (Exception exception)
-            {
-                Log.Error(exception.Message);
-                return Json(null, JsonRequestBehavior.AllowGet);
-            }
-        }
+        }    
 
         [HttpGet]
         [Authorize(Roles = "Admin, Edit")]

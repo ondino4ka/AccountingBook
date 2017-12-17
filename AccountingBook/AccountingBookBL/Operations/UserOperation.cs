@@ -6,9 +6,9 @@ namespace AccountingBookBL.Operations
     public class UserOperation : IUserOperation
     {
         private readonly IDataRepository _dataRepository;
-        public UserOperation(IDataRepository dataProvider)
+        public UserOperation(IDataRepository dataRepository)
         {
-            _dataRepository = dataProvider;
+            _dataRepository = dataRepository;
         }
         public void AddUser(User user)
         {

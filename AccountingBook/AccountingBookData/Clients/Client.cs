@@ -626,13 +626,6 @@ namespace AccountingBookData.Clients
 
 
 
-
-
-
-
-
-
-
         public void UploadPhoto(string name, byte[] photo)
         {
             var client = new AccountingBookServiceReference.FileServiceClient();
@@ -754,6 +747,140 @@ namespace AccountingBookData.Clients
             catch (CommunicationException communicationException)
             {
                 Log.Error(communicationException.Message);
+                throw new Exception("Now the server is unavailable. Try later");
+            }
+            finally
+            {
+                client.Abort();
+                Log.Info("Сonnection closed");
+            }
+        }
+
+
+        public IReadOnlyCollection<Location> GetLocationsByAddress(string address)
+        {
+            var result = new List<Location>();
+            var client = new AccountingBookServiceReference.GetServiceClient();
+            try
+            {
+                client.Open();
+                var data = client.GetLocationsByAddress(address);
+                result = data == null ? result : data.Select(x => new Location { Id = x.Id, Address = x.Address }).ToList();
+                client.Close();
+            }
+            catch (EndpointNotFoundException endPointNotFoundException)
+            {
+                Log.Error(endPointNotFoundException.Message);
+                throw new Exception("Now the server is unavailable. Try later");
+            }
+            catch (FaultException<AccountingBookServiceReference.ServiceFault> faultException)
+            {
+                Log.Error(faultException.Detail.ErrorMessage);
+                throw new Exception("Now the server is unavailable. Try later");
+            }
+            finally
+            {
+                client.Abort();
+                Log.Info("Сonnection closed");
+            }
+            return result;
+        }
+
+        public Location GetLocationById(int locationId)
+        {
+            var result = new Location();
+            var client = new AccountingBookServiceReference.GetServiceClient();
+            try
+            {
+                client.Open();
+                var data = client.GetLocationsById(locationId);
+                result = data == null ? null : new Location() { Id = data.Id, Address = data.Address };
+                client.Close();
+            }
+            catch (EndpointNotFoundException endPointNotFoundException)
+            {
+                Log.Error(endPointNotFoundException.Message);
+                throw new Exception("Now the server is unavailable. Try later");
+            }
+            catch (FaultException<AccountingBookServiceReference.ServiceFault> faultException)
+            {
+                Log.Error(faultException.Detail.ErrorMessage);
+                throw new Exception("Now the server is unavailable. Try later");
+            }
+            finally
+            {
+                client.Abort();
+                Log.Info("Сonnection closed");
+            }
+            return result;
+        }
+
+        public void AddtLocation(string address)
+        {
+            var client = new AccountingBookServiceReference.AddServiceClient();
+            try
+            {
+                client.Open();
+                client.AddLocation(address);
+            }
+            catch (EndpointNotFoundException endPointNotFoundException)
+            {
+                Log.Error(endPointNotFoundException.Message);
+                throw new Exception("Now the server is unavailable. Try later");
+            }
+            catch (FaultException<AccountingBookServiceReference.ServiceFault> faultException)
+            {
+                Log.Error(faultException.Detail.ErrorMessage);
+                throw new Exception("Now the server is unavailable. Try later");
+            }
+            finally
+            {
+                client.Abort();
+                Log.Info("Сonnection closed");
+            }
+        }
+
+        public void EditLocation(int locationId, string address)
+        {
+            var client = new AccountingBookServiceReference.EditServiceClient();
+            try
+            {
+                client.Open();
+                client.EditLocation(locationId, address);
+            }
+            catch (EndpointNotFoundException endPointNotFoundException)
+            {
+                Log.Error(endPointNotFoundException.Message);
+                throw new Exception("Now the server is unavailable. Try later");
+            }
+            catch (FaultException<AccountingBookServiceReference.ServiceFault> faultException)
+            {
+                Log.Error(faultException.Detail.ErrorMessage);
+                throw new Exception("Now the server is unavailable. Try later");
+            }
+            finally
+            {
+                client.Abort();
+                Log.Info("Сonnection closed");
+            }
+        }
+
+        public void DeleteLocationById(int locationId)
+        {
+            var client = new AccountingBookServiceReference.DeleteServiceClient();
+            try
+            {
+                client.Open();
+                client.DeleteLocationById(locationId);
+            }
+            catch (FaultException<AccountingBookServiceReference.ServiceFault> faultException)
+            {
+                Log.Error(faultException.Detail.ErrorMessage);
+                throw new Exception("Now the server is unavailable. Try later");
+            }
+            catch (EndpointNotFoundException endPointNotFoundException)
+            {
+                Log.Error(endPointNotFoundException.Message);
                 throw new Exception("Now the server is unavailable. Try later");
             }
             finally

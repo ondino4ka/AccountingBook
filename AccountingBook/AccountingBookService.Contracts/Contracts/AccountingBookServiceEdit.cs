@@ -193,5 +193,54 @@ namespace AccountingBookService.Contracts.Contracts
                 }
             }
         }
+
+        public void EditLocation(int locationId, string address)
+        {
+            if (string.IsNullOrEmpty(address))
+            {
+                throw new FaultException<ServiceFault>(new ServiceFault("Address can not be null or empty"), new FaultReason("External error"));
+            }
+            SqlParameter[] param = {
+                new SqlParameter
+                {
+                   DbType = DbType.Int32,
+                   ParameterName = "@locationId",
+                   Value = locationId
+                },
+                     new SqlParameter
+                {
+                    DbType = DbType.String,
+                    ParameterName = "@address",
+                    Value = address
+                },
+            };
+
+
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                using (SqlCommand command = new SqlCommand())
+                {
+                    command.Connection = connection;
+                    command.CommandType = CommandType.StoredProcedure;
+                    command.CommandText = "UpdateLocation";
+                    command.Parameters.AddRange(param);
+
+                    try
+                    {
+                        connection.Open();
+                        command.ExecuteNonQuery();
+                    }
+                    catch (Exception exception)
+                    {
+                        Log.Error(exception.Message);
+                        throw new FaultException<ServiceFault>(new ServiceFault(errorMessage), new FaultReason("Internal error"));
+                    }
+                    finally
+                    {
+                        connection.Close();
+                    }
+                }
+            }
+        }
     }
 }

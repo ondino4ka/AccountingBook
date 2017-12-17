@@ -221,10 +221,38 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
+  <xs:element name="GetLocationsByAddress">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="address" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetLocationsByAddressResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q14="http://schemas.datacontract.org/2004/07/AccountingBookService.Contracts.Models.Dto" minOccurs="0" name="GetLocationsByAddressResult" nillable="true" type="q14:ArrayOfLocationDto" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetLocationsById">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="locationId" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetLocationsByIdResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q15="http://schemas.datacontract.org/2004/07/AccountingBookService.Contracts.Models.Dto" minOccurs="0" name="GetLocationsByIdResult" nillable="true" type="q15:LocationDto" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
   <xs:element name="AddUser">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q14="http://schemas.datacontract.org/2004/07/AccountingBookService.Contracts.Models.Dto" minOccurs="0" name="userDto" nillable="true" type="q14:UserDto" />
+        <xs:element xmlns:q16="http://schemas.datacontract.org/2004/07/AccountingBookService.Contracts.Models.Dto" minOccurs="0" name="userDto" nillable="true" type="q16:UserDto" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -236,7 +264,7 @@
   <xs:element name="AddSubject">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q15="http://schemas.datacontract.org/2004/07/AccountingBookService.Contracts.Models.Dto" minOccurs="0" name="userDto" nillable="true" type="q15:SubjectDto" />
+        <xs:element xmlns:q17="http://schemas.datacontract.org/2004/07/AccountingBookService.Contracts.Models.Dto" minOccurs="0" name="userDto" nillable="true" type="q17:SubjectDto" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -245,10 +273,22 @@
       <xs:sequence />
     </xs:complexType>
   </xs:element>
+  <xs:element name="AddLocation">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="address" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="AddLocationResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
   <xs:element name="EditUser">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q16="http://schemas.datacontract.org/2004/07/AccountingBookService.Contracts.Models.Dto" minOccurs="0" name="userDto" nillable="true" type="q16:UserDto" />
+        <xs:element xmlns:q18="http://schemas.datacontract.org/2004/07/AccountingBookService.Contracts.Models.Dto" minOccurs="0" name="userDto" nillable="true" type="q18:UserDto" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -260,7 +300,7 @@
   <xs:element name="EditSubjectInformation">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q17="http://schemas.datacontract.org/2004/07/AccountingBookService.Contracts.Models.Dto" minOccurs="0" name="subjectDto" nillable="true" type="q17:SubjectDto" />
+        <xs:element xmlns:q19="http://schemas.datacontract.org/2004/07/AccountingBookService.Contracts.Models.Dto" minOccurs="0" name="subjectDto" nillable="true" type="q19:SubjectDto" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -278,6 +318,19 @@
     </xs:complexType>
   </xs:element>
   <xs:element name="EditSubjectPhotoResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="EditLocation">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="locationId" type="xs:int" />
+        <xs:element minOccurs="0" name="address" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="EditLocationResponse">
     <xs:complexType>
       <xs:sequence />
     </xs:complexType>
@@ -302,6 +355,18 @@
     </xs:complexType>
   </xs:element>
   <xs:element name="DeleteSubjectByInventoryNumberResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="DeleteLocationById">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="locationId" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="DeleteLocationByIdResponse">
     <xs:complexType>
       <xs:sequence />
     </xs:complexType>
