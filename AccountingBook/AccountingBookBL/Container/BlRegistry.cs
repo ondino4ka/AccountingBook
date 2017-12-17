@@ -15,6 +15,7 @@ namespace AccountingBookBL.Container
             For<IUserOperation>().Use<UserOperation>();
             For<ISubjectOperation>().Use<SubjectOperation>();
             For<ILocationOperation>().Use<LocationOperation>();
+            For<IStateOperation>().Use<StateOperation>();
             For<IFileService>().Use<FileService>();
         }
     }

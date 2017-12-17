@@ -18,5 +18,9 @@ namespace AccountingBookService.Contracts.Contracts.Interface
         [OperationContract]
         [FaultContract(typeof(ServiceFault))]
         void DeleteLocationById(int locationId);
+
+        [OperationContract]
+        [FaultContract(typeof(ServiceFault))]
+        void DeleteStateById(int stateId);
     }
 }

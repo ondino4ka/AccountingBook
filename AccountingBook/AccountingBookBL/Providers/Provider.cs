@@ -74,5 +74,10 @@ namespace AccountingBookBL.Providers
         {
             return _dataRepository.GetLocationsById(locationId);
         }
+
+        public State GetStateById(int stateId)
+        {
+            return _dataRepository.GetStateById(stateId);
+        }
     }
 }

@@ -194,7 +194,7 @@ namespace AccountingBookService.Contracts.Contracts
             }
         }
 
-        public void EditLocation(int locationId, string address)
+        public void EditLocationById(int locationId, string address)
         {
             if (string.IsNullOrEmpty(address))
             {
@@ -222,7 +222,56 @@ namespace AccountingBookService.Contracts.Contracts
                 {
                     command.Connection = connection;
                     command.CommandType = CommandType.StoredProcedure;
-                    command.CommandText = "UpdateLocation";
+                    command.CommandText = "UpdateLocationById";
+                    command.Parameters.AddRange(param);
+
+                    try
+                    {
+                        connection.Open();
+                        command.ExecuteNonQuery();
+                    }
+                    catch (Exception exception)
+                    {
+                        Log.Error(exception.Message);
+                        throw new FaultException<ServiceFault>(new ServiceFault(errorMessage), new FaultReason("Internal error"));
+                    }
+                    finally
+                    {
+                        connection.Close();
+                    }
+                }
+            }
+        }
+
+        public void EditStateById(int stateId, string stateName)
+        {
+            if (string.IsNullOrEmpty(stateName))
+            {
+                throw new FaultException<ServiceFault>(new ServiceFault("State can not be null or empty"), new FaultReason("External error"));
+            }
+            SqlParameter[] param = {
+                new SqlParameter
+                {
+                   DbType = DbType.Int32,
+                   ParameterName = "@stateId",
+                   Value = stateId
+                },
+                     new SqlParameter
+                {
+                    DbType = DbType.String,
+                    ParameterName = "@stateName",
+                    Value = stateName
+                },
+            };
+
+
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                using (SqlCommand command = new SqlCommand())
+                {
+                    command.Connection = connection;
+                    command.CommandType = CommandType.StoredProcedure;
+                    command.CommandText = "UpdateStateById";
                     command.Parameters.AddRange(param);
 
                     try

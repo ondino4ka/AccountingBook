@@ -17,9 +17,9 @@ namespace AccountingBookBL.Operations
             _dataRepository.AddLocation(address);
         }
 
-        public void EditLocation(int locationId, string address)
+        public void EditLocationById(int locationId, string address)
         {
-            _dataRepository.EditLocation(locationId, address);
+            _dataRepository.EditLocationById(locationId, address);
         }
 
         public void DeleteLocationById(int locationId)

@@ -98,5 +98,35 @@ namespace AccountingBookService.Contracts.Contracts
                 }
             }
         }
+
+        public void DeleteStateById(int stateId)
+        {
+            SqlParameter parameter = new SqlParameter { DbType = DbType.Int32, ParameterName = "@stateId", Value = stateId };
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                using (SqlCommand command = new SqlCommand())
+                {
+                    command.Connection = connection;
+                    command.CommandType = CommandType.StoredProcedure;
+                    command.CommandText = "DeleteStateById";
+                    command.Parameters.Add(parameter);
+
+                    try
+                    {
+                        connection.Open();
+                        command.ExecuteNonQuery();
+                    }
+                    catch (Exception exception)
+                    {
+                        Log.Error(exception.Message);
+                        throw new FaultException<ServiceFault>(new ServiceFault(errorMessage), new FaultReason("Internal error"));
+                    }
+                    finally
+                    {
+                        connection.Close();
+                    }
+                }
+            }
+        }
     }
 }

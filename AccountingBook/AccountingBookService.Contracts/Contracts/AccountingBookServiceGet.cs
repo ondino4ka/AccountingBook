@@ -429,7 +429,32 @@ namespace AccountingBookService.Contracts.Contracts
                             throw new FaultException<ServiceFault>(new ServiceFault(errorMessage), new FaultReason("Internal error"));
                         }
                         list = tempList.Cast<T>().ToList();
-                    }              
+                    }
+                    else if (procedureName == "SelectStateById")
+                    {
+                        List<StateDto> tempList = new List<StateDto>();
+                        try
+                        {
+                            foreach (DataTable table in dataSet.Tables)
+                            {
+                                foreach (DataRow dataRow in table.Rows)
+                                {
+                                    tempList.Add(new StateDto
+                                    {
+                                        Id = (int)dataRow[0],
+                                        StateName = (string)dataRow[1]
+                                    });
+                                }
+                            }
+                        }
+                        catch (InvalidCastException invalidCastException)
+                        {
+                            Log.Error(invalidCastException.Message);
+                            throw new FaultException<ServiceFault>(new ServiceFault(errorMessage), new FaultReason("Internal error"));
+                        }
+                        list = tempList.Cast<T>().ToList();
+                    }
+                    
                 }
             }
         }
@@ -624,6 +649,14 @@ namespace AccountingBookService.Contracts.Contracts
             return statesDto;
         }
 
+        public StateDto GetStateById(int stateId)
+        {
+            List<StateDto> statesDto = new List<StateDto>();
+            SqlParameter param = new SqlParameter { DbType = DbType.Int32, ParameterName = "@stateId", Value = stateId };
+            GetDataFromDb(ref statesDto, "SelectStateById", param);
+            return statesDto.FirstOrDefault();
+        }
+
         public List<RoleDto> GetRoles()
         {
             List<RoleDto> rolesDto = new List<RoleDto>();
@@ -728,5 +761,6 @@ namespace AccountingBookService.Contracts.Contracts
             GetDataFromDb(ref locationDto, "SelectLocationById", param);
             return locationDto.FirstOrDefault();
         }
+
     }
 }

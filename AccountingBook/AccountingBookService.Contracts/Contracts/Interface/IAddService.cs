@@ -15,9 +15,12 @@ namespace AccountingBookService.Contracts.Contracts.Interface
         [FaultContract(typeof(ServiceFault))]
         void AddSubject(SubjectDto userDto);
 
-
         [OperationContract]
         [FaultContract(typeof(ServiceFault))]
         void AddLocation(string address);
+
+        [OperationContract]
+        [FaultContract(typeof(ServiceFault))]
+        void AddState(string stateName);
     }
 }

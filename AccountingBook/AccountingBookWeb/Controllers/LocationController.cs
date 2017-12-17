@@ -10,13 +10,15 @@ namespace AccountingBookWeb.Controllers
     public class LocationController : Controller
     {
         private readonly IProvider _provider;
-        private readonly ILocationOperation _location;
-        public LocationController(IProvider provider, ILocationOperation location)
+        private readonly ILocationOperation _locationOperation;
+        public LocationController(IProvider provider, ILocationOperation locationOperation)
         {
             _provider = provider;
-            _location = location;
+            _locationOperation = locationOperation;
         }
 
+        [HttpGet]
+        [Authorize(Roles = "Admin, Edit")]
         public ActionResult SearchLocations()
         {
             return View();
@@ -35,7 +37,6 @@ namespace AccountingBookWeb.Controllers
                 return Json(null, JsonRequestBehavior.AllowGet);
             }
         }
-
 
         [Ajax]
         [Authorize(Roles = "Admin, Edit")]
@@ -93,11 +94,11 @@ namespace AccountingBookWeb.Controllers
             {
                 if (location.Id != 0)
                 {
-                    _location.EditLocation(location.Id, location.Address);
+                    _locationOperation.EditLocationById(location.Id, location.Address);
                 }
                 else
                 {
-                    _location.AddLocation(location.Address);
+                    _locationOperation.AddLocation(location.Address);
                 }
                 return RedirectToAction("SearchLocations");
             }
@@ -139,7 +140,7 @@ namespace AccountingBookWeb.Controllers
         {
             try
             {
-                _location.DeleteLocationById(Id);
+                _locationOperation.DeleteLocationById(Id);
                 return RedirectToAction("SearchLocations");
             }
 

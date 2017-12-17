@@ -54,14 +54,34 @@ namespace AccountingBookData.Repositories
             return _client.GetSubjectsByNameCategoryIdAndStateId(categoryId, stateId, subjectName);
         }
 
+
+        #region State Operation
         public IReadOnlyCollection<State> GetStates()
         {
             return _client.GetStates();
         }
+        public State GetStateById(int stateId)
+        {
+            return _client.GetStateById(stateId);
+        }
 
+        public void EditStateById(int stateId, string stateName)
+        {
+            _client.EditStateById(stateId, stateName);
+        }
 
+        public void AddState(string stateName)
+        {
+            _client.AddState(stateName);
+        }
 
+        public void DeleteStateById(int stateId)
+        {
+            _client.DeleteStateById(stateId);
+        }
+        #endregion
 
+        #region User Operation
 
         public void AddUser(User user)
         {
@@ -89,7 +109,7 @@ namespace AccountingBookData.Repositories
         {
             _client.DeleteUserById(userId);
         }
-
+        #endregion
 
         #region Location Operations
         public IReadOnlyCollection<Location> GetLocations()
@@ -109,9 +129,9 @@ namespace AccountingBookData.Repositories
             _client.AddtLocation(address);
         }
 
-        public void EditLocation(int locationId, string address)
+        public void EditLocationById(int locationId, string address)
         {
-            _client.EditLocation(locationId, address);
+            _client.EditLocationById(locationId, address);
         }
 
         public void DeleteLocationById(int locationId)

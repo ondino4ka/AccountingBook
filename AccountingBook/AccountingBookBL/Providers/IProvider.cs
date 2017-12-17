@@ -12,6 +12,7 @@ namespace AccountingBookBL.Providers
         IReadOnlyCollection<Category> GetCategoriesByName(string category);
         IReadOnlyCollection<SubjectDetails> GetSubjectsByNameCategoryIdAndStateId(int? categoryId, int? stateId, string subjectName);
         IReadOnlyCollection<State> GetStates();
+        State GetStateById(int stateId);
 
 
         IReadOnlyCollection<Location> GetLocations();

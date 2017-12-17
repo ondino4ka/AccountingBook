@@ -11,30 +11,44 @@ namespace AccountingBookService.Contracts.Contracts.Interface
         [OperationContract]
         [FaultContract(typeof(ServiceFault))]
         List<CategoryDto> GetCategories();
+
         [OperationContract]
         [FaultContract(typeof(ServiceFault))]
         List<SubjectDetailsDto> GetSubjectsByCategoryId(int? categoryId);
+
         [OperationContract]
         [FaultContract(typeof(ServiceFault))]
         SubjectDetailsDto GetSubjectInformationByInventoryNumber(int inventoryNumber);
+
         [OperationContract]
         [FaultContract(typeof(ServiceFault))]
         UserAuthorizationDto GetUserAuthorizationByName(string userName);
+
         [OperationContract]
         [FaultContract(typeof(ServiceFault))]
         bool IsValidUser(string userName, string password);
+
         [OperationContract]
         [FaultContract(typeof(ServiceFault))]
         List<RoleAuthorizationDto> GetRolesAuthorizationByUserId(int userId);
+
         [OperationContract]
         [FaultContract(typeof(ServiceFault))]
         List<CategoryDto> GetCategoriesByName(string categoryName);
+
         [OperationContract]
         [FaultContract(typeof(ServiceFault))]
         List<SubjectDetailsDto> GetSubjectsByNameCategoryIdAndStateId(int? categoryId, int? stateId, string subjectName);
+
         [OperationContract]
         [FaultContract(typeof(ServiceFault))]
         List<StateDto> GetStates();
+
+        [OperationContract]
+        [FaultContract(typeof(ServiceFault))]
+        StateDto GetStateById(int stateId);
+
+
         [OperationContract]
         [FaultContract(typeof(ServiceFault))]
         bool IsExistsUser(int userId, string userName);

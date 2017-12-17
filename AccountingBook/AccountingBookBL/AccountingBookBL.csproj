@@ -71,9 +71,11 @@
   <ItemGroup>
     <Compile Include="Container\BlRegistry.cs" />
     <Compile Include="Operations\ILocationOperation.cs" />
+    <Compile Include="Operations\IStateOperation.cs" />
     <Compile Include="Operations\ISubjectOperation.cs" />
     <Compile Include="Operations\IUserOperation.cs" />
     <Compile Include="Operations\LocationOperation.cs" />
+    <Compile Include="Operations\StateOperation.cs" />
     <Compile Include="Operations\SubjectOperation.cs" />
     <Compile Include="Operations\UserOperation.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -21,6 +21,10 @@ namespace AccountingBookService.Contracts.Contracts.Interface
 
         [OperationContract]
         [FaultContract(typeof(ServiceFault))]
-        void EditLocation(int locationId, string address);
+        void EditLocationById(int locationId, string address);
+
+        [OperationContract]
+        [FaultContract(typeof(ServiceFault))]
+        void EditStateById(int stateId, string stateName);
     }
 }
