@@ -86,7 +86,7 @@ namespace AccountingBookWeb.Controllers
         [Authorize(Roles = "Admin, Edit")]
         public ActionResult AddEditLocation(Location location)
         {
-            if (string.IsNullOrEmpty(location.Address) || location.Address.Length < 6)
+            if (string.IsNullOrEmpty(location.Address) || location.Address.Length < 6 || location.Address.Length > 100)
             {
                 return View(location);
             }
@@ -108,7 +108,6 @@ namespace AccountingBookWeb.Controllers
                 return View(location);
             }
         }
-
 
         [HttpGet]
         [Authorize(Roles = "Admin, Edit")]

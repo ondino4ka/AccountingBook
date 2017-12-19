@@ -7,7 +7,6 @@
             _selectHtml = '<option value="0">-- All Categories --</option><option value="">-- Without Categories --</option>';
             for (var i = 0; i < data.length; i++) {
                 _selectHtml += '<option value="' + data[i].Id + '">' + data[i].Name + '</option>';
-                console.log(_selectHtml)
             }        
         },
         error: function(jqXHR, textStatus, errorThrown){

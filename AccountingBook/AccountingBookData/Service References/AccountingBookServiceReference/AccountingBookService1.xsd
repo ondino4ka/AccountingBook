@@ -13,6 +13,20 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
+  <xs:element name="GetCategoriesBesidesCurrent">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="categoryId" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetCategoriesBesidesCurrentResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q2="http://schemas.datacontract.org/2004/07/AccountingBookService.Contracts.Models.Dto" minOccurs="0" name="GetCategoriesBesidesCurrentResult" nillable="true" type="q2:ArrayOfCategoryDto" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
   <xs:element name="GetSubjectsByCategoryId">
     <xs:complexType>
       <xs:sequence>
@@ -23,7 +37,7 @@
   <xs:element name="GetSubjectsByCategoryIdResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q2="http://schemas.datacontract.org/2004/07/AccountingBookService.Contracts.Models.Dto" minOccurs="0" name="GetSubjectsByCategoryIdResult" nillable="true" type="q2:ArrayOfSubjectDetailsDto" />
+        <xs:element xmlns:q3="http://schemas.datacontract.org/2004/07/AccountingBookService.Contracts.Models.Dto" minOccurs="0" name="GetSubjectsByCategoryIdResult" nillable="true" type="q3:ArrayOfSubjectDetailsDto" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -37,7 +51,7 @@
   <xs:element name="GetSubjectInformationByInventoryNumberResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q3="http://schemas.datacontract.org/2004/07/AccountingBookService.Contracts.Models.Dto" minOccurs="0" name="GetSubjectInformationByInventoryNumberResult" nillable="true" type="q3:SubjectDetailsDto" />
+        <xs:element xmlns:q4="http://schemas.datacontract.org/2004/07/AccountingBookService.Contracts.Models.Dto" minOccurs="0" name="GetSubjectInformationByInventoryNumberResult" nillable="true" type="q4:SubjectDetailsDto" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -51,7 +65,7 @@
   <xs:element name="GetUserAuthorizationByNameResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q4="http://schemas.datacontract.org/2004/07/AccountingBookService.Contracts.Models.Dto" minOccurs="0" name="GetUserAuthorizationByNameResult" nillable="true" type="q4:UserAuthorizationDto" />
+        <xs:element xmlns:q5="http://schemas.datacontract.org/2004/07/AccountingBookService.Contracts.Models.Dto" minOccurs="0" name="GetUserAuthorizationByNameResult" nillable="true" type="q5:UserAuthorizationDto" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -80,7 +94,7 @@
   <xs:element name="GetRolesAuthorizationByUserIdResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q5="http://schemas.datacontract.org/2004/07/AccountingBookService.Contracts.Models.Dto" minOccurs="0" name="GetRolesAuthorizationByUserIdResult" nillable="true" type="q5:ArrayOfRoleAuthorizationDto" />
+        <xs:element xmlns:q6="http://schemas.datacontract.org/2004/07/AccountingBookService.Contracts.Models.Dto" minOccurs="0" name="GetRolesAuthorizationByUserIdResult" nillable="true" type="q6:ArrayOfRoleAuthorizationDto" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -94,7 +108,21 @@
   <xs:element name="GetCategoriesByNameResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q6="http://schemas.datacontract.org/2004/07/AccountingBookService.Contracts.Models.Dto" minOccurs="0" name="GetCategoriesByNameResult" nillable="true" type="q6:ArrayOfCategoryDto" />
+        <xs:element xmlns:q7="http://schemas.datacontract.org/2004/07/AccountingBookService.Contracts.Models.Dto" minOccurs="0" name="GetCategoriesByNameResult" nillable="true" type="q7:ArrayOfCategoryDto" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetCategoryById">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="categoryId" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetCategoryByIdResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q8="http://schemas.datacontract.org/2004/07/AccountingBookService.Contracts.Models.Dto" minOccurs="0" name="GetCategoryByIdResult" nillable="true" type="q8:CategoryDto" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -110,7 +138,7 @@
   <xs:element name="GetSubjectsByNameCategoryIdAndStateIdResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q7="http://schemas.datacontract.org/2004/07/AccountingBookService.Contracts.Models.Dto" minOccurs="0" name="GetSubjectsByNameCategoryIdAndStateIdResult" nillable="true" type="q7:ArrayOfSubjectDetailsDto" />
+        <xs:element xmlns:q9="http://schemas.datacontract.org/2004/07/AccountingBookService.Contracts.Models.Dto" minOccurs="0" name="GetSubjectsByNameCategoryIdAndStateIdResult" nillable="true" type="q9:ArrayOfSubjectDetailsDto" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -122,7 +150,7 @@
   <xs:element name="GetStatesResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q8="http://schemas.datacontract.org/2004/07/AccountingBookService.Contracts.Models.Dto" minOccurs="0" name="GetStatesResult" nillable="true" type="q8:ArrayOfStateDto" />
+        <xs:element xmlns:q10="http://schemas.datacontract.org/2004/07/AccountingBookService.Contracts.Models.Dto" minOccurs="0" name="GetStatesResult" nillable="true" type="q10:ArrayOfStateDto" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -136,7 +164,7 @@
   <xs:element name="GetStateByIdResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q9="http://schemas.datacontract.org/2004/07/AccountingBookService.Contracts.Models.Dto" minOccurs="0" name="GetStateByIdResult" nillable="true" type="q9:StateDto" />
+        <xs:element xmlns:q11="http://schemas.datacontract.org/2004/07/AccountingBookService.Contracts.Models.Dto" minOccurs="0" name="GetStateByIdResult" nillable="true" type="q11:StateDto" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -163,7 +191,7 @@
   <xs:element name="GetRolesResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q10="http://schemas.datacontract.org/2004/07/AccountingBookService.Contracts.Models.Dto" minOccurs="0" name="GetRolesResult" nillable="true" type="q10:ArrayOfRoleDto" />
+        <xs:element xmlns:q12="http://schemas.datacontract.org/2004/07/AccountingBookService.Contracts.Models.Dto" minOccurs="0" name="GetRolesResult" nillable="true" type="q12:ArrayOfRoleDto" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -177,7 +205,7 @@
   <xs:element name="GetUserByIdResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q11="http://schemas.datacontract.org/2004/07/AccountingBookService.Contracts.Models.Dto" minOccurs="0" name="GetUserByIdResult" nillable="true" type="q11:UserDto" />
+        <xs:element xmlns:q13="http://schemas.datacontract.org/2004/07/AccountingBookService.Contracts.Models.Dto" minOccurs="0" name="GetUserByIdResult" nillable="true" type="q13:UserDto" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -191,7 +219,7 @@
   <xs:element name="GetUsersByNameResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q12="http://schemas.datacontract.org/2004/07/AccountingBookService.Contracts.Models.Dto" minOccurs="0" name="GetUsersByNameResult" nillable="true" type="q12:ArrayOfUserDto" />
+        <xs:element xmlns:q14="http://schemas.datacontract.org/2004/07/AccountingBookService.Contracts.Models.Dto" minOccurs="0" name="GetUsersByNameResult" nillable="true" type="q14:ArrayOfUserDto" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -203,7 +231,7 @@
   <xs:element name="GetLocationsResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q13="http://schemas.datacontract.org/2004/07/AccountingBookService.Contracts.Models.Dto" minOccurs="0" name="GetLocationsResult" nillable="true" type="q13:ArrayOfLocationDto" />
+        <xs:element xmlns:q15="http://schemas.datacontract.org/2004/07/AccountingBookService.Contracts.Models.Dto" minOccurs="0" name="GetLocationsResult" nillable="true" type="q15:ArrayOfLocationDto" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -217,7 +245,7 @@
   <xs:element name="GetSubjectByInventoryNumberResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q14="http://schemas.datacontract.org/2004/07/AccountingBookService.Contracts.Models.Dto" minOccurs="0" name="GetSubjectByInventoryNumberResult" nillable="true" type="q14:SubjectDto" />
+        <xs:element xmlns:q16="http://schemas.datacontract.org/2004/07/AccountingBookService.Contracts.Models.Dto" minOccurs="0" name="GetSubjectByInventoryNumberResult" nillable="true" type="q16:SubjectDto" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -245,7 +273,7 @@
   <xs:element name="GetLocationsByAddressResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q15="http://schemas.datacontract.org/2004/07/AccountingBookService.Contracts.Models.Dto" minOccurs="0" name="GetLocationsByAddressResult" nillable="true" type="q15:ArrayOfLocationDto" />
+        <xs:element xmlns:q17="http://schemas.datacontract.org/2004/07/AccountingBookService.Contracts.Models.Dto" minOccurs="0" name="GetLocationsByAddressResult" nillable="true" type="q17:ArrayOfLocationDto" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -259,14 +287,14 @@
   <xs:element name="GetLocationsByIdResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q16="http://schemas.datacontract.org/2004/07/AccountingBookService.Contracts.Models.Dto" minOccurs="0" name="GetLocationsByIdResult" nillable="true" type="q16:LocationDto" />
+        <xs:element xmlns:q18="http://schemas.datacontract.org/2004/07/AccountingBookService.Contracts.Models.Dto" minOccurs="0" name="GetLocationsByIdResult" nillable="true" type="q18:LocationDto" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="AddUser">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q17="http://schemas.datacontract.org/2004/07/AccountingBookService.Contracts.Models.Dto" minOccurs="0" name="userDto" nillable="true" type="q17:UserDto" />
+        <xs:element xmlns:q19="http://schemas.datacontract.org/2004/07/AccountingBookService.Contracts.Models.Dto" minOccurs="0" name="userDto" nillable="true" type="q19:UserDto" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -278,7 +306,7 @@
   <xs:element name="AddSubject">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q18="http://schemas.datacontract.org/2004/07/AccountingBookService.Contracts.Models.Dto" minOccurs="0" name="userDto" nillable="true" type="q18:SubjectDto" />
+        <xs:element xmlns:q20="http://schemas.datacontract.org/2004/07/AccountingBookService.Contracts.Models.Dto" minOccurs="0" name="userDto" nillable="true" type="q20:SubjectDto" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -311,10 +339,23 @@
       <xs:sequence />
     </xs:complexType>
   </xs:element>
+  <xs:element name="AddCategory">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="pid" nillable="true" type="xs:int" />
+        <xs:element minOccurs="0" name="categoryName" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="AddCategoryResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
   <xs:element name="EditUser">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q19="http://schemas.datacontract.org/2004/07/AccountingBookService.Contracts.Models.Dto" minOccurs="0" name="userDto" nillable="true" type="q19:UserDto" />
+        <xs:element xmlns:q21="http://schemas.datacontract.org/2004/07/AccountingBookService.Contracts.Models.Dto" minOccurs="0" name="userDto" nillable="true" type="q21:UserDto" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -326,7 +367,7 @@
   <xs:element name="EditSubjectInformation">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q20="http://schemas.datacontract.org/2004/07/AccountingBookService.Contracts.Models.Dto" minOccurs="0" name="subjectDto" nillable="true" type="q20:SubjectDto" />
+        <xs:element xmlns:q22="http://schemas.datacontract.org/2004/07/AccountingBookService.Contracts.Models.Dto" minOccurs="0" name="subjectDto" nillable="true" type="q22:SubjectDto" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
@@ -370,6 +411,20 @@
     </xs:complexType>
   </xs:element>
   <xs:element name="EditStateByIdResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="EditCategoryById">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="categoryId" type="xs:int" />
+        <xs:element minOccurs="0" name="pid" nillable="true" type="xs:int" />
+        <xs:element minOccurs="0" name="categoryName" nillable="true" type="xs:string" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="EditCategoryByIdResponse">
     <xs:complexType>
       <xs:sequence />
     </xs:complexType>
@@ -418,6 +473,18 @@
     </xs:complexType>
   </xs:element>
   <xs:element name="DeleteStateByIdResponse">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="DeleteCategoryById">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element minOccurs="0" name="categoryId" type="xs:int" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="DeleteCategoryByIdResponse">
     <xs:complexType>
       <xs:sequence />
     </xs:complexType>

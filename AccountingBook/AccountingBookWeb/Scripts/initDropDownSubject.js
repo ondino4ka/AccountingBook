@@ -3,6 +3,7 @@
     $.ajax({
         url: selectUrl,
         success: function (data) {
+            console.log(data);
             var _selectedId = selectedId;
             for (var i = 0; i < data.length; i++) {
                 if (_selectedId == data[i].Id) {

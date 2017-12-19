@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>@ViewBag.Title - My ASP.NET Application</title>
+    <title>@ViewBag.Title - Accounting Book</title>
     <link href="~/Content/Site.css" rel="stylesheet" type="text/css" />
     <link href="~/Content/bootstrap.min.css" rel="stylesheet" type="text/css" />
     <script src="~/Scripts/modernizr-2.6.2.js"></script>
@@ -24,12 +24,32 @@
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
                     <li>@Html.ActionLink("Search subject", "SearchSubjects", "Subject")</li>
+                    @if (Request.IsAuthenticated)
+                    {
+                        <li class="dropdown">
+                            <a data-toggle="dropdown" class="dropdown-toggle" style="cursor:pointer">
+                                Administration
+                                <b class="caret"></b>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a href="@Url.Action("SearchCategories", "Category")">Category</a></li>
+                                <li><a href="@Url.Action("ListStates", "State")">State</a></li>
+                                <li><a href="@Url.Action("SearchLocations", "Location")">Location</a></li>
+                                <li><a href="@Url.Action("SearchSubjects", "Subject")">Subject</a></li>
+                                @if (HttpContext.Current.User.IsInRole("Admin"))
+                                {
+                                    <li class="divider"></li>
+                                    <li><a href="@Url.Action("SearchUsers","User")">User</a></li>
+                                }
+                            </ul>
+                        </li>
+                    }
                 </ul>
                 <ul class="nav navbar-nav navbar-right">
                     @if (Request.IsAuthenticated)
                     {
-                        <li>@Html.ActionLink(@HttpContext.Current.User.Identity.Name, "","")</li>
-                        <li>@Html.ActionLink("Logout", "Logout", "Login")</li>
+                        <li>@Html.ActionLink(@HttpContext.Current.User.Identity.Name, "", "")</li>
+                            <li>@Html.ActionLink("Logout", "Logout", "Login")</li>
                     }
                     else
                     {

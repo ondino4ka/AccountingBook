@@ -61,7 +61,7 @@ namespace AccountingBookWeb.Controllers
         [Authorize(Roles = "Admin, Edit")]
         public ActionResult AddEditState(State state)
         {
-            if (string.IsNullOrEmpty(state.StateName) || state.StateName.Length < 6)
+            if (string.IsNullOrEmpty(state.StateName) || state.StateName.Length < 6 || state.StateName.Length > 50)
             {
                 return View(state);
             }

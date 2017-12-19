@@ -454,7 +454,56 @@ namespace AccountingBookService.Contracts.Contracts
                         }
                         list = tempList.Cast<T>().ToList();
                     }
-                    
+                    else if (procedureName == "SelectCategoryById")
+                    {
+                        List<CategoryDto> tempList = new List<CategoryDto>();
+                        try
+                        {
+                            foreach (DataTable table in dataSet.Tables)
+                            {
+                                foreach (DataRow dataRow in table.Rows)
+                                {
+                                    tempList.Add(new CategoryDto
+                                    {
+                                        Id = (int)dataRow[0],
+                                        Pid = dataRow.IsNull(1) ? null : (int?)dataRow[1],
+                                        Name = (string)dataRow[2]
+                                    });
+                                }
+                            }
+                        }
+                        catch (InvalidCastException invalidCastException)
+                        {
+                            Log.Error(invalidCastException.Message);
+                            throw new FaultException<ServiceFault>(new ServiceFault(errorMessage), new FaultReason("Internal error"));
+                        }
+                        list = tempList.Cast<T>().ToList();
+                    }
+                    else if (procedureName == "SelectCategoriesBesidesCurrent")
+                    {
+                        List<CategoryDto> tempList = new List<CategoryDto>();
+                        try
+                        {
+                            foreach (DataTable table in dataSet.Tables)
+                            {
+                                foreach (DataRow dataRow in table.Rows)
+                                {
+                                    tempList.Add(new CategoryDto
+                                    {
+                                        Id = (int)dataRow[0],
+                                        Pid = dataRow.IsNull(1) ? null : (int?)dataRow[1],
+                                        Name = (string)dataRow[2]
+                                    });
+                                }
+                            }
+                        }
+                        catch (InvalidCastException invalidCastException)
+                        {
+                            Log.Error(invalidCastException.Message);
+                            throw new FaultException<ServiceFault>(new ServiceFault(errorMessage), new FaultReason("Internal error"));
+                        }
+                        list = tempList.Cast<T>().ToList();
+                    }
                 }
             }
         }
@@ -463,6 +512,14 @@ namespace AccountingBookService.Contracts.Contracts
         {
             List<CategoryDto> categoryDto = new List<CategoryDto>();
             GetDataFromDb(ref categoryDto, "SelectCategories");
+            return categoryDto;
+        }
+
+        public List<CategoryDto> GetCategoriesBesidesCurrent(int categoryId)
+        {
+            List<CategoryDto> categoryDto = new List<CategoryDto>();
+            SqlParameter param = new SqlParameter { SqlDbType = SqlDbType.Int, ParameterName = "@categoryId", Value = (object)categoryId ?? DBNull.Value };
+            GetDataFromDb(ref categoryDto, "SelectCategoriesBesidesCurrent", param);
             return categoryDto;
         }
 
@@ -762,5 +819,12 @@ namespace AccountingBookService.Contracts.Contracts
             return locationDto.FirstOrDefault();
         }
 
+        public CategoryDto GetCategoryById(int categoryId)
+        {
+            List<CategoryDto> categoryDto = new List<CategoryDto>();
+            SqlParameter param = new SqlParameter { DbType = DbType.Int32, ParameterName = "@categoryId", Value = categoryId };
+            GetDataFromDb(ref categoryDto, "SelectCategoryById", param);
+            return categoryDto.FirstOrDefault();
+        }
     }
 }

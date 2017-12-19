@@ -1,0 +1,30 @@
+﻿
+@{
+    ViewBag.Title = "Search Categories";
+}
+
+<link href="~/Content/font-awesome.css" rel="stylesheet" />
+<script src="~/Scripts/searchUsers.js"></script>
+
+<h2>Search Categories</h2>
+
+<p>
+    @Html.ActionLink("Create New", "AddEditCategory")
+</p>
+
+<div class="form-inline form-group">
+    <label class="control-label">Location: </label>
+    <input name="category" class="form-control" />
+    <button class="btn btn-default" id="button">Search</button>
+    <i style="display:none" id="before-load" class="fa fa-spinner fa-spin"></i>
+</div>
+<div id="categories"></div>
+
+
+<script>
+    window.searchVar = window.Search();
+    $("#button").click(function () {
+        var _categoryName = $('input[name="category"]').val();
+        searchVar.MakeSearch('@Url.Action("GetCategoriesByNamePartial", "Category")?categoryName=' + _categoryName, "categories");
+    });
+</script>

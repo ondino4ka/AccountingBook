@@ -291,5 +291,60 @@ namespace AccountingBookService.Contracts.Contracts
                 }
             }
         }
+
+        public void EditCategoryById(int categoryId, int? pid, string categoryName)
+        {
+            if (string.IsNullOrEmpty(categoryName))
+            {
+                throw new FaultException<ServiceFault>(new ServiceFault("Name can not be null or empty"), new FaultReason("External error"));
+            }
+            SqlParameter[] param = {
+                new SqlParameter
+                {
+                   DbType = DbType.Int32,
+                   ParameterName = "@categoryId",
+                   Value = categoryId
+                },
+                     new SqlParameter
+                {
+                    SqlDbType = SqlDbType.Int,
+                    ParameterName = "@pid",
+                    Value = (object)pid ?? DBNull.Value
+                },
+                               new SqlParameter
+                {
+                   DbType = DbType.String,
+                   ParameterName = "@categoryName",
+                   Value = categoryName
+                }
+            };
+
+
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                using (SqlCommand command = new SqlCommand())
+                {
+                    command.Connection = connection;
+                    command.CommandType = CommandType.StoredProcedure;
+                    command.CommandText = "UpdateCategoryById";
+                    command.Parameters.AddRange(param);
+
+                    try
+                    {
+                        connection.Open();
+                        command.ExecuteNonQuery();
+                    }
+                    catch (Exception exception)
+                    {
+                        Log.Error(exception.Message);
+                        throw new FaultException<ServiceFault>(new ServiceFault(errorMessage), new FaultReason("Internal error"));
+                    }
+                    finally
+                    {
+                        connection.Close();
+                    }
+                }
+            }
+        }
     }
 }

@@ -18,6 +18,15 @@
   <wsdl:message name="IGetService_GetCategories_ServiceFaultFault_FaultMessage">
     <wsdl:part xmlns:q1="http://schemas.datacontract.org/2004/07/AccountingBookService.Contracts.Models.DtoException" name="detail" element="q1:ServiceFault" />
   </wsdl:message>
+  <wsdl:message name="IGetService_GetCategoriesBesidesCurrent_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetCategoriesBesidesCurrent" />
+  </wsdl:message>
+  <wsdl:message name="IGetService_GetCategoriesBesidesCurrent_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetCategoriesBesidesCurrentResponse" />
+  </wsdl:message>
+  <wsdl:message name="IGetService_GetCategoriesBesidesCurrent_ServiceFaultFault_FaultMessage">
+    <wsdl:part xmlns:q2="http://schemas.datacontract.org/2004/07/AccountingBookService.Contracts.Models.DtoException" name="detail" element="q2:ServiceFault" />
+  </wsdl:message>
   <wsdl:message name="IGetService_GetSubjectsByCategoryId_InputMessage">
     <wsdl:part name="parameters" element="tns:GetSubjectsByCategoryId" />
   </wsdl:message>
@@ -25,7 +34,7 @@
     <wsdl:part name="parameters" element="tns:GetSubjectsByCategoryIdResponse" />
   </wsdl:message>
   <wsdl:message name="IGetService_GetSubjectsByCategoryId_ServiceFaultFault_FaultMessage">
-    <wsdl:part xmlns:q2="http://schemas.datacontract.org/2004/07/AccountingBookService.Contracts.Models.DtoException" name="detail" element="q2:ServiceFault" />
+    <wsdl:part xmlns:q3="http://schemas.datacontract.org/2004/07/AccountingBookService.Contracts.Models.DtoException" name="detail" element="q3:ServiceFault" />
   </wsdl:message>
   <wsdl:message name="IGetService_GetSubjectInformationByInventoryNumber_InputMessage">
     <wsdl:part name="parameters" element="tns:GetSubjectInformationByInventoryNumber" />
@@ -34,7 +43,7 @@
     <wsdl:part name="parameters" element="tns:GetSubjectInformationByInventoryNumberResponse" />
   </wsdl:message>
   <wsdl:message name="IGetService_GetSubjectInformationByInventoryNumber_ServiceFaultFault_FaultMessage">
-    <wsdl:part xmlns:q3="http://schemas.datacontract.org/2004/07/AccountingBookService.Contracts.Models.DtoException" name="detail" element="q3:ServiceFault" />
+    <wsdl:part xmlns:q4="http://schemas.datacontract.org/2004/07/AccountingBookService.Contracts.Models.DtoException" name="detail" element="q4:ServiceFault" />
   </wsdl:message>
   <wsdl:message name="IGetService_GetUserAuthorizationByName_InputMessage">
     <wsdl:part name="parameters" element="tns:GetUserAuthorizationByName" />
@@ -43,7 +52,7 @@
     <wsdl:part name="parameters" element="tns:GetUserAuthorizationByNameResponse" />
   </wsdl:message>
   <wsdl:message name="IGetService_GetUserAuthorizationByName_ServiceFaultFault_FaultMessage">
-    <wsdl:part xmlns:q4="http://schemas.datacontract.org/2004/07/AccountingBookService.Contracts.Models.DtoException" name="detail" element="q4:ServiceFault" />
+    <wsdl:part xmlns:q5="http://schemas.datacontract.org/2004/07/AccountingBookService.Contracts.Models.DtoException" name="detail" element="q5:ServiceFault" />
   </wsdl:message>
   <wsdl:message name="IGetService_IsValidUser_InputMessage">
     <wsdl:part name="parameters" element="tns:IsValidUser" />
@@ -52,7 +61,7 @@
     <wsdl:part name="parameters" element="tns:IsValidUserResponse" />
   </wsdl:message>
   <wsdl:message name="IGetService_IsValidUser_ServiceFaultFault_FaultMessage">
-    <wsdl:part xmlns:q5="http://schemas.datacontract.org/2004/07/AccountingBookService.Contracts.Models.DtoException" name="detail" element="q5:ServiceFault" />
+    <wsdl:part xmlns:q6="http://schemas.datacontract.org/2004/07/AccountingBookService.Contracts.Models.DtoException" name="detail" element="q6:ServiceFault" />
   </wsdl:message>
   <wsdl:message name="IGetService_GetRolesAuthorizationByUserId_InputMessage">
     <wsdl:part name="parameters" element="tns:GetRolesAuthorizationByUserId" />
@@ -61,7 +70,7 @@
     <wsdl:part name="parameters" element="tns:GetRolesAuthorizationByUserIdResponse" />
   </wsdl:message>
   <wsdl:message name="IGetService_GetRolesAuthorizationByUserId_ServiceFaultFault_FaultMessage">
-    <wsdl:part xmlns:q6="http://schemas.datacontract.org/2004/07/AccountingBookService.Contracts.Models.DtoException" name="detail" element="q6:ServiceFault" />
+    <wsdl:part xmlns:q7="http://schemas.datacontract.org/2004/07/AccountingBookService.Contracts.Models.DtoException" name="detail" element="q7:ServiceFault" />
   </wsdl:message>
   <wsdl:message name="IGetService_GetCategoriesByName_InputMessage">
     <wsdl:part name="parameters" element="tns:GetCategoriesByName" />
@@ -70,7 +79,16 @@
     <wsdl:part name="parameters" element="tns:GetCategoriesByNameResponse" />
   </wsdl:message>
   <wsdl:message name="IGetService_GetCategoriesByName_ServiceFaultFault_FaultMessage">
-    <wsdl:part xmlns:q7="http://schemas.datacontract.org/2004/07/AccountingBookService.Contracts.Models.DtoException" name="detail" element="q7:ServiceFault" />
+    <wsdl:part xmlns:q8="http://schemas.datacontract.org/2004/07/AccountingBookService.Contracts.Models.DtoException" name="detail" element="q8:ServiceFault" />
+  </wsdl:message>
+  <wsdl:message name="IGetService_GetCategoryById_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetCategoryById" />
+  </wsdl:message>
+  <wsdl:message name="IGetService_GetCategoryById_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetCategoryByIdResponse" />
+  </wsdl:message>
+  <wsdl:message name="IGetService_GetCategoryById_ServiceFaultFault_FaultMessage">
+    <wsdl:part xmlns:q9="http://schemas.datacontract.org/2004/07/AccountingBookService.Contracts.Models.DtoException" name="detail" element="q9:ServiceFault" />
   </wsdl:message>
   <wsdl:message name="IGetService_GetSubjectsByNameCategoryIdAndStateId_InputMessage">
     <wsdl:part name="parameters" element="tns:GetSubjectsByNameCategoryIdAndStateId" />
@@ -79,7 +97,7 @@
     <wsdl:part name="parameters" element="tns:GetSubjectsByNameCategoryIdAndStateIdResponse" />
   </wsdl:message>
   <wsdl:message name="IGetService_GetSubjectsByNameCategoryIdAndStateId_ServiceFaultFault_FaultMessage">
-    <wsdl:part xmlns:q8="http://schemas.datacontract.org/2004/07/AccountingBookService.Contracts.Models.DtoException" name="detail" element="q8:ServiceFault" />
+    <wsdl:part xmlns:q10="http://schemas.datacontract.org/2004/07/AccountingBookService.Contracts.Models.DtoException" name="detail" element="q10:ServiceFault" />
   </wsdl:message>
   <wsdl:message name="IGetService_GetStates_InputMessage">
     <wsdl:part name="parameters" element="tns:GetStates" />
@@ -88,7 +106,7 @@
     <wsdl:part name="parameters" element="tns:GetStatesResponse" />
   </wsdl:message>
   <wsdl:message name="IGetService_GetStates_ServiceFaultFault_FaultMessage">
-    <wsdl:part xmlns:q9="http://schemas.datacontract.org/2004/07/AccountingBookService.Contracts.Models.DtoException" name="detail" element="q9:ServiceFault" />
+    <wsdl:part xmlns:q11="http://schemas.datacontract.org/2004/07/AccountingBookService.Contracts.Models.DtoException" name="detail" element="q11:ServiceFault" />
   </wsdl:message>
   <wsdl:message name="IGetService_GetStateById_InputMessage">
     <wsdl:part name="parameters" element="tns:GetStateById" />
@@ -97,7 +115,7 @@
     <wsdl:part name="parameters" element="tns:GetStateByIdResponse" />
   </wsdl:message>
   <wsdl:message name="IGetService_GetStateById_ServiceFaultFault_FaultMessage">
-    <wsdl:part xmlns:q10="http://schemas.datacontract.org/2004/07/AccountingBookService.Contracts.Models.DtoException" name="detail" element="q10:ServiceFault" />
+    <wsdl:part xmlns:q12="http://schemas.datacontract.org/2004/07/AccountingBookService.Contracts.Models.DtoException" name="detail" element="q12:ServiceFault" />
   </wsdl:message>
   <wsdl:message name="IGetService_IsExistsUser_InputMessage">
     <wsdl:part name="parameters" element="tns:IsExistsUser" />
@@ -106,7 +124,7 @@
     <wsdl:part name="parameters" element="tns:IsExistsUserResponse" />
   </wsdl:message>
   <wsdl:message name="IGetService_IsExistsUser_ServiceFaultFault_FaultMessage">
-    <wsdl:part xmlns:q11="http://schemas.datacontract.org/2004/07/AccountingBookService.Contracts.Models.DtoException" name="detail" element="q11:ServiceFault" />
+    <wsdl:part xmlns:q13="http://schemas.datacontract.org/2004/07/AccountingBookService.Contracts.Models.DtoException" name="detail" element="q13:ServiceFault" />
   </wsdl:message>
   <wsdl:message name="IGetService_GetRoles_InputMessage">
     <wsdl:part name="parameters" element="tns:GetRoles" />
@@ -115,7 +133,7 @@
     <wsdl:part name="parameters" element="tns:GetRolesResponse" />
   </wsdl:message>
   <wsdl:message name="IGetService_GetRoles_ServiceFaultFault_FaultMessage">
-    <wsdl:part xmlns:q12="http://schemas.datacontract.org/2004/07/AccountingBookService.Contracts.Models.DtoException" name="detail" element="q12:ServiceFault" />
+    <wsdl:part xmlns:q14="http://schemas.datacontract.org/2004/07/AccountingBookService.Contracts.Models.DtoException" name="detail" element="q14:ServiceFault" />
   </wsdl:message>
   <wsdl:message name="IGetService_GetUserById_InputMessage">
     <wsdl:part name="parameters" element="tns:GetUserById" />
@@ -124,7 +142,7 @@
     <wsdl:part name="parameters" element="tns:GetUserByIdResponse" />
   </wsdl:message>
   <wsdl:message name="IGetService_GetUserById_ServiceFaultFault_FaultMessage">
-    <wsdl:part xmlns:q13="http://schemas.datacontract.org/2004/07/AccountingBookService.Contracts.Models.DtoException" name="detail" element="q13:ServiceFault" />
+    <wsdl:part xmlns:q15="http://schemas.datacontract.org/2004/07/AccountingBookService.Contracts.Models.DtoException" name="detail" element="q15:ServiceFault" />
   </wsdl:message>
   <wsdl:message name="IGetService_GetUsersByName_InputMessage">
     <wsdl:part name="parameters" element="tns:GetUsersByName" />
@@ -133,7 +151,7 @@
     <wsdl:part name="parameters" element="tns:GetUsersByNameResponse" />
   </wsdl:message>
   <wsdl:message name="IGetService_GetUsersByName_ServiceFaultFault_FaultMessage">
-    <wsdl:part xmlns:q14="http://schemas.datacontract.org/2004/07/AccountingBookService.Contracts.Models.DtoException" name="detail" element="q14:ServiceFault" />
+    <wsdl:part xmlns:q16="http://schemas.datacontract.org/2004/07/AccountingBookService.Contracts.Models.DtoException" name="detail" element="q16:ServiceFault" />
   </wsdl:message>
   <wsdl:message name="IGetService_GetLocations_InputMessage">
     <wsdl:part name="parameters" element="tns:GetLocations" />
@@ -142,7 +160,7 @@
     <wsdl:part name="parameters" element="tns:GetLocationsResponse" />
   </wsdl:message>
   <wsdl:message name="IGetService_GetLocations_ServiceFaultFault_FaultMessage">
-    <wsdl:part xmlns:q15="http://schemas.datacontract.org/2004/07/AccountingBookService.Contracts.Models.DtoException" name="detail" element="q15:ServiceFault" />
+    <wsdl:part xmlns:q17="http://schemas.datacontract.org/2004/07/AccountingBookService.Contracts.Models.DtoException" name="detail" element="q17:ServiceFault" />
   </wsdl:message>
   <wsdl:message name="IGetService_GetSubjectByInventoryNumber_InputMessage">
     <wsdl:part name="parameters" element="tns:GetSubjectByInventoryNumber" />
@@ -151,7 +169,7 @@
     <wsdl:part name="parameters" element="tns:GetSubjectByInventoryNumberResponse" />
   </wsdl:message>
   <wsdl:message name="IGetService_GetSubjectByInventoryNumber_ServiceFaultFault_FaultMessage">
-    <wsdl:part xmlns:q16="http://schemas.datacontract.org/2004/07/AccountingBookService.Contracts.Models.DtoException" name="detail" element="q16:ServiceFault" />
+    <wsdl:part xmlns:q18="http://schemas.datacontract.org/2004/07/AccountingBookService.Contracts.Models.DtoException" name="detail" element="q18:ServiceFault" />
   </wsdl:message>
   <wsdl:message name="IGetService_IsExistsSubject_InputMessage">
     <wsdl:part name="parameters" element="tns:IsExistsSubject" />
@@ -160,7 +178,7 @@
     <wsdl:part name="parameters" element="tns:IsExistsSubjectResponse" />
   </wsdl:message>
   <wsdl:message name="IGetService_IsExistsSubject_ServiceFaultFault_FaultMessage">
-    <wsdl:part xmlns:q17="http://schemas.datacontract.org/2004/07/AccountingBookService.Contracts.Models.DtoException" name="detail" element="q17:ServiceFault" />
+    <wsdl:part xmlns:q19="http://schemas.datacontract.org/2004/07/AccountingBookService.Contracts.Models.DtoException" name="detail" element="q19:ServiceFault" />
   </wsdl:message>
   <wsdl:message name="IGetService_GetLocationsByAddress_InputMessage">
     <wsdl:part name="parameters" element="tns:GetLocationsByAddress" />
@@ -169,7 +187,7 @@
     <wsdl:part name="parameters" element="tns:GetLocationsByAddressResponse" />
   </wsdl:message>
   <wsdl:message name="IGetService_GetLocationsByAddress_ServiceFaultFault_FaultMessage">
-    <wsdl:part xmlns:q18="http://schemas.datacontract.org/2004/07/AccountingBookService.Contracts.Models.DtoException" name="detail" element="q18:ServiceFault" />
+    <wsdl:part xmlns:q20="http://schemas.datacontract.org/2004/07/AccountingBookService.Contracts.Models.DtoException" name="detail" element="q20:ServiceFault" />
   </wsdl:message>
   <wsdl:message name="IGetService_GetLocationsById_InputMessage">
     <wsdl:part name="parameters" element="tns:GetLocationsById" />
@@ -178,7 +196,7 @@
     <wsdl:part name="parameters" element="tns:GetLocationsByIdResponse" />
   </wsdl:message>
   <wsdl:message name="IGetService_GetLocationsById_ServiceFaultFault_FaultMessage">
-    <wsdl:part xmlns:q19="http://schemas.datacontract.org/2004/07/AccountingBookService.Contracts.Models.DtoException" name="detail" element="q19:ServiceFault" />
+    <wsdl:part xmlns:q21="http://schemas.datacontract.org/2004/07/AccountingBookService.Contracts.Models.DtoException" name="detail" element="q21:ServiceFault" />
   </wsdl:message>
   <wsdl:message name="IAddService_AddUser_InputMessage">
     <wsdl:part name="parameters" element="tns:AddUser" />
@@ -187,7 +205,7 @@
     <wsdl:part name="parameters" element="tns:AddUserResponse" />
   </wsdl:message>
   <wsdl:message name="IAddService_AddUser_ServiceFaultFault_FaultMessage">
-    <wsdl:part xmlns:q20="http://schemas.datacontract.org/2004/07/AccountingBookService.Contracts.Models.DtoException" name="detail" element="q20:ServiceFault" />
+    <wsdl:part xmlns:q22="http://schemas.datacontract.org/2004/07/AccountingBookService.Contracts.Models.DtoException" name="detail" element="q22:ServiceFault" />
   </wsdl:message>
   <wsdl:message name="IAddService_AddSubject_InputMessage">
     <wsdl:part name="parameters" element="tns:AddSubject" />
@@ -196,7 +214,7 @@
     <wsdl:part name="parameters" element="tns:AddSubjectResponse" />
   </wsdl:message>
   <wsdl:message name="IAddService_AddSubject_ServiceFaultFault_FaultMessage">
-    <wsdl:part xmlns:q21="http://schemas.datacontract.org/2004/07/AccountingBookService.Contracts.Models.DtoException" name="detail" element="q21:ServiceFault" />
+    <wsdl:part xmlns:q23="http://schemas.datacontract.org/2004/07/AccountingBookService.Contracts.Models.DtoException" name="detail" element="q23:ServiceFault" />
   </wsdl:message>
   <wsdl:message name="IAddService_AddLocation_InputMessage">
     <wsdl:part name="parameters" element="tns:AddLocation" />
@@ -205,7 +223,7 @@
     <wsdl:part name="parameters" element="tns:AddLocationResponse" />
   </wsdl:message>
   <wsdl:message name="IAddService_AddLocation_ServiceFaultFault_FaultMessage">
-    <wsdl:part xmlns:q22="http://schemas.datacontract.org/2004/07/AccountingBookService.Contracts.Models.DtoException" name="detail" element="q22:ServiceFault" />
+    <wsdl:part xmlns:q24="http://schemas.datacontract.org/2004/07/AccountingBookService.Contracts.Models.DtoException" name="detail" element="q24:ServiceFault" />
   </wsdl:message>
   <wsdl:message name="IAddService_AddState_InputMessage">
     <wsdl:part name="parameters" element="tns:AddState" />
@@ -214,7 +232,16 @@
     <wsdl:part name="parameters" element="tns:AddStateResponse" />
   </wsdl:message>
   <wsdl:message name="IAddService_AddState_ServiceFaultFault_FaultMessage">
-    <wsdl:part xmlns:q23="http://schemas.datacontract.org/2004/07/AccountingBookService.Contracts.Models.DtoException" name="detail" element="q23:ServiceFault" />
+    <wsdl:part xmlns:q25="http://schemas.datacontract.org/2004/07/AccountingBookService.Contracts.Models.DtoException" name="detail" element="q25:ServiceFault" />
+  </wsdl:message>
+  <wsdl:message name="IAddService_AddCategory_InputMessage">
+    <wsdl:part name="parameters" element="tns:AddCategory" />
+  </wsdl:message>
+  <wsdl:message name="IAddService_AddCategory_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AddCategoryResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAddService_AddCategory_ServiceFaultFault_FaultMessage">
+    <wsdl:part xmlns:q26="http://schemas.datacontract.org/2004/07/AccountingBookService.Contracts.Models.DtoException" name="detail" element="q26:ServiceFault" />
   </wsdl:message>
   <wsdl:message name="IEditService_EditUser_InputMessage">
     <wsdl:part name="parameters" element="tns:EditUser" />
@@ -223,7 +250,7 @@
     <wsdl:part name="parameters" element="tns:EditUserResponse" />
   </wsdl:message>
   <wsdl:message name="IEditService_EditUser_ServiceFaultFault_FaultMessage">
-    <wsdl:part xmlns:q24="http://schemas.datacontract.org/2004/07/AccountingBookService.Contracts.Models.DtoException" name="detail" element="q24:ServiceFault" />
+    <wsdl:part xmlns:q27="http://schemas.datacontract.org/2004/07/AccountingBookService.Contracts.Models.DtoException" name="detail" element="q27:ServiceFault" />
   </wsdl:message>
   <wsdl:message name="IEditService_EditSubjectInformation_InputMessage">
     <wsdl:part name="parameters" element="tns:EditSubjectInformation" />
@@ -232,7 +259,7 @@
     <wsdl:part name="parameters" element="tns:EditSubjectInformationResponse" />
   </wsdl:message>
   <wsdl:message name="IEditService_EditSubjectInformation_ServiceFaultFault_FaultMessage">
-    <wsdl:part xmlns:q25="http://schemas.datacontract.org/2004/07/AccountingBookService.Contracts.Models.DtoException" name="detail" element="q25:ServiceFault" />
+    <wsdl:part xmlns:q28="http://schemas.datacontract.org/2004/07/AccountingBookService.Contracts.Models.DtoException" name="detail" element="q28:ServiceFault" />
   </wsdl:message>
   <wsdl:message name="IEditService_EditSubjectPhoto_InputMessage">
     <wsdl:part name="parameters" element="tns:EditSubjectPhoto" />
@@ -241,7 +268,7 @@
     <wsdl:part name="parameters" element="tns:EditSubjectPhotoResponse" />
   </wsdl:message>
   <wsdl:message name="IEditService_EditSubjectPhoto_ServiceFaultFault_FaultMessage">
-    <wsdl:part xmlns:q26="http://schemas.datacontract.org/2004/07/AccountingBookService.Contracts.Models.DtoException" name="detail" element="q26:ServiceFault" />
+    <wsdl:part xmlns:q29="http://schemas.datacontract.org/2004/07/AccountingBookService.Contracts.Models.DtoException" name="detail" element="q29:ServiceFault" />
   </wsdl:message>
   <wsdl:message name="IEditService_EditLocationById_InputMessage">
     <wsdl:part name="parameters" element="tns:EditLocationById" />
@@ -250,7 +277,7 @@
     <wsdl:part name="parameters" element="tns:EditLocationByIdResponse" />
   </wsdl:message>
   <wsdl:message name="IEditService_EditLocationById_ServiceFaultFault_FaultMessage">
-    <wsdl:part xmlns:q27="http://schemas.datacontract.org/2004/07/AccountingBookService.Contracts.Models.DtoException" name="detail" element="q27:ServiceFault" />
+    <wsdl:part xmlns:q30="http://schemas.datacontract.org/2004/07/AccountingBookService.Contracts.Models.DtoException" name="detail" element="q30:ServiceFault" />
   </wsdl:message>
   <wsdl:message name="IEditService_EditStateById_InputMessage">
     <wsdl:part name="parameters" element="tns:EditStateById" />
@@ -259,7 +286,16 @@
     <wsdl:part name="parameters" element="tns:EditStateByIdResponse" />
   </wsdl:message>
   <wsdl:message name="IEditService_EditStateById_ServiceFaultFault_FaultMessage">
-    <wsdl:part xmlns:q28="http://schemas.datacontract.org/2004/07/AccountingBookService.Contracts.Models.DtoException" name="detail" element="q28:ServiceFault" />
+    <wsdl:part xmlns:q31="http://schemas.datacontract.org/2004/07/AccountingBookService.Contracts.Models.DtoException" name="detail" element="q31:ServiceFault" />
+  </wsdl:message>
+  <wsdl:message name="IEditService_EditCategoryById_InputMessage">
+    <wsdl:part name="parameters" element="tns:EditCategoryById" />
+  </wsdl:message>
+  <wsdl:message name="IEditService_EditCategoryById_OutputMessage">
+    <wsdl:part name="parameters" element="tns:EditCategoryByIdResponse" />
+  </wsdl:message>
+  <wsdl:message name="IEditService_EditCategoryById_ServiceFaultFault_FaultMessage">
+    <wsdl:part xmlns:q32="http://schemas.datacontract.org/2004/07/AccountingBookService.Contracts.Models.DtoException" name="detail" element="q32:ServiceFault" />
   </wsdl:message>
   <wsdl:message name="IDeleteService_DeleteUserById_InputMessage">
     <wsdl:part name="parameters" element="tns:DeleteUserById" />
@@ -268,7 +304,7 @@
     <wsdl:part name="parameters" element="tns:DeleteUserByIdResponse" />
   </wsdl:message>
   <wsdl:message name="IDeleteService_DeleteUserById_ServiceFaultFault_FaultMessage">
-    <wsdl:part xmlns:q29="http://schemas.datacontract.org/2004/07/AccountingBookService.Contracts.Models.DtoException" name="detail" element="q29:ServiceFault" />
+    <wsdl:part xmlns:q33="http://schemas.datacontract.org/2004/07/AccountingBookService.Contracts.Models.DtoException" name="detail" element="q33:ServiceFault" />
   </wsdl:message>
   <wsdl:message name="IDeleteService_DeleteSubjectByInventoryNumber_InputMessage">
     <wsdl:part name="parameters" element="tns:DeleteSubjectByInventoryNumber" />
@@ -277,7 +313,7 @@
     <wsdl:part name="parameters" element="tns:DeleteSubjectByInventoryNumberResponse" />
   </wsdl:message>
   <wsdl:message name="IDeleteService_DeleteSubjectByInventoryNumber_ServiceFaultFault_FaultMessage">
-    <wsdl:part xmlns:q30="http://schemas.datacontract.org/2004/07/AccountingBookService.Contracts.Models.DtoException" name="detail" element="q30:ServiceFault" />
+    <wsdl:part xmlns:q34="http://schemas.datacontract.org/2004/07/AccountingBookService.Contracts.Models.DtoException" name="detail" element="q34:ServiceFault" />
   </wsdl:message>
   <wsdl:message name="IDeleteService_DeleteLocationById_InputMessage">
     <wsdl:part name="parameters" element="tns:DeleteLocationById" />
@@ -286,7 +322,7 @@
     <wsdl:part name="parameters" element="tns:DeleteLocationByIdResponse" />
   </wsdl:message>
   <wsdl:message name="IDeleteService_DeleteLocationById_ServiceFaultFault_FaultMessage">
-    <wsdl:part xmlns:q31="http://schemas.datacontract.org/2004/07/AccountingBookService.Contracts.Models.DtoException" name="detail" element="q31:ServiceFault" />
+    <wsdl:part xmlns:q35="http://schemas.datacontract.org/2004/07/AccountingBookService.Contracts.Models.DtoException" name="detail" element="q35:ServiceFault" />
   </wsdl:message>
   <wsdl:message name="IDeleteService_DeleteStateById_InputMessage">
     <wsdl:part name="parameters" element="tns:DeleteStateById" />
@@ -295,7 +331,16 @@
     <wsdl:part name="parameters" element="tns:DeleteStateByIdResponse" />
   </wsdl:message>
   <wsdl:message name="IDeleteService_DeleteStateById_ServiceFaultFault_FaultMessage">
-    <wsdl:part xmlns:q32="http://schemas.datacontract.org/2004/07/AccountingBookService.Contracts.Models.DtoException" name="detail" element="q32:ServiceFault" />
+    <wsdl:part xmlns:q36="http://schemas.datacontract.org/2004/07/AccountingBookService.Contracts.Models.DtoException" name="detail" element="q36:ServiceFault" />
+  </wsdl:message>
+  <wsdl:message name="IDeleteService_DeleteCategoryById_InputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteCategoryById" />
+  </wsdl:message>
+  <wsdl:message name="IDeleteService_DeleteCategoryById_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteCategoryByIdResponse" />
+  </wsdl:message>
+  <wsdl:message name="IDeleteService_DeleteCategoryById_ServiceFaultFault_FaultMessage">
+    <wsdl:part xmlns:q37="http://schemas.datacontract.org/2004/07/AccountingBookService.Contracts.Models.DtoException" name="detail" element="q37:ServiceFault" />
   </wsdl:message>
   <wsdl:message name="IFileService_UploadPhoto_InputMessage">
     <wsdl:part name="parameters" element="tns:UploadPhoto" />
@@ -304,7 +349,7 @@
     <wsdl:part name="parameters" element="tns:UploadPhotoResponse" />
   </wsdl:message>
   <wsdl:message name="IFileService_UploadPhoto_ServiceFaultFault_FaultMessage">
-    <wsdl:part xmlns:q33="http://schemas.datacontract.org/2004/07/AccountingBookService.Contracts.Models.DtoException" name="detail" element="q33:ServiceFault" />
+    <wsdl:part xmlns:q38="http://schemas.datacontract.org/2004/07/AccountingBookService.Contracts.Models.DtoException" name="detail" element="q38:ServiceFault" />
   </wsdl:message>
   <wsdl:message name="IFileService_DownloadPhoto_InputMessage">
     <wsdl:part name="parameters" element="tns:DownloadPhoto" />
@@ -313,7 +358,7 @@
     <wsdl:part name="parameters" element="tns:DownloadPhotoResponse" />
   </wsdl:message>
   <wsdl:message name="IFileService_DownloadPhoto_ServiceFaultFault_FaultMessage">
-    <wsdl:part xmlns:q34="http://schemas.datacontract.org/2004/07/AccountingBookService.Contracts.Models.DtoException" name="detail" element="q34:ServiceFault" />
+    <wsdl:part xmlns:q39="http://schemas.datacontract.org/2004/07/AccountingBookService.Contracts.Models.DtoException" name="detail" element="q39:ServiceFault" />
   </wsdl:message>
   <wsdl:message name="IFileService_DeletePhoto_InputMessage">
     <wsdl:part name="parameters" element="tns:DeletePhoto" />
@@ -322,13 +367,18 @@
     <wsdl:part name="parameters" element="tns:DeletePhotoResponse" />
   </wsdl:message>
   <wsdl:message name="IFileService_DeletePhoto_ServiceFaultFault_FaultMessage">
-    <wsdl:part xmlns:q35="http://schemas.datacontract.org/2004/07/AccountingBookService.Contracts.Models.DtoException" name="detail" element="q35:ServiceFault" />
+    <wsdl:part xmlns:q40="http://schemas.datacontract.org/2004/07/AccountingBookService.Contracts.Models.DtoException" name="detail" element="q40:ServiceFault" />
   </wsdl:message>
   <wsdl:portType name="IGetService">
     <wsdl:operation name="GetCategories">
       <wsdl:input wsaw:Action="http://tempuri.org/IGetService/GetCategories" message="tns:IGetService_GetCategories_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IGetService/GetCategoriesResponse" message="tns:IGetService_GetCategories_OutputMessage" />
       <wsdl:fault wsaw:Action="http://tempuri.org/IGetService/GetCategoriesServiceFaultFault" name="ServiceFaultFault" message="tns:IGetService_GetCategories_ServiceFaultFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetCategoriesBesidesCurrent">
+      <wsdl:input wsaw:Action="http://tempuri.org/IGetService/GetCategoriesBesidesCurrent" message="tns:IGetService_GetCategoriesBesidesCurrent_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IGetService/GetCategoriesBesidesCurrentResponse" message="tns:IGetService_GetCategoriesBesidesCurrent_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://tempuri.org/IGetService/GetCategoriesBesidesCurrentServiceFaultFault" name="ServiceFaultFault" message="tns:IGetService_GetCategoriesBesidesCurrent_ServiceFaultFault_FaultMessage" />
     </wsdl:operation>
     <wsdl:operation name="GetSubjectsByCategoryId">
       <wsdl:input wsaw:Action="http://tempuri.org/IGetService/GetSubjectsByCategoryId" message="tns:IGetService_GetSubjectsByCategoryId_InputMessage" />
@@ -359,6 +409,11 @@
       <wsdl:input wsaw:Action="http://tempuri.org/IGetService/GetCategoriesByName" message="tns:IGetService_GetCategoriesByName_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IGetService/GetCategoriesByNameResponse" message="tns:IGetService_GetCategoriesByName_OutputMessage" />
       <wsdl:fault wsaw:Action="http://tempuri.org/IGetService/GetCategoriesByNameServiceFaultFault" name="ServiceFaultFault" message="tns:IGetService_GetCategoriesByName_ServiceFaultFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetCategoryById">
+      <wsdl:input wsaw:Action="http://tempuri.org/IGetService/GetCategoryById" message="tns:IGetService_GetCategoryById_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IGetService/GetCategoryByIdResponse" message="tns:IGetService_GetCategoryById_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://tempuri.org/IGetService/GetCategoryByIdServiceFaultFault" name="ServiceFaultFault" message="tns:IGetService_GetCategoryById_ServiceFaultFault_FaultMessage" />
     </wsdl:operation>
     <wsdl:operation name="GetSubjectsByNameCategoryIdAndStateId">
       <wsdl:input wsaw:Action="http://tempuri.org/IGetService/GetSubjectsByNameCategoryIdAndStateId" message="tns:IGetService_GetSubjectsByNameCategoryIdAndStateId_InputMessage" />
@@ -442,6 +497,11 @@
       <wsdl:output wsaw:Action="http://tempuri.org/IAddService/AddStateResponse" message="tns:IAddService_AddState_OutputMessage" />
       <wsdl:fault wsaw:Action="http://tempuri.org/IAddService/AddStateServiceFaultFault" name="ServiceFaultFault" message="tns:IAddService_AddState_ServiceFaultFault_FaultMessage" />
     </wsdl:operation>
+    <wsdl:operation name="AddCategory">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAddService/AddCategory" message="tns:IAddService_AddCategory_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAddService/AddCategoryResponse" message="tns:IAddService_AddCategory_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://tempuri.org/IAddService/AddCategoryServiceFaultFault" name="ServiceFaultFault" message="tns:IAddService_AddCategory_ServiceFaultFault_FaultMessage" />
+    </wsdl:operation>
   </wsdl:portType>
   <wsdl:portType name="IEditService">
     <wsdl:operation name="EditUser">
@@ -469,6 +529,11 @@
       <wsdl:output wsaw:Action="http://tempuri.org/IEditService/EditStateByIdResponse" message="tns:IEditService_EditStateById_OutputMessage" />
       <wsdl:fault wsaw:Action="http://tempuri.org/IEditService/EditStateByIdServiceFaultFault" name="ServiceFaultFault" message="tns:IEditService_EditStateById_ServiceFaultFault_FaultMessage" />
     </wsdl:operation>
+    <wsdl:operation name="EditCategoryById">
+      <wsdl:input wsaw:Action="http://tempuri.org/IEditService/EditCategoryById" message="tns:IEditService_EditCategoryById_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IEditService/EditCategoryByIdResponse" message="tns:IEditService_EditCategoryById_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://tempuri.org/IEditService/EditCategoryByIdServiceFaultFault" name="ServiceFaultFault" message="tns:IEditService_EditCategoryById_ServiceFaultFault_FaultMessage" />
+    </wsdl:operation>
   </wsdl:portType>
   <wsdl:portType name="IDeleteService">
     <wsdl:operation name="DeleteUserById">
@@ -490,6 +555,11 @@
       <wsdl:input wsaw:Action="http://tempuri.org/IDeleteService/DeleteStateById" message="tns:IDeleteService_DeleteStateById_InputMessage" />
       <wsdl:output wsaw:Action="http://tempuri.org/IDeleteService/DeleteStateByIdResponse" message="tns:IDeleteService_DeleteStateById_OutputMessage" />
       <wsdl:fault wsaw:Action="http://tempuri.org/IDeleteService/DeleteStateByIdServiceFaultFault" name="ServiceFaultFault" message="tns:IDeleteService_DeleteStateById_ServiceFaultFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteCategoryById">
+      <wsdl:input wsaw:Action="http://tempuri.org/IDeleteService/DeleteCategoryById" message="tns:IDeleteService_DeleteCategoryById_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IDeleteService/DeleteCategoryByIdResponse" message="tns:IDeleteService_DeleteCategoryById_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://tempuri.org/IDeleteService/DeleteCategoryByIdServiceFaultFault" name="ServiceFaultFault" message="tns:IDeleteService_DeleteCategoryById_ServiceFaultFault_FaultMessage" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:portType name="IFileService">
@@ -513,6 +583,18 @@
     <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
     <wsdl:operation name="GetCategories">
       <soap:operation soapAction="http://tempuri.org/IGetService/GetCategories" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="ServiceFaultFault">
+        <soap:fault use="literal" name="ServiceFaultFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="GetCategoriesBesidesCurrent">
+      <soap:operation soapAction="http://tempuri.org/IGetService/GetCategoriesBesidesCurrent" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -585,6 +667,18 @@
     </wsdl:operation>
     <wsdl:operation name="GetCategoriesByName">
       <soap:operation soapAction="http://tempuri.org/IGetService/GetCategoriesByName" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="ServiceFaultFault">
+        <soap:fault use="literal" name="ServiceFaultFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="GetCategoryById">
+      <soap:operation soapAction="http://tempuri.org/IGetService/GetCategoryById" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -790,6 +884,18 @@
         <soap:fault use="literal" name="ServiceFaultFault" namespace="" />
       </wsdl:fault>
     </wsdl:operation>
+    <wsdl:operation name="AddCategory">
+      <soap:operation soapAction="http://tempuri.org/IAddService/AddCategory" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="ServiceFaultFault">
+        <soap:fault use="literal" name="ServiceFaultFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
   </wsdl:binding>
   <wsdl:binding name="BasicHttpBinding_IEditService" type="tns:IEditService">
     <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
@@ -853,6 +959,18 @@
         <soap:fault use="literal" name="ServiceFaultFault" namespace="" />
       </wsdl:fault>
     </wsdl:operation>
+    <wsdl:operation name="EditCategoryById">
+      <soap:operation soapAction="http://tempuri.org/IEditService/EditCategoryById" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="ServiceFaultFault">
+        <soap:fault use="literal" name="ServiceFaultFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
   </wsdl:binding>
   <wsdl:binding name="BasicHttpBinding_IDeleteService" type="tns:IDeleteService">
     <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
@@ -894,6 +1012,18 @@
     </wsdl:operation>
     <wsdl:operation name="DeleteStateById">
       <soap:operation soapAction="http://tempuri.org/IDeleteService/DeleteStateById" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="ServiceFaultFault">
+        <soap:fault use="literal" name="ServiceFaultFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteCategoryById">
+      <soap:operation soapAction="http://tempuri.org/IDeleteService/DeleteCategoryById" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>

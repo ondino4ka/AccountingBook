@@ -128,5 +128,35 @@ namespace AccountingBookService.Contracts.Contracts
                 }
             }
         }
+
+        public void DeleteCategoryById(int categoryId)
+        {
+            SqlParameter parameter = new SqlParameter { DbType = DbType.Int32, ParameterName = "@categoryId", Value = categoryId };
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                using (SqlCommand command = new SqlCommand())
+                {
+                    command.Connection = connection;
+                    command.CommandType = CommandType.StoredProcedure;
+                    command.CommandText = "DeleteCategoryById";
+                    command.Parameters.Add(parameter);
+
+                    try
+                    {
+                        connection.Open();
+                        command.ExecuteNonQuery();
+                    }
+                    catch (Exception exception)
+                    {
+                        Log.Error(exception.Message);
+                        throw new FaultException<ServiceFault>(new ServiceFault(errorMessage), new FaultReason("Internal error"));
+                    }
+                    finally
+                    {
+                        connection.Close();
+                    }
+                }
+            }
+        }
     }
 }

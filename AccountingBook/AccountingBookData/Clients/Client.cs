@@ -271,7 +271,6 @@ namespace AccountingBookData.Clients
             return result;
         }
 
-
         public State GetStateById(int stateId)
         {
             var result = new State();
@@ -300,8 +299,6 @@ namespace AccountingBookData.Clients
             }
             return result;
         }
-
-
 
         public void AddUser(User user)
         {
@@ -357,7 +354,6 @@ namespace AccountingBookData.Clients
                 Log.Info("Сonnection closed");
             }
         }
-
 
         public IReadOnlyCollection<Role> GetRoles()
         {
@@ -472,8 +468,6 @@ namespace AccountingBookData.Clients
         }
 
        
-
-
         public IReadOnlyCollection<Location> GetLocations()
         {
             var result = new List<Location>();
@@ -502,7 +496,6 @@ namespace AccountingBookData.Clients
             }
             return result;
         }
-
 
         public Subject GetSubjectByInventoryNumber(int inventoryNumber)
         {
@@ -995,6 +988,139 @@ namespace AccountingBookData.Clients
                 client.Abort();
                 Log.Info("Сonnection closed");
             }
+        }
+
+        public Category GetCategoryById(int categoryId)
+        {
+            var result = new Category();
+            var client = new AccountingBookServiceReference.GetServiceClient();
+            try
+            {
+                client.Open();
+                var data = client.GetCategoryById(categoryId);
+                result = data == null ? null : new Category() { Id = data.Id, Pid = data.Pid, Name = data.Name };
+                client.Close();
+            }
+            catch (EndpointNotFoundException endPointNotFoundException)
+            {
+                Log.Error(endPointNotFoundException.Message);
+                throw new Exception("Now the server is unavailable. Try later");
+            }
+            catch (FaultException<AccountingBookServiceReference.ServiceFault> faultException)
+            {
+                Log.Error(faultException.Detail.ErrorMessage);
+                throw new Exception("Now the server is unavailable. Try later");
+            }
+            finally
+            {
+                client.Abort();
+                Log.Info("Сonnection closed");
+            }
+            return result;
+        }
+
+        public void AddCategory(int? pid, string categoryName)
+        {
+            var client = new AccountingBookServiceReference.AddServiceClient();
+            try
+            {
+                client.Open();
+                client.AddCategory(pid, categoryName);
+            }
+            catch (EndpointNotFoundException endPointNotFoundException)
+            {
+                Log.Error(endPointNotFoundException.Message);
+                throw new Exception("Now the server is unavailable. Try later");
+            }
+            catch (FaultException<AccountingBookServiceReference.ServiceFault> faultException)
+            {
+                Log.Error(faultException.Detail.ErrorMessage);
+                throw new Exception("Now the server is unavailable. Try later");
+            }
+            finally
+            {
+                client.Abort();
+                Log.Info("Сonnection closed");
+            }
+        }
+
+        public void EditCategoryById(int categoryId, int? pid, string categoryName)
+        {
+            var client = new AccountingBookServiceReference.EditServiceClient();
+            try
+            {
+                client.Open();
+                client.EditCategoryById(categoryId, pid, categoryName);
+            }
+            catch (EndpointNotFoundException endPointNotFoundException)
+            {
+                Log.Error(endPointNotFoundException.Message);
+                throw new Exception("Now the server is unavailable. Try later");
+            }
+            catch (FaultException<AccountingBookServiceReference.ServiceFault> faultException)
+            {
+                Log.Error(faultException.Detail.ErrorMessage);
+                throw new Exception("Now the server is unavailable. Try later");
+            }
+            finally
+            {
+                client.Abort();
+                Log.Info("Сonnection closed");
+            }
+        }
+
+        public void DeleteCategoryById(int categoryId)
+        {
+            var client = new AccountingBookServiceReference.DeleteServiceClient();
+            try
+            {
+                client.Open();
+                client.DeleteCategoryById(categoryId);
+            }
+            catch (FaultException<AccountingBookServiceReference.ServiceFault> faultException)
+            {
+                Log.Error(faultException.Detail.ErrorMessage);
+                throw new Exception("Now the server is unavailable. Try later");
+            }
+            catch (EndpointNotFoundException endPointNotFoundException)
+            {
+                Log.Error(endPointNotFoundException.Message);
+                throw new Exception("Now the server is unavailable. Try later");
+            }
+            finally
+            {
+                client.Abort();
+                Log.Info("Сonnection closed");
+            }
+        }
+
+        public IReadOnlyList<Category> GetCategoriesBesidesCurrent(int categoryId)
+        {
+            var result = new List<Category>();
+            var client = new AccountingBookServiceReference.GetServiceClient();
+            try
+            {
+                client.Open();
+                var data = client.GetCategoriesBesidesCurrent(categoryId);
+                result = data == null ? result : data.Select(x => new Category { Id = x.Id, Pid = x.Pid, Name = x.Name }).ToList();
+                client.Close();
+            }
+            catch (EndpointNotFoundException endPointNotFoundException)
+            {
+                Log.Error(endPointNotFoundException.Message);
+                throw new Exception("Now the server is unavailable. Try later");
+            }
+            catch (FaultException<AccountingBookServiceReference.ServiceFault> faultException)
+            {
+                Log.Error(faultException.Detail.ErrorMessage);
+                throw new Exception("Now the server is unavailable. Try later");
+            }
+            finally
+            {
+                client.Abort();
+                Log.Info("Сonnection closed");
+            }
+            return result;
         }
     }
 }

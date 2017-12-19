@@ -837,6 +837,14 @@ namespace AccountingBookData.AccountingBookServiceReference {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IGetService/GetCategories", ReplyAction="http://tempuri.org/IGetService/GetCategoriesResponse")]
         System.Threading.Tasks.Task<AccountingBookData.AccountingBookServiceReference.CategoryDto[]> GetCategoriesAsync();
         
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IGetService/GetCategoriesBesidesCurrent", ReplyAction="http://tempuri.org/IGetService/GetCategoriesBesidesCurrentResponse")]
+        [System.ServiceModel.FaultContractAttribute(typeof(AccountingBookData.AccountingBookServiceReference.ServiceFault), Action="http://tempuri.org/IGetService/GetCategoriesBesidesCurrentServiceFaultFault", Name="ServiceFault", Namespace="http://schemas.datacontract.org/2004/07/AccountingBookService.Contracts.Models.Dt" +
+            "oException")]
+        AccountingBookData.AccountingBookServiceReference.CategoryDto[] GetCategoriesBesidesCurrent(int categoryId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IGetService/GetCategoriesBesidesCurrent", ReplyAction="http://tempuri.org/IGetService/GetCategoriesBesidesCurrentResponse")]
+        System.Threading.Tasks.Task<AccountingBookData.AccountingBookServiceReference.CategoryDto[]> GetCategoriesBesidesCurrentAsync(int categoryId);
+        
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IGetService/GetSubjectsByCategoryId", ReplyAction="http://tempuri.org/IGetService/GetSubjectsByCategoryIdResponse")]
         [System.ServiceModel.FaultContractAttribute(typeof(AccountingBookData.AccountingBookServiceReference.ServiceFault), Action="http://tempuri.org/IGetService/GetSubjectsByCategoryIdServiceFaultFault", Name="ServiceFault", Namespace="http://schemas.datacontract.org/2004/07/AccountingBookService.Contracts.Models.Dt" +
             "oException")]
@@ -885,6 +893,14 @@ namespace AccountingBookData.AccountingBookServiceReference {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IGetService/GetCategoriesByName", ReplyAction="http://tempuri.org/IGetService/GetCategoriesByNameResponse")]
         System.Threading.Tasks.Task<AccountingBookData.AccountingBookServiceReference.CategoryDto[]> GetCategoriesByNameAsync(string categoryName);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IGetService/GetCategoryById", ReplyAction="http://tempuri.org/IGetService/GetCategoryByIdResponse")]
+        [System.ServiceModel.FaultContractAttribute(typeof(AccountingBookData.AccountingBookServiceReference.ServiceFault), Action="http://tempuri.org/IGetService/GetCategoryByIdServiceFaultFault", Name="ServiceFault", Namespace="http://schemas.datacontract.org/2004/07/AccountingBookService.Contracts.Models.Dt" +
+            "oException")]
+        AccountingBookData.AccountingBookServiceReference.CategoryDto GetCategoryById(int categoryId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IGetService/GetCategoryById", ReplyAction="http://tempuri.org/IGetService/GetCategoryByIdResponse")]
+        System.Threading.Tasks.Task<AccountingBookData.AccountingBookServiceReference.CategoryDto> GetCategoryByIdAsync(int categoryId);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IGetService/GetSubjectsByNameCategoryIdAndStateId", ReplyAction="http://tempuri.org/IGetService/GetSubjectsByNameCategoryIdAndStateIdResponse")]
         [System.ServiceModel.FaultContractAttribute(typeof(AccountingBookData.AccountingBookServiceReference.ServiceFault), Action="http://tempuri.org/IGetService/GetSubjectsByNameCategoryIdAndStateIdServiceFaultF" +
@@ -1019,6 +1035,14 @@ namespace AccountingBookData.AccountingBookServiceReference {
             return base.Channel.GetCategoriesAsync();
         }
         
+        public AccountingBookData.AccountingBookServiceReference.CategoryDto[] GetCategoriesBesidesCurrent(int categoryId) {
+            return base.Channel.GetCategoriesBesidesCurrent(categoryId);
+        }
+        
+        public System.Threading.Tasks.Task<AccountingBookData.AccountingBookServiceReference.CategoryDto[]> GetCategoriesBesidesCurrentAsync(int categoryId) {
+            return base.Channel.GetCategoriesBesidesCurrentAsync(categoryId);
+        }
+        
         public AccountingBookData.AccountingBookServiceReference.SubjectDetailsDto[] GetSubjectsByCategoryId(System.Nullable<int> categoryId) {
             return base.Channel.GetSubjectsByCategoryId(categoryId);
         }
@@ -1065,6 +1089,14 @@ namespace AccountingBookData.AccountingBookServiceReference {
         
         public System.Threading.Tasks.Task<AccountingBookData.AccountingBookServiceReference.CategoryDto[]> GetCategoriesByNameAsync(string categoryName) {
             return base.Channel.GetCategoriesByNameAsync(categoryName);
+        }
+        
+        public AccountingBookData.AccountingBookServiceReference.CategoryDto GetCategoryById(int categoryId) {
+            return base.Channel.GetCategoryById(categoryId);
+        }
+        
+        public System.Threading.Tasks.Task<AccountingBookData.AccountingBookServiceReference.CategoryDto> GetCategoryByIdAsync(int categoryId) {
+            return base.Channel.GetCategoryByIdAsync(categoryId);
         }
         
         public AccountingBookData.AccountingBookServiceReference.SubjectDetailsDto[] GetSubjectsByNameCategoryIdAndStateId(System.Nullable<int> categoryId, System.Nullable<int> stateId, string subjectName) {
@@ -1199,6 +1231,14 @@ namespace AccountingBookData.AccountingBookServiceReference {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAddService/AddState", ReplyAction="http://tempuri.org/IAddService/AddStateResponse")]
         System.Threading.Tasks.Task AddStateAsync(string stateName);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAddService/AddCategory", ReplyAction="http://tempuri.org/IAddService/AddCategoryResponse")]
+        [System.ServiceModel.FaultContractAttribute(typeof(AccountingBookData.AccountingBookServiceReference.ServiceFault), Action="http://tempuri.org/IAddService/AddCategoryServiceFaultFault", Name="ServiceFault", Namespace="http://schemas.datacontract.org/2004/07/AccountingBookService.Contracts.Models.Dt" +
+            "oException")]
+        void AddCategory(System.Nullable<int> pid, string categoryName);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAddService/AddCategory", ReplyAction="http://tempuri.org/IAddService/AddCategoryResponse")]
+        System.Threading.Tasks.Task AddCategoryAsync(System.Nullable<int> pid, string categoryName);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -1259,6 +1299,14 @@ namespace AccountingBookData.AccountingBookServiceReference {
         public System.Threading.Tasks.Task AddStateAsync(string stateName) {
             return base.Channel.AddStateAsync(stateName);
         }
+        
+        public void AddCategory(System.Nullable<int> pid, string categoryName) {
+            base.Channel.AddCategory(pid, categoryName);
+        }
+        
+        public System.Threading.Tasks.Task AddCategoryAsync(System.Nullable<int> pid, string categoryName) {
+            return base.Channel.AddCategoryAsync(pid, categoryName);
+        }
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -1304,6 +1352,14 @@ namespace AccountingBookData.AccountingBookServiceReference {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEditService/EditStateById", ReplyAction="http://tempuri.org/IEditService/EditStateByIdResponse")]
         System.Threading.Tasks.Task EditStateByIdAsync(int stateId, string stateName);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEditService/EditCategoryById", ReplyAction="http://tempuri.org/IEditService/EditCategoryByIdResponse")]
+        [System.ServiceModel.FaultContractAttribute(typeof(AccountingBookData.AccountingBookServiceReference.ServiceFault), Action="http://tempuri.org/IEditService/EditCategoryByIdServiceFaultFault", Name="ServiceFault", Namespace="http://schemas.datacontract.org/2004/07/AccountingBookService.Contracts.Models.Dt" +
+            "oException")]
+        void EditCategoryById(int categoryId, System.Nullable<int> pid, string categoryName);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEditService/EditCategoryById", ReplyAction="http://tempuri.org/IEditService/EditCategoryByIdResponse")]
+        System.Threading.Tasks.Task EditCategoryByIdAsync(int categoryId, System.Nullable<int> pid, string categoryName);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -1372,6 +1428,14 @@ namespace AccountingBookData.AccountingBookServiceReference {
         public System.Threading.Tasks.Task EditStateByIdAsync(int stateId, string stateName) {
             return base.Channel.EditStateByIdAsync(stateId, stateName);
         }
+        
+        public void EditCategoryById(int categoryId, System.Nullable<int> pid, string categoryName) {
+            base.Channel.EditCategoryById(categoryId, pid, categoryName);
+        }
+        
+        public System.Threading.Tasks.Task EditCategoryByIdAsync(int categoryId, System.Nullable<int> pid, string categoryName) {
+            return base.Channel.EditCategoryByIdAsync(categoryId, pid, categoryName);
+        }
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -1410,6 +1474,14 @@ namespace AccountingBookData.AccountingBookServiceReference {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDeleteService/DeleteStateById", ReplyAction="http://tempuri.org/IDeleteService/DeleteStateByIdResponse")]
         System.Threading.Tasks.Task DeleteStateByIdAsync(int stateId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDeleteService/DeleteCategoryById", ReplyAction="http://tempuri.org/IDeleteService/DeleteCategoryByIdResponse")]
+        [System.ServiceModel.FaultContractAttribute(typeof(AccountingBookData.AccountingBookServiceReference.ServiceFault), Action="http://tempuri.org/IDeleteService/DeleteCategoryByIdServiceFaultFault", Name="ServiceFault", Namespace="http://schemas.datacontract.org/2004/07/AccountingBookService.Contracts.Models.Dt" +
+            "oException")]
+        void DeleteCategoryById(int categoryId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDeleteService/DeleteCategoryById", ReplyAction="http://tempuri.org/IDeleteService/DeleteCategoryByIdResponse")]
+        System.Threading.Tasks.Task DeleteCategoryByIdAsync(int categoryId);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -1469,6 +1541,14 @@ namespace AccountingBookData.AccountingBookServiceReference {
         
         public System.Threading.Tasks.Task DeleteStateByIdAsync(int stateId) {
             return base.Channel.DeleteStateByIdAsync(stateId);
+        }
+        
+        public void DeleteCategoryById(int categoryId) {
+            base.Channel.DeleteCategoryById(categoryId);
+        }
+        
+        public System.Threading.Tasks.Task DeleteCategoryByIdAsync(int categoryId) {
+            return base.Channel.DeleteCategoryByIdAsync(categoryId);
         }
     }
     

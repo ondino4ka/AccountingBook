@@ -22,5 +22,9 @@ namespace AccountingBookService.Contracts.Contracts.Interface
         [OperationContract]
         [FaultContract(typeof(ServiceFault))]
         void AddState(string stateName);
+
+        [OperationContract]
+        [FaultContract(typeof(ServiceFault))]
+        void AddCategory(int? pid, string categoryName);
     }
 }

@@ -70,6 +70,8 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Container\BlRegistry.cs" />
+    <Compile Include="Operations\CategoryOperation.cs" />
+    <Compile Include="Operations\ICategoryOperation.cs" />
     <Compile Include="Operations\ILocationOperation.cs" />
     <Compile Include="Operations\IStateOperation.cs" />
     <Compile Include="Operations\ISubjectOperation.cs" />

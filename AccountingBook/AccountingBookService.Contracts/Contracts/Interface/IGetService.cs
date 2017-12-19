@@ -14,6 +14,10 @@ namespace AccountingBookService.Contracts.Contracts.Interface
 
         [OperationContract]
         [FaultContract(typeof(ServiceFault))]
+        List<CategoryDto> GetCategoriesBesidesCurrent(int categoryId);
+
+        [OperationContract]
+        [FaultContract(typeof(ServiceFault))]
         List<SubjectDetailsDto> GetSubjectsByCategoryId(int? categoryId);
 
         [OperationContract]
@@ -35,6 +39,10 @@ namespace AccountingBookService.Contracts.Contracts.Interface
         [OperationContract]
         [FaultContract(typeof(ServiceFault))]
         List<CategoryDto> GetCategoriesByName(string categoryName);
+
+        [OperationContract]
+        [FaultContract(typeof(ServiceFault))]
+        CategoryDto GetCategoryById(int categoryId);
 
         [OperationContract]
         [FaultContract(typeof(ServiceFault))]

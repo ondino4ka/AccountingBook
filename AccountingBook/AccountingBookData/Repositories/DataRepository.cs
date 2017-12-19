@@ -13,12 +13,6 @@ namespace AccountingBookData.Repositories
             _client = client;
         }
 
-        public IReadOnlyList<Category> GetCategories()
-        {
-            return _client.GetCategories();
-        }
-
-
         public IReadOnlyList<SubjectDetails> GetSubjectsByCategoryId(int? categoryId)
         {
             return _client.GetSubjectsByCategoryId(categoryId);
@@ -44,16 +38,43 @@ namespace AccountingBookData.Repositories
             return _client.IsExistsUser(userId, userName);
         }
 
+
+        #region Category Operation
+
+        public IReadOnlyList<Category> GetCategories()
+        {
+            return _client.GetCategories();
+        }
+        public Category GetCategoryById(int categoryId)
+        {
+            return _client.GetCategoryById(categoryId);
+        }
+
+        public IReadOnlyList<Category> GetCategoriesBesidesCurrent(int categoryId)
+        {
+            return _client.GetCategoriesBesidesCurrent(categoryId);
+        }
+
         public IReadOnlyCollection<Category> GetCategoriesByName(string categoryName)
         {
             return _client.GetCategoriesByName(categoryName);
         }
 
-        public IReadOnlyCollection<SubjectDetails> GetSubjectsByNameCategoryIdAndStateId(int? categoryId, int? stateId, string subjectName)
+        public void AddCategory(int? pid, string categoryName)
         {
-            return _client.GetSubjectsByNameCategoryIdAndStateId(categoryId, stateId, subjectName);
+            _client.AddCategory(pid, categoryName);
         }
 
+        public void EditCategoryById(int categoryId, int? pid, string categoryName)
+        {
+            _client.EditCategoryById(categoryId, pid, categoryName);
+        }
+
+        public void DeleteCategoryById(int categoryId)
+        {
+            _client.DeleteCategoryById(categoryId);
+        }
+        #endregion
 
         #region State Operation
         public IReadOnlyCollection<State> GetStates()
@@ -156,7 +177,6 @@ namespace AccountingBookData.Repositories
             _client.AddSubject(subject);
         }
 
-
         public void EditSubjectInformation(Subject subject)
         {
             _client.EditSubjectInformation(subject);
@@ -165,6 +185,11 @@ namespace AccountingBookData.Repositories
         public void DeleteSubjectByInventoryNumber(int inventoryNumber)
         {
             _client.DeleteSubjectByInventoruNumber(inventoryNumber);
+        }
+
+        public IReadOnlyCollection<SubjectDetails> GetSubjectsByNameCategoryIdAndStateId(int? categoryId, int? stateId, string subjectName)
+        {
+            return _client.GetSubjectsByNameCategoryIdAndStateId(categoryId, stateId, subjectName);
         }
         #endregion
 

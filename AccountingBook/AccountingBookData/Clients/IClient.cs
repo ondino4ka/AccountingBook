@@ -6,14 +6,21 @@ namespace AccountingBookData.Clients
 {
     public interface IClient
     {
-        IReadOnlyList<Category> GetCategories();
         IReadOnlyList<SubjectDetails> GetSubjectsByCategoryId(int? categoryId);
         SubjectDetails GetSubjectInformationByInventoryNumber(int inventoryNumber);
         UserAuthorization GetUserByName(string userName);
         bool IsValidUser(string userName, string password);
-        IReadOnlyCollection<Category> GetCategoriesByName(string categoryName);
-        IReadOnlyCollection<SubjectDetails> GetSubjectsByNameCategoryIdAndStateId(int? categoryId, int? stateId, string subjectName);
 
+
+        #region Categories Operations
+        IReadOnlyList<Category> GetCategories();
+        IReadOnlyList<Category> GetCategoriesBesidesCurrent(int categoryId);
+        IReadOnlyCollection<Category> GetCategoriesByName(string categoryName);
+        Category GetCategoryById(int categoryId);
+        void AddCategory(int? pid, string categoryName);
+        void EditCategoryById(int categoryId, int? pid, string categoryName);      
+        void DeleteCategoryById(int categoryId);
+        #endregion
 
         #region State Opearations
         IReadOnlyCollection<State> GetStates();
@@ -40,6 +47,7 @@ namespace AccountingBookData.Clients
         void EditSubjectInformation(Subject subject);
         void EditSubjectPhoto(int inventoryNumber, string photo);
         void DeleteSubjectByInventoruNumber(int inventoryNumber);
+        IReadOnlyCollection<SubjectDetails> GetSubjectsByNameCategoryIdAndStateId(int? categoryId, int? stateId, string subjectName);
         #endregion
 
         #region Location Operations

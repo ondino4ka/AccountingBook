@@ -5,14 +5,21 @@ namespace AccountingBookData.Repositories
 {
     public interface IDataRepository
     {
-        IReadOnlyList<Category> GetCategories();
         IReadOnlyList<SubjectDetails> GetSubjectsByCategoryId(int? categoryId);
         SubjectDetails GetSubjectInformationByInventoryNumber(int inventoryNumber);
         UserAuthorization GetUserByName(string userName);
         bool IsValidUser(string userName, string password);
-        IReadOnlyCollection<Category> GetCategoriesByName(string category);
-        IReadOnlyCollection<SubjectDetails> GetSubjectsByNameCategoryIdAndStateId(int? categoryId, int? stateId, string subjectName);
 
+
+        #region Category Operations
+        IReadOnlyList<Category> GetCategories();
+        IReadOnlyList<Category> GetCategoriesBesidesCurrent(int categoryId);
+        IReadOnlyCollection<Category> GetCategoriesByName(string category);
+        Category GetCategoryById(int categoryId);
+        void AddCategory(int? pid, string categoryName);
+        void EditCategoryById(int categoryId, int? pid, string categoryName);
+        void DeleteCategoryById(int categoryId);
+        #endregion
 
         #region State Operations
         IReadOnlyCollection<State> GetStates();
@@ -49,6 +56,7 @@ namespace AccountingBookData.Repositories
         void EditSubjectInformation(Subject subject);
         void EditSubjectPhoto(int inventoryNumber, string photo);
         void DeleteSubjectByInventoryNumber(int inventoryNumber);
+        IReadOnlyCollection<SubjectDetails> GetSubjectsByNameCategoryIdAndStateId(int? categoryId, int? stateId, string subjectName);
         #endregion
 
         #region File Operations
