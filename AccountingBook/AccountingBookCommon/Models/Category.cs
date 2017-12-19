@@ -1,11 +1,10 @@
-﻿using System.Collections.Generic;
-
-namespace AccountingBookCommon
+﻿
+namespace AccountingBookCommon.Models
 {
   public class Category
     {
         public int Id { get; set; }
+        public int? Pid { get; set; }
         public string Name { get; set; }
-        public List<SubCategory> SubCategories { get; set; }
     }
 }

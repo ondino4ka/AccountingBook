@@ -1,80 +1,88 @@
-﻿@model AccountingBookCommon.SubjectDetails
+﻿@model AccountingBookCommon.Models.SubjectDetails
 
-<h2>Detailed view</h2>
-
-<div>
-    <h4>Subject - @Model.Name</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>
-            @Html.DisplayNameFor(model => model.InventoryNumber)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.InventoryNumber)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Name)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Name)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Location)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Location)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.State)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.State)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Category)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Category)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.SubCategory)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.SubCategory)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Description)
-        </dt>
-
-        <dd>
-            @Html.DisplayFor(model => model.Description)
-        </dd>
-
-        <dt>
-            @Html.DisplayNameFor(model => model.Photo)
-        </dt>
-
-        <dd>
-            @if (!string.IsNullOrEmpty(Model.Photo))
+<div class="col-sm-6 col-md-4">
+    @if (Model != null)
+    {
+        <h2>Detailed view</h2>
+        <div>
+            <h4>Subject - @Model.Name</h4>
+            @if (HttpContext.Current.User.IsInRole("Admin") || HttpContext.Current.User.IsInRole("Edit"))
             {
-                <img src="~/Content/Images/@Model.Photo" alt="Image">
+                <div class="btn-group">
+                    <button onclick="window.location = '@Url.Action("EditSubjectInformation", "Subject", new { inventoryNumber = Model.InventoryNumber })'" type="button" class="btn btn-warning">Edit information</button>
+                    <button onclick="window.location = '@Url.Action("EditSubjectPhoto", "Subject", new { inventoryNumber = Model.InventoryNumber })'" type="button" class="btn btn-warning">Edit photo</button>
+                    <button onclick="window.location = '@Url.Action("DeleteSubject", "Subject", new { inventoryNumber = Model.InventoryNumber })'" type="button" class="btn btn-danger">Delete</button>
+                </div>
             }
-            else
-            {
-                <p>-</p>
-            }
-        </dd>
-    </dl>
+            <hr />
+            <dl class="dl-horizontal">
+                <dt>
+                    @Html.DisplayNameFor(model => model.InventoryNumber)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.InventoryNumber)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.Name)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Name)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.Location)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Location)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.State)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.State)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.Category)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Category)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.Description)
+                </dt>
+
+                <dd>
+                    @Html.DisplayFor(model => model.Description)
+                </dd>
+
+                <dt>
+                    @Html.DisplayNameFor(model => model.Photo)
+                </dt>
+
+                <dd>
+                    @if (!string.IsNullOrEmpty(Model.Photo))
+                    {
+                        <img src="/Subject/GetImageSubject/?name=@Model.Photo" alt="Image">
+                    }
+                    else
+                    {
+                        <p>-</p>
+                    }
+                </dd>
+            </dl>
+        </div>
+    }
+    else
+    {
+        @ViewBag.Error;
+    }
 </div>

@@ -30,7 +30,7 @@ namespace AccountingBookData.AccountingBookServiceReference {
         private string NameField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private AccountingBookData.AccountingBookServiceReference.SubCategoryDto[] SubCategoriesField;
+        private System.Nullable<int> PidField;
         
         [global::System.ComponentModel.BrowsableAttribute(false)]
         public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
@@ -69,14 +69,14 @@ namespace AccountingBookData.AccountingBookServiceReference {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public AccountingBookData.AccountingBookServiceReference.SubCategoryDto[] SubCategories {
+        public System.Nullable<int> Pid {
             get {
-                return this.SubCategoriesField;
+                return this.PidField;
             }
             set {
-                if ((object.ReferenceEquals(this.SubCategoriesField, value) != true)) {
-                    this.SubCategoriesField = value;
-                    this.RaisePropertyChanged("SubCategories");
+                if ((this.PidField.Equals(value) != true)) {
+                    this.PidField = value;
+                    this.RaisePropertyChanged("Pid");
                 }
             }
         }
@@ -93,22 +93,16 @@ namespace AccountingBookData.AccountingBookServiceReference {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="SubCategoryDto", Namespace="http://schemas.datacontract.org/2004/07/AccountingBookService.Contracts.Models.Dt" +
-        "o")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="ServiceFault", Namespace="http://schemas.datacontract.org/2004/07/AccountingBookService.Contracts.Models.Dt" +
+        "oException")]
     [System.SerializableAttribute()]
-    public partial class SubCategoryDto : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+    public partial class ServiceFault : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
         
         [System.NonSerializedAttribute()]
         private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private int IdField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private int IdCategoryField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string NameField;
+        private string ErrorMessageField;
         
         [global::System.ComponentModel.BrowsableAttribute(false)]
         public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
@@ -121,40 +115,14 @@ namespace AccountingBookData.AccountingBookServiceReference {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public int Id {
+        public string ErrorMessage {
             get {
-                return this.IdField;
+                return this.ErrorMessageField;
             }
             set {
-                if ((this.IdField.Equals(value) != true)) {
-                    this.IdField = value;
-                    this.RaisePropertyChanged("Id");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public int IdCategory {
-            get {
-                return this.IdCategoryField;
-            }
-            set {
-                if ((this.IdCategoryField.Equals(value) != true)) {
-                    this.IdCategoryField = value;
-                    this.RaisePropertyChanged("IdCategory");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string Name {
-            get {
-                return this.NameField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.NameField, value) != true)) {
-                    this.NameField = value;
-                    this.RaisePropertyChanged("Name");
+                if ((object.ReferenceEquals(this.ErrorMessageField, value) != true)) {
+                    this.ErrorMessageField = value;
+                    this.RaisePropertyChanged("ErrorMessage");
                 }
             }
         }
@@ -199,9 +167,6 @@ namespace AccountingBookData.AccountingBookServiceReference {
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string StateField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private string SubCategoryField;
         
         [global::System.ComponentModel.BrowsableAttribute(false)]
         public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
@@ -304,15 +269,548 @@ namespace AccountingBookData.AccountingBookServiceReference {
             }
         }
         
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public string SubCategory {
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="UserAuthorizationDto", Namespace="http://schemas.datacontract.org/2004/07/AccountingBookService.Contracts.Models.Dt" +
+        "o")]
+    [System.SerializableAttribute()]
+    public partial class UserAuthorizationDto : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string NameField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private AccountingBookData.AccountingBookServiceReference.RoleAuthorizationDto[] RolesField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
             get {
-                return this.SubCategoryField;
+                return this.extensionDataField;
             }
             set {
-                if ((object.ReferenceEquals(this.SubCategoryField, value) != true)) {
-                    this.SubCategoryField = value;
-                    this.RaisePropertyChanged("SubCategory");
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Name {
+            get {
+                return this.NameField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.NameField, value) != true)) {
+                    this.NameField = value;
+                    this.RaisePropertyChanged("Name");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public AccountingBookData.AccountingBookServiceReference.RoleAuthorizationDto[] Roles {
+            get {
+                return this.RolesField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.RolesField, value) != true)) {
+                    this.RolesField = value;
+                    this.RaisePropertyChanged("Roles");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="RoleAuthorizationDto", Namespace="http://schemas.datacontract.org/2004/07/AccountingBookService.Contracts.Models.Dt" +
+        "o")]
+    [System.SerializableAttribute()]
+    public partial class RoleAuthorizationDto : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string RoleNameField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string RoleName {
+            get {
+                return this.RoleNameField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.RoleNameField, value) != true)) {
+                    this.RoleNameField = value;
+                    this.RaisePropertyChanged("RoleName");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="StateDto", Namespace="http://schemas.datacontract.org/2004/07/AccountingBookService.Contracts.Models.Dt" +
+        "o")]
+    [System.SerializableAttribute()]
+    public partial class StateDto : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int IdField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string StateNameField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int Id {
+            get {
+                return this.IdField;
+            }
+            set {
+                if ((this.IdField.Equals(value) != true)) {
+                    this.IdField = value;
+                    this.RaisePropertyChanged("Id");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string StateName {
+            get {
+                return this.StateNameField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.StateNameField, value) != true)) {
+                    this.StateNameField = value;
+                    this.RaisePropertyChanged("StateName");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="RoleDto", Namespace="http://schemas.datacontract.org/2004/07/AccountingBookService.Contracts.Models.Dt" +
+        "o")]
+    [System.SerializableAttribute()]
+    public partial class RoleDto : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int IdField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string NameField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int Id {
+            get {
+                return this.IdField;
+            }
+            set {
+                if ((this.IdField.Equals(value) != true)) {
+                    this.IdField = value;
+                    this.RaisePropertyChanged("Id");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Name {
+            get {
+                return this.NameField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.NameField, value) != true)) {
+                    this.NameField = value;
+                    this.RaisePropertyChanged("Name");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="UserDto", Namespace="http://schemas.datacontract.org/2004/07/AccountingBookService.Contracts.Models.Dt" +
+        "o")]
+    [System.SerializableAttribute()]
+    public partial class UserDto : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string EmailField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int IdField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string NameField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string PasswordField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int[] RolesField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Email {
+            get {
+                return this.EmailField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.EmailField, value) != true)) {
+                    this.EmailField = value;
+                    this.RaisePropertyChanged("Email");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int Id {
+            get {
+                return this.IdField;
+            }
+            set {
+                if ((this.IdField.Equals(value) != true)) {
+                    this.IdField = value;
+                    this.RaisePropertyChanged("Id");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Name {
+            get {
+                return this.NameField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.NameField, value) != true)) {
+                    this.NameField = value;
+                    this.RaisePropertyChanged("Name");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Password {
+            get {
+                return this.PasswordField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.PasswordField, value) != true)) {
+                    this.PasswordField = value;
+                    this.RaisePropertyChanged("Password");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int[] Roles {
+            get {
+                return this.RolesField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.RolesField, value) != true)) {
+                    this.RolesField = value;
+                    this.RaisePropertyChanged("Roles");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="LocationDto", Namespace="http://schemas.datacontract.org/2004/07/AccountingBookService.Contracts.Models.Dt" +
+        "o")]
+    [System.SerializableAttribute()]
+    public partial class LocationDto : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string AddressField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int IdField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Address {
+            get {
+                return this.AddressField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.AddressField, value) != true)) {
+                    this.AddressField = value;
+                    this.RaisePropertyChanged("Address");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int Id {
+            get {
+                return this.IdField;
+            }
+            set {
+                if ((this.IdField.Equals(value) != true)) {
+                    this.IdField = value;
+                    this.RaisePropertyChanged("Id");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="SubjectDto", Namespace="http://schemas.datacontract.org/2004/07/AccountingBookService.Contracts.Models.Dt" +
+        "o")]
+    [System.SerializableAttribute()]
+    public partial class SubjectDto : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<int> CategoryIdField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string DescriptionField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private int InventoryNumberField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<int> LocationIdField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string NameField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private string PhotoField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<int> StateIdField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<int> CategoryId {
+            get {
+                return this.CategoryIdField;
+            }
+            set {
+                if ((this.CategoryIdField.Equals(value) != true)) {
+                    this.CategoryIdField = value;
+                    this.RaisePropertyChanged("CategoryId");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Description {
+            get {
+                return this.DescriptionField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.DescriptionField, value) != true)) {
+                    this.DescriptionField = value;
+                    this.RaisePropertyChanged("Description");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public int InventoryNumber {
+            get {
+                return this.InventoryNumberField;
+            }
+            set {
+                if ((this.InventoryNumberField.Equals(value) != true)) {
+                    this.InventoryNumberField = value;
+                    this.RaisePropertyChanged("InventoryNumber");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<int> LocationId {
+            get {
+                return this.LocationIdField;
+            }
+            set {
+                if ((this.LocationIdField.Equals(value) != true)) {
+                    this.LocationIdField = value;
+                    this.RaisePropertyChanged("LocationId");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Name {
+            get {
+                return this.NameField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.NameField, value) != true)) {
+                    this.NameField = value;
+                    this.RaisePropertyChanged("Name");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public string Photo {
+            get {
+                return this.PhotoField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.PhotoField, value) != true)) {
+                    this.PhotoField = value;
+                    this.RaisePropertyChanged("Photo");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<int> StateId {
+            get {
+                return this.StateIdField;
+            }
+            set {
+                if ((this.StateIdField.Equals(value) != true)) {
+                    this.StateIdField = value;
+                    this.RaisePropertyChanged("StateId");
                 }
             }
         }
@@ -328,66 +826,204 @@ namespace AccountingBookData.AccountingBookServiceReference {
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    [System.ServiceModel.ServiceContractAttribute(ConfigurationName="AccountingBookServiceReference.IAccountingBookService")]
-    public interface IAccountingBookService {
+    [System.ServiceModel.ServiceContractAttribute(ConfigurationName="AccountingBookServiceReference.IGetService")]
+    public interface IGetService {
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAccountingBookService/GetCategories", ReplyAction="http://tempuri.org/IAccountingBookService/GetCategoriesResponse")]
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IGetService/GetCategories", ReplyAction="http://tempuri.org/IGetService/GetCategoriesResponse")]
+        [System.ServiceModel.FaultContractAttribute(typeof(AccountingBookData.AccountingBookServiceReference.ServiceFault), Action="http://tempuri.org/IGetService/GetCategoriesServiceFaultFault", Name="ServiceFault", Namespace="http://schemas.datacontract.org/2004/07/AccountingBookService.Contracts.Models.Dt" +
+            "oException")]
         AccountingBookData.AccountingBookServiceReference.CategoryDto[] GetCategories();
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAccountingBookService/GetCategories", ReplyAction="http://tempuri.org/IAccountingBookService/GetCategoriesResponse")]
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IGetService/GetCategories", ReplyAction="http://tempuri.org/IGetService/GetCategoriesResponse")]
         System.Threading.Tasks.Task<AccountingBookData.AccountingBookServiceReference.CategoryDto[]> GetCategoriesAsync();
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAccountingBookService/GetSubCategories", ReplyAction="http://tempuri.org/IAccountingBookService/GetSubCategoriesResponse")]
-        AccountingBookData.AccountingBookServiceReference.SubCategoryDto[] GetSubCategories();
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IGetService/GetCategoriesBesidesCurrent", ReplyAction="http://tempuri.org/IGetService/GetCategoriesBesidesCurrentResponse")]
+        [System.ServiceModel.FaultContractAttribute(typeof(AccountingBookData.AccountingBookServiceReference.ServiceFault), Action="http://tempuri.org/IGetService/GetCategoriesBesidesCurrentServiceFaultFault", Name="ServiceFault", Namespace="http://schemas.datacontract.org/2004/07/AccountingBookService.Contracts.Models.Dt" +
+            "oException")]
+        AccountingBookData.AccountingBookServiceReference.CategoryDto[] GetCategoriesBesidesCurrent(int categoryId);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAccountingBookService/GetSubCategories", ReplyAction="http://tempuri.org/IAccountingBookService/GetSubCategoriesResponse")]
-        System.Threading.Tasks.Task<AccountingBookData.AccountingBookServiceReference.SubCategoryDto[]> GetSubCategoriesAsync();
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IGetService/GetCategoriesBesidesCurrent", ReplyAction="http://tempuri.org/IGetService/GetCategoriesBesidesCurrentResponse")]
+        System.Threading.Tasks.Task<AccountingBookData.AccountingBookServiceReference.CategoryDto[]> GetCategoriesBesidesCurrentAsync(int categoryId);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAccountingBookService/GetSubjects", ReplyAction="http://tempuri.org/IAccountingBookService/GetSubjectsResponse")]
-        AccountingBookData.AccountingBookServiceReference.SubjectDetailsDto[] GetSubjects();
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IGetService/GetSubjectsByCategoryId", ReplyAction="http://tempuri.org/IGetService/GetSubjectsByCategoryIdResponse")]
+        [System.ServiceModel.FaultContractAttribute(typeof(AccountingBookData.AccountingBookServiceReference.ServiceFault), Action="http://tempuri.org/IGetService/GetSubjectsByCategoryIdServiceFaultFault", Name="ServiceFault", Namespace="http://schemas.datacontract.org/2004/07/AccountingBookService.Contracts.Models.Dt" +
+            "oException")]
+        AccountingBookData.AccountingBookServiceReference.SubjectDetailsDto[] GetSubjectsByCategoryId(System.Nullable<int> categoryId);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAccountingBookService/GetSubjects", ReplyAction="http://tempuri.org/IAccountingBookService/GetSubjectsResponse")]
-        System.Threading.Tasks.Task<AccountingBookData.AccountingBookServiceReference.SubjectDetailsDto[]> GetSubjectsAsync();
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IGetService/GetSubjectsByCategoryId", ReplyAction="http://tempuri.org/IGetService/GetSubjectsByCategoryIdResponse")]
+        System.Threading.Tasks.Task<AccountingBookData.AccountingBookServiceReference.SubjectDetailsDto[]> GetSubjectsByCategoryIdAsync(System.Nullable<int> categoryId);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAccountingBookService/GetSubjectsByCategoryOrSubCategoryId", ReplyAction="http://tempuri.org/IAccountingBookService/GetSubjectsByCategoryOrSubCategoryIdRes" +
-            "ponse")]
-        AccountingBookData.AccountingBookServiceReference.SubjectDetailsDto[] GetSubjectsByCategoryOrSubCategoryId(int id, bool isCategory);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IGetService/GetSubjectInformationByInventoryNumber", ReplyAction="http://tempuri.org/IGetService/GetSubjectInformationByInventoryNumberResponse")]
+        [System.ServiceModel.FaultContractAttribute(typeof(AccountingBookData.AccountingBookServiceReference.ServiceFault), Action="http://tempuri.org/IGetService/GetSubjectInformationByInventoryNumberServiceFault" +
+            "Fault", Name="ServiceFault", Namespace="http://schemas.datacontract.org/2004/07/AccountingBookService.Contracts.Models.Dt" +
+            "oException")]
+        AccountingBookData.AccountingBookServiceReference.SubjectDetailsDto GetSubjectInformationByInventoryNumber(int inventoryNumber);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAccountingBookService/GetSubjectsByCategoryOrSubCategoryId", ReplyAction="http://tempuri.org/IAccountingBookService/GetSubjectsByCategoryOrSubCategoryIdRes" +
-            "ponse")]
-        System.Threading.Tasks.Task<AccountingBookData.AccountingBookServiceReference.SubjectDetailsDto[]> GetSubjectsByCategoryOrSubCategoryIdAsync(int id, bool isCategory);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IGetService/GetSubjectInformationByInventoryNumber", ReplyAction="http://tempuri.org/IGetService/GetSubjectInformationByInventoryNumberResponse")]
+        System.Threading.Tasks.Task<AccountingBookData.AccountingBookServiceReference.SubjectDetailsDto> GetSubjectInformationByInventoryNumberAsync(int inventoryNumber);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAccountingBookService/GetSubjectInformationById", ReplyAction="http://tempuri.org/IAccountingBookService/GetSubjectInformationByIdResponse")]
-        AccountingBookData.AccountingBookServiceReference.SubjectDetailsDto GetSubjectInformationById(int inventoryNumber);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IGetService/GetUserAuthorizationByName", ReplyAction="http://tempuri.org/IGetService/GetUserAuthorizationByNameResponse")]
+        [System.ServiceModel.FaultContractAttribute(typeof(AccountingBookData.AccountingBookServiceReference.ServiceFault), Action="http://tempuri.org/IGetService/GetUserAuthorizationByNameServiceFaultFault", Name="ServiceFault", Namespace="http://schemas.datacontract.org/2004/07/AccountingBookService.Contracts.Models.Dt" +
+            "oException")]
+        AccountingBookData.AccountingBookServiceReference.UserAuthorizationDto GetUserAuthorizationByName(string userName);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAccountingBookService/GetSubjectInformationById", ReplyAction="http://tempuri.org/IAccountingBookService/GetSubjectInformationByIdResponse")]
-        System.Threading.Tasks.Task<AccountingBookData.AccountingBookServiceReference.SubjectDetailsDto> GetSubjectInformationByIdAsync(int inventoryNumber);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IGetService/GetUserAuthorizationByName", ReplyAction="http://tempuri.org/IGetService/GetUserAuthorizationByNameResponse")]
+        System.Threading.Tasks.Task<AccountingBookData.AccountingBookServiceReference.UserAuthorizationDto> GetUserAuthorizationByNameAsync(string userName);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IGetService/IsValidUser", ReplyAction="http://tempuri.org/IGetService/IsValidUserResponse")]
+        [System.ServiceModel.FaultContractAttribute(typeof(AccountingBookData.AccountingBookServiceReference.ServiceFault), Action="http://tempuri.org/IGetService/IsValidUserServiceFaultFault", Name="ServiceFault", Namespace="http://schemas.datacontract.org/2004/07/AccountingBookService.Contracts.Models.Dt" +
+            "oException")]
+        bool IsValidUser(string userName, string password);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IGetService/IsValidUser", ReplyAction="http://tempuri.org/IGetService/IsValidUserResponse")]
+        System.Threading.Tasks.Task<bool> IsValidUserAsync(string userName, string password);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IGetService/GetRolesAuthorizationByUserId", ReplyAction="http://tempuri.org/IGetService/GetRolesAuthorizationByUserIdResponse")]
+        [System.ServiceModel.FaultContractAttribute(typeof(AccountingBookData.AccountingBookServiceReference.ServiceFault), Action="http://tempuri.org/IGetService/GetRolesAuthorizationByUserIdServiceFaultFault", Name="ServiceFault", Namespace="http://schemas.datacontract.org/2004/07/AccountingBookService.Contracts.Models.Dt" +
+            "oException")]
+        AccountingBookData.AccountingBookServiceReference.RoleAuthorizationDto[] GetRolesAuthorizationByUserId(int userId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IGetService/GetRolesAuthorizationByUserId", ReplyAction="http://tempuri.org/IGetService/GetRolesAuthorizationByUserIdResponse")]
+        System.Threading.Tasks.Task<AccountingBookData.AccountingBookServiceReference.RoleAuthorizationDto[]> GetRolesAuthorizationByUserIdAsync(int userId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IGetService/GetCategoriesByName", ReplyAction="http://tempuri.org/IGetService/GetCategoriesByNameResponse")]
+        [System.ServiceModel.FaultContractAttribute(typeof(AccountingBookData.AccountingBookServiceReference.ServiceFault), Action="http://tempuri.org/IGetService/GetCategoriesByNameServiceFaultFault", Name="ServiceFault", Namespace="http://schemas.datacontract.org/2004/07/AccountingBookService.Contracts.Models.Dt" +
+            "oException")]
+        AccountingBookData.AccountingBookServiceReference.CategoryDto[] GetCategoriesByName(string categoryName);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IGetService/GetCategoriesByName", ReplyAction="http://tempuri.org/IGetService/GetCategoriesByNameResponse")]
+        System.Threading.Tasks.Task<AccountingBookData.AccountingBookServiceReference.CategoryDto[]> GetCategoriesByNameAsync(string categoryName);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IGetService/GetCategoryById", ReplyAction="http://tempuri.org/IGetService/GetCategoryByIdResponse")]
+        [System.ServiceModel.FaultContractAttribute(typeof(AccountingBookData.AccountingBookServiceReference.ServiceFault), Action="http://tempuri.org/IGetService/GetCategoryByIdServiceFaultFault", Name="ServiceFault", Namespace="http://schemas.datacontract.org/2004/07/AccountingBookService.Contracts.Models.Dt" +
+            "oException")]
+        AccountingBookData.AccountingBookServiceReference.CategoryDto GetCategoryById(int categoryId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IGetService/GetCategoryById", ReplyAction="http://tempuri.org/IGetService/GetCategoryByIdResponse")]
+        System.Threading.Tasks.Task<AccountingBookData.AccountingBookServiceReference.CategoryDto> GetCategoryByIdAsync(int categoryId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IGetService/GetSubjectsByNameCategoryIdAndStateId", ReplyAction="http://tempuri.org/IGetService/GetSubjectsByNameCategoryIdAndStateIdResponse")]
+        [System.ServiceModel.FaultContractAttribute(typeof(AccountingBookData.AccountingBookServiceReference.ServiceFault), Action="http://tempuri.org/IGetService/GetSubjectsByNameCategoryIdAndStateIdServiceFaultF" +
+            "ault", Name="ServiceFault", Namespace="http://schemas.datacontract.org/2004/07/AccountingBookService.Contracts.Models.Dt" +
+            "oException")]
+        AccountingBookData.AccountingBookServiceReference.SubjectDetailsDto[] GetSubjectsByNameCategoryIdAndStateId(System.Nullable<int> categoryId, System.Nullable<int> stateId, string subjectName);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IGetService/GetSubjectsByNameCategoryIdAndStateId", ReplyAction="http://tempuri.org/IGetService/GetSubjectsByNameCategoryIdAndStateIdResponse")]
+        System.Threading.Tasks.Task<AccountingBookData.AccountingBookServiceReference.SubjectDetailsDto[]> GetSubjectsByNameCategoryIdAndStateIdAsync(System.Nullable<int> categoryId, System.Nullable<int> stateId, string subjectName);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IGetService/GetStates", ReplyAction="http://tempuri.org/IGetService/GetStatesResponse")]
+        [System.ServiceModel.FaultContractAttribute(typeof(AccountingBookData.AccountingBookServiceReference.ServiceFault), Action="http://tempuri.org/IGetService/GetStatesServiceFaultFault", Name="ServiceFault", Namespace="http://schemas.datacontract.org/2004/07/AccountingBookService.Contracts.Models.Dt" +
+            "oException")]
+        AccountingBookData.AccountingBookServiceReference.StateDto[] GetStates();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IGetService/GetStates", ReplyAction="http://tempuri.org/IGetService/GetStatesResponse")]
+        System.Threading.Tasks.Task<AccountingBookData.AccountingBookServiceReference.StateDto[]> GetStatesAsync();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IGetService/GetStateById", ReplyAction="http://tempuri.org/IGetService/GetStateByIdResponse")]
+        [System.ServiceModel.FaultContractAttribute(typeof(AccountingBookData.AccountingBookServiceReference.ServiceFault), Action="http://tempuri.org/IGetService/GetStateByIdServiceFaultFault", Name="ServiceFault", Namespace="http://schemas.datacontract.org/2004/07/AccountingBookService.Contracts.Models.Dt" +
+            "oException")]
+        AccountingBookData.AccountingBookServiceReference.StateDto GetStateById(int stateId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IGetService/GetStateById", ReplyAction="http://tempuri.org/IGetService/GetStateByIdResponse")]
+        System.Threading.Tasks.Task<AccountingBookData.AccountingBookServiceReference.StateDto> GetStateByIdAsync(int stateId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IGetService/IsExistsUser", ReplyAction="http://tempuri.org/IGetService/IsExistsUserResponse")]
+        [System.ServiceModel.FaultContractAttribute(typeof(AccountingBookData.AccountingBookServiceReference.ServiceFault), Action="http://tempuri.org/IGetService/IsExistsUserServiceFaultFault", Name="ServiceFault", Namespace="http://schemas.datacontract.org/2004/07/AccountingBookService.Contracts.Models.Dt" +
+            "oException")]
+        bool IsExistsUser(int userId, string userName);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IGetService/IsExistsUser", ReplyAction="http://tempuri.org/IGetService/IsExistsUserResponse")]
+        System.Threading.Tasks.Task<bool> IsExistsUserAsync(int userId, string userName);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IGetService/GetRoles", ReplyAction="http://tempuri.org/IGetService/GetRolesResponse")]
+        [System.ServiceModel.FaultContractAttribute(typeof(AccountingBookData.AccountingBookServiceReference.ServiceFault), Action="http://tempuri.org/IGetService/GetRolesServiceFaultFault", Name="ServiceFault", Namespace="http://schemas.datacontract.org/2004/07/AccountingBookService.Contracts.Models.Dt" +
+            "oException")]
+        AccountingBookData.AccountingBookServiceReference.RoleDto[] GetRoles();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IGetService/GetRoles", ReplyAction="http://tempuri.org/IGetService/GetRolesResponse")]
+        System.Threading.Tasks.Task<AccountingBookData.AccountingBookServiceReference.RoleDto[]> GetRolesAsync();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IGetService/GetUserById", ReplyAction="http://tempuri.org/IGetService/GetUserByIdResponse")]
+        [System.ServiceModel.FaultContractAttribute(typeof(AccountingBookData.AccountingBookServiceReference.ServiceFault), Action="http://tempuri.org/IGetService/GetUserByIdServiceFaultFault", Name="ServiceFault", Namespace="http://schemas.datacontract.org/2004/07/AccountingBookService.Contracts.Models.Dt" +
+            "oException")]
+        AccountingBookData.AccountingBookServiceReference.UserDto GetUserById(int userId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IGetService/GetUserById", ReplyAction="http://tempuri.org/IGetService/GetUserByIdResponse")]
+        System.Threading.Tasks.Task<AccountingBookData.AccountingBookServiceReference.UserDto> GetUserByIdAsync(int userId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IGetService/GetUsersByName", ReplyAction="http://tempuri.org/IGetService/GetUsersByNameResponse")]
+        [System.ServiceModel.FaultContractAttribute(typeof(AccountingBookData.AccountingBookServiceReference.ServiceFault), Action="http://tempuri.org/IGetService/GetUsersByNameServiceFaultFault", Name="ServiceFault", Namespace="http://schemas.datacontract.org/2004/07/AccountingBookService.Contracts.Models.Dt" +
+            "oException")]
+        AccountingBookData.AccountingBookServiceReference.UserDto[] GetUsersByName(string userName);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IGetService/GetUsersByName", ReplyAction="http://tempuri.org/IGetService/GetUsersByNameResponse")]
+        System.Threading.Tasks.Task<AccountingBookData.AccountingBookServiceReference.UserDto[]> GetUsersByNameAsync(string userName);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IGetService/GetLocations", ReplyAction="http://tempuri.org/IGetService/GetLocationsResponse")]
+        [System.ServiceModel.FaultContractAttribute(typeof(AccountingBookData.AccountingBookServiceReference.ServiceFault), Action="http://tempuri.org/IGetService/GetLocationsServiceFaultFault", Name="ServiceFault", Namespace="http://schemas.datacontract.org/2004/07/AccountingBookService.Contracts.Models.Dt" +
+            "oException")]
+        AccountingBookData.AccountingBookServiceReference.LocationDto[] GetLocations();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IGetService/GetLocations", ReplyAction="http://tempuri.org/IGetService/GetLocationsResponse")]
+        System.Threading.Tasks.Task<AccountingBookData.AccountingBookServiceReference.LocationDto[]> GetLocationsAsync();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IGetService/GetSubjectByInventoryNumber", ReplyAction="http://tempuri.org/IGetService/GetSubjectByInventoryNumberResponse")]
+        [System.ServiceModel.FaultContractAttribute(typeof(AccountingBookData.AccountingBookServiceReference.ServiceFault), Action="http://tempuri.org/IGetService/GetSubjectByInventoryNumberServiceFaultFault", Name="ServiceFault", Namespace="http://schemas.datacontract.org/2004/07/AccountingBookService.Contracts.Models.Dt" +
+            "oException")]
+        AccountingBookData.AccountingBookServiceReference.SubjectDto GetSubjectByInventoryNumber(int inventoryNumber);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IGetService/GetSubjectByInventoryNumber", ReplyAction="http://tempuri.org/IGetService/GetSubjectByInventoryNumberResponse")]
+        System.Threading.Tasks.Task<AccountingBookData.AccountingBookServiceReference.SubjectDto> GetSubjectByInventoryNumberAsync(int inventoryNumber);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IGetService/IsExistsSubject", ReplyAction="http://tempuri.org/IGetService/IsExistsSubjectResponse")]
+        [System.ServiceModel.FaultContractAttribute(typeof(AccountingBookData.AccountingBookServiceReference.ServiceFault), Action="http://tempuri.org/IGetService/IsExistsSubjectServiceFaultFault", Name="ServiceFault", Namespace="http://schemas.datacontract.org/2004/07/AccountingBookService.Contracts.Models.Dt" +
+            "oException")]
+        bool IsExistsSubject(int inventoryNumber);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IGetService/IsExistsSubject", ReplyAction="http://tempuri.org/IGetService/IsExistsSubjectResponse")]
+        System.Threading.Tasks.Task<bool> IsExistsSubjectAsync(int inventoryNumber);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IGetService/GetLocationsByAddress", ReplyAction="http://tempuri.org/IGetService/GetLocationsByAddressResponse")]
+        [System.ServiceModel.FaultContractAttribute(typeof(AccountingBookData.AccountingBookServiceReference.ServiceFault), Action="http://tempuri.org/IGetService/GetLocationsByAddressServiceFaultFault", Name="ServiceFault", Namespace="http://schemas.datacontract.org/2004/07/AccountingBookService.Contracts.Models.Dt" +
+            "oException")]
+        AccountingBookData.AccountingBookServiceReference.LocationDto[] GetLocationsByAddress(string address);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IGetService/GetLocationsByAddress", ReplyAction="http://tempuri.org/IGetService/GetLocationsByAddressResponse")]
+        System.Threading.Tasks.Task<AccountingBookData.AccountingBookServiceReference.LocationDto[]> GetLocationsByAddressAsync(string address);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IGetService/GetLocationsById", ReplyAction="http://tempuri.org/IGetService/GetLocationsByIdResponse")]
+        [System.ServiceModel.FaultContractAttribute(typeof(AccountingBookData.AccountingBookServiceReference.ServiceFault), Action="http://tempuri.org/IGetService/GetLocationsByIdServiceFaultFault", Name="ServiceFault", Namespace="http://schemas.datacontract.org/2004/07/AccountingBookService.Contracts.Models.Dt" +
+            "oException")]
+        AccountingBookData.AccountingBookServiceReference.LocationDto GetLocationsById(int locationId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IGetService/GetLocationsById", ReplyAction="http://tempuri.org/IGetService/GetLocationsByIdResponse")]
+        System.Threading.Tasks.Task<AccountingBookData.AccountingBookServiceReference.LocationDto> GetLocationsByIdAsync(int locationId);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    public interface IAccountingBookServiceChannel : AccountingBookData.AccountingBookServiceReference.IAccountingBookService, System.ServiceModel.IClientChannel {
+    public interface IGetServiceChannel : AccountingBookData.AccountingBookServiceReference.IGetService, System.ServiceModel.IClientChannel {
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    public partial class AccountingBookServiceClient : System.ServiceModel.ClientBase<AccountingBookData.AccountingBookServiceReference.IAccountingBookService>, AccountingBookData.AccountingBookServiceReference.IAccountingBookService {
+    public partial class GetServiceClient : System.ServiceModel.ClientBase<AccountingBookData.AccountingBookServiceReference.IGetService>, AccountingBookData.AccountingBookServiceReference.IGetService {
         
-        public AccountingBookServiceClient() {
+        public GetServiceClient() {
         }
         
-        public AccountingBookServiceClient(string endpointConfigurationName) : 
+        public GetServiceClient(string endpointConfigurationName) : 
                 base(endpointConfigurationName) {
         }
         
-        public AccountingBookServiceClient(string endpointConfigurationName, string remoteAddress) : 
+        public GetServiceClient(string endpointConfigurationName, string remoteAddress) : 
                 base(endpointConfigurationName, remoteAddress) {
         }
         
-        public AccountingBookServiceClient(string endpointConfigurationName, System.ServiceModel.EndpointAddress remoteAddress) : 
+        public GetServiceClient(string endpointConfigurationName, System.ServiceModel.EndpointAddress remoteAddress) : 
                 base(endpointConfigurationName, remoteAddress) {
         }
         
-        public AccountingBookServiceClient(System.ServiceModel.Channels.Binding binding, System.ServiceModel.EndpointAddress remoteAddress) : 
+        public GetServiceClient(System.ServiceModel.Channels.Binding binding, System.ServiceModel.EndpointAddress remoteAddress) : 
                 base(binding, remoteAddress) {
         }
         
@@ -399,36 +1035,601 @@ namespace AccountingBookData.AccountingBookServiceReference {
             return base.Channel.GetCategoriesAsync();
         }
         
-        public AccountingBookData.AccountingBookServiceReference.SubCategoryDto[] GetSubCategories() {
-            return base.Channel.GetSubCategories();
+        public AccountingBookData.AccountingBookServiceReference.CategoryDto[] GetCategoriesBesidesCurrent(int categoryId) {
+            return base.Channel.GetCategoriesBesidesCurrent(categoryId);
         }
         
-        public System.Threading.Tasks.Task<AccountingBookData.AccountingBookServiceReference.SubCategoryDto[]> GetSubCategoriesAsync() {
-            return base.Channel.GetSubCategoriesAsync();
+        public System.Threading.Tasks.Task<AccountingBookData.AccountingBookServiceReference.CategoryDto[]> GetCategoriesBesidesCurrentAsync(int categoryId) {
+            return base.Channel.GetCategoriesBesidesCurrentAsync(categoryId);
         }
         
-        public AccountingBookData.AccountingBookServiceReference.SubjectDetailsDto[] GetSubjects() {
-            return base.Channel.GetSubjects();
+        public AccountingBookData.AccountingBookServiceReference.SubjectDetailsDto[] GetSubjectsByCategoryId(System.Nullable<int> categoryId) {
+            return base.Channel.GetSubjectsByCategoryId(categoryId);
         }
         
-        public System.Threading.Tasks.Task<AccountingBookData.AccountingBookServiceReference.SubjectDetailsDto[]> GetSubjectsAsync() {
-            return base.Channel.GetSubjectsAsync();
+        public System.Threading.Tasks.Task<AccountingBookData.AccountingBookServiceReference.SubjectDetailsDto[]> GetSubjectsByCategoryIdAsync(System.Nullable<int> categoryId) {
+            return base.Channel.GetSubjectsByCategoryIdAsync(categoryId);
         }
         
-        public AccountingBookData.AccountingBookServiceReference.SubjectDetailsDto[] GetSubjectsByCategoryOrSubCategoryId(int id, bool isCategory) {
-            return base.Channel.GetSubjectsByCategoryOrSubCategoryId(id, isCategory);
+        public AccountingBookData.AccountingBookServiceReference.SubjectDetailsDto GetSubjectInformationByInventoryNumber(int inventoryNumber) {
+            return base.Channel.GetSubjectInformationByInventoryNumber(inventoryNumber);
         }
         
-        public System.Threading.Tasks.Task<AccountingBookData.AccountingBookServiceReference.SubjectDetailsDto[]> GetSubjectsByCategoryOrSubCategoryIdAsync(int id, bool isCategory) {
-            return base.Channel.GetSubjectsByCategoryOrSubCategoryIdAsync(id, isCategory);
+        public System.Threading.Tasks.Task<AccountingBookData.AccountingBookServiceReference.SubjectDetailsDto> GetSubjectInformationByInventoryNumberAsync(int inventoryNumber) {
+            return base.Channel.GetSubjectInformationByInventoryNumberAsync(inventoryNumber);
         }
         
-        public AccountingBookData.AccountingBookServiceReference.SubjectDetailsDto GetSubjectInformationById(int inventoryNumber) {
-            return base.Channel.GetSubjectInformationById(inventoryNumber);
+        public AccountingBookData.AccountingBookServiceReference.UserAuthorizationDto GetUserAuthorizationByName(string userName) {
+            return base.Channel.GetUserAuthorizationByName(userName);
         }
         
-        public System.Threading.Tasks.Task<AccountingBookData.AccountingBookServiceReference.SubjectDetailsDto> GetSubjectInformationByIdAsync(int inventoryNumber) {
-            return base.Channel.GetSubjectInformationByIdAsync(inventoryNumber);
+        public System.Threading.Tasks.Task<AccountingBookData.AccountingBookServiceReference.UserAuthorizationDto> GetUserAuthorizationByNameAsync(string userName) {
+            return base.Channel.GetUserAuthorizationByNameAsync(userName);
+        }
+        
+        public bool IsValidUser(string userName, string password) {
+            return base.Channel.IsValidUser(userName, password);
+        }
+        
+        public System.Threading.Tasks.Task<bool> IsValidUserAsync(string userName, string password) {
+            return base.Channel.IsValidUserAsync(userName, password);
+        }
+        
+        public AccountingBookData.AccountingBookServiceReference.RoleAuthorizationDto[] GetRolesAuthorizationByUserId(int userId) {
+            return base.Channel.GetRolesAuthorizationByUserId(userId);
+        }
+        
+        public System.Threading.Tasks.Task<AccountingBookData.AccountingBookServiceReference.RoleAuthorizationDto[]> GetRolesAuthorizationByUserIdAsync(int userId) {
+            return base.Channel.GetRolesAuthorizationByUserIdAsync(userId);
+        }
+        
+        public AccountingBookData.AccountingBookServiceReference.CategoryDto[] GetCategoriesByName(string categoryName) {
+            return base.Channel.GetCategoriesByName(categoryName);
+        }
+        
+        public System.Threading.Tasks.Task<AccountingBookData.AccountingBookServiceReference.CategoryDto[]> GetCategoriesByNameAsync(string categoryName) {
+            return base.Channel.GetCategoriesByNameAsync(categoryName);
+        }
+        
+        public AccountingBookData.AccountingBookServiceReference.CategoryDto GetCategoryById(int categoryId) {
+            return base.Channel.GetCategoryById(categoryId);
+        }
+        
+        public System.Threading.Tasks.Task<AccountingBookData.AccountingBookServiceReference.CategoryDto> GetCategoryByIdAsync(int categoryId) {
+            return base.Channel.GetCategoryByIdAsync(categoryId);
+        }
+        
+        public AccountingBookData.AccountingBookServiceReference.SubjectDetailsDto[] GetSubjectsByNameCategoryIdAndStateId(System.Nullable<int> categoryId, System.Nullable<int> stateId, string subjectName) {
+            return base.Channel.GetSubjectsByNameCategoryIdAndStateId(categoryId, stateId, subjectName);
+        }
+        
+        public System.Threading.Tasks.Task<AccountingBookData.AccountingBookServiceReference.SubjectDetailsDto[]> GetSubjectsByNameCategoryIdAndStateIdAsync(System.Nullable<int> categoryId, System.Nullable<int> stateId, string subjectName) {
+            return base.Channel.GetSubjectsByNameCategoryIdAndStateIdAsync(categoryId, stateId, subjectName);
+        }
+        
+        public AccountingBookData.AccountingBookServiceReference.StateDto[] GetStates() {
+            return base.Channel.GetStates();
+        }
+        
+        public System.Threading.Tasks.Task<AccountingBookData.AccountingBookServiceReference.StateDto[]> GetStatesAsync() {
+            return base.Channel.GetStatesAsync();
+        }
+        
+        public AccountingBookData.AccountingBookServiceReference.StateDto GetStateById(int stateId) {
+            return base.Channel.GetStateById(stateId);
+        }
+        
+        public System.Threading.Tasks.Task<AccountingBookData.AccountingBookServiceReference.StateDto> GetStateByIdAsync(int stateId) {
+            return base.Channel.GetStateByIdAsync(stateId);
+        }
+        
+        public bool IsExistsUser(int userId, string userName) {
+            return base.Channel.IsExistsUser(userId, userName);
+        }
+        
+        public System.Threading.Tasks.Task<bool> IsExistsUserAsync(int userId, string userName) {
+            return base.Channel.IsExistsUserAsync(userId, userName);
+        }
+        
+        public AccountingBookData.AccountingBookServiceReference.RoleDto[] GetRoles() {
+            return base.Channel.GetRoles();
+        }
+        
+        public System.Threading.Tasks.Task<AccountingBookData.AccountingBookServiceReference.RoleDto[]> GetRolesAsync() {
+            return base.Channel.GetRolesAsync();
+        }
+        
+        public AccountingBookData.AccountingBookServiceReference.UserDto GetUserById(int userId) {
+            return base.Channel.GetUserById(userId);
+        }
+        
+        public System.Threading.Tasks.Task<AccountingBookData.AccountingBookServiceReference.UserDto> GetUserByIdAsync(int userId) {
+            return base.Channel.GetUserByIdAsync(userId);
+        }
+        
+        public AccountingBookData.AccountingBookServiceReference.UserDto[] GetUsersByName(string userName) {
+            return base.Channel.GetUsersByName(userName);
+        }
+        
+        public System.Threading.Tasks.Task<AccountingBookData.AccountingBookServiceReference.UserDto[]> GetUsersByNameAsync(string userName) {
+            return base.Channel.GetUsersByNameAsync(userName);
+        }
+        
+        public AccountingBookData.AccountingBookServiceReference.LocationDto[] GetLocations() {
+            return base.Channel.GetLocations();
+        }
+        
+        public System.Threading.Tasks.Task<AccountingBookData.AccountingBookServiceReference.LocationDto[]> GetLocationsAsync() {
+            return base.Channel.GetLocationsAsync();
+        }
+        
+        public AccountingBookData.AccountingBookServiceReference.SubjectDto GetSubjectByInventoryNumber(int inventoryNumber) {
+            return base.Channel.GetSubjectByInventoryNumber(inventoryNumber);
+        }
+        
+        public System.Threading.Tasks.Task<AccountingBookData.AccountingBookServiceReference.SubjectDto> GetSubjectByInventoryNumberAsync(int inventoryNumber) {
+            return base.Channel.GetSubjectByInventoryNumberAsync(inventoryNumber);
+        }
+        
+        public bool IsExistsSubject(int inventoryNumber) {
+            return base.Channel.IsExistsSubject(inventoryNumber);
+        }
+        
+        public System.Threading.Tasks.Task<bool> IsExistsSubjectAsync(int inventoryNumber) {
+            return base.Channel.IsExistsSubjectAsync(inventoryNumber);
+        }
+        
+        public AccountingBookData.AccountingBookServiceReference.LocationDto[] GetLocationsByAddress(string address) {
+            return base.Channel.GetLocationsByAddress(address);
+        }
+        
+        public System.Threading.Tasks.Task<AccountingBookData.AccountingBookServiceReference.LocationDto[]> GetLocationsByAddressAsync(string address) {
+            return base.Channel.GetLocationsByAddressAsync(address);
+        }
+        
+        public AccountingBookData.AccountingBookServiceReference.LocationDto GetLocationsById(int locationId) {
+            return base.Channel.GetLocationsById(locationId);
+        }
+        
+        public System.Threading.Tasks.Task<AccountingBookData.AccountingBookServiceReference.LocationDto> GetLocationsByIdAsync(int locationId) {
+            return base.Channel.GetLocationsByIdAsync(locationId);
+        }
+    }
+    
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ServiceModel.ServiceContractAttribute(ConfigurationName="AccountingBookServiceReference.IAddService")]
+    public interface IAddService {
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAddService/AddUser", ReplyAction="http://tempuri.org/IAddService/AddUserResponse")]
+        [System.ServiceModel.FaultContractAttribute(typeof(AccountingBookData.AccountingBookServiceReference.ServiceFault), Action="http://tempuri.org/IAddService/AddUserServiceFaultFault", Name="ServiceFault", Namespace="http://schemas.datacontract.org/2004/07/AccountingBookService.Contracts.Models.Dt" +
+            "oException")]
+        void AddUser(AccountingBookData.AccountingBookServiceReference.UserDto userDto);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAddService/AddUser", ReplyAction="http://tempuri.org/IAddService/AddUserResponse")]
+        System.Threading.Tasks.Task AddUserAsync(AccountingBookData.AccountingBookServiceReference.UserDto userDto);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAddService/AddSubject", ReplyAction="http://tempuri.org/IAddService/AddSubjectResponse")]
+        [System.ServiceModel.FaultContractAttribute(typeof(AccountingBookData.AccountingBookServiceReference.ServiceFault), Action="http://tempuri.org/IAddService/AddSubjectServiceFaultFault", Name="ServiceFault", Namespace="http://schemas.datacontract.org/2004/07/AccountingBookService.Contracts.Models.Dt" +
+            "oException")]
+        void AddSubject(AccountingBookData.AccountingBookServiceReference.SubjectDto userDto);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAddService/AddSubject", ReplyAction="http://tempuri.org/IAddService/AddSubjectResponse")]
+        System.Threading.Tasks.Task AddSubjectAsync(AccountingBookData.AccountingBookServiceReference.SubjectDto userDto);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAddService/AddLocation", ReplyAction="http://tempuri.org/IAddService/AddLocationResponse")]
+        [System.ServiceModel.FaultContractAttribute(typeof(AccountingBookData.AccountingBookServiceReference.ServiceFault), Action="http://tempuri.org/IAddService/AddLocationServiceFaultFault", Name="ServiceFault", Namespace="http://schemas.datacontract.org/2004/07/AccountingBookService.Contracts.Models.Dt" +
+            "oException")]
+        void AddLocation(string address);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAddService/AddLocation", ReplyAction="http://tempuri.org/IAddService/AddLocationResponse")]
+        System.Threading.Tasks.Task AddLocationAsync(string address);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAddService/AddState", ReplyAction="http://tempuri.org/IAddService/AddStateResponse")]
+        [System.ServiceModel.FaultContractAttribute(typeof(AccountingBookData.AccountingBookServiceReference.ServiceFault), Action="http://tempuri.org/IAddService/AddStateServiceFaultFault", Name="ServiceFault", Namespace="http://schemas.datacontract.org/2004/07/AccountingBookService.Contracts.Models.Dt" +
+            "oException")]
+        void AddState(string stateName);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAddService/AddState", ReplyAction="http://tempuri.org/IAddService/AddStateResponse")]
+        System.Threading.Tasks.Task AddStateAsync(string stateName);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAddService/AddCategory", ReplyAction="http://tempuri.org/IAddService/AddCategoryResponse")]
+        [System.ServiceModel.FaultContractAttribute(typeof(AccountingBookData.AccountingBookServiceReference.ServiceFault), Action="http://tempuri.org/IAddService/AddCategoryServiceFaultFault", Name="ServiceFault", Namespace="http://schemas.datacontract.org/2004/07/AccountingBookService.Contracts.Models.Dt" +
+            "oException")]
+        void AddCategory(System.Nullable<int> pid, string categoryName);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IAddService/AddCategory", ReplyAction="http://tempuri.org/IAddService/AddCategoryResponse")]
+        System.Threading.Tasks.Task AddCategoryAsync(System.Nullable<int> pid, string categoryName);
+    }
+    
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    public interface IAddServiceChannel : AccountingBookData.AccountingBookServiceReference.IAddService, System.ServiceModel.IClientChannel {
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    public partial class AddServiceClient : System.ServiceModel.ClientBase<AccountingBookData.AccountingBookServiceReference.IAddService>, AccountingBookData.AccountingBookServiceReference.IAddService {
+        
+        public AddServiceClient() {
+        }
+        
+        public AddServiceClient(string endpointConfigurationName) : 
+                base(endpointConfigurationName) {
+        }
+        
+        public AddServiceClient(string endpointConfigurationName, string remoteAddress) : 
+                base(endpointConfigurationName, remoteAddress) {
+        }
+        
+        public AddServiceClient(string endpointConfigurationName, System.ServiceModel.EndpointAddress remoteAddress) : 
+                base(endpointConfigurationName, remoteAddress) {
+        }
+        
+        public AddServiceClient(System.ServiceModel.Channels.Binding binding, System.ServiceModel.EndpointAddress remoteAddress) : 
+                base(binding, remoteAddress) {
+        }
+        
+        public void AddUser(AccountingBookData.AccountingBookServiceReference.UserDto userDto) {
+            base.Channel.AddUser(userDto);
+        }
+        
+        public System.Threading.Tasks.Task AddUserAsync(AccountingBookData.AccountingBookServiceReference.UserDto userDto) {
+            return base.Channel.AddUserAsync(userDto);
+        }
+        
+        public void AddSubject(AccountingBookData.AccountingBookServiceReference.SubjectDto userDto) {
+            base.Channel.AddSubject(userDto);
+        }
+        
+        public System.Threading.Tasks.Task AddSubjectAsync(AccountingBookData.AccountingBookServiceReference.SubjectDto userDto) {
+            return base.Channel.AddSubjectAsync(userDto);
+        }
+        
+        public void AddLocation(string address) {
+            base.Channel.AddLocation(address);
+        }
+        
+        public System.Threading.Tasks.Task AddLocationAsync(string address) {
+            return base.Channel.AddLocationAsync(address);
+        }
+        
+        public void AddState(string stateName) {
+            base.Channel.AddState(stateName);
+        }
+        
+        public System.Threading.Tasks.Task AddStateAsync(string stateName) {
+            return base.Channel.AddStateAsync(stateName);
+        }
+        
+        public void AddCategory(System.Nullable<int> pid, string categoryName) {
+            base.Channel.AddCategory(pid, categoryName);
+        }
+        
+        public System.Threading.Tasks.Task AddCategoryAsync(System.Nullable<int> pid, string categoryName) {
+            return base.Channel.AddCategoryAsync(pid, categoryName);
+        }
+    }
+    
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ServiceModel.ServiceContractAttribute(ConfigurationName="AccountingBookServiceReference.IEditService")]
+    public interface IEditService {
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEditService/EditUser", ReplyAction="http://tempuri.org/IEditService/EditUserResponse")]
+        [System.ServiceModel.FaultContractAttribute(typeof(AccountingBookData.AccountingBookServiceReference.ServiceFault), Action="http://tempuri.org/IEditService/EditUserServiceFaultFault", Name="ServiceFault", Namespace="http://schemas.datacontract.org/2004/07/AccountingBookService.Contracts.Models.Dt" +
+            "oException")]
+        void EditUser(AccountingBookData.AccountingBookServiceReference.UserDto userDto);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEditService/EditUser", ReplyAction="http://tempuri.org/IEditService/EditUserResponse")]
+        System.Threading.Tasks.Task EditUserAsync(AccountingBookData.AccountingBookServiceReference.UserDto userDto);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEditService/EditSubjectInformation", ReplyAction="http://tempuri.org/IEditService/EditSubjectInformationResponse")]
+        [System.ServiceModel.FaultContractAttribute(typeof(AccountingBookData.AccountingBookServiceReference.ServiceFault), Action="http://tempuri.org/IEditService/EditSubjectInformationServiceFaultFault", Name="ServiceFault", Namespace="http://schemas.datacontract.org/2004/07/AccountingBookService.Contracts.Models.Dt" +
+            "oException")]
+        void EditSubjectInformation(AccountingBookData.AccountingBookServiceReference.SubjectDto subjectDto);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEditService/EditSubjectInformation", ReplyAction="http://tempuri.org/IEditService/EditSubjectInformationResponse")]
+        System.Threading.Tasks.Task EditSubjectInformationAsync(AccountingBookData.AccountingBookServiceReference.SubjectDto subjectDto);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEditService/EditSubjectPhoto", ReplyAction="http://tempuri.org/IEditService/EditSubjectPhotoResponse")]
+        [System.ServiceModel.FaultContractAttribute(typeof(AccountingBookData.AccountingBookServiceReference.ServiceFault), Action="http://tempuri.org/IEditService/EditSubjectPhotoServiceFaultFault", Name="ServiceFault", Namespace="http://schemas.datacontract.org/2004/07/AccountingBookService.Contracts.Models.Dt" +
+            "oException")]
+        void EditSubjectPhoto(int inventoryNumber, string photo);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEditService/EditSubjectPhoto", ReplyAction="http://tempuri.org/IEditService/EditSubjectPhotoResponse")]
+        System.Threading.Tasks.Task EditSubjectPhotoAsync(int inventoryNumber, string photo);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEditService/EditLocationById", ReplyAction="http://tempuri.org/IEditService/EditLocationByIdResponse")]
+        [System.ServiceModel.FaultContractAttribute(typeof(AccountingBookData.AccountingBookServiceReference.ServiceFault), Action="http://tempuri.org/IEditService/EditLocationByIdServiceFaultFault", Name="ServiceFault", Namespace="http://schemas.datacontract.org/2004/07/AccountingBookService.Contracts.Models.Dt" +
+            "oException")]
+        void EditLocationById(int locationId, string address);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEditService/EditLocationById", ReplyAction="http://tempuri.org/IEditService/EditLocationByIdResponse")]
+        System.Threading.Tasks.Task EditLocationByIdAsync(int locationId, string address);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEditService/EditStateById", ReplyAction="http://tempuri.org/IEditService/EditStateByIdResponse")]
+        [System.ServiceModel.FaultContractAttribute(typeof(AccountingBookData.AccountingBookServiceReference.ServiceFault), Action="http://tempuri.org/IEditService/EditStateByIdServiceFaultFault", Name="ServiceFault", Namespace="http://schemas.datacontract.org/2004/07/AccountingBookService.Contracts.Models.Dt" +
+            "oException")]
+        void EditStateById(int stateId, string stateName);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEditService/EditStateById", ReplyAction="http://tempuri.org/IEditService/EditStateByIdResponse")]
+        System.Threading.Tasks.Task EditStateByIdAsync(int stateId, string stateName);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEditService/EditCategoryById", ReplyAction="http://tempuri.org/IEditService/EditCategoryByIdResponse")]
+        [System.ServiceModel.FaultContractAttribute(typeof(AccountingBookData.AccountingBookServiceReference.ServiceFault), Action="http://tempuri.org/IEditService/EditCategoryByIdServiceFaultFault", Name="ServiceFault", Namespace="http://schemas.datacontract.org/2004/07/AccountingBookService.Contracts.Models.Dt" +
+            "oException")]
+        void EditCategoryById(int categoryId, System.Nullable<int> pid, string categoryName);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IEditService/EditCategoryById", ReplyAction="http://tempuri.org/IEditService/EditCategoryByIdResponse")]
+        System.Threading.Tasks.Task EditCategoryByIdAsync(int categoryId, System.Nullable<int> pid, string categoryName);
+    }
+    
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    public interface IEditServiceChannel : AccountingBookData.AccountingBookServiceReference.IEditService, System.ServiceModel.IClientChannel {
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    public partial class EditServiceClient : System.ServiceModel.ClientBase<AccountingBookData.AccountingBookServiceReference.IEditService>, AccountingBookData.AccountingBookServiceReference.IEditService {
+        
+        public EditServiceClient() {
+        }
+        
+        public EditServiceClient(string endpointConfigurationName) : 
+                base(endpointConfigurationName) {
+        }
+        
+        public EditServiceClient(string endpointConfigurationName, string remoteAddress) : 
+                base(endpointConfigurationName, remoteAddress) {
+        }
+        
+        public EditServiceClient(string endpointConfigurationName, System.ServiceModel.EndpointAddress remoteAddress) : 
+                base(endpointConfigurationName, remoteAddress) {
+        }
+        
+        public EditServiceClient(System.ServiceModel.Channels.Binding binding, System.ServiceModel.EndpointAddress remoteAddress) : 
+                base(binding, remoteAddress) {
+        }
+        
+        public void EditUser(AccountingBookData.AccountingBookServiceReference.UserDto userDto) {
+            base.Channel.EditUser(userDto);
+        }
+        
+        public System.Threading.Tasks.Task EditUserAsync(AccountingBookData.AccountingBookServiceReference.UserDto userDto) {
+            return base.Channel.EditUserAsync(userDto);
+        }
+        
+        public void EditSubjectInformation(AccountingBookData.AccountingBookServiceReference.SubjectDto subjectDto) {
+            base.Channel.EditSubjectInformation(subjectDto);
+        }
+        
+        public System.Threading.Tasks.Task EditSubjectInformationAsync(AccountingBookData.AccountingBookServiceReference.SubjectDto subjectDto) {
+            return base.Channel.EditSubjectInformationAsync(subjectDto);
+        }
+        
+        public void EditSubjectPhoto(int inventoryNumber, string photo) {
+            base.Channel.EditSubjectPhoto(inventoryNumber, photo);
+        }
+        
+        public System.Threading.Tasks.Task EditSubjectPhotoAsync(int inventoryNumber, string photo) {
+            return base.Channel.EditSubjectPhotoAsync(inventoryNumber, photo);
+        }
+        
+        public void EditLocationById(int locationId, string address) {
+            base.Channel.EditLocationById(locationId, address);
+        }
+        
+        public System.Threading.Tasks.Task EditLocationByIdAsync(int locationId, string address) {
+            return base.Channel.EditLocationByIdAsync(locationId, address);
+        }
+        
+        public void EditStateById(int stateId, string stateName) {
+            base.Channel.EditStateById(stateId, stateName);
+        }
+        
+        public System.Threading.Tasks.Task EditStateByIdAsync(int stateId, string stateName) {
+            return base.Channel.EditStateByIdAsync(stateId, stateName);
+        }
+        
+        public void EditCategoryById(int categoryId, System.Nullable<int> pid, string categoryName) {
+            base.Channel.EditCategoryById(categoryId, pid, categoryName);
+        }
+        
+        public System.Threading.Tasks.Task EditCategoryByIdAsync(int categoryId, System.Nullable<int> pid, string categoryName) {
+            return base.Channel.EditCategoryByIdAsync(categoryId, pid, categoryName);
+        }
+    }
+    
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ServiceModel.ServiceContractAttribute(ConfigurationName="AccountingBookServiceReference.IDeleteService")]
+    public interface IDeleteService {
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDeleteService/DeleteUserById", ReplyAction="http://tempuri.org/IDeleteService/DeleteUserByIdResponse")]
+        [System.ServiceModel.FaultContractAttribute(typeof(AccountingBookData.AccountingBookServiceReference.ServiceFault), Action="http://tempuri.org/IDeleteService/DeleteUserByIdServiceFaultFault", Name="ServiceFault", Namespace="http://schemas.datacontract.org/2004/07/AccountingBookService.Contracts.Models.Dt" +
+            "oException")]
+        void DeleteUserById(int userId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDeleteService/DeleteUserById", ReplyAction="http://tempuri.org/IDeleteService/DeleteUserByIdResponse")]
+        System.Threading.Tasks.Task DeleteUserByIdAsync(int userId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDeleteService/DeleteSubjectByInventoryNumber", ReplyAction="http://tempuri.org/IDeleteService/DeleteSubjectByInventoryNumberResponse")]
+        [System.ServiceModel.FaultContractAttribute(typeof(AccountingBookData.AccountingBookServiceReference.ServiceFault), Action="http://tempuri.org/IDeleteService/DeleteSubjectByInventoryNumberServiceFaultFault" +
+            "", Name="ServiceFault", Namespace="http://schemas.datacontract.org/2004/07/AccountingBookService.Contracts.Models.Dt" +
+            "oException")]
+        void DeleteSubjectByInventoryNumber(int inventoryNumber);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDeleteService/DeleteSubjectByInventoryNumber", ReplyAction="http://tempuri.org/IDeleteService/DeleteSubjectByInventoryNumberResponse")]
+        System.Threading.Tasks.Task DeleteSubjectByInventoryNumberAsync(int inventoryNumber);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDeleteService/DeleteLocationById", ReplyAction="http://tempuri.org/IDeleteService/DeleteLocationByIdResponse")]
+        [System.ServiceModel.FaultContractAttribute(typeof(AccountingBookData.AccountingBookServiceReference.ServiceFault), Action="http://tempuri.org/IDeleteService/DeleteLocationByIdServiceFaultFault", Name="ServiceFault", Namespace="http://schemas.datacontract.org/2004/07/AccountingBookService.Contracts.Models.Dt" +
+            "oException")]
+        void DeleteLocationById(int locationId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDeleteService/DeleteLocationById", ReplyAction="http://tempuri.org/IDeleteService/DeleteLocationByIdResponse")]
+        System.Threading.Tasks.Task DeleteLocationByIdAsync(int locationId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDeleteService/DeleteStateById", ReplyAction="http://tempuri.org/IDeleteService/DeleteStateByIdResponse")]
+        [System.ServiceModel.FaultContractAttribute(typeof(AccountingBookData.AccountingBookServiceReference.ServiceFault), Action="http://tempuri.org/IDeleteService/DeleteStateByIdServiceFaultFault", Name="ServiceFault", Namespace="http://schemas.datacontract.org/2004/07/AccountingBookService.Contracts.Models.Dt" +
+            "oException")]
+        void DeleteStateById(int stateId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDeleteService/DeleteStateById", ReplyAction="http://tempuri.org/IDeleteService/DeleteStateByIdResponse")]
+        System.Threading.Tasks.Task DeleteStateByIdAsync(int stateId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDeleteService/DeleteCategoryById", ReplyAction="http://tempuri.org/IDeleteService/DeleteCategoryByIdResponse")]
+        [System.ServiceModel.FaultContractAttribute(typeof(AccountingBookData.AccountingBookServiceReference.ServiceFault), Action="http://tempuri.org/IDeleteService/DeleteCategoryByIdServiceFaultFault", Name="ServiceFault", Namespace="http://schemas.datacontract.org/2004/07/AccountingBookService.Contracts.Models.Dt" +
+            "oException")]
+        void DeleteCategoryById(int categoryId);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IDeleteService/DeleteCategoryById", ReplyAction="http://tempuri.org/IDeleteService/DeleteCategoryByIdResponse")]
+        System.Threading.Tasks.Task DeleteCategoryByIdAsync(int categoryId);
+    }
+    
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    public interface IDeleteServiceChannel : AccountingBookData.AccountingBookServiceReference.IDeleteService, System.ServiceModel.IClientChannel {
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    public partial class DeleteServiceClient : System.ServiceModel.ClientBase<AccountingBookData.AccountingBookServiceReference.IDeleteService>, AccountingBookData.AccountingBookServiceReference.IDeleteService {
+        
+        public DeleteServiceClient() {
+        }
+        
+        public DeleteServiceClient(string endpointConfigurationName) : 
+                base(endpointConfigurationName) {
+        }
+        
+        public DeleteServiceClient(string endpointConfigurationName, string remoteAddress) : 
+                base(endpointConfigurationName, remoteAddress) {
+        }
+        
+        public DeleteServiceClient(string endpointConfigurationName, System.ServiceModel.EndpointAddress remoteAddress) : 
+                base(endpointConfigurationName, remoteAddress) {
+        }
+        
+        public DeleteServiceClient(System.ServiceModel.Channels.Binding binding, System.ServiceModel.EndpointAddress remoteAddress) : 
+                base(binding, remoteAddress) {
+        }
+        
+        public void DeleteUserById(int userId) {
+            base.Channel.DeleteUserById(userId);
+        }
+        
+        public System.Threading.Tasks.Task DeleteUserByIdAsync(int userId) {
+            return base.Channel.DeleteUserByIdAsync(userId);
+        }
+        
+        public void DeleteSubjectByInventoryNumber(int inventoryNumber) {
+            base.Channel.DeleteSubjectByInventoryNumber(inventoryNumber);
+        }
+        
+        public System.Threading.Tasks.Task DeleteSubjectByInventoryNumberAsync(int inventoryNumber) {
+            return base.Channel.DeleteSubjectByInventoryNumberAsync(inventoryNumber);
+        }
+        
+        public void DeleteLocationById(int locationId) {
+            base.Channel.DeleteLocationById(locationId);
+        }
+        
+        public System.Threading.Tasks.Task DeleteLocationByIdAsync(int locationId) {
+            return base.Channel.DeleteLocationByIdAsync(locationId);
+        }
+        
+        public void DeleteStateById(int stateId) {
+            base.Channel.DeleteStateById(stateId);
+        }
+        
+        public System.Threading.Tasks.Task DeleteStateByIdAsync(int stateId) {
+            return base.Channel.DeleteStateByIdAsync(stateId);
+        }
+        
+        public void DeleteCategoryById(int categoryId) {
+            base.Channel.DeleteCategoryById(categoryId);
+        }
+        
+        public System.Threading.Tasks.Task DeleteCategoryByIdAsync(int categoryId) {
+            return base.Channel.DeleteCategoryByIdAsync(categoryId);
+        }
+    }
+    
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    [System.ServiceModel.ServiceContractAttribute(ConfigurationName="AccountingBookServiceReference.IFileService")]
+    public interface IFileService {
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IFileService/UploadPhoto", ReplyAction="http://tempuri.org/IFileService/UploadPhotoResponse")]
+        [System.ServiceModel.FaultContractAttribute(typeof(AccountingBookData.AccountingBookServiceReference.ServiceFault), Action="http://tempuri.org/IFileService/UploadPhotoServiceFaultFault", Name="ServiceFault", Namespace="http://schemas.datacontract.org/2004/07/AccountingBookService.Contracts.Models.Dt" +
+            "oException")]
+        void UploadPhoto(string name, byte[] photo);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IFileService/UploadPhoto", ReplyAction="http://tempuri.org/IFileService/UploadPhotoResponse")]
+        System.Threading.Tasks.Task UploadPhotoAsync(string name, byte[] photo);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IFileService/DownloadPhoto", ReplyAction="http://tempuri.org/IFileService/DownloadPhotoResponse")]
+        [System.ServiceModel.FaultContractAttribute(typeof(AccountingBookData.AccountingBookServiceReference.ServiceFault), Action="http://tempuri.org/IFileService/DownloadPhotoServiceFaultFault", Name="ServiceFault", Namespace="http://schemas.datacontract.org/2004/07/AccountingBookService.Contracts.Models.Dt" +
+            "oException")]
+        byte[] DownloadPhoto(string name);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IFileService/DownloadPhoto", ReplyAction="http://tempuri.org/IFileService/DownloadPhotoResponse")]
+        System.Threading.Tasks.Task<byte[]> DownloadPhotoAsync(string name);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IFileService/DeletePhoto", ReplyAction="http://tempuri.org/IFileService/DeletePhotoResponse")]
+        [System.ServiceModel.FaultContractAttribute(typeof(AccountingBookData.AccountingBookServiceReference.ServiceFault), Action="http://tempuri.org/IFileService/DeletePhotoServiceFaultFault", Name="ServiceFault", Namespace="http://schemas.datacontract.org/2004/07/AccountingBookService.Contracts.Models.Dt" +
+            "oException")]
+        void DeletePhoto(string name);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/IFileService/DeletePhoto", ReplyAction="http://tempuri.org/IFileService/DeletePhotoResponse")]
+        System.Threading.Tasks.Task DeletePhotoAsync(string name);
+    }
+    
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    public interface IFileServiceChannel : AccountingBookData.AccountingBookServiceReference.IFileService, System.ServiceModel.IClientChannel {
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
+    public partial class FileServiceClient : System.ServiceModel.ClientBase<AccountingBookData.AccountingBookServiceReference.IFileService>, AccountingBookData.AccountingBookServiceReference.IFileService {
+        
+        public FileServiceClient() {
+        }
+        
+        public FileServiceClient(string endpointConfigurationName) : 
+                base(endpointConfigurationName) {
+        }
+        
+        public FileServiceClient(string endpointConfigurationName, string remoteAddress) : 
+                base(endpointConfigurationName, remoteAddress) {
+        }
+        
+        public FileServiceClient(string endpointConfigurationName, System.ServiceModel.EndpointAddress remoteAddress) : 
+                base(endpointConfigurationName, remoteAddress) {
+        }
+        
+        public FileServiceClient(System.ServiceModel.Channels.Binding binding, System.ServiceModel.EndpointAddress remoteAddress) : 
+                base(binding, remoteAddress) {
+        }
+        
+        public void UploadPhoto(string name, byte[] photo) {
+            base.Channel.UploadPhoto(name, photo);
+        }
+        
+        public System.Threading.Tasks.Task UploadPhotoAsync(string name, byte[] photo) {
+            return base.Channel.UploadPhotoAsync(name, photo);
+        }
+        
+        public byte[] DownloadPhoto(string name) {
+            return base.Channel.DownloadPhoto(name);
+        }
+        
+        public System.Threading.Tasks.Task<byte[]> DownloadPhotoAsync(string name) {
+            return base.Channel.DownloadPhotoAsync(name);
+        }
+        
+        public void DeletePhoto(string name) {
+            base.Channel.DeletePhoto(name);
+        }
+        
+        public System.Threading.Tasks.Task DeletePhotoAsync(string name) {
+            return base.Channel.DeletePhotoAsync(name);
         }
     }
 }

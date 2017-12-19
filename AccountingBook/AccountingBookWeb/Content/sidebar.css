@@ -4,6 +4,7 @@
     position: fixed;
     top: 41px;
     left: 0;
+    z-index: 2;
     background-color: #FAFAFA;
     overflow-x: hidden;
     padding-top: 0;
@@ -11,8 +12,11 @@
     border-right: 2px solid #b2b79e;
     margin-left: 0;
     font-family: 'Comic Sans MS';
-    word-wrap: break-word;
-	overflow-wrap: break-word;
+    /*word-wrap: break-word;
+	overflow-wrap: break-word;*/
+    -moz-hyphens: auto;
+    -webkit-hyphens: auto;
+    -ms-hyphens: auto;
 }
     #sidebar > h2 {
         text-align: center;

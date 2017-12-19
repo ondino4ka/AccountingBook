@@ -30,10 +30,15 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="log4net, Version=2.0.8.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL">
+      <HintPath>..\packages\log4net.2.0.8\lib\net45-full\log4net.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Web" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
     <Reference Include="Microsoft.CSharp" />
@@ -42,16 +47,32 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Contracts\AccountingBookService.cs" />
-    <Compile Include="Contracts\IAccountingBookService.cs" />
+    <Compile Include="Contracts\AccountingBookServiceDelete.cs" />
+    <Compile Include="Contracts\AccountingBookServiceEdit.cs" />
+    <Compile Include="Contracts\AccountingBookServiceFile.cs" />
+    <Compile Include="Contracts\AccountingBookServiceGet.cs" />
+    <Compile Include="Contracts\AccountingBookServiceAdd.cs" />
+    <Compile Include="Contracts\Interface\IGetService.cs" />
+    <Compile Include="Contracts\Interface\IAddService.cs" />
+    <Compile Include="Contracts\Interface\IDeleteService.cs" />
+    <Compile Include="Contracts\Interface\IEditService.cs" />
+    <Compile Include="Contracts\Interface\IFileService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\AccountingBookData\AccountingBookData.csproj">
+      <Project>{28CD17F8-4A0C-4F55-AE0E-E9FDAC6C824C}</Project>
+      <Name>AccountingBookData</Name>
+    </ProjectReference>
     <ProjectReference Include="..\AccountingBookService.Contracts.Models\AccountingBookService.Contracts.Models.csproj">
       <Project>{250a1ac2-b0f3-45c4-9e85-5c1911025616}</Project>
       <Name>AccountingBookService.Contracts.Models</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

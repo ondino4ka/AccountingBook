@@ -1,0 +1,30 @@
+﻿
+@{
+    ViewBag.Title = "Search Locations";
+}
+
+<link href="~/Content/font-awesome.css" rel="stylesheet" />
+<script src="~/Scripts/searchUsers.js"></script>
+
+<h2>List locations</h2>
+
+<p>
+    @Html.ActionLink("Create New", "AddEditLocation")
+</p>
+
+<div class="form-inline form-group">
+    <label class="control-label">Location: </label>
+    <input name="location" class="form-control" />
+    <button class="btn btn-default" id="button">Search</button>
+    <i style="display:none" id="before-load" class="fa fa-spinner fa-spin"></i>
+</div>
+<div id="locations"></div>
+
+
+<script>
+    window.searchVar = window.Search();
+    $("#button").click(function () {
+        var _location = $('input[name="location"]').val();
+        searchVar.MakeSearch('@Url.Action("GetLocationsByAddress","Location")?address=' + _location, "locations");
+    });
+</script>

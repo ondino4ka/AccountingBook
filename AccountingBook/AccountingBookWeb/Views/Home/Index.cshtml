@@ -2,9 +2,19 @@
 @{
     ViewBag.Title = "Subject";
 }
-<script src="~/Scripts/loadingCategoriesAndSubjects.js"></script>
-<link href="~/Content/index-page.css" rel="stylesheet" />
 
+@section Scripts {
+    <script src="~/Scripts/loadCategories.js"></script>
+}
+
+
+<link href="~/Content/index-page.css" rel="stylesheet" />
+<link href="~/Content/font-awesome.css" rel="stylesheet" />
+<link href="~/Content/spinner.css" rel="stylesheet" />
+
+<div hidden id="before-load">
+    <i class="fa fa-spinner fa-spin"></i>
+</div>
 
 <div id="categoriesBar"></div>
 <div name="category"></div>

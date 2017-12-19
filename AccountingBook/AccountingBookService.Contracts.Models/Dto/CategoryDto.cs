@@ -9,8 +9,8 @@ namespace AccountingBookService.Contracts.Models.Dto
         [DataMember]
         public int Id { get; set; }
         [DataMember]
-        public string Name { get; set; }
+        public int? Pid { get; set; }
         [DataMember]
-        public List<SubCategoryDto> SubCategories { get; set; }
+        public string Name { get; set; }
     }
 }

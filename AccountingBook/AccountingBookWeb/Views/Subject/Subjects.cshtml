@@ -1,25 +1,48 @@
-﻿@model IEnumerable<AccountingBookCommon.SubjectDetails>
+﻿@model IEnumerable<AccountingBookCommon.Models.SubjectDetails>
 
 <link href="~/Content/catalog-subjects.css" rel="stylesheet" />
+<script src="~/Scripts/subjectDetails.js"></script>
 
-    @foreach (var subject in Model)
+@if (Model != null)
+{
+    if (Model.Any())
     {
-        <div onclick="getDetailsSubject(@subject.InventoryNumber)" class="col-sm-6 col-md-4">
-            <div class="subject">
-                <div class="subject-img">
-                    @if (!string.IsNullOrEmpty(subject.Photo))
+        foreach (var subject in Model)
+        {
+            <div class="col-sm-6 col-md-4">
+                <div class="subject" onclick="getSubjectDetails(@subject.InventoryNumber)">
+                    @if (HttpContext.Current.User.IsInRole("Admin") || HttpContext.Current.User.IsInRole("Edit"))
                     {
-                        <a><img src="~/Content/Images/@subject.Photo" alt="Image"></a>
+                        <div class="trash" onclick="deleteSubjectByInventoryNumber(@subject.InventoryNumber)">
+                            <img width="20" height="20" src="~/Content/Images/bak.png" />
+                        </div>
                     }
-                    else
-                    {
-                        <a><img src="~/Content/Images/no_image.png" alt="No Image"></a>
-                    }
+                    <div class="subject-img">
+                        @if (!string.IsNullOrEmpty(subject.Photo))
+                        {
+                            <a><img src="/Subject/GetImageSubject/?name=@subject.Photo" alt="Image"></a>
+                        }
+                        else
+                        {
+                            <a><img src="~/Content/Images/no_image.png" alt="No Image"></a>
+                        }
+                    </div>
+                    <p class="subject-title">
+                        <a href="#">@subject.Name</a>
+                    </p>
+                    <p class="subject-desc">@subject.Description</p>
                 </div>
-                <p class="subject-title">
-                    <a href="#">@subject.Name</a>
-                </p>
-                <p class="subject-desc">@subject.Description</p>
             </div>
+        }
+    }
+    else
+    {
+        <div class="col-md-10">
+            <h3>Subject not found</h3>
         </div>
     }
+}
+else
+{
+    @ViewBag.Error;
+}

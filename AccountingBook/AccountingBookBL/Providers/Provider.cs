@@ -1,39 +1,33 @@
-﻿using System.Collections.Generic;
-using System.Linq;
+﻿using AccountingBookCommon.Models;
 using AccountingBookData.Repositories;
-using AccountingBookCommon;
 using System;
+using System.Collections.Generic;
 
 namespace AccountingBookBL.Providers
 {
     public class Provider : IProvider
     {
-        IDataRepository _dataRepository;
-        public Provider(IDataRepository dataProvider)
+        private readonly IDataRepository _dataRepository;
+        public Provider(IDataRepository dataRepository)
         {
-            _dataRepository = dataProvider;
+            _dataRepository = dataRepository;
         }
 
         public IReadOnlyList<Category> GetCategories()
         {
-            IReadOnlyList<Category> categories = _dataRepository.GetCategories();
-            IReadOnlyList<SubCategory> subCategories = GetSubCategories();
-            foreach (var category in categories)
-            {
-                foreach (var subCategory in subCategories)
-                {
-                    if (category.Id == subCategory.IdCategory)
-                    {
-                        category.SubCategories.Add(subCategory);
-                    }
-                }           
-            }
-            return categories;
+            return _dataRepository.GetCategories();
         }
-
-        public IReadOnlyList<SubCategory> GetSubCategories()
+        public IReadOnlyList<Category> GetCategoriesBesidesCurrent(int categoryId)
         {
-            return _dataRepository.GetSubCategories();
+            return _dataRepository.GetCategoriesBesidesCurrent(categoryId);
+        }
+        public IReadOnlyCollection<Category> GetCategoriesByName(string categoryName)
+        {
+            return _dataRepository.GetCategoriesByName(categoryName);
+        }
+        public Category GetCategoryById(int categoryId)
+        {
+            return _dataRepository.GetCategoryById(categoryId);
         }
 
         public IReadOnlyList<SubjectDetails> GetSubjects()
@@ -41,15 +35,57 @@ namespace AccountingBookBL.Providers
             throw new NotImplementedException();
         }
 
-        public IReadOnlyList<SubjectDetails> GetSubjectsByCategoryOrSubCategoryId(int id, bool isCategory)
+        public IReadOnlyList<SubjectDetails> GetSubjectsByCategoryId(int? categoryId)
         {
-            return _dataRepository.GetSubjectsByCategoryOrSubCategoryId(id, isCategory);
+            return _dataRepository.GetSubjectsByCategoryId(categoryId);
         }
 
-        public SubjectDetails GetSubjectInformationById(int inventoryNumber)
+        public SubjectDetails GetSubjectInformationByInventoryNumber(int inventoryNumber)
         {
-            var subjects = _dataRepository.GetSubjectInformationById(inventoryNumber);
+            var subjects = _dataRepository.GetSubjectInformationByInventoryNumber(inventoryNumber);
             return subjects;
-        } 
+        }
+
+
+        public IReadOnlyCollection<SubjectDetails> GetSubjectsByNameCategoryIdAndStateId(int? categoryId, int? stateId, string subjectName)
+        {
+            return _dataRepository.GetSubjectsByNameCategoryIdAndStateId(categoryId, stateId, subjectName);
+        }
+
+        public IReadOnlyCollection<State> GetStates()
+        {
+            return _dataRepository.GetStates();
+        }
+
+        public IReadOnlyCollection<Location> GetLocations()
+        {
+            return _dataRepository.GetLocations();
+        }
+
+        public Subject GetSubjectByInventoryNumber(int inventoryNumber)
+        {
+            return _dataRepository.GetSubjectByInventoryNumber(inventoryNumber);
+        }
+
+        public bool IsExistsSubject(int inventoryNumber)
+        {
+            return _dataRepository.IsExistsSubject(inventoryNumber);
+        }
+
+        public IReadOnlyCollection<Location> GetLocationsByAddress(string address)
+        {
+            return _dataRepository.GetLocationsByAddress(address);
+        }
+
+        public Location GetLocationById(int locationId)
+        {
+            return _dataRepository.GetLocationsById(locationId);
+        }
+
+        public State GetStateById(int stateId)
+        {
+            return _dataRepository.GetStateById(stateId);
+        }
+
     }
 }

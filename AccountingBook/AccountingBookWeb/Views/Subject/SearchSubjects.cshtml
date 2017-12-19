@@ -1,0 +1,44 @@
+﻿
+@{
+    ViewBag.Title = "Search";
+}
+
+<link href="~/Content/font-awesome.css" rel="stylesheet" />
+<link href="~/Content/search-page.css" rel="stylesheet" />
+<link href="~/Content/css/select2.min.css" rel="stylesheet" />
+<script src="~/Scripts/select2.min.js"></script>
+<script src="~/Scripts/initDropDownSearch.js"></script>
+<script src="~/Scripts/searchSubjects.js"></script>
+
+
+<h2>Choose how to search:</h2>
+
+<div class="form-inline">
+    <select class="form-control" id="categories"></select>
+    <input class="form-control" id="subjectName" placeholder="-- Name --">
+    <select class="form-control" id="stateId"></select>
+    <button id="search" class="btn">Search</button>
+    <i style="display:none" id="before-load" class="fa fa-spinner fa-spin"></i>
+    @if (HttpContext.Current.User.IsInRole("Admin") || HttpContext.Current.User.IsInRole("Edit"))
+    {
+        <button onclick="window.location = '@Url.Action("AddSubject", "Subject")'" class="btn btn-success">Create Subject</button>
+    }
+</div>
+
+<hr />
+<div class="row" id="content">
+
+</div>
+
+
+<script>
+    initSelect2Categories("categories");
+    window.searchVar = window.Search();
+
+    $('#search').click(function () {
+        var subjectName = $("#subjectName").val();
+        var categoryId = $('#categories').val();
+        var stateId = $('#stateId').val();
+        searchVar.MakeSearch(subjectName, categoryId, stateId);
+    })
+</script>

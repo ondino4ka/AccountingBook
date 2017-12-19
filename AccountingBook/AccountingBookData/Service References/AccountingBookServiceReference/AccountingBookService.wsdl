@@ -1,115 +1,1094 @@
 <?xml version="1.0" encoding="utf-8"?>
-<wsdl:definitions xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:tns="http://tempuri.org/" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="AccountingBookService" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+<wsdl:definitions xmlns:wsap="http://schemas.xmlsoap.org/ws/2004/08/addressing/policy" xmlns:wsa10="http://www.w3.org/2005/08/addressing" xmlns:tns="http://tempuri.org/" xmlns:msc="http://schemas.microsoft.com/ws/2005/12/wsdl/contract" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:wsx="http://schemas.xmlsoap.org/ws/2004/09/mex" xmlns:wsp="http://schemas.xmlsoap.org/ws/2004/09/policy" xmlns:wsam="http://www.w3.org/2007/05/addressing/metadata" xmlns:wsa="http://schemas.xmlsoap.org/ws/2004/08/addressing" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:wsaw="http://www.w3.org/2006/05/addressing/wsdl" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:wsu="http://docs.oasis-open.org/wss/2004/01/oasis-200401-wss-wssecurity-utility-1.0.xsd" xmlns:xsd="http://www.w3.org/2001/XMLSchema" name="AccountingBookService" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
   <wsdl:types>
     <xsd:schema targetNamespace="http://tempuri.org/Imports">
-      <xsd:import schemaLocation="http://localhost:1231/AccountingBookService.svc?xsd=xsd0" namespace="http://tempuri.org/" />
-      <xsd:import schemaLocation="http://localhost:1231/AccountingBookService.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
-      <xsd:import schemaLocation="http://localhost:1231/AccountingBookService.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/AccountingBookService.Contracts.Models.Dto" />
+      <xsd:import schemaLocation="http://localhost:2707/AccountingBookService.svc?xsd=xsd0" namespace="http://tempuri.org/" />
+      <xsd:import schemaLocation="http://localhost:2707/AccountingBookService.svc?xsd=xsd3" namespace="http://schemas.datacontract.org/2004/07/AccountingBookService.Contracts.Models.DtoException" />
+      <xsd:import schemaLocation="http://localhost:2707/AccountingBookService.svc?xsd=xsd1" namespace="http://schemas.microsoft.com/2003/10/Serialization/" />
+      <xsd:import schemaLocation="http://localhost:2707/AccountingBookService.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/AccountingBookService.Contracts.Models.Dto" />
+      <xsd:import schemaLocation="http://localhost:2707/AccountingBookService.svc?xsd=xsd4" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
     </xsd:schema>
   </wsdl:types>
-  <wsdl:message name="IAccountingBookService_GetCategories_InputMessage">
+  <wsdl:message name="IGetService_GetCategories_InputMessage">
     <wsdl:part name="parameters" element="tns:GetCategories" />
   </wsdl:message>
-  <wsdl:message name="IAccountingBookService_GetCategories_OutputMessage">
+  <wsdl:message name="IGetService_GetCategories_OutputMessage">
     <wsdl:part name="parameters" element="tns:GetCategoriesResponse" />
   </wsdl:message>
-  <wsdl:message name="IAccountingBookService_GetSubCategories_InputMessage">
-    <wsdl:part name="parameters" element="tns:GetSubCategories" />
+  <wsdl:message name="IGetService_GetCategories_ServiceFaultFault_FaultMessage">
+    <wsdl:part xmlns:q1="http://schemas.datacontract.org/2004/07/AccountingBookService.Contracts.Models.DtoException" name="detail" element="q1:ServiceFault" />
   </wsdl:message>
-  <wsdl:message name="IAccountingBookService_GetSubCategories_OutputMessage">
-    <wsdl:part name="parameters" element="tns:GetSubCategoriesResponse" />
+  <wsdl:message name="IGetService_GetCategoriesBesidesCurrent_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetCategoriesBesidesCurrent" />
   </wsdl:message>
-  <wsdl:message name="IAccountingBookService_GetSubjects_InputMessage">
-    <wsdl:part name="parameters" element="tns:GetSubjects" />
+  <wsdl:message name="IGetService_GetCategoriesBesidesCurrent_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetCategoriesBesidesCurrentResponse" />
   </wsdl:message>
-  <wsdl:message name="IAccountingBookService_GetSubjects_OutputMessage">
-    <wsdl:part name="parameters" element="tns:GetSubjectsResponse" />
+  <wsdl:message name="IGetService_GetCategoriesBesidesCurrent_ServiceFaultFault_FaultMessage">
+    <wsdl:part xmlns:q2="http://schemas.datacontract.org/2004/07/AccountingBookService.Contracts.Models.DtoException" name="detail" element="q2:ServiceFault" />
   </wsdl:message>
-  <wsdl:message name="IAccountingBookService_GetSubjectsByCategoryOrSubCategoryId_InputMessage">
-    <wsdl:part name="parameters" element="tns:GetSubjectsByCategoryOrSubCategoryId" />
+  <wsdl:message name="IGetService_GetSubjectsByCategoryId_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetSubjectsByCategoryId" />
   </wsdl:message>
-  <wsdl:message name="IAccountingBookService_GetSubjectsByCategoryOrSubCategoryId_OutputMessage">
-    <wsdl:part name="parameters" element="tns:GetSubjectsByCategoryOrSubCategoryIdResponse" />
+  <wsdl:message name="IGetService_GetSubjectsByCategoryId_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetSubjectsByCategoryIdResponse" />
   </wsdl:message>
-  <wsdl:message name="IAccountingBookService_GetSubjectInformationById_InputMessage">
-    <wsdl:part name="parameters" element="tns:GetSubjectInformationById" />
+  <wsdl:message name="IGetService_GetSubjectsByCategoryId_ServiceFaultFault_FaultMessage">
+    <wsdl:part xmlns:q3="http://schemas.datacontract.org/2004/07/AccountingBookService.Contracts.Models.DtoException" name="detail" element="q3:ServiceFault" />
   </wsdl:message>
-  <wsdl:message name="IAccountingBookService_GetSubjectInformationById_OutputMessage">
-    <wsdl:part name="parameters" element="tns:GetSubjectInformationByIdResponse" />
+  <wsdl:message name="IGetService_GetSubjectInformationByInventoryNumber_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetSubjectInformationByInventoryNumber" />
   </wsdl:message>
-  <wsdl:portType name="IAccountingBookService">
+  <wsdl:message name="IGetService_GetSubjectInformationByInventoryNumber_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetSubjectInformationByInventoryNumberResponse" />
+  </wsdl:message>
+  <wsdl:message name="IGetService_GetSubjectInformationByInventoryNumber_ServiceFaultFault_FaultMessage">
+    <wsdl:part xmlns:q4="http://schemas.datacontract.org/2004/07/AccountingBookService.Contracts.Models.DtoException" name="detail" element="q4:ServiceFault" />
+  </wsdl:message>
+  <wsdl:message name="IGetService_GetUserAuthorizationByName_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetUserAuthorizationByName" />
+  </wsdl:message>
+  <wsdl:message name="IGetService_GetUserAuthorizationByName_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetUserAuthorizationByNameResponse" />
+  </wsdl:message>
+  <wsdl:message name="IGetService_GetUserAuthorizationByName_ServiceFaultFault_FaultMessage">
+    <wsdl:part xmlns:q5="http://schemas.datacontract.org/2004/07/AccountingBookService.Contracts.Models.DtoException" name="detail" element="q5:ServiceFault" />
+  </wsdl:message>
+  <wsdl:message name="IGetService_IsValidUser_InputMessage">
+    <wsdl:part name="parameters" element="tns:IsValidUser" />
+  </wsdl:message>
+  <wsdl:message name="IGetService_IsValidUser_OutputMessage">
+    <wsdl:part name="parameters" element="tns:IsValidUserResponse" />
+  </wsdl:message>
+  <wsdl:message name="IGetService_IsValidUser_ServiceFaultFault_FaultMessage">
+    <wsdl:part xmlns:q6="http://schemas.datacontract.org/2004/07/AccountingBookService.Contracts.Models.DtoException" name="detail" element="q6:ServiceFault" />
+  </wsdl:message>
+  <wsdl:message name="IGetService_GetRolesAuthorizationByUserId_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetRolesAuthorizationByUserId" />
+  </wsdl:message>
+  <wsdl:message name="IGetService_GetRolesAuthorizationByUserId_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetRolesAuthorizationByUserIdResponse" />
+  </wsdl:message>
+  <wsdl:message name="IGetService_GetRolesAuthorizationByUserId_ServiceFaultFault_FaultMessage">
+    <wsdl:part xmlns:q7="http://schemas.datacontract.org/2004/07/AccountingBookService.Contracts.Models.DtoException" name="detail" element="q7:ServiceFault" />
+  </wsdl:message>
+  <wsdl:message name="IGetService_GetCategoriesByName_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetCategoriesByName" />
+  </wsdl:message>
+  <wsdl:message name="IGetService_GetCategoriesByName_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetCategoriesByNameResponse" />
+  </wsdl:message>
+  <wsdl:message name="IGetService_GetCategoriesByName_ServiceFaultFault_FaultMessage">
+    <wsdl:part xmlns:q8="http://schemas.datacontract.org/2004/07/AccountingBookService.Contracts.Models.DtoException" name="detail" element="q8:ServiceFault" />
+  </wsdl:message>
+  <wsdl:message name="IGetService_GetCategoryById_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetCategoryById" />
+  </wsdl:message>
+  <wsdl:message name="IGetService_GetCategoryById_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetCategoryByIdResponse" />
+  </wsdl:message>
+  <wsdl:message name="IGetService_GetCategoryById_ServiceFaultFault_FaultMessage">
+    <wsdl:part xmlns:q9="http://schemas.datacontract.org/2004/07/AccountingBookService.Contracts.Models.DtoException" name="detail" element="q9:ServiceFault" />
+  </wsdl:message>
+  <wsdl:message name="IGetService_GetSubjectsByNameCategoryIdAndStateId_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetSubjectsByNameCategoryIdAndStateId" />
+  </wsdl:message>
+  <wsdl:message name="IGetService_GetSubjectsByNameCategoryIdAndStateId_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetSubjectsByNameCategoryIdAndStateIdResponse" />
+  </wsdl:message>
+  <wsdl:message name="IGetService_GetSubjectsByNameCategoryIdAndStateId_ServiceFaultFault_FaultMessage">
+    <wsdl:part xmlns:q10="http://schemas.datacontract.org/2004/07/AccountingBookService.Contracts.Models.DtoException" name="detail" element="q10:ServiceFault" />
+  </wsdl:message>
+  <wsdl:message name="IGetService_GetStates_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetStates" />
+  </wsdl:message>
+  <wsdl:message name="IGetService_GetStates_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetStatesResponse" />
+  </wsdl:message>
+  <wsdl:message name="IGetService_GetStates_ServiceFaultFault_FaultMessage">
+    <wsdl:part xmlns:q11="http://schemas.datacontract.org/2004/07/AccountingBookService.Contracts.Models.DtoException" name="detail" element="q11:ServiceFault" />
+  </wsdl:message>
+  <wsdl:message name="IGetService_GetStateById_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetStateById" />
+  </wsdl:message>
+  <wsdl:message name="IGetService_GetStateById_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetStateByIdResponse" />
+  </wsdl:message>
+  <wsdl:message name="IGetService_GetStateById_ServiceFaultFault_FaultMessage">
+    <wsdl:part xmlns:q12="http://schemas.datacontract.org/2004/07/AccountingBookService.Contracts.Models.DtoException" name="detail" element="q12:ServiceFault" />
+  </wsdl:message>
+  <wsdl:message name="IGetService_IsExistsUser_InputMessage">
+    <wsdl:part name="parameters" element="tns:IsExistsUser" />
+  </wsdl:message>
+  <wsdl:message name="IGetService_IsExistsUser_OutputMessage">
+    <wsdl:part name="parameters" element="tns:IsExistsUserResponse" />
+  </wsdl:message>
+  <wsdl:message name="IGetService_IsExistsUser_ServiceFaultFault_FaultMessage">
+    <wsdl:part xmlns:q13="http://schemas.datacontract.org/2004/07/AccountingBookService.Contracts.Models.DtoException" name="detail" element="q13:ServiceFault" />
+  </wsdl:message>
+  <wsdl:message name="IGetService_GetRoles_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetRoles" />
+  </wsdl:message>
+  <wsdl:message name="IGetService_GetRoles_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetRolesResponse" />
+  </wsdl:message>
+  <wsdl:message name="IGetService_GetRoles_ServiceFaultFault_FaultMessage">
+    <wsdl:part xmlns:q14="http://schemas.datacontract.org/2004/07/AccountingBookService.Contracts.Models.DtoException" name="detail" element="q14:ServiceFault" />
+  </wsdl:message>
+  <wsdl:message name="IGetService_GetUserById_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetUserById" />
+  </wsdl:message>
+  <wsdl:message name="IGetService_GetUserById_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetUserByIdResponse" />
+  </wsdl:message>
+  <wsdl:message name="IGetService_GetUserById_ServiceFaultFault_FaultMessage">
+    <wsdl:part xmlns:q15="http://schemas.datacontract.org/2004/07/AccountingBookService.Contracts.Models.DtoException" name="detail" element="q15:ServiceFault" />
+  </wsdl:message>
+  <wsdl:message name="IGetService_GetUsersByName_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetUsersByName" />
+  </wsdl:message>
+  <wsdl:message name="IGetService_GetUsersByName_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetUsersByNameResponse" />
+  </wsdl:message>
+  <wsdl:message name="IGetService_GetUsersByName_ServiceFaultFault_FaultMessage">
+    <wsdl:part xmlns:q16="http://schemas.datacontract.org/2004/07/AccountingBookService.Contracts.Models.DtoException" name="detail" element="q16:ServiceFault" />
+  </wsdl:message>
+  <wsdl:message name="IGetService_GetLocations_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetLocations" />
+  </wsdl:message>
+  <wsdl:message name="IGetService_GetLocations_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetLocationsResponse" />
+  </wsdl:message>
+  <wsdl:message name="IGetService_GetLocations_ServiceFaultFault_FaultMessage">
+    <wsdl:part xmlns:q17="http://schemas.datacontract.org/2004/07/AccountingBookService.Contracts.Models.DtoException" name="detail" element="q17:ServiceFault" />
+  </wsdl:message>
+  <wsdl:message name="IGetService_GetSubjectByInventoryNumber_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetSubjectByInventoryNumber" />
+  </wsdl:message>
+  <wsdl:message name="IGetService_GetSubjectByInventoryNumber_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetSubjectByInventoryNumberResponse" />
+  </wsdl:message>
+  <wsdl:message name="IGetService_GetSubjectByInventoryNumber_ServiceFaultFault_FaultMessage">
+    <wsdl:part xmlns:q18="http://schemas.datacontract.org/2004/07/AccountingBookService.Contracts.Models.DtoException" name="detail" element="q18:ServiceFault" />
+  </wsdl:message>
+  <wsdl:message name="IGetService_IsExistsSubject_InputMessage">
+    <wsdl:part name="parameters" element="tns:IsExistsSubject" />
+  </wsdl:message>
+  <wsdl:message name="IGetService_IsExistsSubject_OutputMessage">
+    <wsdl:part name="parameters" element="tns:IsExistsSubjectResponse" />
+  </wsdl:message>
+  <wsdl:message name="IGetService_IsExistsSubject_ServiceFaultFault_FaultMessage">
+    <wsdl:part xmlns:q19="http://schemas.datacontract.org/2004/07/AccountingBookService.Contracts.Models.DtoException" name="detail" element="q19:ServiceFault" />
+  </wsdl:message>
+  <wsdl:message name="IGetService_GetLocationsByAddress_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetLocationsByAddress" />
+  </wsdl:message>
+  <wsdl:message name="IGetService_GetLocationsByAddress_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetLocationsByAddressResponse" />
+  </wsdl:message>
+  <wsdl:message name="IGetService_GetLocationsByAddress_ServiceFaultFault_FaultMessage">
+    <wsdl:part xmlns:q20="http://schemas.datacontract.org/2004/07/AccountingBookService.Contracts.Models.DtoException" name="detail" element="q20:ServiceFault" />
+  </wsdl:message>
+  <wsdl:message name="IGetService_GetLocationsById_InputMessage">
+    <wsdl:part name="parameters" element="tns:GetLocationsById" />
+  </wsdl:message>
+  <wsdl:message name="IGetService_GetLocationsById_OutputMessage">
+    <wsdl:part name="parameters" element="tns:GetLocationsByIdResponse" />
+  </wsdl:message>
+  <wsdl:message name="IGetService_GetLocationsById_ServiceFaultFault_FaultMessage">
+    <wsdl:part xmlns:q21="http://schemas.datacontract.org/2004/07/AccountingBookService.Contracts.Models.DtoException" name="detail" element="q21:ServiceFault" />
+  </wsdl:message>
+  <wsdl:message name="IAddService_AddUser_InputMessage">
+    <wsdl:part name="parameters" element="tns:AddUser" />
+  </wsdl:message>
+  <wsdl:message name="IAddService_AddUser_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AddUserResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAddService_AddUser_ServiceFaultFault_FaultMessage">
+    <wsdl:part xmlns:q22="http://schemas.datacontract.org/2004/07/AccountingBookService.Contracts.Models.DtoException" name="detail" element="q22:ServiceFault" />
+  </wsdl:message>
+  <wsdl:message name="IAddService_AddSubject_InputMessage">
+    <wsdl:part name="parameters" element="tns:AddSubject" />
+  </wsdl:message>
+  <wsdl:message name="IAddService_AddSubject_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AddSubjectResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAddService_AddSubject_ServiceFaultFault_FaultMessage">
+    <wsdl:part xmlns:q23="http://schemas.datacontract.org/2004/07/AccountingBookService.Contracts.Models.DtoException" name="detail" element="q23:ServiceFault" />
+  </wsdl:message>
+  <wsdl:message name="IAddService_AddLocation_InputMessage">
+    <wsdl:part name="parameters" element="tns:AddLocation" />
+  </wsdl:message>
+  <wsdl:message name="IAddService_AddLocation_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AddLocationResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAddService_AddLocation_ServiceFaultFault_FaultMessage">
+    <wsdl:part xmlns:q24="http://schemas.datacontract.org/2004/07/AccountingBookService.Contracts.Models.DtoException" name="detail" element="q24:ServiceFault" />
+  </wsdl:message>
+  <wsdl:message name="IAddService_AddState_InputMessage">
+    <wsdl:part name="parameters" element="tns:AddState" />
+  </wsdl:message>
+  <wsdl:message name="IAddService_AddState_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AddStateResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAddService_AddState_ServiceFaultFault_FaultMessage">
+    <wsdl:part xmlns:q25="http://schemas.datacontract.org/2004/07/AccountingBookService.Contracts.Models.DtoException" name="detail" element="q25:ServiceFault" />
+  </wsdl:message>
+  <wsdl:message name="IAddService_AddCategory_InputMessage">
+    <wsdl:part name="parameters" element="tns:AddCategory" />
+  </wsdl:message>
+  <wsdl:message name="IAddService_AddCategory_OutputMessage">
+    <wsdl:part name="parameters" element="tns:AddCategoryResponse" />
+  </wsdl:message>
+  <wsdl:message name="IAddService_AddCategory_ServiceFaultFault_FaultMessage">
+    <wsdl:part xmlns:q26="http://schemas.datacontract.org/2004/07/AccountingBookService.Contracts.Models.DtoException" name="detail" element="q26:ServiceFault" />
+  </wsdl:message>
+  <wsdl:message name="IEditService_EditUser_InputMessage">
+    <wsdl:part name="parameters" element="tns:EditUser" />
+  </wsdl:message>
+  <wsdl:message name="IEditService_EditUser_OutputMessage">
+    <wsdl:part name="parameters" element="tns:EditUserResponse" />
+  </wsdl:message>
+  <wsdl:message name="IEditService_EditUser_ServiceFaultFault_FaultMessage">
+    <wsdl:part xmlns:q27="http://schemas.datacontract.org/2004/07/AccountingBookService.Contracts.Models.DtoException" name="detail" element="q27:ServiceFault" />
+  </wsdl:message>
+  <wsdl:message name="IEditService_EditSubjectInformation_InputMessage">
+    <wsdl:part name="parameters" element="tns:EditSubjectInformation" />
+  </wsdl:message>
+  <wsdl:message name="IEditService_EditSubjectInformation_OutputMessage">
+    <wsdl:part name="parameters" element="tns:EditSubjectInformationResponse" />
+  </wsdl:message>
+  <wsdl:message name="IEditService_EditSubjectInformation_ServiceFaultFault_FaultMessage">
+    <wsdl:part xmlns:q28="http://schemas.datacontract.org/2004/07/AccountingBookService.Contracts.Models.DtoException" name="detail" element="q28:ServiceFault" />
+  </wsdl:message>
+  <wsdl:message name="IEditService_EditSubjectPhoto_InputMessage">
+    <wsdl:part name="parameters" element="tns:EditSubjectPhoto" />
+  </wsdl:message>
+  <wsdl:message name="IEditService_EditSubjectPhoto_OutputMessage">
+    <wsdl:part name="parameters" element="tns:EditSubjectPhotoResponse" />
+  </wsdl:message>
+  <wsdl:message name="IEditService_EditSubjectPhoto_ServiceFaultFault_FaultMessage">
+    <wsdl:part xmlns:q29="http://schemas.datacontract.org/2004/07/AccountingBookService.Contracts.Models.DtoException" name="detail" element="q29:ServiceFault" />
+  </wsdl:message>
+  <wsdl:message name="IEditService_EditLocationById_InputMessage">
+    <wsdl:part name="parameters" element="tns:EditLocationById" />
+  </wsdl:message>
+  <wsdl:message name="IEditService_EditLocationById_OutputMessage">
+    <wsdl:part name="parameters" element="tns:EditLocationByIdResponse" />
+  </wsdl:message>
+  <wsdl:message name="IEditService_EditLocationById_ServiceFaultFault_FaultMessage">
+    <wsdl:part xmlns:q30="http://schemas.datacontract.org/2004/07/AccountingBookService.Contracts.Models.DtoException" name="detail" element="q30:ServiceFault" />
+  </wsdl:message>
+  <wsdl:message name="IEditService_EditStateById_InputMessage">
+    <wsdl:part name="parameters" element="tns:EditStateById" />
+  </wsdl:message>
+  <wsdl:message name="IEditService_EditStateById_OutputMessage">
+    <wsdl:part name="parameters" element="tns:EditStateByIdResponse" />
+  </wsdl:message>
+  <wsdl:message name="IEditService_EditStateById_ServiceFaultFault_FaultMessage">
+    <wsdl:part xmlns:q31="http://schemas.datacontract.org/2004/07/AccountingBookService.Contracts.Models.DtoException" name="detail" element="q31:ServiceFault" />
+  </wsdl:message>
+  <wsdl:message name="IEditService_EditCategoryById_InputMessage">
+    <wsdl:part name="parameters" element="tns:EditCategoryById" />
+  </wsdl:message>
+  <wsdl:message name="IEditService_EditCategoryById_OutputMessage">
+    <wsdl:part name="parameters" element="tns:EditCategoryByIdResponse" />
+  </wsdl:message>
+  <wsdl:message name="IEditService_EditCategoryById_ServiceFaultFault_FaultMessage">
+    <wsdl:part xmlns:q32="http://schemas.datacontract.org/2004/07/AccountingBookService.Contracts.Models.DtoException" name="detail" element="q32:ServiceFault" />
+  </wsdl:message>
+  <wsdl:message name="IDeleteService_DeleteUserById_InputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteUserById" />
+  </wsdl:message>
+  <wsdl:message name="IDeleteService_DeleteUserById_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteUserByIdResponse" />
+  </wsdl:message>
+  <wsdl:message name="IDeleteService_DeleteUserById_ServiceFaultFault_FaultMessage">
+    <wsdl:part xmlns:q33="http://schemas.datacontract.org/2004/07/AccountingBookService.Contracts.Models.DtoException" name="detail" element="q33:ServiceFault" />
+  </wsdl:message>
+  <wsdl:message name="IDeleteService_DeleteSubjectByInventoryNumber_InputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteSubjectByInventoryNumber" />
+  </wsdl:message>
+  <wsdl:message name="IDeleteService_DeleteSubjectByInventoryNumber_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteSubjectByInventoryNumberResponse" />
+  </wsdl:message>
+  <wsdl:message name="IDeleteService_DeleteSubjectByInventoryNumber_ServiceFaultFault_FaultMessage">
+    <wsdl:part xmlns:q34="http://schemas.datacontract.org/2004/07/AccountingBookService.Contracts.Models.DtoException" name="detail" element="q34:ServiceFault" />
+  </wsdl:message>
+  <wsdl:message name="IDeleteService_DeleteLocationById_InputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteLocationById" />
+  </wsdl:message>
+  <wsdl:message name="IDeleteService_DeleteLocationById_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteLocationByIdResponse" />
+  </wsdl:message>
+  <wsdl:message name="IDeleteService_DeleteLocationById_ServiceFaultFault_FaultMessage">
+    <wsdl:part xmlns:q35="http://schemas.datacontract.org/2004/07/AccountingBookService.Contracts.Models.DtoException" name="detail" element="q35:ServiceFault" />
+  </wsdl:message>
+  <wsdl:message name="IDeleteService_DeleteStateById_InputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteStateById" />
+  </wsdl:message>
+  <wsdl:message name="IDeleteService_DeleteStateById_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteStateByIdResponse" />
+  </wsdl:message>
+  <wsdl:message name="IDeleteService_DeleteStateById_ServiceFaultFault_FaultMessage">
+    <wsdl:part xmlns:q36="http://schemas.datacontract.org/2004/07/AccountingBookService.Contracts.Models.DtoException" name="detail" element="q36:ServiceFault" />
+  </wsdl:message>
+  <wsdl:message name="IDeleteService_DeleteCategoryById_InputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteCategoryById" />
+  </wsdl:message>
+  <wsdl:message name="IDeleteService_DeleteCategoryById_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DeleteCategoryByIdResponse" />
+  </wsdl:message>
+  <wsdl:message name="IDeleteService_DeleteCategoryById_ServiceFaultFault_FaultMessage">
+    <wsdl:part xmlns:q37="http://schemas.datacontract.org/2004/07/AccountingBookService.Contracts.Models.DtoException" name="detail" element="q37:ServiceFault" />
+  </wsdl:message>
+  <wsdl:message name="IFileService_UploadPhoto_InputMessage">
+    <wsdl:part name="parameters" element="tns:UploadPhoto" />
+  </wsdl:message>
+  <wsdl:message name="IFileService_UploadPhoto_OutputMessage">
+    <wsdl:part name="parameters" element="tns:UploadPhotoResponse" />
+  </wsdl:message>
+  <wsdl:message name="IFileService_UploadPhoto_ServiceFaultFault_FaultMessage">
+    <wsdl:part xmlns:q38="http://schemas.datacontract.org/2004/07/AccountingBookService.Contracts.Models.DtoException" name="detail" element="q38:ServiceFault" />
+  </wsdl:message>
+  <wsdl:message name="IFileService_DownloadPhoto_InputMessage">
+    <wsdl:part name="parameters" element="tns:DownloadPhoto" />
+  </wsdl:message>
+  <wsdl:message name="IFileService_DownloadPhoto_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DownloadPhotoResponse" />
+  </wsdl:message>
+  <wsdl:message name="IFileService_DownloadPhoto_ServiceFaultFault_FaultMessage">
+    <wsdl:part xmlns:q39="http://schemas.datacontract.org/2004/07/AccountingBookService.Contracts.Models.DtoException" name="detail" element="q39:ServiceFault" />
+  </wsdl:message>
+  <wsdl:message name="IFileService_DeletePhoto_InputMessage">
+    <wsdl:part name="parameters" element="tns:DeletePhoto" />
+  </wsdl:message>
+  <wsdl:message name="IFileService_DeletePhoto_OutputMessage">
+    <wsdl:part name="parameters" element="tns:DeletePhotoResponse" />
+  </wsdl:message>
+  <wsdl:message name="IFileService_DeletePhoto_ServiceFaultFault_FaultMessage">
+    <wsdl:part xmlns:q40="http://schemas.datacontract.org/2004/07/AccountingBookService.Contracts.Models.DtoException" name="detail" element="q40:ServiceFault" />
+  </wsdl:message>
+  <wsdl:portType name="IGetService">
     <wsdl:operation name="GetCategories">
-      <wsdl:input wsaw:Action="http://tempuri.org/IAccountingBookService/GetCategories" message="tns:IAccountingBookService_GetCategories_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IAccountingBookService/GetCategoriesResponse" message="tns:IAccountingBookService_GetCategories_OutputMessage" />
+      <wsdl:input wsaw:Action="http://tempuri.org/IGetService/GetCategories" message="tns:IGetService_GetCategories_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IGetService/GetCategoriesResponse" message="tns:IGetService_GetCategories_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://tempuri.org/IGetService/GetCategoriesServiceFaultFault" name="ServiceFaultFault" message="tns:IGetService_GetCategories_ServiceFaultFault_FaultMessage" />
     </wsdl:operation>
-    <wsdl:operation name="GetSubCategories">
-      <wsdl:input wsaw:Action="http://tempuri.org/IAccountingBookService/GetSubCategories" message="tns:IAccountingBookService_GetSubCategories_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IAccountingBookService/GetSubCategoriesResponse" message="tns:IAccountingBookService_GetSubCategories_OutputMessage" />
+    <wsdl:operation name="GetCategoriesBesidesCurrent">
+      <wsdl:input wsaw:Action="http://tempuri.org/IGetService/GetCategoriesBesidesCurrent" message="tns:IGetService_GetCategoriesBesidesCurrent_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IGetService/GetCategoriesBesidesCurrentResponse" message="tns:IGetService_GetCategoriesBesidesCurrent_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://tempuri.org/IGetService/GetCategoriesBesidesCurrentServiceFaultFault" name="ServiceFaultFault" message="tns:IGetService_GetCategoriesBesidesCurrent_ServiceFaultFault_FaultMessage" />
     </wsdl:operation>
-    <wsdl:operation name="GetSubjects">
-      <wsdl:input wsaw:Action="http://tempuri.org/IAccountingBookService/GetSubjects" message="tns:IAccountingBookService_GetSubjects_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IAccountingBookService/GetSubjectsResponse" message="tns:IAccountingBookService_GetSubjects_OutputMessage" />
+    <wsdl:operation name="GetSubjectsByCategoryId">
+      <wsdl:input wsaw:Action="http://tempuri.org/IGetService/GetSubjectsByCategoryId" message="tns:IGetService_GetSubjectsByCategoryId_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IGetService/GetSubjectsByCategoryIdResponse" message="tns:IGetService_GetSubjectsByCategoryId_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://tempuri.org/IGetService/GetSubjectsByCategoryIdServiceFaultFault" name="ServiceFaultFault" message="tns:IGetService_GetSubjectsByCategoryId_ServiceFaultFault_FaultMessage" />
     </wsdl:operation>
-    <wsdl:operation name="GetSubjectsByCategoryOrSubCategoryId">
-      <wsdl:input wsaw:Action="http://tempuri.org/IAccountingBookService/GetSubjectsByCategoryOrSubCategoryId" message="tns:IAccountingBookService_GetSubjectsByCategoryOrSubCategoryId_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IAccountingBookService/GetSubjectsByCategoryOrSubCategoryIdResponse" message="tns:IAccountingBookService_GetSubjectsByCategoryOrSubCategoryId_OutputMessage" />
+    <wsdl:operation name="GetSubjectInformationByInventoryNumber">
+      <wsdl:input wsaw:Action="http://tempuri.org/IGetService/GetSubjectInformationByInventoryNumber" message="tns:IGetService_GetSubjectInformationByInventoryNumber_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IGetService/GetSubjectInformationByInventoryNumberResponse" message="tns:IGetService_GetSubjectInformationByInventoryNumber_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://tempuri.org/IGetService/GetSubjectInformationByInventoryNumberServiceFaultFault" name="ServiceFaultFault" message="tns:IGetService_GetSubjectInformationByInventoryNumber_ServiceFaultFault_FaultMessage" />
     </wsdl:operation>
-    <wsdl:operation name="GetSubjectInformationById">
-      <wsdl:input wsaw:Action="http://tempuri.org/IAccountingBookService/GetSubjectInformationById" message="tns:IAccountingBookService_GetSubjectInformationById_InputMessage" />
-      <wsdl:output wsaw:Action="http://tempuri.org/IAccountingBookService/GetSubjectInformationByIdResponse" message="tns:IAccountingBookService_GetSubjectInformationById_OutputMessage" />
+    <wsdl:operation name="GetUserAuthorizationByName">
+      <wsdl:input wsaw:Action="http://tempuri.org/IGetService/GetUserAuthorizationByName" message="tns:IGetService_GetUserAuthorizationByName_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IGetService/GetUserAuthorizationByNameResponse" message="tns:IGetService_GetUserAuthorizationByName_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://tempuri.org/IGetService/GetUserAuthorizationByNameServiceFaultFault" name="ServiceFaultFault" message="tns:IGetService_GetUserAuthorizationByName_ServiceFaultFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="IsValidUser">
+      <wsdl:input wsaw:Action="http://tempuri.org/IGetService/IsValidUser" message="tns:IGetService_IsValidUser_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IGetService/IsValidUserResponse" message="tns:IGetService_IsValidUser_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://tempuri.org/IGetService/IsValidUserServiceFaultFault" name="ServiceFaultFault" message="tns:IGetService_IsValidUser_ServiceFaultFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetRolesAuthorizationByUserId">
+      <wsdl:input wsaw:Action="http://tempuri.org/IGetService/GetRolesAuthorizationByUserId" message="tns:IGetService_GetRolesAuthorizationByUserId_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IGetService/GetRolesAuthorizationByUserIdResponse" message="tns:IGetService_GetRolesAuthorizationByUserId_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://tempuri.org/IGetService/GetRolesAuthorizationByUserIdServiceFaultFault" name="ServiceFaultFault" message="tns:IGetService_GetRolesAuthorizationByUserId_ServiceFaultFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetCategoriesByName">
+      <wsdl:input wsaw:Action="http://tempuri.org/IGetService/GetCategoriesByName" message="tns:IGetService_GetCategoriesByName_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IGetService/GetCategoriesByNameResponse" message="tns:IGetService_GetCategoriesByName_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://tempuri.org/IGetService/GetCategoriesByNameServiceFaultFault" name="ServiceFaultFault" message="tns:IGetService_GetCategoriesByName_ServiceFaultFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetCategoryById">
+      <wsdl:input wsaw:Action="http://tempuri.org/IGetService/GetCategoryById" message="tns:IGetService_GetCategoryById_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IGetService/GetCategoryByIdResponse" message="tns:IGetService_GetCategoryById_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://tempuri.org/IGetService/GetCategoryByIdServiceFaultFault" name="ServiceFaultFault" message="tns:IGetService_GetCategoryById_ServiceFaultFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetSubjectsByNameCategoryIdAndStateId">
+      <wsdl:input wsaw:Action="http://tempuri.org/IGetService/GetSubjectsByNameCategoryIdAndStateId" message="tns:IGetService_GetSubjectsByNameCategoryIdAndStateId_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IGetService/GetSubjectsByNameCategoryIdAndStateIdResponse" message="tns:IGetService_GetSubjectsByNameCategoryIdAndStateId_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://tempuri.org/IGetService/GetSubjectsByNameCategoryIdAndStateIdServiceFaultFault" name="ServiceFaultFault" message="tns:IGetService_GetSubjectsByNameCategoryIdAndStateId_ServiceFaultFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetStates">
+      <wsdl:input wsaw:Action="http://tempuri.org/IGetService/GetStates" message="tns:IGetService_GetStates_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IGetService/GetStatesResponse" message="tns:IGetService_GetStates_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://tempuri.org/IGetService/GetStatesServiceFaultFault" name="ServiceFaultFault" message="tns:IGetService_GetStates_ServiceFaultFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetStateById">
+      <wsdl:input wsaw:Action="http://tempuri.org/IGetService/GetStateById" message="tns:IGetService_GetStateById_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IGetService/GetStateByIdResponse" message="tns:IGetService_GetStateById_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://tempuri.org/IGetService/GetStateByIdServiceFaultFault" name="ServiceFaultFault" message="tns:IGetService_GetStateById_ServiceFaultFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="IsExistsUser">
+      <wsdl:input wsaw:Action="http://tempuri.org/IGetService/IsExistsUser" message="tns:IGetService_IsExistsUser_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IGetService/IsExistsUserResponse" message="tns:IGetService_IsExistsUser_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://tempuri.org/IGetService/IsExistsUserServiceFaultFault" name="ServiceFaultFault" message="tns:IGetService_IsExistsUser_ServiceFaultFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetRoles">
+      <wsdl:input wsaw:Action="http://tempuri.org/IGetService/GetRoles" message="tns:IGetService_GetRoles_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IGetService/GetRolesResponse" message="tns:IGetService_GetRoles_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://tempuri.org/IGetService/GetRolesServiceFaultFault" name="ServiceFaultFault" message="tns:IGetService_GetRoles_ServiceFaultFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetUserById">
+      <wsdl:input wsaw:Action="http://tempuri.org/IGetService/GetUserById" message="tns:IGetService_GetUserById_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IGetService/GetUserByIdResponse" message="tns:IGetService_GetUserById_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://tempuri.org/IGetService/GetUserByIdServiceFaultFault" name="ServiceFaultFault" message="tns:IGetService_GetUserById_ServiceFaultFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetUsersByName">
+      <wsdl:input wsaw:Action="http://tempuri.org/IGetService/GetUsersByName" message="tns:IGetService_GetUsersByName_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IGetService/GetUsersByNameResponse" message="tns:IGetService_GetUsersByName_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://tempuri.org/IGetService/GetUsersByNameServiceFaultFault" name="ServiceFaultFault" message="tns:IGetService_GetUsersByName_ServiceFaultFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetLocations">
+      <wsdl:input wsaw:Action="http://tempuri.org/IGetService/GetLocations" message="tns:IGetService_GetLocations_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IGetService/GetLocationsResponse" message="tns:IGetService_GetLocations_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://tempuri.org/IGetService/GetLocationsServiceFaultFault" name="ServiceFaultFault" message="tns:IGetService_GetLocations_ServiceFaultFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetSubjectByInventoryNumber">
+      <wsdl:input wsaw:Action="http://tempuri.org/IGetService/GetSubjectByInventoryNumber" message="tns:IGetService_GetSubjectByInventoryNumber_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IGetService/GetSubjectByInventoryNumberResponse" message="tns:IGetService_GetSubjectByInventoryNumber_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://tempuri.org/IGetService/GetSubjectByInventoryNumberServiceFaultFault" name="ServiceFaultFault" message="tns:IGetService_GetSubjectByInventoryNumber_ServiceFaultFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="IsExistsSubject">
+      <wsdl:input wsaw:Action="http://tempuri.org/IGetService/IsExistsSubject" message="tns:IGetService_IsExistsSubject_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IGetService/IsExistsSubjectResponse" message="tns:IGetService_IsExistsSubject_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://tempuri.org/IGetService/IsExistsSubjectServiceFaultFault" name="ServiceFaultFault" message="tns:IGetService_IsExistsSubject_ServiceFaultFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetLocationsByAddress">
+      <wsdl:input wsaw:Action="http://tempuri.org/IGetService/GetLocationsByAddress" message="tns:IGetService_GetLocationsByAddress_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IGetService/GetLocationsByAddressResponse" message="tns:IGetService_GetLocationsByAddress_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://tempuri.org/IGetService/GetLocationsByAddressServiceFaultFault" name="ServiceFaultFault" message="tns:IGetService_GetLocationsByAddress_ServiceFaultFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="GetLocationsById">
+      <wsdl:input wsaw:Action="http://tempuri.org/IGetService/GetLocationsById" message="tns:IGetService_GetLocationsById_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IGetService/GetLocationsByIdResponse" message="tns:IGetService_GetLocationsById_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://tempuri.org/IGetService/GetLocationsByIdServiceFaultFault" name="ServiceFaultFault" message="tns:IGetService_GetLocationsById_ServiceFaultFault_FaultMessage" />
     </wsdl:operation>
   </wsdl:portType>
-  <wsdl:binding name="BasicHttpBinding_IAccountingBookService" type="tns:IAccountingBookService">
+  <wsdl:portType name="IAddService">
+    <wsdl:operation name="AddUser">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAddService/AddUser" message="tns:IAddService_AddUser_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAddService/AddUserResponse" message="tns:IAddService_AddUser_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://tempuri.org/IAddService/AddUserServiceFaultFault" name="ServiceFaultFault" message="tns:IAddService_AddUser_ServiceFaultFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="AddSubject">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAddService/AddSubject" message="tns:IAddService_AddSubject_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAddService/AddSubjectResponse" message="tns:IAddService_AddSubject_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://tempuri.org/IAddService/AddSubjectServiceFaultFault" name="ServiceFaultFault" message="tns:IAddService_AddSubject_ServiceFaultFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="AddLocation">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAddService/AddLocation" message="tns:IAddService_AddLocation_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAddService/AddLocationResponse" message="tns:IAddService_AddLocation_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://tempuri.org/IAddService/AddLocationServiceFaultFault" name="ServiceFaultFault" message="tns:IAddService_AddLocation_ServiceFaultFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="AddState">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAddService/AddState" message="tns:IAddService_AddState_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAddService/AddStateResponse" message="tns:IAddService_AddState_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://tempuri.org/IAddService/AddStateServiceFaultFault" name="ServiceFaultFault" message="tns:IAddService_AddState_ServiceFaultFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="AddCategory">
+      <wsdl:input wsaw:Action="http://tempuri.org/IAddService/AddCategory" message="tns:IAddService_AddCategory_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IAddService/AddCategoryResponse" message="tns:IAddService_AddCategory_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://tempuri.org/IAddService/AddCategoryServiceFaultFault" name="ServiceFaultFault" message="tns:IAddService_AddCategory_ServiceFaultFault_FaultMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="IEditService">
+    <wsdl:operation name="EditUser">
+      <wsdl:input wsaw:Action="http://tempuri.org/IEditService/EditUser" message="tns:IEditService_EditUser_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IEditService/EditUserResponse" message="tns:IEditService_EditUser_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://tempuri.org/IEditService/EditUserServiceFaultFault" name="ServiceFaultFault" message="tns:IEditService_EditUser_ServiceFaultFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="EditSubjectInformation">
+      <wsdl:input wsaw:Action="http://tempuri.org/IEditService/EditSubjectInformation" message="tns:IEditService_EditSubjectInformation_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IEditService/EditSubjectInformationResponse" message="tns:IEditService_EditSubjectInformation_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://tempuri.org/IEditService/EditSubjectInformationServiceFaultFault" name="ServiceFaultFault" message="tns:IEditService_EditSubjectInformation_ServiceFaultFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="EditSubjectPhoto">
+      <wsdl:input wsaw:Action="http://tempuri.org/IEditService/EditSubjectPhoto" message="tns:IEditService_EditSubjectPhoto_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IEditService/EditSubjectPhotoResponse" message="tns:IEditService_EditSubjectPhoto_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://tempuri.org/IEditService/EditSubjectPhotoServiceFaultFault" name="ServiceFaultFault" message="tns:IEditService_EditSubjectPhoto_ServiceFaultFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="EditLocationById">
+      <wsdl:input wsaw:Action="http://tempuri.org/IEditService/EditLocationById" message="tns:IEditService_EditLocationById_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IEditService/EditLocationByIdResponse" message="tns:IEditService_EditLocationById_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://tempuri.org/IEditService/EditLocationByIdServiceFaultFault" name="ServiceFaultFault" message="tns:IEditService_EditLocationById_ServiceFaultFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="EditStateById">
+      <wsdl:input wsaw:Action="http://tempuri.org/IEditService/EditStateById" message="tns:IEditService_EditStateById_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IEditService/EditStateByIdResponse" message="tns:IEditService_EditStateById_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://tempuri.org/IEditService/EditStateByIdServiceFaultFault" name="ServiceFaultFault" message="tns:IEditService_EditStateById_ServiceFaultFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="EditCategoryById">
+      <wsdl:input wsaw:Action="http://tempuri.org/IEditService/EditCategoryById" message="tns:IEditService_EditCategoryById_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IEditService/EditCategoryByIdResponse" message="tns:IEditService_EditCategoryById_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://tempuri.org/IEditService/EditCategoryByIdServiceFaultFault" name="ServiceFaultFault" message="tns:IEditService_EditCategoryById_ServiceFaultFault_FaultMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="IDeleteService">
+    <wsdl:operation name="DeleteUserById">
+      <wsdl:input wsaw:Action="http://tempuri.org/IDeleteService/DeleteUserById" message="tns:IDeleteService_DeleteUserById_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IDeleteService/DeleteUserByIdResponse" message="tns:IDeleteService_DeleteUserById_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://tempuri.org/IDeleteService/DeleteUserByIdServiceFaultFault" name="ServiceFaultFault" message="tns:IDeleteService_DeleteUserById_ServiceFaultFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteSubjectByInventoryNumber">
+      <wsdl:input wsaw:Action="http://tempuri.org/IDeleteService/DeleteSubjectByInventoryNumber" message="tns:IDeleteService_DeleteSubjectByInventoryNumber_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IDeleteService/DeleteSubjectByInventoryNumberResponse" message="tns:IDeleteService_DeleteSubjectByInventoryNumber_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://tempuri.org/IDeleteService/DeleteSubjectByInventoryNumberServiceFaultFault" name="ServiceFaultFault" message="tns:IDeleteService_DeleteSubjectByInventoryNumber_ServiceFaultFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteLocationById">
+      <wsdl:input wsaw:Action="http://tempuri.org/IDeleteService/DeleteLocationById" message="tns:IDeleteService_DeleteLocationById_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IDeleteService/DeleteLocationByIdResponse" message="tns:IDeleteService_DeleteLocationById_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://tempuri.org/IDeleteService/DeleteLocationByIdServiceFaultFault" name="ServiceFaultFault" message="tns:IDeleteService_DeleteLocationById_ServiceFaultFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteStateById">
+      <wsdl:input wsaw:Action="http://tempuri.org/IDeleteService/DeleteStateById" message="tns:IDeleteService_DeleteStateById_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IDeleteService/DeleteStateByIdResponse" message="tns:IDeleteService_DeleteStateById_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://tempuri.org/IDeleteService/DeleteStateByIdServiceFaultFault" name="ServiceFaultFault" message="tns:IDeleteService_DeleteStateById_ServiceFaultFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DeleteCategoryById">
+      <wsdl:input wsaw:Action="http://tempuri.org/IDeleteService/DeleteCategoryById" message="tns:IDeleteService_DeleteCategoryById_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IDeleteService/DeleteCategoryByIdResponse" message="tns:IDeleteService_DeleteCategoryById_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://tempuri.org/IDeleteService/DeleteCategoryByIdServiceFaultFault" name="ServiceFaultFault" message="tns:IDeleteService_DeleteCategoryById_ServiceFaultFault_FaultMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:portType name="IFileService">
+    <wsdl:operation name="UploadPhoto">
+      <wsdl:input wsaw:Action="http://tempuri.org/IFileService/UploadPhoto" message="tns:IFileService_UploadPhoto_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IFileService/UploadPhotoResponse" message="tns:IFileService_UploadPhoto_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://tempuri.org/IFileService/UploadPhotoServiceFaultFault" name="ServiceFaultFault" message="tns:IFileService_UploadPhoto_ServiceFaultFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DownloadPhoto">
+      <wsdl:input wsaw:Action="http://tempuri.org/IFileService/DownloadPhoto" message="tns:IFileService_DownloadPhoto_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IFileService/DownloadPhotoResponse" message="tns:IFileService_DownloadPhoto_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://tempuri.org/IFileService/DownloadPhotoServiceFaultFault" name="ServiceFaultFault" message="tns:IFileService_DownloadPhoto_ServiceFaultFault_FaultMessage" />
+    </wsdl:operation>
+    <wsdl:operation name="DeletePhoto">
+      <wsdl:input wsaw:Action="http://tempuri.org/IFileService/DeletePhoto" message="tns:IFileService_DeletePhoto_InputMessage" />
+      <wsdl:output wsaw:Action="http://tempuri.org/IFileService/DeletePhotoResponse" message="tns:IFileService_DeletePhoto_OutputMessage" />
+      <wsdl:fault wsaw:Action="http://tempuri.org/IFileService/DeletePhotoServiceFaultFault" name="ServiceFaultFault" message="tns:IFileService_DeletePhoto_ServiceFaultFault_FaultMessage" />
+    </wsdl:operation>
+  </wsdl:portType>
+  <wsdl:binding name="BasicHttpBinding_IGetService" type="tns:IGetService">
     <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
     <wsdl:operation name="GetCategories">
-      <soap:operation soapAction="http://tempuri.org/IAccountingBookService/GetCategories" style="document" />
+      <soap:operation soapAction="http://tempuri.org/IGetService/GetCategories" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
       <wsdl:output>
         <soap:body use="literal" />
       </wsdl:output>
+      <wsdl:fault name="ServiceFaultFault">
+        <soap:fault use="literal" name="ServiceFaultFault" namespace="" />
+      </wsdl:fault>
     </wsdl:operation>
-    <wsdl:operation name="GetSubCategories">
-      <soap:operation soapAction="http://tempuri.org/IAccountingBookService/GetSubCategories" style="document" />
+    <wsdl:operation name="GetCategoriesBesidesCurrent">
+      <soap:operation soapAction="http://tempuri.org/IGetService/GetCategoriesBesidesCurrent" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
       <wsdl:output>
         <soap:body use="literal" />
       </wsdl:output>
+      <wsdl:fault name="ServiceFaultFault">
+        <soap:fault use="literal" name="ServiceFaultFault" namespace="" />
+      </wsdl:fault>
     </wsdl:operation>
-    <wsdl:operation name="GetSubjects">
-      <soap:operation soapAction="http://tempuri.org/IAccountingBookService/GetSubjects" style="document" />
+    <wsdl:operation name="GetSubjectsByCategoryId">
+      <soap:operation soapAction="http://tempuri.org/IGetService/GetSubjectsByCategoryId" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
       <wsdl:output>
         <soap:body use="literal" />
       </wsdl:output>
+      <wsdl:fault name="ServiceFaultFault">
+        <soap:fault use="literal" name="ServiceFaultFault" namespace="" />
+      </wsdl:fault>
     </wsdl:operation>
-    <wsdl:operation name="GetSubjectsByCategoryOrSubCategoryId">
-      <soap:operation soapAction="http://tempuri.org/IAccountingBookService/GetSubjectsByCategoryOrSubCategoryId" style="document" />
+    <wsdl:operation name="GetSubjectInformationByInventoryNumber">
+      <soap:operation soapAction="http://tempuri.org/IGetService/GetSubjectInformationByInventoryNumber" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
       <wsdl:output>
         <soap:body use="literal" />
       </wsdl:output>
+      <wsdl:fault name="ServiceFaultFault">
+        <soap:fault use="literal" name="ServiceFaultFault" namespace="" />
+      </wsdl:fault>
     </wsdl:operation>
-    <wsdl:operation name="GetSubjectInformationById">
-      <soap:operation soapAction="http://tempuri.org/IAccountingBookService/GetSubjectInformationById" style="document" />
+    <wsdl:operation name="GetUserAuthorizationByName">
+      <soap:operation soapAction="http://tempuri.org/IGetService/GetUserAuthorizationByName" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
       <wsdl:output>
         <soap:body use="literal" />
       </wsdl:output>
+      <wsdl:fault name="ServiceFaultFault">
+        <soap:fault use="literal" name="ServiceFaultFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="IsValidUser">
+      <soap:operation soapAction="http://tempuri.org/IGetService/IsValidUser" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="ServiceFaultFault">
+        <soap:fault use="literal" name="ServiceFaultFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="GetRolesAuthorizationByUserId">
+      <soap:operation soapAction="http://tempuri.org/IGetService/GetRolesAuthorizationByUserId" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="ServiceFaultFault">
+        <soap:fault use="literal" name="ServiceFaultFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="GetCategoriesByName">
+      <soap:operation soapAction="http://tempuri.org/IGetService/GetCategoriesByName" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="ServiceFaultFault">
+        <soap:fault use="literal" name="ServiceFaultFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="GetCategoryById">
+      <soap:operation soapAction="http://tempuri.org/IGetService/GetCategoryById" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="ServiceFaultFault">
+        <soap:fault use="literal" name="ServiceFaultFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="GetSubjectsByNameCategoryIdAndStateId">
+      <soap:operation soapAction="http://tempuri.org/IGetService/GetSubjectsByNameCategoryIdAndStateId" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="ServiceFaultFault">
+        <soap:fault use="literal" name="ServiceFaultFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="GetStates">
+      <soap:operation soapAction="http://tempuri.org/IGetService/GetStates" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="ServiceFaultFault">
+        <soap:fault use="literal" name="ServiceFaultFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="GetStateById">
+      <soap:operation soapAction="http://tempuri.org/IGetService/GetStateById" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="ServiceFaultFault">
+        <soap:fault use="literal" name="ServiceFaultFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="IsExistsUser">
+      <soap:operation soapAction="http://tempuri.org/IGetService/IsExistsUser" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="ServiceFaultFault">
+        <soap:fault use="literal" name="ServiceFaultFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="GetRoles">
+      <soap:operation soapAction="http://tempuri.org/IGetService/GetRoles" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="ServiceFaultFault">
+        <soap:fault use="literal" name="ServiceFaultFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="GetUserById">
+      <soap:operation soapAction="http://tempuri.org/IGetService/GetUserById" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="ServiceFaultFault">
+        <soap:fault use="literal" name="ServiceFaultFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="GetUsersByName">
+      <soap:operation soapAction="http://tempuri.org/IGetService/GetUsersByName" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="ServiceFaultFault">
+        <soap:fault use="literal" name="ServiceFaultFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="GetLocations">
+      <soap:operation soapAction="http://tempuri.org/IGetService/GetLocations" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="ServiceFaultFault">
+        <soap:fault use="literal" name="ServiceFaultFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="GetSubjectByInventoryNumber">
+      <soap:operation soapAction="http://tempuri.org/IGetService/GetSubjectByInventoryNumber" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="ServiceFaultFault">
+        <soap:fault use="literal" name="ServiceFaultFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="IsExistsSubject">
+      <soap:operation soapAction="http://tempuri.org/IGetService/IsExistsSubject" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="ServiceFaultFault">
+        <soap:fault use="literal" name="ServiceFaultFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="GetLocationsByAddress">
+      <soap:operation soapAction="http://tempuri.org/IGetService/GetLocationsByAddress" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="ServiceFaultFault">
+        <soap:fault use="literal" name="ServiceFaultFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="GetLocationsById">
+      <soap:operation soapAction="http://tempuri.org/IGetService/GetLocationsById" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="ServiceFaultFault">
+        <soap:fault use="literal" name="ServiceFaultFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="BasicHttpBinding_IAddService" type="tns:IAddService">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="AddUser">
+      <soap:operation soapAction="http://tempuri.org/IAddService/AddUser" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="ServiceFaultFault">
+        <soap:fault use="literal" name="ServiceFaultFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="AddSubject">
+      <soap:operation soapAction="http://tempuri.org/IAddService/AddSubject" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="ServiceFaultFault">
+        <soap:fault use="literal" name="ServiceFaultFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="AddLocation">
+      <soap:operation soapAction="http://tempuri.org/IAddService/AddLocation" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="ServiceFaultFault">
+        <soap:fault use="literal" name="ServiceFaultFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="AddState">
+      <soap:operation soapAction="http://tempuri.org/IAddService/AddState" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="ServiceFaultFault">
+        <soap:fault use="literal" name="ServiceFaultFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="AddCategory">
+      <soap:operation soapAction="http://tempuri.org/IAddService/AddCategory" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="ServiceFaultFault">
+        <soap:fault use="literal" name="ServiceFaultFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="BasicHttpBinding_IEditService" type="tns:IEditService">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="EditUser">
+      <soap:operation soapAction="http://tempuri.org/IEditService/EditUser" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="ServiceFaultFault">
+        <soap:fault use="literal" name="ServiceFaultFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="EditSubjectInformation">
+      <soap:operation soapAction="http://tempuri.org/IEditService/EditSubjectInformation" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="ServiceFaultFault">
+        <soap:fault use="literal" name="ServiceFaultFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="EditSubjectPhoto">
+      <soap:operation soapAction="http://tempuri.org/IEditService/EditSubjectPhoto" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="ServiceFaultFault">
+        <soap:fault use="literal" name="ServiceFaultFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="EditLocationById">
+      <soap:operation soapAction="http://tempuri.org/IEditService/EditLocationById" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="ServiceFaultFault">
+        <soap:fault use="literal" name="ServiceFaultFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="EditStateById">
+      <soap:operation soapAction="http://tempuri.org/IEditService/EditStateById" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="ServiceFaultFault">
+        <soap:fault use="literal" name="ServiceFaultFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="EditCategoryById">
+      <soap:operation soapAction="http://tempuri.org/IEditService/EditCategoryById" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="ServiceFaultFault">
+        <soap:fault use="literal" name="ServiceFaultFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="BasicHttpBinding_IDeleteService" type="tns:IDeleteService">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="DeleteUserById">
+      <soap:operation soapAction="http://tempuri.org/IDeleteService/DeleteUserById" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="ServiceFaultFault">
+        <soap:fault use="literal" name="ServiceFaultFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteSubjectByInventoryNumber">
+      <soap:operation soapAction="http://tempuri.org/IDeleteService/DeleteSubjectByInventoryNumber" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="ServiceFaultFault">
+        <soap:fault use="literal" name="ServiceFaultFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteLocationById">
+      <soap:operation soapAction="http://tempuri.org/IDeleteService/DeleteLocationById" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="ServiceFaultFault">
+        <soap:fault use="literal" name="ServiceFaultFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteStateById">
+      <soap:operation soapAction="http://tempuri.org/IDeleteService/DeleteStateById" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="ServiceFaultFault">
+        <soap:fault use="literal" name="ServiceFaultFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="DeleteCategoryById">
+      <soap:operation soapAction="http://tempuri.org/IDeleteService/DeleteCategoryById" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="ServiceFaultFault">
+        <soap:fault use="literal" name="ServiceFaultFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+  </wsdl:binding>
+  <wsdl:binding name="BasicHttpBinding_IFileService" type="tns:IFileService">
+    <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
+    <wsdl:operation name="UploadPhoto">
+      <soap:operation soapAction="http://tempuri.org/IFileService/UploadPhoto" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="ServiceFaultFault">
+        <soap:fault use="literal" name="ServiceFaultFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="DownloadPhoto">
+      <soap:operation soapAction="http://tempuri.org/IFileService/DownloadPhoto" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="ServiceFaultFault">
+        <soap:fault use="literal" name="ServiceFaultFault" namespace="" />
+      </wsdl:fault>
+    </wsdl:operation>
+    <wsdl:operation name="DeletePhoto">
+      <soap:operation soapAction="http://tempuri.org/IFileService/DeletePhoto" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+      <wsdl:fault name="ServiceFaultFault">
+        <soap:fault use="literal" name="ServiceFaultFault" namespace="" />
+      </wsdl:fault>
     </wsdl:operation>
   </wsdl:binding>
   <wsdl:service name="AccountingBookService">
-    <wsdl:port name="BasicHttpBinding_IAccountingBookService" binding="tns:BasicHttpBinding_IAccountingBookService">
-      <soap:address location="http://localhost:1231/AccountingBookService.svc" />
+    <wsdl:port name="BasicHttpBinding_IGetService" binding="tns:BasicHttpBinding_IGetService">
+      <soap:address location="http://localhost:2707/AccountingBookService.svc/get" />
+    </wsdl:port>
+    <wsdl:port name="BasicHttpBinding_IAddService" binding="tns:BasicHttpBinding_IAddService">
+      <soap:address location="http://localhost:2707/AccountingBookService.svc/add" />
+    </wsdl:port>
+    <wsdl:port name="BasicHttpBinding_IEditService" binding="tns:BasicHttpBinding_IEditService">
+      <soap:address location="http://localhost:2707/AccountingBookService.svc/edit" />
+    </wsdl:port>
+    <wsdl:port name="BasicHttpBinding_IDeleteService" binding="tns:BasicHttpBinding_IDeleteService">
+      <soap:address location="http://localhost:2707/AccountingBookService.svc/delete" />
+    </wsdl:port>
+    <wsdl:port name="BasicHttpBinding_IFileService" binding="tns:BasicHttpBinding_IFileService">
+      <soap:address location="http://localhost:2707/AccountingBookService.svc/file" />
     </wsdl:port>
   </wsdl:service>
 </wsdl:definitions>

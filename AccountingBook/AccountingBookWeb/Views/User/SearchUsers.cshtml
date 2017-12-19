@@ -1,0 +1,29 @@
+﻿@{
+    ViewBag.Title = "Search Users";
+}
+
+<link href="~/Content/font-awesome.css" rel="stylesheet" />
+<script src="~/Scripts/searchUsers.js"></script>
+
+<h2>List Users</h2>
+
+<p>
+    @Html.ActionLink("Create New", "AddEditUser")
+</p>
+
+<div class="form-inline form-group">
+    <label class="control-label">Name: </label>
+    <input name="userName" class="form-control" />
+    <button class="btn btn-default" id="button">Search</button>
+    <i style="display:none" id="before-load" class="fa fa-spinner fa-spin"></i>
+</div>
+<div id="users"></div>
+
+
+<script>
+    window.searchVar = window.Search();
+    $("#button").click(function () {      
+        var _userName = $('input[name="userName"]').val();
+        searchVar.MakeSearch('@Url.Action("GetUsersByName","User")?userName=' + _userName, "users");
+    });
+</script>

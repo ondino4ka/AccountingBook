@@ -1,6 +1,6 @@
-﻿using AccountingBookBL.Container;
+﻿using StructureMap.Configuration.DSL;
+using AccountingBookBL.Container;
 using AccountingBookData.Container;
-using StructureMap.Configuration.DSL;
 
 namespace AccountingBookDependencies.Registries
 {
