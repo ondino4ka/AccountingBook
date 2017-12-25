@@ -1,0 +1,37 @@
+USE [AccountingBookDB]
+GO
+
+SET ANSI_NULLS ON
+GO
+
+SET QUOTED_IDENTIFIER ON
+GO
+
+CREATE TABLE [dbo].[UsersRoles](
+	[idUser] [int] NOT NULL,
+	[idRole] [int] NOT NULL,
+ CONSTRAINT [PK_UsersRoles] PRIMARY KEY CLUSTERED 
+(
+	[idUser] ASC,
+	[idRole] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]
+) ON [PRIMARY]
+
+GO
+
+ALTER TABLE [dbo].[UsersRoles]  WITH CHECK ADD  CONSTRAINT [FK_UsersRoles_Roles] FOREIGN KEY([idRole])
+REFERENCES [dbo].[Roles] ([idRole])
+GO
+
+ALTER TABLE [dbo].[UsersRoles] CHECK CONSTRAINT [FK_UsersRoles_Roles]
+GO
+
+ALTER TABLE [dbo].[UsersRoles]  WITH CHECK ADD  CONSTRAINT [FK_UsersRoles_Users] FOREIGN KEY([idUser])
+REFERENCES [dbo].[Users] ([idUser])
+ON DELETE CASCADE
+GO
+
+ALTER TABLE [dbo].[UsersRoles] CHECK CONSTRAINT [FK_UsersRoles_Users]
+GO
+
+

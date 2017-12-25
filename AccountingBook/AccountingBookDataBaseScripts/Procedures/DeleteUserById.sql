@@ -1,0 +1,16 @@
+USE [AccountingBookDB]
+GO
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE PROCEDURE [dbo].[DeleteUserById]
+(
+@userId int
+)
+AS
+BEGIN
+DELETE FROM Users
+WHERE Users.idUser = @userId
+END
+
