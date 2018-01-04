@@ -14,11 +14,12 @@ namespace AccountingBookService.Contracts.Contracts
 {
     public partial class AccountingBookService : IGetService
     {
-        readonly string connectionString;
-        const string errorMessage = "Now the server is unavailable.Try later";
-        private static readonly ILog Log = LogManager.GetLogger("AccountingBookService");
+        private readonly string connectionString;
+        private const string errorMessage = "Now the server is unavailable.Try later";
+        private readonly ILog Log;
         public AccountingBookService()
         {
+            Log = LogManager.GetLogger("AccountingBookService");
             try
             {
                 Log.Info("connection open");
@@ -36,7 +37,7 @@ namespace AccountingBookService.Contracts.Contracts
             }
         }
 
-        private void GetDataFromDb<T>(ref List<T> list, string procedureName, params SqlParameter[] sqlParametr)
+        private List<T> GetDataFromDb<T>(Func<DataRow, T> createDtoFunc, string procedureName, params SqlParameter[] sqlParametr)
         {
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
@@ -70,610 +71,132 @@ namespace AccountingBookService.Contracts.Contracts
                         Log.Error(sqlException.Message);
                         throw new FaultException<ServiceFault>(new ServiceFault(errorMessage), new FaultReason("Internal error"));
                     }
-
-
-                    if (procedureName == "SelectCategories")
+                    List<T> resultList = new List<T>();
+                    try
                     {
-                        List<CategoryDto> tempList = new List<CategoryDto>();
-                        try
+                        foreach (DataTable table in dataSet.Tables)
                         {
-                            foreach (DataTable table in dataSet.Tables)
+                            foreach (DataRow dataRow in table.Rows)
                             {
-                                foreach (DataRow dataRow in table.Rows)
-                                {
-                                    tempList.Add(new CategoryDto { Id = (int)dataRow[0], Pid = dataRow.IsNull(1) ? null : (int?)dataRow[1], Name = (string)dataRow[2] });
-                                }
+                                resultList.Add(createDtoFunc(dataRow));
                             }
                         }
-                        catch (InvalidCastException invalidCastException)
-                        {
-                            Log.Error(invalidCastException.Message);
-                            throw new FaultException<ServiceFault>(new ServiceFault(errorMessage), new FaultReason("Internal error"));
-                        }
-                        list = tempList.Cast<T>().ToList();
                     }
-
-                    else if (procedureName == "SelectSubjectsByCategoryId")
+                    catch (InvalidCastException invalidCastException)
                     {
-                        List<SubjectDetailsDto> tempList = new List<SubjectDetailsDto>();
-                        try
-                        {
-                            foreach (DataTable table in dataSet.Tables)
-                            {
-                                foreach (DataRow dataRow in table.Rows)
-                                {
-                                    tempList.Add(new SubjectDetailsDto { InventoryNumber = (int)dataRow[0], Name = (string)dataRow[1], Photo = dataRow.IsNull(2) ? string.Empty : (string)dataRow[2], Description = (string)dataRow[3] });
-                                }
-                            }
-                        }
-                        catch (InvalidCastException invalidCastException)
-                        {
-                            Log.Error(invalidCastException.Message);
-                            throw new FaultException<ServiceFault>(new ServiceFault(errorMessage), new FaultReason("Internal error"));
-                        }
-                        list = tempList.Cast<T>().ToList();
+                        Log.Error(invalidCastException.Message);
+                        throw new FaultException<ServiceFault>(new ServiceFault(errorMessage), new FaultReason("Internal error"));
                     }
-
-                    else if (procedureName == "SelectSubjectInformationById")
-                    {
-                        List<SubjectDetailsDto> tempList = new List<SubjectDetailsDto>();
-                        try
-                        {
-
-                            foreach (DataTable table in dataSet.Tables)
-                            {
-                                foreach (DataRow dataRow in table.Rows)
-                                {
-                                    tempList.Add(new SubjectDetailsDto
-                                    {
-                                        InventoryNumber = (int)dataRow[0],
-                                        Name = (string)dataRow[1],
-                                        State = dataRow.IsNull(2) ? string.Empty : (string)dataRow[2],
-                                        Category = dataRow.IsNull(3) ? string.Empty : (string)dataRow[3],
-                                        Photo = dataRow.IsNull(4) ? string.Empty : (string)dataRow[4],
-                                        Description = (string)dataRow[5],
-                                        Location = dataRow.IsNull(6) ? string.Empty : (string)dataRow[6],
-                                    });
-                                }
-                            }
-                        }
-                        catch (InvalidCastException invalidCastException)
-                        {
-                            Log.Error(invalidCastException.Message);
-                            throw new FaultException<ServiceFault>(new ServiceFault(errorMessage), new FaultReason("Internal error"));
-                        }
-                        list = tempList.Cast<T>().ToList();
-                    }
-                    else if (procedureName == "SelectUserByName")
-                    {
-                        List<UserAuthorizationDto> tempList = new List<UserAuthorizationDto>();
-                        try
-                        {
-
-                            foreach (DataTable table in dataSet.Tables)
-                            {
-                                foreach (DataRow dataRow in table.Rows)
-                                {
-                                    tempList.Add(new UserAuthorizationDto { Name = (string)dataRow[1], Roles = GetRolesAuthorizationByUserId((int)(dataRow[0])) });
-                                }
-                            }
-                        }
-                        catch (InvalidCastException invalidCastException)
-                        {
-                            Log.Error(invalidCastException.Message);
-                            throw new FaultException<ServiceFault>(new ServiceFault(errorMessage), new FaultReason("Internal error"));
-                        }
-                        list = tempList.Cast<T>().ToList();
-                    }
-                    else if (procedureName == "SelectRolesAuthorizationByUserId")
-                    {
-                        List<RoleAuthorizationDto> tempList = new List<RoleAuthorizationDto>();
-                        try
-                        {
-
-                            foreach (DataTable table in dataSet.Tables)
-                            {
-                                foreach (DataRow dataRow in table.Rows)
-                                {
-                                    tempList.Add(new RoleAuthorizationDto { RoleName = (string)dataRow[0] });
-                                }
-                            }
-                        }
-                        catch (InvalidCastException invalidCastException)
-                        {
-                            Log.Error(invalidCastException.Message);
-                            throw new FaultException<ServiceFault>(new ServiceFault(errorMessage), new FaultReason("Internal error"));
-                        }
-                        list = tempList.Cast<T>().ToList();
-                    }
-                    else if (procedureName == "SelectCategoriesByName")
-                    {
-                        List<CategoryDto> tempList = new List<CategoryDto>();
-                        try
-                        {
-
-                            foreach (DataTable table in dataSet.Tables)
-                            {
-                                foreach (DataRow dataRow in table.Rows)
-                                {
-                                    tempList.Add(new CategoryDto { Id = (int)dataRow[0], Name = (string)dataRow[1] });
-                                }
-                            }
-                        }
-                        catch (InvalidCastException invalidCastException)
-                        {
-                            Log.Error(invalidCastException.Message);
-                            throw new FaultException<ServiceFault>(new ServiceFault(errorMessage), new FaultReason("Internal error"));
-                        }
-                        list = tempList.Cast<T>().ToList();
-                    }
-                    else if (procedureName == "SelectSubjectByNameCategoryIdAndStateId")
-                    {
-                        List<SubjectDetailsDto> tempList = new List<SubjectDetailsDto>();
-                        try
-                        {
-
-                            foreach (DataTable table in dataSet.Tables)
-                            {
-                                foreach (DataRow dataRow in table.Rows)
-                                {
-                                    tempList.Add(new SubjectDetailsDto { InventoryNumber = (int)dataRow[0], Name = (string)dataRow[1], Photo = dataRow.IsNull(2) ? string.Empty : (string)dataRow[2], Description = (string)dataRow[3] });
-                                }
-                            }
-                        }
-                        catch (InvalidCastException invalidCastException)
-                        {
-                            Log.Error(invalidCastException.Message);
-                            throw new FaultException<ServiceFault>(new ServiceFault(errorMessage), new FaultReason("Internal error"));
-                        }
-                        list = tempList.Cast<T>().ToList();
-                    }
-                    else if (procedureName == "SelectStates")
-                    {
-                        List<StateDto> tempList = new List<StateDto>();
-                        try
-                        {
-
-                            foreach (DataTable table in dataSet.Tables)
-                            {
-                                foreach (DataRow dataRow in table.Rows)
-                                {
-                                    tempList.Add(new StateDto { Id = (int)dataRow[0], StateName = (string)dataRow[1] });
-                                }
-                            }
-                        }
-                        catch (InvalidCastException invalidCastException)
-                        {
-                            Log.Error(invalidCastException.Message);
-                            throw new FaultException<ServiceFault>(new ServiceFault(errorMessage), new FaultReason("Internal error"));
-                        }
-                        list = tempList.Cast<T>().ToList();
-                    }
-                    else if (procedureName == "SelectRoles")
-                    {
-                        List<RoleDto> tempList = new List<RoleDto>();
-                        try
-                        {
-
-                            foreach (DataTable table in dataSet.Tables)
-                            {
-                                foreach (DataRow dataRow in table.Rows)
-                                {
-                                    tempList.Add(new RoleDto { Id = (int)dataRow[0], Name = (string)dataRow[1] });
-                                }
-                            }
-                        }
-                        catch (InvalidCastException invalidCastException)
-                        {
-                            Log.Error(invalidCastException.Message);
-                            throw new FaultException<ServiceFault>(new ServiceFault(errorMessage), new FaultReason("Internal error"));
-                        }
-                        list = tempList.Cast<T>().ToList();
-                    }
-                    else if (procedureName == "SelectUserById")
-                    {
-                        List<UserDto> tempList = new List<UserDto>();
-                        try
-                        {
-
-                            foreach (DataTable table in dataSet.Tables)
-                            {
-                                foreach (DataRow dataRow in table.Rows)
-                                {
-                                    tempList.Add(new UserDto { Id = (int)dataRow[0], Name = (string)dataRow[1], Password = (string)dataRow[2], Email = (string)dataRow[3], Roles = GetRolesIdByUserId((int)dataRow[0]).Select(x => x.Id).ToArray() });
-                                }
-                            }
-                        }
-                        catch (InvalidCastException invalidCastException)
-                        {
-                            Log.Error(invalidCastException.Message);
-                            throw new FaultException<ServiceFault>(new ServiceFault(errorMessage), new FaultReason("Internal error"));
-                        }
-                        list = tempList.Cast<T>().ToList();
-                    }
-
-                    else if (procedureName == "SelectRolesIdByUserId")
-                    {
-                        List<RoleDto> tempList = new List<RoleDto>();
-                        try
-                        {
-                            foreach (DataTable table in dataSet.Tables)
-                            {
-                                foreach (DataRow dataRow in table.Rows)
-                                {
-                                    tempList.Add(new RoleDto { Id = (int)dataRow[0] });
-                                }
-                            }
-                        }
-                        catch (InvalidCastException invalidCastException)
-                        {
-                            Log.Error(invalidCastException.Message);
-                            throw new FaultException<ServiceFault>(new ServiceFault(errorMessage), new FaultReason("Internal error"));
-                        }
-                        list = tempList.Cast<T>().ToList();
-                    }
-
-                    else if (procedureName == "SelectUsersByName")
-                    {
-                        List<UserDto> tempList = new List<UserDto>();
-                        try
-                        {
-                            foreach (DataTable table in dataSet.Tables)
-                            {
-                                foreach (DataRow dataRow in table.Rows)
-                                {
-                                    tempList.Add(new UserDto { Id = (int)dataRow[0], Name = (string)dataRow[1], Password = (string)dataRow[2], Email = (string)dataRow[3] });
-                                }
-                            }
-                        }
-                        catch (InvalidCastException invalidCastException)
-                        {
-                            Log.Error(invalidCastException.Message);
-                            throw new FaultException<ServiceFault>(new ServiceFault(errorMessage), new FaultReason("Internal error"));
-                        }
-                        list = tempList.Cast<T>().ToList();
-                    }
-                    else if (procedureName == "SelectLocations")
-                    {
-                        List<LocationDto> tempList = new List<LocationDto>();
-                        try
-                        {
-                            foreach (DataTable table in dataSet.Tables)
-                            {
-                                foreach (DataRow dataRow in table.Rows)
-                                {
-                                    tempList.Add(new LocationDto { Id = (int)dataRow[0], Address = (string)dataRow[1] });
-                                }
-                            }
-                        }
-                        catch (InvalidCastException invalidCastException)
-                        {
-                            Log.Error(invalidCastException.Message);
-                            throw new FaultException<ServiceFault>(new ServiceFault(errorMessage), new FaultReason("Internal error"));
-                        }
-                        list = tempList.Cast<T>().ToList();
-                    }
-                    else if (procedureName == "SelectSubjectByInventoryNumber")
-                    {
-                        List<SubjectDto> tempList = new List<SubjectDto>();
-                        try
-                        {
-                            foreach (DataTable table in dataSet.Tables)
-                            {
-                                foreach (DataRow dataRow in table.Rows)
-                                {
-                                    tempList.Add(new SubjectDto
-                                    {
-                                        InventoryNumber = (int)dataRow[0],
-                                        Name = (string)dataRow[1],
-                                        StateId = dataRow.IsNull(2) ? null : (int?)dataRow[2],
-                                        CategoryId = dataRow.IsNull(3) ? null : (int?)dataRow[3],
-                                        Description = (string)dataRow[4],
-                                        Photo = dataRow.IsNull(5) ? string.Empty : (string)dataRow[5],
-                                        LocationId = dataRow.IsNull(6) ? null : (int?)dataRow[6],
-                                    });
-                                }
-                            }
-                        }
-                        catch (InvalidCastException invalidCastException)
-                        {
-                            Log.Error(invalidCastException.Message);
-                            throw new FaultException<ServiceFault>(new ServiceFault(errorMessage), new FaultReason("Internal error"));
-                        }
-                        list = tempList.Cast<T>().ToList();
-                    }
-                    else if (procedureName == "SelectLocationsByAddress")
-                    {
-                        List<LocationDto> tempList = new List<LocationDto>();
-                        try
-                        {
-                            foreach (DataTable table in dataSet.Tables)
-                            {
-                                foreach (DataRow dataRow in table.Rows)
-                                {
-                                    tempList.Add(new LocationDto
-                                    {
-                                        Id = (int)dataRow[0],
-                                        Address = (string)dataRow[1]                       
-                                    });
-                                }
-                            }
-                        }
-                        catch (InvalidCastException invalidCastException)
-                        {
-                            Log.Error(invalidCastException.Message);
-                            throw new FaultException<ServiceFault>(new ServiceFault(errorMessage), new FaultReason("Internal error"));
-                        }
-                        list = tempList.Cast<T>().ToList();
-                    }
-                    else if (procedureName == "SelectLocationById")
-                    {
-                        List<LocationDto> tempList = new List<LocationDto>();
-                        try
-                        {
-                            foreach (DataTable table in dataSet.Tables)
-                            {
-                                foreach (DataRow dataRow in table.Rows)
-                                {
-                                    tempList.Add(new LocationDto
-                                    {
-                                        Id = (int)dataRow[0],
-                                        Address = (string)dataRow[1]
-                                    });
-                                }
-                            }
-                        }
-                        catch (InvalidCastException invalidCastException)
-                        {
-                            Log.Error(invalidCastException.Message);
-                            throw new FaultException<ServiceFault>(new ServiceFault(errorMessage), new FaultReason("Internal error"));
-                        }
-                        list = tempList.Cast<T>().ToList();
-                    }
-                    else if (procedureName == "SelectStateById")
-                    {
-                        List<StateDto> tempList = new List<StateDto>();
-                        try
-                        {
-                            foreach (DataTable table in dataSet.Tables)
-                            {
-                                foreach (DataRow dataRow in table.Rows)
-                                {
-                                    tempList.Add(new StateDto
-                                    {
-                                        Id = (int)dataRow[0],
-                                        StateName = (string)dataRow[1]
-                                    });
-                                }
-                            }
-                        }
-                        catch (InvalidCastException invalidCastException)
-                        {
-                            Log.Error(invalidCastException.Message);
-                            throw new FaultException<ServiceFault>(new ServiceFault(errorMessage), new FaultReason("Internal error"));
-                        }
-                        list = tempList.Cast<T>().ToList();
-                    }
-                    else if (procedureName == "SelectCategoryById")
-                    {
-                        List<CategoryDto> tempList = new List<CategoryDto>();
-                        try
-                        {
-                            foreach (DataTable table in dataSet.Tables)
-                            {
-                                foreach (DataRow dataRow in table.Rows)
-                                {
-                                    tempList.Add(new CategoryDto
-                                    {
-                                        Id = (int)dataRow[0],
-                                        Pid = dataRow.IsNull(1) ? null : (int?)dataRow[1],
-                                        Name = (string)dataRow[2]
-                                    });
-                                }
-                            }
-                        }
-                        catch (InvalidCastException invalidCastException)
-                        {
-                            Log.Error(invalidCastException.Message);
-                            throw new FaultException<ServiceFault>(new ServiceFault(errorMessage), new FaultReason("Internal error"));
-                        }
-                        list = tempList.Cast<T>().ToList();
-                    }
-                    else if (procedureName == "SelectCategoriesBesidesCurrent")
-                    {
-                        List<CategoryDto> tempList = new List<CategoryDto>();
-                        try
-                        {
-                            foreach (DataTable table in dataSet.Tables)
-                            {
-                                foreach (DataRow dataRow in table.Rows)
-                                {
-                                    tempList.Add(new CategoryDto
-                                    {
-                                        Id = (int)dataRow[0],
-                                        Pid = dataRow.IsNull(1) ? null : (int?)dataRow[1],
-                                        Name = (string)dataRow[2]
-                                    });
-                                }
-                            }
-                        }
-                        catch (InvalidCastException invalidCastException)
-                        {
-                            Log.Error(invalidCastException.Message);
-                            throw new FaultException<ServiceFault>(new ServiceFault(errorMessage), new FaultReason("Internal error"));
-                        }
-                        list = tempList.Cast<T>().ToList();
-                    }
+                    return resultList;
                 }
             }
         }
 
         public List<CategoryDto> GetCategories()
         {
-            List<CategoryDto> categoryDto = new List<CategoryDto>();
-            GetDataFromDb(ref categoryDto, "SelectCategories");
-            return categoryDto;
+            Func<DataRow, CategoryDto> retFunc = CreateCategoryDto;
+            return GetDataFromDb(retFunc, "SelectCategories");
         }
-
         public List<CategoryDto> GetCategoriesBesidesCurrent(int categoryId)
         {
-            List<CategoryDto> categoryDto = new List<CategoryDto>();
             SqlParameter param = new SqlParameter { SqlDbType = SqlDbType.Int, ParameterName = "@categoryId", Value = (object)categoryId ?? DBNull.Value };
-            GetDataFromDb(ref categoryDto, "SelectCategoriesBesidesCurrent", param);
-            return categoryDto;
+            Func<DataRow, CategoryDto> retFunc = CreateCategoryDto;
+            return GetDataFromDb(retFunc, "SelectCategoriesBesidesCurrent", param);
         }
-
+        public CategoryDto CreateCategoryDto(DataRow dataRow)
+        {
+            return new CategoryDto
+            {
+                Id = (int)dataRow[0],
+                Pid = dataRow.IsNull(1) ? null : (int?)dataRow[1],
+                Name = (string)dataRow[2]
+            };
+        }
 
         public List<SubjectDetailsDto> GetSubjectsByCategoryId(int? categoryId)
         {
-            List<SubjectDetailsDto> subjectsDto = new List<SubjectDetailsDto>();
+            Func<DataRow, SubjectDetailsDto> retFunc = CreateSubjectDetailsDto;
             SqlParameter param = new SqlParameter { SqlDbType = SqlDbType.Int, ParameterName = "@categoryId", Value = (object)categoryId ?? DBNull.Value };
-            GetDataFromDb(ref subjectsDto, "SelectSubjectsByCategoryId", param);
-            return subjectsDto;
+            return GetDataFromDb(retFunc, "SelectSubjectsByCategoryId", param);
+        }
+        public SubjectDetailsDto CreateSubjectDetailsDto(DataRow dataRow)
+        {
+            return new SubjectDetailsDto
+            {
+                InventoryNumber = (int)dataRow[0],
+                Name = (string)dataRow[1],
+                Photo = dataRow.IsNull(2) ? string.Empty : (string)dataRow[2],
+                Description = (string)dataRow[3]
+            };
         }
 
         public SubjectDetailsDto GetSubjectInformationByInventoryNumber(int inventoryNumber)
         {
-            List<SubjectDetailsDto> subjectDto = new List<SubjectDetailsDto>();
+            Func<DataRow, SubjectDetailsDto> retFunc = CreateSubjectInformationByInventoryNumberDto;
             SqlParameter param = new SqlParameter { DbType = DbType.Int32, ParameterName = "@inventoryNumber", Value = inventoryNumber };
-            GetDataFromDb(ref subjectDto, "SelectSubjectInformationById", param);
-            return subjectDto.FirstOrDefault();
+            return GetDataFromDb(retFunc, "SelectSubjectInformationById", param).FirstOrDefault();
+        }
+        public SubjectDetailsDto CreateSubjectInformationByInventoryNumberDto(DataRow dataRow)
+        {
+            return new SubjectDetailsDto
+            {
+                InventoryNumber = (int)dataRow[0],
+                Name = (string)dataRow[1],
+                State = dataRow.IsNull(2) ? string.Empty : (string)dataRow[2],
+                Category = dataRow.IsNull(3) ? string.Empty : (string)dataRow[3],
+                Photo = dataRow.IsNull(4) ? string.Empty : (string)dataRow[4],
+                Description = (string)dataRow[5],
+                Location = dataRow.IsNull(6) ? string.Empty : (string)dataRow[6],
+            };
         }
 
         public UserAuthorizationDto GetUserAuthorizationByName(string userName)
         {
-            List<UserAuthorizationDto> userDto = new List<UserAuthorizationDto>();
+            Func<DataRow, UserAuthorizationDto> retFunc = CreateUserAuthorizationByNameDto;
             SqlParameter param = new SqlParameter { DbType = DbType.String, ParameterName = "@userName", Value = userName };
-            GetDataFromDb(ref userDto, "SelectUserByName", param);
-            return userDto.FirstOrDefault();
+            return GetDataFromDb(retFunc, "SelectUserByName", param).FirstOrDefault();
         }
-
-        public bool IsValidUser(string userName, string password)
+        public UserAuthorizationDto CreateUserAuthorizationByNameDto(DataRow dataRow)
         {
-            SqlParameter[] param = {
-                new SqlParameter
-                {
-                   DbType = DbType.String,
-                   ParameterName = "@username",
-                   Value = userName
-                },
-                new SqlParameter
-                {
-                    DbType = DbType.String,
-                    ParameterName = "@password",
-                    Value = password
-                }
-            };
-
-            bool result = false;
-            using (SqlConnection connection = new SqlConnection(connectionString))
+            return new UserAuthorizationDto
             {
-                using (SqlCommand command = new SqlCommand())
-                {
-                    command.Connection = connection;
-                    command.CommandType = CommandType.StoredProcedure;
-                    command.CommandText = "IsValidUser";
-                    command.Parameters.AddRange(param);
-
-                    SqlParameter resultPrameter = new SqlParameter();
-                    resultPrameter.Direction = ParameterDirection.ReturnValue;
-                    command.Parameters.Add(resultPrameter);
-
-                    SqlDataAdapter adapter = new SqlDataAdapter(command);
-                    DataSet dataSet = new DataSet();
-
-                    try
-                    {
-                        adapter.Fill(dataSet);
-                    }
-                    catch (SqlException sqlException)
-                    {
-                        Log.Error(sqlException.Message);
-                        throw new FaultException<ServiceFault>(new ServiceFault(errorMessage), new FaultReason("Internal error"));
-                    }
-
-                    if ((int)resultPrameter.Value == 1)
-                    {
-                        result = true;
-                    }
-                }
-            }
-            return result;
-        }
-
-        public bool IsExistsUser(int userId, string userName)
-        {
-            SqlParameter[] param = {
-                new SqlParameter
-                {
-                   DbType = DbType.String,
-                   ParameterName = "@userName",
-                   Value = userName
-                },
-                    new SqlParameter
-                {
-                   DbType = DbType.Int32,
-                   ParameterName = "@userId",
-                   Value = userId
-                },
+                Name = (string)dataRow[1],
+                Roles = GetRolesAuthorizationByUserId((int)(dataRow[0]))
             };
-
-            bool result = false;
-            using (SqlConnection connection = new SqlConnection(connectionString))
-            {
-                using (SqlCommand command = new SqlCommand())
-                {
-                    command.Connection = connection;
-                    command.CommandType = CommandType.StoredProcedure;
-                    command.CommandText = "IsExistsUser";
-                    command.Parameters.AddRange(param);
-
-                    SqlParameter resultPrameter = new SqlParameter();
-                    resultPrameter.Direction = ParameterDirection.ReturnValue;
-                    command.Parameters.Add(resultPrameter);
-
-                    SqlDataAdapter adapter = new SqlDataAdapter(command);
-                    DataSet dataSet = new DataSet();
-
-                    try
-                    {
-                        adapter.Fill(dataSet);
-                    }
-                    catch (SqlException sqlException)
-                    {
-                        Log.Error(sqlException.Message);
-                        throw new FaultException<ServiceFault>(new ServiceFault(errorMessage), new FaultReason("Internal error"));
-                    }
-
-                    if ((int)resultPrameter.Value == 1)
-                    {
-                        result = true;
-                    }
-                }
-            }
-            return result;
         }
-
 
         public List<RoleAuthorizationDto> GetRolesAuthorizationByUserId(int userId)
         {
-            List<RoleAuthorizationDto> roleDto = new List<RoleAuthorizationDto>();
+            Func<DataRow, RoleAuthorizationDto> retFunc = CreateRolesAuthorizationByUserIdDto;
             SqlParameter param = new SqlParameter { DbType = DbType.Int32, ParameterName = "@userId", Value = userId };
-            GetDataFromDb(ref roleDto, "SelectRolesAuthorizationByUserId", param);
-            return roleDto;
+            return GetDataFromDb(retFunc, "SelectRolesAuthorizationByUserId", param);
+        }
+        public RoleAuthorizationDto CreateRolesAuthorizationByUserIdDto(DataRow dataRow)
+        {
+            return new RoleAuthorizationDto
+            {
+                RoleName = (string)dataRow[0]
+            };
         }
 
         public List<CategoryDto> GetCategoriesByName(string categoryName)
         {
-            List<CategoryDto> categoriesDto = new List<CategoryDto>();
+            Func<DataRow, CategoryDto> retFunc = CreateCategoriesByNameDto;
             SqlParameter param = new SqlParameter { DbType = DbType.String, ParameterName = "@categoryName", Value = categoryName };
-            GetDataFromDb(ref categoriesDto, "SelectCategoriesByName", param);
-            return categoriesDto;
+            return GetDataFromDb(retFunc, "SelectCategoriesByName", param);
         }
+        public CategoryDto CreateCategoriesByNameDto(DataRow dataRow)
+        {
+            return new CategoryDto
+            {
+                Id = (int)dataRow[0],
+                Name = (string)dataRow[1]
+            };
+        }
+
         public List<SubjectDetailsDto> GetSubjectsByNameCategoryIdAndStateId(int? categoryId, int? stateId, string subjectName)
         {
-            List<SubjectDetailsDto> categoriesDto = new List<SubjectDetailsDto>();
-
+            Func<DataRow, SubjectDetailsDto> retFunc = CreateSubjectsByNameCategoryIdAndStateIdDto;
             SqlParameter[] param = {
                 new SqlParameter
                 {
@@ -695,68 +218,266 @@ namespace AccountingBookService.Contracts.Contracts
                 }
             };
 
-            GetDataFromDb(ref categoriesDto, "SelectSubjectByNameCategoryIdAndStateId", param);
-            return categoriesDto;
+            return GetDataFromDb(retFunc, "SelectSubjectByNameCategoryIdAndStateId", param);
+        }
+
+        public SubjectDetailsDto CreateSubjectsByNameCategoryIdAndStateIdDto(DataRow dataRow)
+        {
+            return new SubjectDetailsDto
+            {
+                InventoryNumber = (int)dataRow[0],
+                Name = (string)dataRow[1],
+                Photo = dataRow.IsNull(2) ? string.Empty : (string)dataRow[2],
+                Description = (string)dataRow[3]
+            };
         }
 
         public List<StateDto> GetStates()
         {
-            List<StateDto> statesDto = new List<StateDto>();
-            GetDataFromDb(ref statesDto, "SelectStates");
-            return statesDto;
+            Func<DataRow, StateDto> retFunc = CreateStatesDto;
+            return GetDataFromDb(retFunc, "SelectStates");
         }
 
         public StateDto GetStateById(int stateId)
         {
-            List<StateDto> statesDto = new List<StateDto>();
+            Func<DataRow, StateDto> retFunc = CreateStatesDto;
             SqlParameter param = new SqlParameter { DbType = DbType.Int32, ParameterName = "@stateId", Value = stateId };
-            GetDataFromDb(ref statesDto, "SelectStateById", param);
-            return statesDto.FirstOrDefault();
+            return GetDataFromDb(retFunc, "SelectStateById", param).FirstOrDefault();
+        }
+
+        public StateDto CreateStatesDto(DataRow dataRow)
+        {
+            return new StateDto
+            {
+                Id = (int)dataRow[0],
+                StateName = (string)dataRow[1]
+            };
         }
 
         public List<RoleDto> GetRoles()
         {
-            List<RoleDto> rolesDto = new List<RoleDto>();
-            GetDataFromDb(ref rolesDto, "SelectRoles");
-            return rolesDto;
+            Func<DataRow, RoleDto> retFunc = CreateRolesDto;
+            return GetDataFromDb(retFunc, "SelectRoles");
         }
+        public RoleDto CreateRolesDto(DataRow dataRow)
+        {
+            return new RoleDto
+            {
+                Id = (int)dataRow[0],
+                Name = (string)dataRow[1]
+            };
+        }
+
         public UserDto GetUserById(int userId)
         {
-            List<UserDto> userDto = new List<UserDto>();
+            Func<DataRow, UserDto> retFunc = CreateUserByIdDto;
             SqlParameter param = new SqlParameter { DbType = DbType.Int32, ParameterName = "@userId", Value = userId };
-            GetDataFromDb(ref userDto, "SelectUserById", param);
-            return userDto.FirstOrDefault();
+            return GetDataFromDb(retFunc, "SelectUserById", param).FirstOrDefault();
+        }
+        public UserDto CreateUserByIdDto(DataRow dataRow)
+        {
+            return new UserDto
+            {
+                Id = (int)dataRow[0],
+                Name = (string)dataRow[1],
+                Password = (string)dataRow[2],
+                Email = (string)dataRow[3],
+                Roles = GetRolesIdByUserId((int)dataRow[0]).Select(x => x.Id).ToArray()
+            };
         }
 
         public List<RoleDto> GetRolesIdByUserId(int userId)
         {
-            List<RoleDto> roleDto = new List<RoleDto>();
+            Func<DataRow, RoleDto> retFunc = CreateRolesIdByUserIdDto;
             SqlParameter param = new SqlParameter { DbType = DbType.Int32, ParameterName = "@userId", Value = userId };
-            GetDataFromDb(ref roleDto, "SelectRolesIdByUserId", param);
-            return roleDto;
+            return GetDataFromDb(retFunc, "SelectRolesIdByUserId", param);
+        }
+
+        public RoleDto CreateRolesIdByUserIdDto(DataRow dataRow)
+        {
+            return new RoleDto
+            {
+                Id = (int)dataRow[0]
+            };
         }
 
         public List<UserDto> GetUsersByName(string userName)
         {
-            List<UserDto> userDtoList = new List<UserDto>();
+            Func<DataRow, UserDto> retFunc = CreateUsersByNameDto;
             SqlParameter param = new SqlParameter { DbType = DbType.String, ParameterName = "@userName", Value = userName };
-            GetDataFromDb(ref userDtoList, "SelectUsersByName", param);
-            return userDtoList;
+            return GetDataFromDb(retFunc, "SelectUsersByName", param);
+        }
+        public UserDto CreateUsersByNameDto(DataRow dataRow)
+        {
+            return new UserDto
+            {
+                Id = (int)dataRow[0],
+                Name = (string)dataRow[1],
+                Password = (string)dataRow[2],
+                Email = (string)dataRow[3]
+            };
         }
 
         public List<LocationDto> GetLocations()
         {
-            List<LocationDto> addressDtoList = new List<LocationDto>();
-            GetDataFromDb(ref addressDtoList, "SelectLocations");
-            return addressDtoList;
+            Func<DataRow, LocationDto> retFunc = CreateLocationsDto;
+            return GetDataFromDb(retFunc, "SelectLocations");
+        }
+        public LocationDto CreateLocationsDto(DataRow dataRow)
+        {
+            return new LocationDto
+            {
+                Id = (int)dataRow[0],
+                Address = (string)dataRow[1]
+            };
         }
 
         public SubjectDto GetSubjectByInventoryNumber(int inventoryNumber)
         {
-            List<SubjectDto> subjectDto = new List<SubjectDto>();
+            Func<DataRow, SubjectDto> retFunc = CreateSubjectByInventoryNumberDto;
             SqlParameter param = new SqlParameter { DbType = DbType.Int32, ParameterName = "@inventoryNumber", Value = inventoryNumber };
-            GetDataFromDb(ref subjectDto, "SelectSubjectByInventoryNumber", param);
-            return subjectDto.FirstOrDefault();
+            return GetDataFromDb(retFunc, "SelectSubjectByInventoryNumber", param).FirstOrDefault();
+        }
+        public SubjectDto CreateSubjectByInventoryNumberDto(DataRow dataRow)
+        {
+            return new SubjectDto
+            {
+                InventoryNumber = (int)dataRow[0],
+                Name = (string)dataRow[1],
+                StateId = dataRow.IsNull(2) ? null : (int?)dataRow[2],
+                CategoryId = dataRow.IsNull(3) ? null : (int?)dataRow[3],
+                Description = (string)dataRow[4],
+                Photo = dataRow.IsNull(5) ? string.Empty : (string)dataRow[5],
+                LocationId = dataRow.IsNull(6) ? null : (int?)dataRow[6],
+            };
+        }
+
+        public List<LocationDto> GetLocationsByAddress(string address)
+        {
+            Func<DataRow, LocationDto> retFunc = CreateLocationsByAddressDto;
+            SqlParameter param = new SqlParameter { DbType = DbType.String, ParameterName = "@address", Value = address };
+            return GetDataFromDb(retFunc, "SelectLocationsByAddress", param);
+        }
+
+        public LocationDto GetLocationsById(int locationId)
+        {
+            Func<DataRow, LocationDto> retFunc = CreateLocationsByAddressDto;
+            SqlParameter param = new SqlParameter { DbType = DbType.Int32, ParameterName = "@idLocation", Value = locationId };
+            return GetDataFromDb(retFunc, "SelectLocationById", param).FirstOrDefault();
+        }
+        public LocationDto CreateLocationsByAddressDto(DataRow dataRow)
+        {
+            return new LocationDto
+            {
+                Id = (int)dataRow[0],
+                Address = (string)dataRow[1]
+            };
+        }
+
+        public CategoryDto GetCategoryById(int categoryId)
+        {
+            Func<DataRow, CategoryDto> retFunc = CreateCategoryByIdDto;
+            SqlParameter param = new SqlParameter { DbType = DbType.Int32, ParameterName = "@categoryId", Value = categoryId };
+            return GetDataFromDb(retFunc, "SelectCategoryById", param).FirstOrDefault();
+        }
+        public CategoryDto CreateCategoryByIdDto(DataRow dataRow)
+        {
+            return new CategoryDto
+            {
+                Id = (int)dataRow[0],
+                Pid = dataRow.IsNull(1) ? null : (int?)dataRow[1],
+                Name = (string)dataRow[2]
+            };
+        }
+
+        private bool GetBoolFromDb(string procedureName, params SqlParameter[] sqlParametr)
+        {
+            bool result = false;
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                using (SqlCommand command = new SqlCommand())
+                {
+                    command.Connection = connection;
+                    command.CommandType = CommandType.StoredProcedure;
+                    command.CommandText = procedureName;         
+                    if (sqlParametr.Count() != 0)
+                    {
+                        foreach (var parametr in sqlParametr)
+                        {
+                            command.Parameters.Add(parametr);
+                        }
+                    }
+                    SqlParameter resultPrameter = new SqlParameter();
+                    resultPrameter.Direction = ParameterDirection.ReturnValue;
+                    command.Parameters.Add(resultPrameter);
+
+                    SqlDataAdapter adapter = new SqlDataAdapter(command);
+                    DataSet dataSet = new DataSet();
+    
+                    try
+                    {
+                        adapter.Fill(dataSet);
+                    }
+                    catch (SqlException sqlException)
+                    {
+                        Log.Error(sqlException.Message);
+                        throw new FaultException<ServiceFault>(new ServiceFault(errorMessage), new FaultReason("Internal error"));
+                    }
+                    catch (InvalidOperationException invalidOperationException)
+                    {
+                        Log.Error(invalidOperationException.Message);
+                        throw new FaultException<ServiceFault>(new ServiceFault(errorMessage), new FaultReason("Internal error"));
+                    }
+                    catch (Exception exception)
+                    {
+                        Log.Error(exception.Message);
+                        throw new FaultException<ServiceFault>(new ServiceFault(errorMessage), new FaultReason("Internal error"));
+                    }
+                    if ((int)resultPrameter.Value == 1)
+                    {
+                        result = true;
+                    }
+                }
+            }
+            return result;
+        }
+
+        public bool IsValidUser(string userName, string password)
+        {
+            SqlParameter[] param = {
+                new SqlParameter
+                {
+                   DbType = DbType.String,
+                   ParameterName = "@username",
+                   Value = userName
+                },
+                new SqlParameter
+                {
+                    DbType = DbType.String,
+                    ParameterName = "@password",
+                    Value = password
+                }
+            };
+            return GetBoolFromDb("IsValidUser", param);
+        }
+
+        public bool IsExistsUser(int userId, string userName)
+        {
+            SqlParameter[] param = {
+                new SqlParameter
+                {
+                   DbType = DbType.String,
+                   ParameterName = "@userName",
+                   Value = userName
+                },
+                    new SqlParameter
+                {
+                   DbType = DbType.Int32,
+                   ParameterName = "@userId",
+                   Value = userId
+                },
+            };
+            return GetBoolFromDb("IsExistsUser", param);
         }
 
         public bool IsExistsSubject(int inventoryNumber)
@@ -767,64 +488,7 @@ namespace AccountingBookService.Contracts.Contracts
                 ParameterName = "@inventoryNumber",
                 Value = inventoryNumber
             };
-
-            bool result = false;
-            using (SqlConnection connection = new SqlConnection(connectionString))
-            {
-                using (SqlCommand command = new SqlCommand())
-                {
-                    command.Connection = connection;
-                    command.CommandType = CommandType.StoredProcedure;
-                    command.CommandText = "IsExistSubject";
-                    command.Parameters.Add(param);
-
-                    SqlParameter resultPrameter = new SqlParameter();
-                    resultPrameter.Direction = ParameterDirection.ReturnValue;
-                    command.Parameters.Add(resultPrameter);
-
-                    SqlDataAdapter adapter = new SqlDataAdapter(command);
-                    DataSet dataSet = new DataSet();
-
-                    try
-                    {
-                        adapter.Fill(dataSet);
-                    }
-                    catch (SqlException sqlException)
-                    {
-                        Log.Error(sqlException.Message);
-                        throw new FaultException<ServiceFault>(new ServiceFault(errorMessage), new FaultReason("Internal error"));
-                    }
-
-                    if ((int)resultPrameter.Value == 1)
-                    {
-                        result = true;
-                    }
-                }
-            }
-            return result;
-        }
-
-        public List<LocationDto> GetLocationsByAddress(string address)
-        {
-            List<LocationDto> locationsDtoList = new List<LocationDto>();
-            SqlParameter param = new SqlParameter { DbType = DbType.String, ParameterName = "@address", Value = address };
-            GetDataFromDb(ref locationsDtoList, "SelectLocationsByAddress", param);
-            return locationsDtoList;
-        }
-        public LocationDto GetLocationsById(int locationId)
-        {
-            List<LocationDto> locationDto = new List<LocationDto>();
-            SqlParameter param = new SqlParameter { DbType = DbType.Int32, ParameterName = "@idLocation", Value = locationId };
-            GetDataFromDb(ref locationDto, "SelectLocationById", param);
-            return locationDto.FirstOrDefault();
-        }
-
-        public CategoryDto GetCategoryById(int categoryId)
-        {
-            List<CategoryDto> categoryDto = new List<CategoryDto>();
-            SqlParameter param = new SqlParameter { DbType = DbType.Int32, ParameterName = "@categoryId", Value = categoryId };
-            GetDataFromDb(ref categoryDto, "SelectCategoryById", param);
-            return categoryDto.FirstOrDefault();
+            return GetBoolFromDb("IsExistSubject", param);
         }
     }
 }

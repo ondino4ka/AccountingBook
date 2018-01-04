@@ -10,6 +10,50 @@ namespace AccountingBookService.Contracts.Contracts
 {
     public partial class AccountingBookService : IAddService
     {
+        private void ChangeDataDB(string procedureName, params SqlParameter[] sqlParameter)
+        {
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                using (SqlCommand command = new SqlCommand())
+                {
+                    command.Connection = connection;
+                    command.CommandType = CommandType.StoredProcedure;
+                    command.CommandText = procedureName;
+
+                    if (sqlParameter != null)
+                    {
+                        foreach (var parameter in sqlParameter)
+                        {
+                            command.Parameters.Add(parameter);
+                        }
+                    }
+                    try
+                    {
+                        connection.Open();
+                        command.ExecuteNonQuery();
+                    }
+                    catch (InvalidOperationException invalidOperationException)
+                    {
+                        Log.Error(invalidOperationException.Message);
+                        throw new FaultException<ServiceFault>(new ServiceFault(errorMessage), new FaultReason("Internal error"));
+                    }
+                    catch (SqlException sqlException)
+                    {
+                        Log.Error(sqlException.Message);
+                        throw new FaultException<ServiceFault>(new ServiceFault(errorMessage), new FaultReason("Internal error"));
+                    }
+                    catch (Exception exception)
+                    {
+                        Log.Error(exception.Message);
+                        throw new FaultException<ServiceFault>(new ServiceFault(errorMessage), new FaultReason("Internal error"));
+                    }
+                    finally
+                    {
+                        connection.Close();
+                    }
+                }
+            }
+        }
         public void AddUser(UserDto userDto)
         {
             DataTable data = new DataTable();
@@ -19,7 +63,7 @@ namespace AccountingBookService.Contracts.Contracts
                 data.Rows.Add(role);
             }
 
-            SqlParameter[] param = {
+            SqlParameter[] parameters = {
                 new SqlParameter
                 {
                    DbType = DbType.String,
@@ -46,38 +90,12 @@ namespace AccountingBookService.Contracts.Contracts
                     Value = data
                 },
             };
-
-            using (SqlConnection connection = new SqlConnection(connectionString))
-            {
-                using (SqlCommand command = new SqlCommand())
-                {
-                    command.Connection = connection;
-                    command.CommandType = CommandType.StoredProcedure;
-                    command.CommandText = "InsertUser";
-                    command.Parameters.AddRange(param);
-
-                    try
-                    {
-                        connection.Open();
-                        command.ExecuteNonQuery();
-                    }
-                    catch (Exception exception)
-                    {
-                        Log.Error(exception.Message);
-                        throw new FaultException<ServiceFault>(new ServiceFault(errorMessage), new FaultReason("Internal error"));
-                    }
-                    finally
-                    {
-                        connection.Close();
-                    }
-                }
-            }
+            ChangeDataDB("InsertUser", parameters);
         }
-
 
         public void AddSubject(SubjectDto subjectDto)
         {
-            SqlParameter[] param = {
+            SqlParameter[] parameters = {
                 new SqlParameter
                 {
                    DbType = DbType.Int32,
@@ -122,32 +140,7 @@ namespace AccountingBookService.Contracts.Contracts
                     Value = (object)subjectDto.LocationId ?? DBNull.Value
                  }
             };
-
-            using (SqlConnection connection = new SqlConnection(connectionString))
-            {
-                using (SqlCommand command = new SqlCommand())
-                {
-                    command.Connection = connection;
-                    command.CommandType = CommandType.StoredProcedure;
-                    command.CommandText = "InsertSubject";
-                    command.Parameters.AddRange(param);
-
-                    try
-                    {
-                        connection.Open();
-                        command.ExecuteNonQuery();
-                    }
-                    catch (Exception exception)
-                    {
-                        Log.Error(exception.Message);
-                        throw new FaultException<ServiceFault>(new ServiceFault(errorMessage), new FaultReason("Internal error"));
-                    }
-                    finally
-                    {
-                        connection.Close();
-                    }
-                }
-            }
+            ChangeDataDB("InsertSubject", parameters);
         }
 
         public void AddLocation(string address)
@@ -162,31 +155,7 @@ namespace AccountingBookService.Contracts.Contracts
                 ParameterName = "@address",
                 Value = address
             };
-            using (SqlConnection connection = new SqlConnection(connectionString))
-            {
-                using (SqlCommand command = new SqlCommand())
-                {
-                    command.Connection = connection;
-                    command.CommandType = CommandType.StoredProcedure;
-                    command.CommandText = "InsertLocation";
-                    command.Parameters.Add(parameter);
-
-                    try
-                    {
-                        connection.Open();
-                        command.ExecuteNonQuery();
-                    }
-                    catch (Exception exception)
-                    {
-                        Log.Error(exception.Message);
-                        throw new FaultException<ServiceFault>(new ServiceFault(errorMessage), new FaultReason("Internal error"));
-                    }
-                    finally
-                    {
-                        connection.Close();
-                    }
-                }
-            }
+            ChangeDataDB("InsertLocation", parameter);
         }
 
         public void AddState(string stateName)
@@ -201,31 +170,7 @@ namespace AccountingBookService.Contracts.Contracts
                 ParameterName = "@stateName",
                 Value = stateName
             };
-            using (SqlConnection connection = new SqlConnection(connectionString))
-            {
-                using (SqlCommand command = new SqlCommand())
-                {
-                    command.Connection = connection;
-                    command.CommandType = CommandType.StoredProcedure;
-                    command.CommandText = "InsertState";
-                    command.Parameters.Add(parameter);
-
-                    try
-                    {
-                        connection.Open();
-                        command.ExecuteNonQuery();
-                    }
-                    catch (Exception exception)
-                    {
-                        Log.Error(exception.Message);
-                        throw new FaultException<ServiceFault>(new ServiceFault(errorMessage), new FaultReason("Internal error"));
-                    }
-                    finally
-                    {
-                        connection.Close();
-                    }
-                }
-            }
+            ChangeDataDB("InsertState", parameter);
         }
 
         public void AddCategory(int? pid, string categoryName)
@@ -234,7 +179,7 @@ namespace AccountingBookService.Contracts.Contracts
             {
                 throw new FaultException<ServiceFault>(new ServiceFault("Name can not be null or empty"), new FaultReason("External error"));
             }
-            SqlParameter[] parameter = {
+            SqlParameter[] parameters = {
                 new SqlParameter
                 {
                     DbType = DbType.String,
@@ -248,32 +193,7 @@ namespace AccountingBookService.Contracts.Contracts
                     Value = (object)pid ?? DBNull.Value
                 }
             };
-
-            using (SqlConnection connection = new SqlConnection(connectionString))
-            {
-                using (SqlCommand command = new SqlCommand())
-                {
-                    command.Connection = connection;
-                    command.CommandType = CommandType.StoredProcedure;
-                    command.CommandText = "InsertCategory";
-                    command.Parameters.AddRange(parameter);
-
-                    try
-                    {
-                        connection.Open();
-                        command.ExecuteNonQuery();
-                    }
-                    catch (Exception exception)
-                    {
-                        Log.Error(exception.Message);
-                        throw new FaultException<ServiceFault>(new ServiceFault(errorMessage), new FaultReason("Internal error"));
-                    }
-                    finally
-                    {
-                        connection.Close();
-                    }
-                }
-            }
+            ChangeDataDB("InsertCategory", parameters);
         }
     }
 }

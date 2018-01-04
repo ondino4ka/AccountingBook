@@ -5,7 +5,6 @@ namespace AccountingBookBL.Operations
 {
     public class LocationOperation : ILocationOperation
     {
-
         private readonly IDataRepository _dataRepository;
         public LocationOperation(IDataRepository dataRepository)
         {

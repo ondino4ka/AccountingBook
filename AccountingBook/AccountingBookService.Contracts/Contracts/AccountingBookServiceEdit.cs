@@ -19,7 +19,7 @@ namespace AccountingBookService.Contracts.Contracts
                 data.Rows.Add(role);
             }
 
-            SqlParameter[] param = {
+            SqlParameter[] parameters = {
                 new SqlParameter
                 {
                    DbType = DbType.String,
@@ -52,37 +52,11 @@ namespace AccountingBookService.Contracts.Contracts
                     Value = userDto.Id
                 },
             };
-
-            using (SqlConnection connection = new SqlConnection(connectionString))
-            {
-                using (SqlCommand command = new SqlCommand())
-                {
-                    command.Connection = connection;
-                    command.CommandType = CommandType.StoredProcedure;
-                    command.CommandText = "UpdateUser";
-                    command.Parameters.AddRange(param);
-
-                    try
-                    {
-                        connection.Open();
-                        command.ExecuteNonQuery();
-                    }
-                    catch (Exception exception)
-                    {
-                        Log.Error(exception.Message);
-                        throw new FaultException<ServiceFault>(new ServiceFault(errorMessage), new FaultReason("Internal error"));
-                    }
-                    finally
-                    {
-                        connection.Close();
-                    }
-                }
-            }
+            ChangeDataDB("UpdateUser", parameters);
         }
-
         public void EditSubjectInformation(SubjectDto subjectDto)
         {
-            SqlParameter[] param = {
+            SqlParameter[] parameters = {
                 new SqlParameter
                 {
                    DbType = DbType.Int32,
@@ -121,43 +95,18 @@ namespace AccountingBookService.Contracts.Contracts
                 },
 
             };
-
-            using (SqlConnection connection = new SqlConnection(connectionString))
-            {
-                using (SqlCommand command = new SqlCommand())
-                {
-                    command.Connection = connection;
-                    command.CommandType = CommandType.StoredProcedure;
-                    command.CommandText = "UpdateSubjectInformation";
-                    command.Parameters.AddRange(param);
-
-                    try
-                    {
-                        connection.Open();
-                        command.ExecuteNonQuery();
-                    }
-                    catch (Exception exception)
-                    {
-                        Log.Error(exception.Message);
-                        throw new FaultException<ServiceFault>(new ServiceFault(errorMessage), new FaultReason("Internal error"));
-                    }
-                    finally
-                    {
-                        connection.Close();
-                    }
-                }
-            }
+            ChangeDataDB("UpdateSubjectInformation", parameters);
         }
 
         public void EditSubjectPhoto(int inventoryNumber, string photo)
         {
-            SqlParameter[] param = {
+            SqlParameter[] parameters = {
                 new SqlParameter
                 {
                    DbType = DbType.Int32,
                    ParameterName = "@inventoryNumber",
                    Value = inventoryNumber
-                },         
+                },
                      new SqlParameter
                 {
                     SqlDbType = SqlDbType.NVarChar,
@@ -165,42 +114,15 @@ namespace AccountingBookService.Contracts.Contracts
                     Value = (object)photo ?? DBNull.Value
                 },
             };
-
-
-            using (SqlConnection connection = new SqlConnection(connectionString))
-            {
-                using (SqlCommand command = new SqlCommand())
-                {
-                    command.Connection = connection;
-                    command.CommandType = CommandType.StoredProcedure;
-                    command.CommandText = "UpdateSubjectPhoto";
-                    command.Parameters.AddRange(param);
-
-                    try
-                    {
-                        connection.Open();
-                        command.ExecuteNonQuery();
-                    }
-                    catch (Exception exception)
-                    {
-                        Log.Error(exception.Message);
-                        throw new FaultException<ServiceFault>(new ServiceFault(errorMessage), new FaultReason("Internal error"));
-                    }
-                    finally
-                    {
-                        connection.Close();
-                    }
-                }
-            }
+            ChangeDataDB("UpdateSubjectPhoto", parameters);
         }
-
         public void EditLocationById(int locationId, string address)
         {
             if (string.IsNullOrEmpty(address))
             {
                 throw new FaultException<ServiceFault>(new ServiceFault("Address can not be null or empty"), new FaultReason("External error"));
             }
-            SqlParameter[] param = {
+            SqlParameter[] parameters = {
                 new SqlParameter
                 {
                    DbType = DbType.Int32,
@@ -214,33 +136,7 @@ namespace AccountingBookService.Contracts.Contracts
                     Value = address
                 },
             };
-
-
-            using (SqlConnection connection = new SqlConnection(connectionString))
-            {
-                using (SqlCommand command = new SqlCommand())
-                {
-                    command.Connection = connection;
-                    command.CommandType = CommandType.StoredProcedure;
-                    command.CommandText = "UpdateLocationById";
-                    command.Parameters.AddRange(param);
-
-                    try
-                    {
-                        connection.Open();
-                        command.ExecuteNonQuery();
-                    }
-                    catch (Exception exception)
-                    {
-                        Log.Error(exception.Message);
-                        throw new FaultException<ServiceFault>(new ServiceFault(errorMessage), new FaultReason("Internal error"));
-                    }
-                    finally
-                    {
-                        connection.Close();
-                    }
-                }
-            }
+            ChangeDataDB("UpdateLocationById", parameters);
         }
 
         public void EditStateById(int stateId, string stateName)
@@ -249,7 +145,7 @@ namespace AccountingBookService.Contracts.Contracts
             {
                 throw new FaultException<ServiceFault>(new ServiceFault("State can not be null or empty"), new FaultReason("External error"));
             }
-            SqlParameter[] param = {
+            SqlParameter[] parameters = {
                 new SqlParameter
                 {
                    DbType = DbType.Int32,
@@ -263,42 +159,15 @@ namespace AccountingBookService.Contracts.Contracts
                     Value = stateName
                 },
             };
-
-
-            using (SqlConnection connection = new SqlConnection(connectionString))
-            {
-                using (SqlCommand command = new SqlCommand())
-                {
-                    command.Connection = connection;
-                    command.CommandType = CommandType.StoredProcedure;
-                    command.CommandText = "UpdateStateById";
-                    command.Parameters.AddRange(param);
-
-                    try
-                    {
-                        connection.Open();
-                        command.ExecuteNonQuery();
-                    }
-                    catch (Exception exception)
-                    {
-                        Log.Error(exception.Message);
-                        throw new FaultException<ServiceFault>(new ServiceFault(errorMessage), new FaultReason("Internal error"));
-                    }
-                    finally
-                    {
-                        connection.Close();
-                    }
-                }
-            }
+            ChangeDataDB("UpdateStateById", parameters);        
         }
-
         public void EditCategoryById(int categoryId, int? pid, string categoryName)
         {
             if (string.IsNullOrEmpty(categoryName))
             {
                 throw new FaultException<ServiceFault>(new ServiceFault("Name can not be null or empty"), new FaultReason("External error"));
             }
-            SqlParameter[] param = {
+            SqlParameter[] parameters = {
                 new SqlParameter
                 {
                    DbType = DbType.Int32,
@@ -318,33 +187,7 @@ namespace AccountingBookService.Contracts.Contracts
                    Value = categoryName
                 }
             };
-
-
-            using (SqlConnection connection = new SqlConnection(connectionString))
-            {
-                using (SqlCommand command = new SqlCommand())
-                {
-                    command.Connection = connection;
-                    command.CommandType = CommandType.StoredProcedure;
-                    command.CommandText = "UpdateCategoryById";
-                    command.Parameters.AddRange(param);
-
-                    try
-                    {
-                        connection.Open();
-                        command.ExecuteNonQuery();
-                    }
-                    catch (Exception exception)
-                    {
-                        Log.Error(exception.Message);
-                        throw new FaultException<ServiceFault>(new ServiceFault(errorMessage), new FaultReason("Internal error"));
-                    }
-                    finally
-                    {
-                        connection.Close();
-                    }
-                }
-            }
+            ChangeDataDB("UpdateCategoryById", parameters);          
         }
     }
 }

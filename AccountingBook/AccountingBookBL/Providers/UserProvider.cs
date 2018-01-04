@@ -7,7 +7,7 @@ namespace AccountingBookBL.Providers
 {
     public class UserProvider : IUserProvider
     {
-        IDataRepository _dataRepository;
+        private readonly IDataRepository _dataRepository;
         public UserProvider(IDataRepository dataRepository)
         {
             _dataRepository = dataRepository;
