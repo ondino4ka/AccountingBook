@@ -7,7 +7,6 @@ GO
 CREATE PROCEDURE [dbo].[SelectStates]
 AS
 BEGIN
-SELECT States.idState, States.StateName
-FROM States
+SELECT [idState], [StateName]
+FROM [States]
 END
-

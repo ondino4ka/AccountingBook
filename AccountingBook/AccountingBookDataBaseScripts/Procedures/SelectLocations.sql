@@ -11,4 +11,3 @@ BEGIN
 SELECT Locations.idLocation, Locations.Address
 FROM Locations
 END
-

@@ -22,7 +22,7 @@ namespace AccountingBookService.Contracts.Contracts
 
                     if (sqlParameter != null)
                     {
-                        foreach (var parameter in sqlParameter)
+                        foreach (SqlParameter parameter in sqlParameter)
                         {
                             command.Parameters.Add(parameter);
                         }

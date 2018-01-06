@@ -73,6 +73,8 @@ ALTER DATABASE [AccountingBookDB] SET TARGET_RECOVERY_TIME = 0 SECONDS
 GO
 ALTER DATABASE [AccountingBookDB] SET DELAYED_DURABILITY = DISABLED 
 GO
+ALTER DATABASE [AccountingBookDB] SET ENABLE_BROKER
+GO
 USE [AccountingBookDB]
 GO
 /****** Object:  User [accbook]    Script Date: 25.12.2017 15:22:11 ******/

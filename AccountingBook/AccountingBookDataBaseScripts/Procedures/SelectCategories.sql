@@ -10,4 +10,3 @@ BEGIN
 SELECT [idCategory], [pid], [Name]
 FROM [dbo].[Categories]
 END
-

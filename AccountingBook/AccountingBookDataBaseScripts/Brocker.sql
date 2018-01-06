@@ -1,0 +1,2 @@
+USE AccountingBookDB
+ALTER DATABASE AccountingBookDB SET ENABLE_BROKER

@@ -10,6 +10,7 @@ namespace AccountingBookData.Clients
     public class Client : IClient
     {
         private static readonly ILog Log = LogManager.GetLogger("Client");
+
         public IReadOnlyList<Category> GetCategories()
         {
             var result = new List<Category>();
@@ -182,7 +183,6 @@ namespace AccountingBookData.Clients
             return result;
         }
 
-
         public IReadOnlyCollection<Category> GetCategoriesByName(string categoryName)
         {
             var result = new List<Category>();
@@ -211,7 +211,6 @@ namespace AccountingBookData.Clients
             }
             return result;
         }
-
 
         public IReadOnlyCollection<SubjectDetails> GetSubjectsByNameCategoryIdAndStateId(int? categoryId, int? stateId, string subjectName)
         {

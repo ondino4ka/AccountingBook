@@ -16,7 +16,6 @@ namespace AccountingBookWeb.Controllers
     public class SubjectController : Controller
     {
         private static readonly ILog Log = LogManager.GetLogger("SubjectController");
-        private const string STATES_KEY = "states_key";
 
         private readonly IProvider _provider;
         private readonly IFileService _fileService;
@@ -83,11 +82,7 @@ namespace AccountingBookWeb.Controllers
         {
             try
             {
-                if (HttpRuntime.Cache.Get(STATES_KEY) == null)
-                {
-                    HttpRuntime.Cache.Insert(STATES_KEY, _provider.GetStates(), null, DateTime.Now.AddMinutes(60), TimeSpan.Zero);
-                }
-                return Json(HttpRuntime.Cache.Get(STATES_KEY), JsonRequestBehavior.AllowGet);
+                return Json(_provider.GetStates(), JsonRequestBehavior.AllowGet);
             }
             catch (Exception exception)
             {

@@ -9,13 +9,17 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Linq;
 using System.ServiceModel;
+using System.Web.Caching;
 
 namespace AccountingBookService.Contracts.Contracts
 {
     public partial class AccountingBookService : IGetService
     {
         private readonly string connectionString;
+        private readonly string connectionStringCacheDependency;
+        private readonly Cache cache;
         private const string errorMessage = "Now the server is unavailable.Try later";
+        private const string errorMessageReason = "Internal error";
         private readonly ILog Log;
         public AccountingBookService()
         {
@@ -24,17 +28,27 @@ namespace AccountingBookService.Contracts.Contracts
             {
                 Log.Info("connection open");
                 connectionString = ConfigurationManager.ConnectionStrings["AccountingBookConnection"].ConnectionString;
+                connectionStringCacheDependency = System.Web.Configuration.WebConfigurationManager.ConnectionStrings["AccountingBookConnection"].ConnectionString;
+                cache = new Cache();
+                SqlDependency.Start(connectionStringCacheDependency);
             }
             catch (NullReferenceException ex)
             {
                 Log.Error(ex.Message);
-                throw new FaultException<ServiceFault>(new ServiceFault(errorMessage), new FaultReason("Internal error"));
+                throw new FaultException<ServiceFault>(new ServiceFault(errorMessage), new FaultReason(errorMessageReason));
             }
             catch (InvalidOperationException ex)
             {
                 Log.Error(ex.Message);
-                throw new FaultException<ServiceFault>(new ServiceFault(errorMessage), new FaultReason("Internal error"));
+                throw new FaultException<ServiceFault>(new ServiceFault(errorMessage), new FaultReason(errorMessageReason));
             }
+        }
+
+        private List<T> GetDataFromDb<T>(Func<DataRow, T> createDtoFunc, string procedureName, string key, string tableName, params SqlParameter[] sqlParametr)
+        {
+            List<T> resultList = GetDataFromDb(createDtoFunc, procedureName, sqlParametr);
+            UpdateCache(key, tableName, resultList);
+            return resultList;
         }
 
         private List<T> GetDataFromDb<T>(Func<DataRow, T> createDtoFunc, string procedureName, params SqlParameter[] sqlParametr)
@@ -49,12 +63,11 @@ namespace AccountingBookService.Contracts.Contracts
 
                     if (sqlParametr.Count() != 0)
                     {
-                        foreach (var parametr in sqlParametr)
+                        foreach (SqlParameter parametr in sqlParametr)
                         {
                             command.Parameters.Add(parametr);
                         }
                     }
-
                     SqlDataAdapter adapter = new SqlDataAdapter(command);
                     DataSet dataSet = new DataSet();
                     try
@@ -64,12 +77,12 @@ namespace AccountingBookService.Contracts.Contracts
                     catch (FormatException formatException)
                     {
                         Log.Error(formatException.Message);
-                        throw new FaultException<ServiceFault>(new ServiceFault(errorMessage), new FaultReason("Internal error"));
+                        throw new FaultException<ServiceFault>(new ServiceFault(errorMessage), new FaultReason(errorMessageReason));
                     }
                     catch (SqlException sqlException)
                     {
                         Log.Error(sqlException.Message);
-                        throw new FaultException<ServiceFault>(new ServiceFault(errorMessage), new FaultReason("Internal error"));
+                        throw new FaultException<ServiceFault>(new ServiceFault(errorMessage), new FaultReason(errorMessageReason));
                     }
                     List<T> resultList = new List<T>();
                     try
@@ -85,17 +98,63 @@ namespace AccountingBookService.Contracts.Contracts
                     catch (InvalidCastException invalidCastException)
                     {
                         Log.Error(invalidCastException.Message);
-                        throw new FaultException<ServiceFault>(new ServiceFault(errorMessage), new FaultReason("Internal error"));
+                        throw new FaultException<ServiceFault>(new ServiceFault(errorMessage), new FaultReason(errorMessageReason));
                     }
                     return resultList;
                 }
             }
         }
 
+        private void UpdateCache(string key, string tableName, object value)
+        {
+            SqlCacheDependency dependency = null;
+            try
+            {
+                dependency = new SqlCacheDependency("AccountingBook", tableName);
+            }
+            catch (DatabaseNotEnabledForNotificationException exDbDis)
+            {
+                Log.Error(exDbDis.Message);
+                try
+                {
+                    SqlCacheDependencyAdmin.EnableNotifications(connectionStringCacheDependency);
+                }
+                catch (UnauthorizedAccessException exPerm)
+                {
+                    Log.Error(exPerm.Message);
+                    throw new FaultException<ServiceFault>(new ServiceFault(errorMessage), new FaultReason(errorMessageReason));
+                }
+            }
+            catch (TableNotEnabledForNotificationException exTabDis)
+            {
+                Log.Error(exTabDis.Message);
+                try
+                {
+                    SqlCacheDependencyAdmin.EnableTableForNotifications(connectionStringCacheDependency, tableName);
+                }
+                catch (SqlException exc)
+                {
+                    Log.Error(exc.Message);
+                    throw new FaultException<ServiceFault>(new ServiceFault(errorMessage), new FaultReason(errorMessageReason));
+                }
+            }
+            finally
+            {
+                if (dependency != null)
+                {
+                    cache.Insert(key, value, dependency);
+                }
+            }
+        }
+
         public List<CategoryDto> GetCategories()
         {
-            Func<DataRow, CategoryDto> retFunc = CreateCategoryDto;
-            return GetDataFromDb(retFunc, "SelectCategories");
+            if (cache["Categories"] == null)
+            {
+                Func<DataRow, CategoryDto> retFunc = CreateCategoryDto;
+                return GetDataFromDb(retFunc, "SelectCategories", "Categories", "Categories");
+            }
+            return (List<CategoryDto>)cache["Categories"];
         }
         public List<CategoryDto> GetCategoriesBesidesCurrent(int categoryId)
         {
@@ -234,8 +293,12 @@ namespace AccountingBookService.Contracts.Contracts
 
         public List<StateDto> GetStates()
         {
-            Func<DataRow, StateDto> retFunc = CreateStatesDto;
-            return GetDataFromDb(retFunc, "SelectStates");
+            if (cache["States"] == null)
+            {
+                Func<DataRow, StateDto> retFunc = CreateStatesDto;
+                return GetDataFromDb(retFunc, "SelectStates", "States", "States");
+            }
+            return (List<StateDto>)cache["States"];
         }
 
         public StateDto GetStateById(int stateId)
@@ -320,8 +383,12 @@ namespace AccountingBookService.Contracts.Contracts
 
         public List<LocationDto> GetLocations()
         {
-            Func<DataRow, LocationDto> retFunc = CreateLocationsDto;
-            return GetDataFromDb(retFunc, "SelectLocations");
+            if (cache["Locations"] == null)
+            {
+                Func<DataRow, LocationDto> retFunc = CreateLocationsDto;
+                return GetDataFromDb(retFunc, "SelectLocations", "Locations", "Locations");
+            }
+            return (List<LocationDto>)cache["Locations"];
         }
         public LocationDto CreateLocationsDto(DataRow dataRow)
         {
@@ -399,10 +466,10 @@ namespace AccountingBookService.Contracts.Contracts
                 {
                     command.Connection = connection;
                     command.CommandType = CommandType.StoredProcedure;
-                    command.CommandText = procedureName;         
+                    command.CommandText = procedureName;
                     if (sqlParametr.Count() != 0)
                     {
-                        foreach (var parametr in sqlParametr)
+                        foreach (SqlParameter parametr in sqlParametr)
                         {
                             command.Parameters.Add(parametr);
                         }
@@ -413,7 +480,7 @@ namespace AccountingBookService.Contracts.Contracts
 
                     SqlDataAdapter adapter = new SqlDataAdapter(command);
                     DataSet dataSet = new DataSet();
-    
+
                     try
                     {
                         adapter.Fill(dataSet);
@@ -421,17 +488,17 @@ namespace AccountingBookService.Contracts.Contracts
                     catch (SqlException sqlException)
                     {
                         Log.Error(sqlException.Message);
-                        throw new FaultException<ServiceFault>(new ServiceFault(errorMessage), new FaultReason("Internal error"));
+                        throw new FaultException<ServiceFault>(new ServiceFault(errorMessage), new FaultReason(errorMessageReason));
                     }
                     catch (InvalidOperationException invalidOperationException)
                     {
                         Log.Error(invalidOperationException.Message);
-                        throw new FaultException<ServiceFault>(new ServiceFault(errorMessage), new FaultReason("Internal error"));
+                        throw new FaultException<ServiceFault>(new ServiceFault(errorMessage), new FaultReason(errorMessageReason));
                     }
                     catch (Exception exception)
                     {
                         Log.Error(exception.Message);
-                        throw new FaultException<ServiceFault>(new ServiceFault(errorMessage), new FaultReason("Internal error"));
+                        throw new FaultException<ServiceFault>(new ServiceFault(errorMessage), new FaultReason(errorMessageReason));
                     }
                     if ((int)resultPrameter.Value == 1)
                     {
