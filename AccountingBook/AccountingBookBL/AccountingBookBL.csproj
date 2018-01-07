@@ -70,26 +70,32 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Container\BlRegistry.cs" />
-    <Compile Include="Operations\CategoryOperation.cs" />
-    <Compile Include="Operations\ICategoryOperation.cs" />
-    <Compile Include="Operations\ILocationOperation.cs" />
-    <Compile Include="Operations\IStateOperation.cs" />
-    <Compile Include="Operations\ISubjectOperation.cs" />
-    <Compile Include="Operations\IUserOperation.cs" />
-    <Compile Include="Operations\LocationOperation.cs" />
-    <Compile Include="Operations\StateOperation.cs" />
-    <Compile Include="Operations\SubjectOperation.cs" />
-    <Compile Include="Operations\UserOperation.cs" />
+    <Compile Include="Providers\Implementations\CategoryProvider.cs" />
+    <Compile Include="Providers\Interfaces\ICategoryProvider.cs" />
+    <Compile Include="Providers\Interfaces\ILocationProvider.cs" />
+    <Compile Include="Providers\Interfaces\IStateProvider.cs" />
+    <Compile Include="Providers\Interfaces\ISubjectProvider.cs" />
+    <Compile Include="Providers\Implementations\LocationProvider.cs" />
+    <Compile Include="Providers\Implementations\StateProvider.cs" />
+    <Compile Include="Providers\Implementations\SubjectProvider.cs" />
+    <Compile Include="Services\Implementations\CategoryService.cs" />
+    <Compile Include="Services\Interfaces\ICategoryService.cs" />
+    <Compile Include="Services\Interfaces\ILocationService.cs" />
+    <Compile Include="Services\Interfaces\IStateService.cs" />
+    <Compile Include="Services\Interfaces\ISubjectService.cs" />
+    <Compile Include="Services\Interfaces\IUserService.cs" />
+    <Compile Include="Services\Implementations\LocationService.cs" />
+    <Compile Include="Services\Implementations\StateService.cs" />
+    <Compile Include="Services\Implementations\SubjectService.cs" />
+    <Compile Include="Services\Implementations\UserService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Providers\IUserProvider.cs" />
-    <Compile Include="Providers\UserProvider.cs" />
+    <Compile Include="Providers\Interfaces\IUserProvider.cs" />
+    <Compile Include="Providers\Implementations\UserProvider.cs" />
     <Compile Include="Services\Implementations\HashService.cs" />
     <Compile Include="Services\Interfaces\IHashService.cs" />
     <Compile Include="Services\Interfaces\ILoginService.cs" />
-    <Compile Include="Providers\IProvider.cs" />
     <Compile Include="Services\Interfaces\IFileService.cs" />
     <Compile Include="Services\Implementations\LoginService.cs" />
-    <Compile Include="Providers\Provider.cs" />
     <Compile Include="Services\Implementations\FileService.cs" />
   </ItemGroup>
   <ItemGroup>

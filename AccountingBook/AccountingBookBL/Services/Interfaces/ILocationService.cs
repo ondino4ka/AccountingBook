@@ -1,7 +1,7 @@
 ﻿
-namespace AccountingBookBL.Operations
+namespace AccountingBookBL.Services.Interfaces
 {
-    public interface ILocationOperation
+    public interface ILocationService
     {
         void AddLocation(string address);
         void EditLocationById(int locationId, string address);

@@ -1,12 +1,12 @@
-﻿using AccountingBookData.Repositories;
-using System;
+﻿using AccountingBookBL.Services.Interfaces;
+using AccountingBookData.Repositories;
 
-namespace AccountingBookBL.Operations
+namespace AccountingBookBL.Services.Implementations
 {
-    public class CategoryOperation : ICategoryOperation
+    public class CategoryService : ICategoryService
     {
         private readonly IDataRepository _dataRepository;
-        public CategoryOperation(IDataRepository dataRepository)
+        public CategoryService(IDataRepository dataRepository)
         {
             _dataRepository = dataRepository;
         }

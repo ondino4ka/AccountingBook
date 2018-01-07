@@ -1,7 +1,7 @@
 ﻿using AccountingBookCommon.Models;
 using System.Collections.Generic;
 
-namespace AccountingBookBL.Providers
+namespace AccountingBookBL.Providers.Interfaces
 {
     public interface IUserProvider
     {

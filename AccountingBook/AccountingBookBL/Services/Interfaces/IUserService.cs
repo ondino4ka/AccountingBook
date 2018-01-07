@@ -1,8 +1,8 @@
 ﻿using AccountingBookCommon.Models;
 
-namespace AccountingBookBL.Operations
+namespace AccountingBookBL.Services.Interfaces
 {
-    public interface IUserOperation
+    public interface IUserService
     {
         void AddUser(User user);
         void EditUser(User user);

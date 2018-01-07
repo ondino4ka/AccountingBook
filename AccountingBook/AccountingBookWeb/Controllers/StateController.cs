@@ -1,6 +1,8 @@
-﻿using AccountingBookBL.Operations;
-using AccountingBookBL.Providers;
+﻿using AccountingBookBL.Providers.Interfaces;
+using AccountingBookBL.Services.Interfaces;
 using AccountingBookCommon.Models;
+using AccountingBookWeb.BL.Attributes;
+using log4net;
 using System;
 using System.Web.Mvc;
 
@@ -8,12 +10,13 @@ namespace AccountingBookWeb.Controllers
 {
     public class StateController : Controller
     {
-        private readonly IProvider _provider;
-        private readonly IStateOperation _stateOperation;
-        public StateController(IProvider provider, IStateOperation stateOperation)
+        private static readonly ILog Log = LogManager.GetLogger("StateController");
+        private readonly IStateProvider _stateProvider;
+        private readonly IStateService _stateService;
+        public StateController(IStateProvider stateProvider, IStateService stateService)
         {
-            _provider = provider;
-            _stateOperation = stateOperation;
+            _stateProvider = stateProvider;
+            _stateService = stateService;
         }
         [HttpGet]
         [Authorize(Roles = "Admin, Edit")]
@@ -21,13 +24,28 @@ namespace AccountingBookWeb.Controllers
         {
             try
             {
-                return View(_provider.GetStates());
+                return View(_stateProvider.GetStates());
             }
             catch (Exception)
             {
                 return View();
             }
         }
+
+        [Ajax]
+        public JsonResult GetStates()
+        {
+            try
+            {
+                return Json(_stateProvider.GetStates(), JsonRequestBehavior.AllowGet);
+            }
+            catch (Exception exception)
+            {
+                Log.Error(exception.Message);
+                return Json(null, JsonRequestBehavior.AllowGet);
+            }
+        }
+
 
         [HttpGet]
         [Authorize(Roles = "Admin, Edit")]
@@ -39,7 +57,7 @@ namespace AccountingBookWeb.Controllers
             }
             try
             {
-                State state = _provider.GetStateById((int)Id);
+                State state = _stateProvider.GetStateById((int)Id);
                 if (state != null)
                 {
                     return View(state);
@@ -69,11 +87,11 @@ namespace AccountingBookWeb.Controllers
             {
                 if (state.Id != 0)
                 {
-                    _stateOperation.EditState(state.Id, state.StateName);
+                    _stateService.EditState(state.Id, state.StateName);
                 }
                 else
                 {
-                    _stateOperation.AddState(state.StateName);
+                    _stateService.AddState(state.StateName);
                 }
                 return RedirectToAction("ListStates");
             }
@@ -90,7 +108,7 @@ namespace AccountingBookWeb.Controllers
         {
             try
             {
-                State state = _provider.GetStateById(Id);
+                State state = _stateProvider.GetStateById(Id);
                 if (state != null)
                 {
                     return View(state);
@@ -114,7 +132,7 @@ namespace AccountingBookWeb.Controllers
         {
             try
             {
-                _stateOperation.DeleteStateById(Id);
+                _stateService.DeleteStateById(Id);
                 return RedirectToAction("ListStates");
             }
             catch (Exception exception)

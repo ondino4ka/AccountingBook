@@ -1,13 +1,12 @@
-﻿
+﻿using AccountingBookBL.Services.Interfaces;
 using AccountingBookData.Repositories;
-using System;
 
-namespace AccountingBookBL.Operations
+namespace AccountingBookBL.Services.Implementations
 {
-    public class StateOperation : IStateOperation
+    public class StateService : IStateService
     {
         private readonly IDataRepository _dataRepository;
-        public StateOperation(IDataRepository dataRepository)
+        public StateService(IDataRepository dataRepository)
         {
             _dataRepository = dataRepository;
         }

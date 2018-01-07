@@ -1,13 +1,13 @@
-﻿using AccountingBookCommon.Models;
+﻿using AccountingBookBL.Services.Interfaces;
+using AccountingBookCommon.Models;
 using AccountingBookData.Repositories;
-using System;
 
-namespace AccountingBookBL.Operations
+namespace AccountingBookBL.Services.Implementations
 {
-    public class SubjectOperation : ISubjectOperation
+    public class SubjectService : ISubjectService
     {
         private readonly IDataRepository _dataRepository;
-        public SubjectOperation(IDataRepository dataRepository)
+        public SubjectService(IDataRepository dataRepository)
         {
             _dataRepository = dataRepository;
         }

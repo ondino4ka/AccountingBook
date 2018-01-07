@@ -1,7 +1,7 @@
 ﻿
-namespace AccountingBookBL.Operations
+namespace AccountingBookBL.Services.Interfaces
 {
-    public interface IStateOperation
+    public interface IStateService
     {
         void AddState(string stateName);
         void EditState(int stateId, string stateName);

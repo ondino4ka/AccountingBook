@@ -1,9 +1,9 @@
-﻿using AccountingBookCommon.Models;
+﻿using AccountingBookBL.Providers.Interfaces;
+using AccountingBookCommon.Models;
 using AccountingBookData.Repositories;
-using System;
 using System.Collections.Generic;
 
-namespace AccountingBookBL.Providers
+namespace AccountingBookBL.Providers.Implementations
 {
     public class UserProvider : IUserProvider
     {

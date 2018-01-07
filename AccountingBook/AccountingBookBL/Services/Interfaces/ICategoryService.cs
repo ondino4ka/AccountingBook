@@ -1,7 +1,7 @@
 ﻿
-namespace AccountingBookBL.Operations
+namespace AccountingBookBL.Services.Interfaces
 {
-    public interface ICategoryOperation
+    public interface ICategoryService
     {
         void AddCategory(int? pid, string categoruName);
         void EditCategoryById(int categoryId, int? pid, string categoryName);

@@ -21,7 +21,7 @@
 
 
 $.ajax({
-    url: '/Subject/GetStates',
+    url: '/State/GetStates',
     success: function (data) {
         var opts = '<option value=0>-- All States --</option><option>-- Without States --</option>';
         for (var i = 0; i < data.length; i++) {

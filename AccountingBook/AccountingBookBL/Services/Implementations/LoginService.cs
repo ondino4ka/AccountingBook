@@ -1,4 +1,4 @@
-﻿using AccountingBookBL.Providers;
+﻿using AccountingBookBL.Providers.Interfaces;
 using AccountingBookBL.Services.Interfaces;
 using AccountingBookCommon.Enums;
 using Newtonsoft.Json;

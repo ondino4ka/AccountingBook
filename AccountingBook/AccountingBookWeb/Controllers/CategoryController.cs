@@ -1,5 +1,5 @@
-﻿using AccountingBookBL.Operations;
-using AccountingBookBL.Providers;
+﻿using AccountingBookBL.Providers.Interfaces;
+using AccountingBookBL.Services.Interfaces;
 using AccountingBookCommon.Models;
 using AccountingBookWeb.BL.Attributes;
 using log4net;
@@ -12,13 +12,12 @@ namespace AccountingBookWeb.Controllers
     public class CategoryController : Controller
     {
         private static readonly ILog Log = LogManager.GetLogger("CategoryController");
-
-        private readonly IProvider _provider;
-        private readonly ICategoryOperation _categoryOperation;
-        public CategoryController(IProvider provider, ICategoryOperation categoryOperation)
+        private readonly ICategoryProvider _categoryProvider;
+        private readonly ICategoryService _categoryService;
+        public CategoryController(ICategoryProvider categoryProvider, ICategoryService categoryService)
         {
-            _provider = provider;
-            _categoryOperation = categoryOperation;
+            _categoryProvider = categoryProvider;
+            _categoryService = categoryService;
         }
 
         [Ajax]
@@ -26,7 +25,7 @@ namespace AccountingBookWeb.Controllers
         {
             try
             {
-                return PartialView(_provider.GetCategories().ToList());
+                return PartialView(_categoryProvider.GetCategories().ToList());
             }
             catch (Exception exception)
             {
@@ -47,7 +46,7 @@ namespace AccountingBookWeb.Controllers
         {
             try
             {
-                return PartialView("Categories", _provider.GetCategoriesByName(categoryName));
+                return PartialView("Categories", _categoryProvider.GetCategoriesByName(categoryName));
             }
             catch (Exception exception)
             {
@@ -61,7 +60,7 @@ namespace AccountingBookWeb.Controllers
         {
             try
             {
-                return Json(_provider.GetCategoriesByName(categoryName), JsonRequestBehavior.AllowGet);
+                return Json(_categoryProvider.GetCategoriesByName(categoryName), JsonRequestBehavior.AllowGet);
             }
             catch (Exception exception)
             {
@@ -75,7 +74,7 @@ namespace AccountingBookWeb.Controllers
         {
             try
             {
-                return Json(_provider.GetCategoriesBesidesCurrent(categoryId), JsonRequestBehavior.AllowGet);
+                return Json(_categoryProvider.GetCategoriesBesidesCurrent(categoryId), JsonRequestBehavior.AllowGet);
             }
             catch (Exception exception)
             {
@@ -95,7 +94,7 @@ namespace AccountingBookWeb.Controllers
 
             try
             {
-                Category category = _provider.GetCategoryById((int)categoryId);
+                Category category = _categoryProvider.GetCategoryById((int)categoryId);
                 if (category != null)
                 {
                     return View(category);
@@ -125,11 +124,11 @@ namespace AccountingBookWeb.Controllers
             {
                 if (category.Id != 0)
                 {
-                    _categoryOperation.EditCategoryById(category.Id, category.Pid, category.Name);
+                    _categoryService.EditCategoryById(category.Id, category.Pid, category.Name);
                 }
                 else
                 {
-                    _categoryOperation.AddCategory(category.Pid, category.Name);
+                    _categoryService.AddCategory(category.Pid, category.Name);
                 }
                 return RedirectToAction("SearchCategories");
             }
@@ -146,7 +145,7 @@ namespace AccountingBookWeb.Controllers
         {
             try
             {
-                Category category = _provider.GetCategoryById(categoryId);
+                Category category = _categoryProvider.GetCategoryById(categoryId);
                 if (category != null)
                 {
                     return View(category);
@@ -170,7 +169,7 @@ namespace AccountingBookWeb.Controllers
         {
             try
             {
-                _categoryOperation.DeleteCategoryByID(categoryId);
+                _categoryService.DeleteCategoryByID(categoryId);
                 return RedirectToAction("SearchCategories");
             }
 
@@ -180,6 +179,5 @@ namespace AccountingBookWeb.Controllers
                 return View();
             }
         }
-
     }
 }

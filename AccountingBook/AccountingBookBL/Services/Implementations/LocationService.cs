@@ -1,12 +1,12 @@
-﻿using AccountingBookData.Repositories;
-using System;
+﻿using AccountingBookBL.Services.Interfaces;
+using AccountingBookData.Repositories;
 
-namespace AccountingBookBL.Operations
+namespace AccountingBookBL.Services.Implementations
 {
-    public class LocationOperation : ILocationOperation
+    public class LocationService : ILocationService
     {
         private readonly IDataRepository _dataRepository;
-        public LocationOperation(IDataRepository dataRepository)
+        public LocationService(IDataRepository dataRepository)
         {
             _dataRepository = dataRepository;
         }

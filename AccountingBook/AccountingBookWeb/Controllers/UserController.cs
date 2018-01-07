@@ -1,5 +1,5 @@
-﻿using AccountingBookBL.Operations;
-using AccountingBookBL.Providers;
+﻿using AccountingBookBL.Providers.Interfaces;
+using AccountingBookBL.Services.Interfaces;
 using AccountingBookCommon.Models;
 using AccountingBookWeb.BL.Attributes;
 using AccountingBookWeb.Models;
@@ -13,11 +13,11 @@ namespace AccountingBookWeb.Controllers
     public class UserController : Controller
     {
         private readonly IUserProvider _userProvider;
-        private readonly IUserOperation _userOperation;
-        public UserController(IUserProvider userProvider, IUserOperation userOperation)
+        private readonly IUserService _userService;
+        public UserController(IUserProvider userProvider, IUserService userService)
         {
             _userProvider = userProvider;
-            _userOperation = userOperation;
+            _userService = userService;
         }
 
         [Admin]
@@ -102,11 +102,11 @@ namespace AccountingBookWeb.Controllers
                 {
                     if (user.Id != 0)
                     {
-                        _userOperation.EditUser(user);
+                        _userService.EditUser(user);
                     }
                     else
                     {
-                        _userOperation.AddUser(user);
+                        _userService.AddUser(user);
                     }
                     return RedirectToAction("SearchUsers");
                 }
@@ -171,7 +171,7 @@ namespace AccountingBookWeb.Controllers
                 user.Roles = userViewModel.Roles;
                 try
                 {
-                    _userOperation.EditUserInformation(user);
+                    _userService.EditUserInformation(user);
                     return RedirectToAction("SearchUsers");
                 }
                 catch (Exception exception)
@@ -215,7 +215,7 @@ namespace AccountingBookWeb.Controllers
         {
             try
             {
-                _userOperation.DeleteUserById(Id);
+                _userService.DeleteUserById(Id);
                 return RedirectToAction("SearchUsers");
             }
 

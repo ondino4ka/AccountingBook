@@ -2,13 +2,13 @@
 using AccountingBookCommon.Models;
 using AccountingBookData.Repositories;
 
-namespace AccountingBookBL.Operations
+namespace AccountingBookBL.Services.Implementations
 {
-    public class UserOperation : IUserOperation
+    public class UserService : IUserService
     {
         private readonly IDataRepository _dataRepository;
         private readonly IHashService _hashService;
-        public UserOperation(IDataRepository dataRepository, IHashService hashService)
+        public UserService(IDataRepository dataRepository, IHashService hashService)
         {
             _dataRepository = dataRepository;
             _hashService = hashService;

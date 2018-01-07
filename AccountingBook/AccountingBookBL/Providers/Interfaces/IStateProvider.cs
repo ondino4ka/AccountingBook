@@ -1,0 +1,11 @@
+﻿using AccountingBookCommon.Models;
+using System.Collections.Generic;
+
+namespace AccountingBookBL.Providers.Interfaces
+{
+    public interface IStateProvider
+    {
+        IReadOnlyCollection<State> GetStates();
+        State GetStateById(int stateId);
+    }
+}

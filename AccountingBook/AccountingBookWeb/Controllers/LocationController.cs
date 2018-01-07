@@ -1,5 +1,5 @@
-﻿using AccountingBookBL.Operations;
-using AccountingBookBL.Providers;
+﻿using AccountingBookBL.Providers.Interfaces;
+using AccountingBookBL.Services.Interfaces;
 using AccountingBookCommon.Models;
 using AccountingBookWeb.BL.Attributes;
 using System;
@@ -9,12 +9,12 @@ namespace AccountingBookWeb.Controllers
 {
     public class LocationController : Controller
     {
-        private readonly IProvider _provider;
-        private readonly ILocationOperation _locationOperation;
-        public LocationController(IProvider provider, ILocationOperation locationOperation)
+        private readonly ILocationProvider _locationProvider;
+        private readonly ILocationService _locationService;
+        public LocationController(ILocationProvider locationProvider, ILocationService locationService)
         {
-            _provider = provider;
-            _locationOperation = locationOperation;
+            _locationProvider = locationProvider;
+            _locationService = locationService;
         }
 
         [HttpGet]
@@ -30,7 +30,7 @@ namespace AccountingBookWeb.Controllers
         {
             try
             {
-                return Json(_provider.GetLocations(), JsonRequestBehavior.AllowGet);
+                return Json(_locationProvider.GetLocations(), JsonRequestBehavior.AllowGet);
             }
             catch (Exception)
             {             
@@ -44,7 +44,7 @@ namespace AccountingBookWeb.Controllers
         {
             try
             {
-                return PartialView("Locations", _provider.GetLocationsByAddress(address));
+                return PartialView("Locations", _locationProvider.GetLocationsByAddress(address));
             }
             catch (Exception exception)
             {
@@ -64,7 +64,7 @@ namespace AccountingBookWeb.Controllers
 
             try
             {
-                Location location = _provider.GetLocationById((int)Id);
+                Location location = _locationProvider.GetLocationById((int)Id);
                 if (location != null)
                 {
                     return View(location);
@@ -94,11 +94,11 @@ namespace AccountingBookWeb.Controllers
             {
                 if (location.Id != 0)
                 {
-                    _locationOperation.EditLocationById(location.Id, location.Address);
+                    _locationService.EditLocationById(location.Id, location.Address);
                 }
                 else
                 {
-                    _locationOperation.AddLocation(location.Address);
+                    _locationService.AddLocation(location.Address);
                 }
                 return RedirectToAction("SearchLocations");
             }
@@ -115,7 +115,7 @@ namespace AccountingBookWeb.Controllers
         {
             try
             {
-                Location user = _provider.GetLocationById(Id);
+                Location user = _locationProvider.GetLocationById(Id);
                 if (user != null)
                 {
                     return View(user);
@@ -139,7 +139,7 @@ namespace AccountingBookWeb.Controllers
         {
             try
             {
-                _locationOperation.DeleteLocationById(Id);
+                _locationService.DeleteLocationById(Id);
                 return RedirectToAction("SearchLocations");
             }
 

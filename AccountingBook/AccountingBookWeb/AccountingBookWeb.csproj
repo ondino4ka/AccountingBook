@@ -252,7 +252,6 @@
     <Content Include="Views\Subject\ViewSubject.cshtml" />
     <Content Include="Views\Login\Login.cshtml" />
     <Content Include="Views\Subject\SearchSubjects.cshtml" />
-    <Content Include="Views\Home\ChangeData.cshtml" />
     <Content Include="Views\User\AddEditUser.cshtml" />
     <Content Include="Views\User\Users.cshtml" />
     <Content Include="Views\User\DeleteUser.cshtml" />

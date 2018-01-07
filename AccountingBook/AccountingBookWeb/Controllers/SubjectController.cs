@@ -1,10 +1,8 @@
-﻿using AccountingBookBL.Operations;
-using AccountingBookBL.Providers;
+﻿using AccountingBookBL.Providers.Interfaces;
 using AccountingBookBL.Services.Interfaces;
 using AccountingBookCommon.Models;
 using AccountingBookWeb.BL.Attributes;
 using AccountingBookWeb.Models;
-using log4net;
 using System;
 using System.IO;
 using System.Linq;
@@ -13,18 +11,16 @@ using System.Web.Mvc;
 namespace AccountingBookWeb.Controllers
 {
     public class SubjectController : Controller
-    {
-        private static readonly ILog Log = LogManager.GetLogger("SubjectController");
-
-        private readonly IProvider _provider;
+    {      
+        private readonly ISubjectProvider _subjectProvider;
         private readonly IFileService _fileService;
-        private readonly ISubjectOperation _subjectOperation;
+        private readonly ISubjectService _subjectService;
 
-        public SubjectController(IProvider provider, IFileService uploadService, ISubjectOperation subjectOperation)
+        public SubjectController(ISubjectProvider subjectProvider, IFileService uploadService, ISubjectService subjectService)
         {
-            _provider = provider;
+            _subjectProvider = subjectProvider;
             _fileService = uploadService;
-            _subjectOperation = subjectOperation;
+            _subjectService = subjectService;
         }
 
         [Ajax]
@@ -32,7 +28,7 @@ namespace AccountingBookWeb.Controllers
         {
             try
             {
-                return PartialView("Subjects", _provider.GetSubjectsByCategoryId(categoryId));
+                return PartialView("Subjects", _subjectProvider.GetSubjectsByCategoryId(categoryId));
             }
             catch (Exception exception)
             {
@@ -52,7 +48,7 @@ namespace AccountingBookWeb.Controllers
         {
             try
             {
-                return PartialView(_provider.GetSubjectInformationByInventoryNumber(inventoryNumber));
+                return PartialView(_subjectProvider.GetSubjectInformationByInventoryNumber(inventoryNumber));
             }
             catch (Exception exception)
             {
@@ -67,7 +63,7 @@ namespace AccountingBookWeb.Controllers
         {
             try
             {
-                var subjects = _provider.GetSubjectsByNameCategoryIdAndStateId(categoryId, stateId, subjectName);
+                var subjects = _subjectProvider.GetSubjectsByNameCategoryIdAndStateId(categoryId, stateId, subjectName);
                 return PartialView("Subjects", subjects);
             }
             catch (Exception exception)
@@ -76,20 +72,7 @@ namespace AccountingBookWeb.Controllers
                 return PartialView("Subjects");
             }
         }
-        [Ajax]
-        public JsonResult GetStates()
-        {
-            try
-            {
-                return Json(_provider.GetStates(), JsonRequestBehavior.AllowGet);
-            }
-            catch (Exception exception)
-            {
-                Log.Error(exception.Message);
-                return Json(null, JsonRequestBehavior.AllowGet);
-            }
-        }    
-
+       
         [HttpGet]
         [Authorize(Roles = "Admin, Edit")]
         public ActionResult AddSubject()
@@ -105,7 +88,7 @@ namespace AccountingBookWeb.Controllers
         {
             try
             {
-                if (_provider.IsExistsSubject(subjectViewModel.InventoryNumber))
+                if (_subjectProvider.IsExistsSubject(subjectViewModel.InventoryNumber))
                 {
                     ModelState.AddModelError("InventoryNumber", "A subject with that InventoryNumber already exists");
                 }
@@ -133,7 +116,7 @@ namespace AccountingBookWeb.Controllers
                     subject.LocationId = subjectViewModel.LocationId;
                     subject.Description = subjectViewModel.Description;
 
-                    _subjectOperation.AddSubject(subject);
+                    _subjectService.AddSubject(subject);
                     return RedirectToAction("SearchSubjects");
                 }
                 catch (Exception exception)
@@ -151,7 +134,7 @@ namespace AccountingBookWeb.Controllers
         {
             try
             {
-                Subject subject = _provider.GetSubjectByInventoryNumber(inventoryNumber);
+                Subject subject = _subjectProvider.GetSubjectByInventoryNumber(inventoryNumber);
                 if (subject != null)
                 {
                     return View(new SubjectViewModel(subject));
@@ -185,7 +168,7 @@ namespace AccountingBookWeb.Controllers
 
                 try
                 {
-                    _subjectOperation.EditSubjectInformation(subject);
+                    _subjectService.EditSubjectInformation(subject);
                     return RedirectToAction("SearchSubjects");
                 }
                 catch (Exception exception)
@@ -203,7 +186,7 @@ namespace AccountingBookWeb.Controllers
         {
             try
             {
-                SubjectDetails subject = _provider.GetSubjectInformationByInventoryNumber(inventoryNumber);
+                SubjectDetails subject = _subjectProvider.GetSubjectInformationByInventoryNumber(inventoryNumber);
                 if (subject != null)
                 {
                     return View(new SubjectPhotoViewModel() { InventoryNumber = subject.InventoryNumber, Name = subject.Name, Photo = subject.Photo });
@@ -233,7 +216,7 @@ namespace AccountingBookWeb.Controllers
                     {
                         _fileService.UploadPhoto(subjectPhoto.InventoryNumber.ToString(), subjectPhoto.File);
 
-                        _subjectOperation.EditSubjectPhoto(subjectPhoto.InventoryNumber, 
+                        _subjectService.EditSubjectPhoto(subjectPhoto.InventoryNumber, 
                             subjectPhoto.InventoryNumber.ToString() 
                             + Path.GetExtension(subjectPhoto.File.FileName));
 
@@ -241,7 +224,7 @@ namespace AccountingBookWeb.Controllers
                     }
                     else if (subjectPhoto.IsDelete)
                     {
-                        _subjectOperation.EditSubjectPhoto(subjectPhoto.InventoryNumber, null);
+                        _subjectService.EditSubjectPhoto(subjectPhoto.InventoryNumber, null);
                         _fileService.DeletePhoto(subjectPhoto.Photo);
                         return RedirectToAction("SearchSubjects");
                     }
@@ -261,7 +244,7 @@ namespace AccountingBookWeb.Controllers
         {
             try
             {
-                SubjectDetails subject = _provider.GetSubjectInformationByInventoryNumber(inventoryNumber);
+                SubjectDetails subject = _subjectProvider.GetSubjectInformationByInventoryNumber(inventoryNumber);
                 if (subject != null)
                 {
                     return View(subject);
@@ -285,7 +268,7 @@ namespace AccountingBookWeb.Controllers
         {
             try
             {
-                _subjectOperation.DeleteSubjectByInventoryNumber(inventoryNumber);
+                _subjectService.DeleteSubjectByInventoryNumber(inventoryNumber);
                 if(!string.IsNullOrEmpty(Photo))
                 {
                     _fileService.DeletePhoto(Photo);
