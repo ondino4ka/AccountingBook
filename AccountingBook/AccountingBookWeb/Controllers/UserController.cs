@@ -119,6 +119,72 @@ namespace AccountingBookWeb.Controllers
             return View(userViewModel);
         }
 
+
+        [HttpGet]
+        [Admin]
+        public ActionResult EditUserInformation(int Id)
+        {
+            try
+            {
+                User user = _userProvider.GetUserById(Id);
+                if (user != null)
+                {
+                    return View(new UserWithoutPassViewModel(user));
+                }
+                else
+                {
+                    return HttpNotFound();
+                }
+
+            }
+            catch (Exception exception)
+            {
+                ViewBag.Error = exception.Message;
+                return View();
+            }
+        }
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        [Admin]
+        public ActionResult EditUserInformation(UserWithoutPassViewModel userViewModel)
+        {
+            try
+            {
+                if (_userProvider.IsExistsUser(userViewModel.Id, userViewModel.Name))
+                {
+                    ModelState.AddModelError("Name", "A user with that name already exists");
+                }
+            }
+            catch (Exception exception)
+            {
+                ViewBag.Error = exception.Message;
+                return View(userViewModel);
+            }
+
+            if (ModelState.IsValid)
+            {
+                User user = new User();
+                user.Email = userViewModel.Email;
+                user.Id = userViewModel.Id;
+                user.Name = userViewModel.Name;
+                user.Roles = userViewModel.Roles;
+                try
+                {
+                    _userOperation.EditUserInformation(user);
+                    return RedirectToAction("SearchUsers");
+                }
+                catch (Exception exception)
+                {
+                    ViewBag.Error = exception.Message;
+                    return View(userViewModel);
+                }
+            }
+            return View(userViewModel);
+        }
+
+
+
         [HttpGet]
         [Admin]
         public ActionResult DeleteUser(int Id)

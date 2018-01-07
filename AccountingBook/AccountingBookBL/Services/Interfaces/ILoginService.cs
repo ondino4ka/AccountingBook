@@ -1,6 +1,6 @@
 ﻿using AccountingBookCommon.Enums;
 
-namespace AccountingBookBL.Services
+namespace AccountingBookBL.Services.Interfaces
 {
     public interface ILoginService
     {

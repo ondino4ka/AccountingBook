@@ -9,7 +9,7 @@ CREATE PROCEDURE [dbo].[UpdateUser]
  @ids intTable READONLY,
  @id int,
  @name nvarchar(50),
- @passwrod nvarchar(max),
+ @password nvarchar(max) = null,
  @email nvarchar (255)
 )
 AS
@@ -19,7 +19,7 @@ BEGIN TRAN
 
     UPDATE Users SET
     Users.Name = @name, 
-    Users.Password = @passwrod,
+    Users.Password =  isnull(@password, Users.Password),
     Users.Email = @email
     WHERE Users.idUser = @id
 

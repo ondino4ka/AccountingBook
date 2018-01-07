@@ -29,7 +29,7 @@ namespace AccountingBookService.Contracts.Contracts
                 new SqlParameter
                 {
                     DbType = DbType.String,
-                    ParameterName = "@passwrod",
+                    ParameterName = "@password",
                     Value = userDto.Password
                 },
                    new SqlParameter

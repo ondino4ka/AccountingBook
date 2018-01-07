@@ -8,14 +8,14 @@ CREATE PROCEDURE [dbo].[InsertUser]
 (
  @ids intTable READONLY,
  @name nvarchar(50),
- @passwrod nvarchar(max),
+ @password nvarchar(max),
  @email nvarchar (255)
 )
 AS
 BEGIN   
     DECLARE @lastId int
     INSERT into dbo.Users 
-	VALUES (@name, @passwrod, @email) 
+	VALUES (@name, @password, @email) 
 	SET @lastId = (SELECT SCOPE_IDENTITY() AS [SCOPE_IDENTITY])
 
 	INSERT INTO dbo.UsersRoles

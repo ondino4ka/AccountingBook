@@ -227,6 +227,7 @@
     <Compile Include="Models\SubjectViewModel.cs" />
     <Compile Include="Models\UserViewModel.cs" />
     <Compile Include="Models\UserPrincipal.cs" />
+    <Compile Include="Models\UserWithoutPassViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -273,6 +274,7 @@
     <Content Include="Views\Category\Categories.cshtml" />
     <Content Include="Views\Category\AddEditCategory.cshtml" />
     <Content Include="Views\Category\DeleteCategory.cshtml" />
+    <Content Include="Views\User\EditUserInformation.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

@@ -1,7 +1,7 @@
-﻿@model AccountingBookWeb.Models.UserViewModel
+﻿@model AccountingBookWeb.Models.UserWithoutPassViewModel
 
 @{
-    ViewBag.Title = "CreateUser";
+    ViewBag.Title = "EditUserInformation";
 }
 
 <script src="~/Scripts/jquery.validate.js"></script>
@@ -37,22 +37,6 @@
                 </div>
             </div>
 
-                <div class="form-group">
-                    @Html.LabelFor(model => model.Password, htmlAttributes: new { @class = "control-label col-md-2" })
-                    <div class="col-md-10">
-                        @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control", type = "password" } })
-                        @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
-                    </div>
-                </div>
-
-                <div class="form-group">
-                    @Html.LabelFor(model => model.RePassword, htmlAttributes: new { @class = "control-label col-md-2" })
-                    <div class="col-md-10">
-                        @Html.EditorFor(model => model.RePassword, new { htmlAttributes = new { @class = "form-control", type = "password" } })
-                        @Html.ValidationMessageFor(model => model.RePassword, "", new { @class = "text-danger" })
-                    </div>
-                </div>
-
             <div class="form-group">
                 @Html.LabelFor(model => model.Roles, htmlAttributes: new { @class = "control-label col-md-2" })
                 <div id="roles" class="col-md-10">
@@ -71,7 +55,7 @@
 }
 else
 {
-    @ViewBag.Error;
+    <p>Server is not available. Please try again later</p>
 }
 
 

@@ -10,9 +10,6 @@
             <th>
                 @Html.DisplayNameFor(model => model.Email)
             </th>
-            <th>
-                @Html.DisplayNameFor(model => model.Password)
-            </th>
             <th></th>
         </tr>
 
@@ -26,10 +23,8 @@
                     @Html.DisplayFor(modelItem => item.Email)
                 </td>
                 <td>
-                    @Html.DisplayFor(modelItem => item.Password)
-                </td>
-                <td>
-                    @Html.ActionLink("Edit", "AddEditUser", new { id = item.Id }) |
+                    @Html.ActionLink("Edit Information", "EditUserInformation", new { id = item.Id }) |
+                    @Html.ActionLink("Edit password", "AddEditUser", new { id = item.Id }) |              
                     @Html.ActionLink("Delete", "DeleteUser", new { id = item.Id })
                 </td>
             </tr>

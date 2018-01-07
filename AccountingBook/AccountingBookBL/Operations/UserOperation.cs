@@ -1,4 +1,5 @@
-﻿using AccountingBookCommon.Models;
+﻿using AccountingBookBL.Services.Interfaces;
+using AccountingBookCommon.Models;
 using AccountingBookData.Repositories;
 
 namespace AccountingBookBL.Operations
@@ -6,12 +7,15 @@ namespace AccountingBookBL.Operations
     public class UserOperation : IUserOperation
     {
         private readonly IDataRepository _dataRepository;
-        public UserOperation(IDataRepository dataRepository)
+        private readonly IHashService _hashService;
+        public UserOperation(IDataRepository dataRepository, IHashService hashService)
         {
             _dataRepository = dataRepository;
+            _hashService = hashService;
         }
         public void AddUser(User user)
         {
+            user.Password = _hashService.GetHash(user.Password);
             _dataRepository.AddUser(user);
         }
 
@@ -21,6 +25,11 @@ namespace AccountingBookBL.Operations
         }
 
         public void EditUser(User user)
+        {
+            user.Password = _hashService.GetHash(user.Password);
+            _dataRepository.EditUser(user);
+        }
+        public void EditUserInformation(User user)
         {
             _dataRepository.EditUser(user);
         }

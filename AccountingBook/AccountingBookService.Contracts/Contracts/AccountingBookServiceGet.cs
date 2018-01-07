@@ -343,7 +343,6 @@ namespace AccountingBookService.Contracts.Contracts
             {
                 Id = (int)dataRow[0],
                 Name = (string)dataRow[1],
-                Password = (string)dataRow[2],
                 Email = (string)dataRow[3],
                 Roles = GetRolesIdByUserId((int)dataRow[0]).Select(x => x.Id).ToArray()
             };
@@ -376,7 +375,6 @@ namespace AccountingBookService.Contracts.Contracts
             {
                 Id = (int)dataRow[0],
                 Name = (string)dataRow[1],
-                Password = (string)dataRow[2],
                 Email = (string)dataRow[3]
             };
         }

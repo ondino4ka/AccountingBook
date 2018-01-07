@@ -1,6 +1,6 @@
 ﻿using System.Web;
 
-namespace AccountingBookBL.Services
+namespace AccountingBookBL.Services.Interfaces
 {
     public interface IFileService
     {

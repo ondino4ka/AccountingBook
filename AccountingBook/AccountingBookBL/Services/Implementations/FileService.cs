@@ -1,9 +1,10 @@
-﻿using AccountingBookData.Repositories;
+﻿using AccountingBookBL.Services.Interfaces;
+using AccountingBookData.Repositories;
 using System;
 using System.IO;
 using System.Web;
 
-namespace AccountingBookBL.Services
+namespace AccountingBookBL.Services.Implementations
 {
     public class FileService : IFileService
     {

@@ -395,9 +395,9 @@ GO
 SET IDENTITY_INSERT [dbo].[Users] ON 
 
 GO
-INSERT [dbo].[Users] ([idUser], [Name], [Password], [Email]) VALUES (1, N'kostya', N'123456', N'kostik.cirotkin@yandex.ru')
+INSERT [dbo].[Users] ([idUser], [Name], [Password], [Email]) VALUES (1, N'kostya', N'7C4A8D09CA3762AF61E59520943DC26494F8941B', N'kostik.cirotkin@yandex.ru')
 GO
-INSERT [dbo].[Users] ([idUser], [Name], [Password], [Email]) VALUES (2, N'maxim', N'123456', N'maxim-dollar@yandex.ru')
+INSERT [dbo].[Users] ([idUser], [Name], [Password], [Email]) VALUES (2, N'maxim', N'7C4A8D09CA3762AF61E59520943DC26494F8941B', N'maxim-dollar@yandex.ru')
 GO
 SET IDENTITY_INSERT [dbo].[Users] OFF
 GO
@@ -633,14 +633,14 @@ CREATE PROCEDURE [dbo].[InsertUser]
 (
  @ids intTable READONLY,
  @name nvarchar(50),
- @passwrod nvarchar(max),
+ @password nvarchar(max),
  @email nvarchar (255)
 )
 AS
 BEGIN   
     DECLARE @lastId int
     INSERT into dbo.Users 
-	VALUES (@name, @passwrod, @email) 
+	VALUES (@name, @password, @email) 
 	SET @lastId = (SELECT SCOPE_IDENTITY() AS [SCOPE_IDENTITY])
 
 	INSERT INTO dbo.UsersRoles
@@ -1186,8 +1186,8 @@ BEGIN
     WHERE Subjects.inventoryNumber = @inventoryNumber
 END
 
+
 GO
-/****** Object:  StoredProcedure [dbo].[UpdateUser]    Script Date: 25.12.2017 15:22:11 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -1197,7 +1197,7 @@ CREATE PROCEDURE [dbo].[UpdateUser]
  @ids intTable READONLY,
  @id int,
  @name nvarchar(50),
- @passwrod nvarchar(max),
+ @password nvarchar(max) = null,
  @email nvarchar (255)
 )
 AS
@@ -1207,7 +1207,7 @@ BEGIN TRAN
 
     UPDATE Users SET
     Users.Name = @name, 
-    Users.Password = @passwrod,
+    Users.Password =  isnull(@password, Users.Password),
     Users.Email = @email
     WHERE Users.idUser = @id
 
@@ -1223,6 +1223,7 @@ END TRY
 BEGIN CATCH
     ROLLBACK TRAN
 END CATCH
+
 
 
 GO

@@ -391,7 +391,7 @@ namespace AccountingBookData.Clients
             {
                 client.Open();
                 var data = client.GetUserById(userId);
-                result = data == null ? null : new User() { Id = data.Id, Name = data.Name, Email = data.Email, Password = data.Password, Roles = data.Roles };
+                result = data == null ? null : new User() { Id = data.Id, Name = data.Name, Email = data.Email,  Roles = data.Roles };
                 client.Close();
             }
             catch (EndpointNotFoundException endPointNotFoundException)
@@ -420,7 +420,7 @@ namespace AccountingBookData.Clients
             {
                 client.Open();
                 var data = client.GetUsersByName(userName);
-                result = data == null ? result : data.Select(x => new User { Id = x.Id, Name = x.Name, Email = x.Email, Password = x.Password }).ToList();
+                result = data == null ? result : data.Select(x => new User { Id = x.Id, Name = x.Name, Email = x.Email }).ToList();
                 client.Close();
             }
             catch (EndpointNotFoundException endPointNotFoundException)

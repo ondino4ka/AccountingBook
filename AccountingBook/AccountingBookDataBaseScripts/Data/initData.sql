@@ -145,9 +145,9 @@ GO
 SET IDENTITY_INSERT [dbo].[Users] ON 
 
 GO
-INSERT [dbo].[Users] ([idUser], [Name], [Password], [Email]) VALUES (1, N'kostya', N'123456', N'kostik.cirotkin@yandex.ru')
+INSERT [dbo].[Users] ([idUser], [Name], [Password], [Email]) VALUES (1, N'kostya', N'7C4A8D09CA3762AF61E59520943DC26494F8941B', N'kostik.cirotkin@yandex.ru')
 GO
-INSERT [dbo].[Users] ([idUser], [Name], [Password], [Email]) VALUES (2, N'maxim', N'123456', N'maxim-dollar@yandex.ru')
+INSERT [dbo].[Users] ([idUser], [Name], [Password], [Email]) VALUES (2, N'maxim', N'7C4A8D09CA3762AF61E59520943DC26494F8941B', N'maxim-dollar@yandex.ru')
 GO
 SET IDENTITY_INSERT [dbo].[Users] OFF
 GO
