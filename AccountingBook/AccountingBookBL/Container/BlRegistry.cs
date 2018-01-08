@@ -16,12 +16,12 @@ namespace AccountingBookBL.Container
             For<IStateProvider>().Use<StateProvider>();      
             For<IUserProvider>().Use<UserProvider>();
 
-            For<ILoginService>().Use<LoginService>();
-            For<IUserService>().Use<UserService>();
             For<ISubjectService>().Use<SubjectService>();
-            For<ILocationService>().Use<LocationService>();
-            For<IStateService>().Use<StateService>();
             For<ICategoryService>().Use<CategoryService>();
+            For<ILoginService>().Use<LoginService>();
+            For<IUserService>().Use<UserService>();       
+            For<ILocationService>().Use<LocationService>();
+            For<IStateService>().Use<StateService>();           
             For<IFileService>().Use<FileService>();
             For<IHashService>().Use<HashService>();
         }

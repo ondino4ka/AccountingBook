@@ -1,32 +1,37 @@
 ﻿using AccountingBookBL.Services.Interfaces;
 using AccountingBookCommon.Models;
-using AccountingBookData.Repositories;
+using AccountingBookData.Repositories.Interfaces;
+using System;
 
 namespace AccountingBookBL.Services.Implementations
 {
     public class SubjectService : ISubjectService
     {
-        private readonly IDataRepository _dataRepository;
-        public SubjectService(IDataRepository dataRepository)
+        private readonly ISubjectRepository _subjectRepository;
+        public SubjectService(ISubjectRepository subjectRepository)
         {
-            _dataRepository = dataRepository;
+            if (subjectRepository == null)
+            {
+                throw new ArgumentException("subjectRepository is null");
+            }
+            _subjectRepository = subjectRepository;
         }
         public void AddSubject(Subject subject)
         {
-            _dataRepository.AddSubject(subject);
+            _subjectRepository.AddSubject(subject);
         }
 
         public void EditSubjectInformation(Subject subject)
         {
-            _dataRepository.EditSubjectInformation(subject);
+            _subjectRepository.EditSubjectInformation(subject);
         }
         public void EditSubjectPhoto(int inventoryNumber, string photo)
         {
-            _dataRepository.EditSubjectPhoto(inventoryNumber, photo);
+            _subjectRepository.EditSubjectPhoto(inventoryNumber, photo);
         }
         public void DeleteSubjectByInventoryNumber(int inventoryNumber)
         {
-            _dataRepository.DeleteSubjectByInventoryNumber(inventoryNumber);
+            _subjectRepository.DeleteSubjectByInventoryNumber(inventoryNumber);
         }
     }
 }

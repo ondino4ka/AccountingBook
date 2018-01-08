@@ -70,12 +70,33 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Clients\Client.cs" />
-    <Compile Include="Clients\IClient.cs" />
+    <Compile Include="Clients\Implementations\CategoryClient.cs" />
+    <Compile Include="Clients\Implementations\FileClient.cs" />
+    <Compile Include="Clients\Implementations\LocationClient.cs" />
+    <Compile Include="Clients\Implementations\SubjectClient.cs" />
+    <Compile Include="Clients\Implementations\UserClient.cs" />
+    <Compile Include="Clients\Implementations\StateClient.cs" />
+    <Compile Include="Clients\Interfaces\ICategoryClient.cs" />
+    <Compile Include="Clients\Interfaces\IFileClient.cs" />
+    <Compile Include="Clients\Interfaces\ILocationClient.cs" />
+    <Compile Include="Clients\Interfaces\IStateClient.cs" />
+    <Compile Include="Clients\Interfaces\ISubjectClient.cs" />
+    <Compile Include="Clients\Interfaces\IUserClient.cs" />
     <Compile Include="Container\DataRegistry.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Repositories\DataRepository.cs" />
-    <Compile Include="Repositories\IDataRepository.cs" />
+    <Compile Include="Clients\Constants.cs" />
+    <Compile Include="Repositories\Implementations\CategoryRepository.cs" />
+    <Compile Include="Repositories\Implementations\FileRepository.cs" />
+    <Compile Include="Repositories\Implementations\LocationRepository.cs" />
+    <Compile Include="Repositories\Implementations\SubjectRepository.cs" />
+    <Compile Include="Repositories\Implementations\UserRepository.cs" />
+    <Compile Include="Repositories\Implementations\StateRepository.cs" />
+    <Compile Include="Repositories\Interfaces\ICategoryRepository.cs" />
+    <Compile Include="Repositories\Interfaces\IFileRepository.cs" />
+    <Compile Include="Repositories\Interfaces\ILocationRepository.cs" />
+    <Compile Include="Repositories\Interfaces\IStateRepository.cs" />
+    <Compile Include="Repositories\Interfaces\ISubjectRepository.cs" />
+    <Compile Include="Repositories\Interfaces\IUserRepository.cs" />
     <Compile Include="Service References\AccountingBookServiceReference\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -156,6 +177,7 @@
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

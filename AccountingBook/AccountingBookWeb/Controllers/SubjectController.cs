@@ -13,14 +13,14 @@ namespace AccountingBookWeb.Controllers
     public class SubjectController : Controller
     {      
         private readonly ISubjectProvider _subjectProvider;
-        private readonly IFileService _fileService;
         private readonly ISubjectService _subjectService;
-
-        public SubjectController(ISubjectProvider subjectProvider, IFileService uploadService, ISubjectService subjectService)
+        private readonly IFileService _fileService;
+   
+        public SubjectController(ISubjectProvider subjectProvider, ISubjectService subjectService, IFileService uploadService)
         {
             _subjectProvider = subjectProvider;
-            _fileService = uploadService;
             _subjectService = subjectService;
+            _fileService = uploadService;           
         }
 
         [Ajax]

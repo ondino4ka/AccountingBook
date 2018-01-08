@@ -10,7 +10,7 @@ namespace AccountingBookDependencies.Registries
         {
             Scan(scan => {
                 scan.Assembly(typeof(DataRegistry).Assembly);
-                scan.Assembly(typeof(BlRegistry).Assembly);
+                scan.Assembly(typeof(BlRegistry).Assembly); 
                 scan.WithDefaultConventions();
             });
         }

@@ -1,29 +1,33 @@
 ﻿using AccountingBookBL.Services.Interfaces;
-using AccountingBookData.Repositories;
+using AccountingBookData.Repositories.Interfaces;
+using System;
 
 namespace AccountingBookBL.Services.Implementations
 {
     public class CategoryService : ICategoryService
     {
-        private readonly IDataRepository _dataRepository;
-        public CategoryService(IDataRepository dataRepository)
+        private readonly ICategoryRepository _categoryRepository;
+        public CategoryService(ICategoryRepository categoryRepository)
         {
-            _dataRepository = dataRepository;
+            if (categoryRepository == null)
+            {
+                throw new ArgumentException("categoryRepository is null");
+            }
+            _categoryRepository = categoryRepository;
         }
         public void AddCategory(int? pid, string categoryName)
         {
-            _dataRepository.AddCategory(pid, categoryName);
+            _categoryRepository.AddCategory(pid, categoryName);
         }
 
         public void EditCategoryById(int categoryId, int? pid, string categoryName)
         {
-            _dataRepository.EditCategoryById(categoryId, pid, categoryName);
+            _categoryRepository.EditCategoryById(categoryId, pid, categoryName);
         }
 
         public void DeleteCategoryByID(int categoryId)
         {
-            _dataRepository.DeleteCategoryById(categoryId);
+            _categoryRepository.DeleteCategoryById(categoryId);
         }
-
     }
 }

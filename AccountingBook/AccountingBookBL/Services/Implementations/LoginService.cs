@@ -14,6 +14,10 @@ namespace AccountingBookBL.Services.Implementations
         private readonly IHashService _hashService;
         public LoginService(IUserProvider userProvider, IHashService hashService)
         {
+            if (userProvider == null || hashService == null)
+            {
+                throw new ArgumentException("userProvider or hashService is null");
+            }
             _userProvider = userProvider;
             _hashService = hashService;
         }

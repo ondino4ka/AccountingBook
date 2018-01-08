@@ -1,42 +1,47 @@
 ﻿using AccountingBookBL.Providers.Interfaces;
 using AccountingBookCommon.Models;
-using AccountingBookData.Repositories;
+using AccountingBookData.Repositories.Interfaces;
+using System;
 using System.Collections.Generic;
 
 namespace AccountingBookBL.Providers.Implementations
 {
     public class UserProvider : IUserProvider
     {
-        private readonly IDataRepository _dataRepository;
-        public UserProvider(IDataRepository dataRepository)
+        private readonly IUserRepository _userRepository;
+        public UserProvider(IUserRepository userRepository)
         {
-            _dataRepository = dataRepository;
+            if (userRepository == null)
+            {
+                throw new ArgumentException("userRepository is null");
+            }
+            _userRepository = userRepository;
         }
         public UserAuthorization GetUserByName(string userName)
         {        
-            return _dataRepository.GetUserByName(userName);
+            return _userRepository.GetUserByName(userName);
         }
 
         public bool IsValidUser(string userName, string password)
         {
-            return _dataRepository.IsValidUser(userName, password);
+            return _userRepository.IsValidUser(userName, password);
         }
         public bool IsExistsUser(int userId, string userName)
         {
-            return _dataRepository.IsExistsUser(userId, userName);
+            return _userRepository.IsExistsUser(userId, userName);
         } 
         public IReadOnlyCollection<Role> GetRoles()
         {
-            return _dataRepository.GetRoles();
+            return _userRepository.GetRoles();
         }
         public User GetUserById(int userId)
         {
-            return _dataRepository.GetUserById(userId);
+            return _userRepository.GetUserById(userId);
         }
 
         public IReadOnlyCollection<User> GetUsersByName(string userName)
         {
-            return _dataRepository.GetUsersByName(userName);
+            return _userRepository.GetUsersByName(userName);
         }
     }
 }

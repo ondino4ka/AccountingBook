@@ -1,29 +1,34 @@
 ﻿using AccountingBookBL.Services.Interfaces;
-using AccountingBookData.Repositories;
+using AccountingBookData.Repositories.Interfaces;
+using System;
 
 namespace AccountingBookBL.Services.Implementations
 {
     public class LocationService : ILocationService
     {
-        private readonly IDataRepository _dataRepository;
-        public LocationService(IDataRepository dataRepository)
+        private readonly ILocationRepository _locationRepository;
+        public LocationService(ILocationRepository locationRepository)
         {
-            _dataRepository = dataRepository;
+            if (locationRepository == null)
+            {
+                throw new ArgumentException("locationRepository is null");
+            }
+            _locationRepository = locationRepository;
         }
 
         public void AddLocation(string address)
         {
-            _dataRepository.AddLocation(address);
+            _locationRepository.AddLocation(address);
         }
 
         public void EditLocationById(int locationId, string address)
         {
-            _dataRepository.EditLocationById(locationId, address);
+            _locationRepository.EditLocationById(locationId, address);
         }
 
         public void DeleteLocationById(int locationId)
         {
-            _dataRepository.DeleteLocationById(locationId);
+            _locationRepository.DeleteLocationById(locationId);
         }
     }
 }

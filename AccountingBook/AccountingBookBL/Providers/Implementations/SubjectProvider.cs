@@ -1,42 +1,47 @@
 ﻿using AccountingBookBL.Providers.Interfaces;
 using AccountingBookCommon.Models;
-using AccountingBookData.Repositories;
+using AccountingBookData.Repositories.Interfaces;
+using System;
 using System.Collections.Generic;
 
 namespace AccountingBookBL.Providers.Implementations
 {
     public class SubjectProvider : ISubjectProvider
     {
-        private readonly IDataRepository _dataRepository;
-        public SubjectProvider(IDataRepository dataRepository)
+        private readonly ISubjectRepository _subjectRepository;
+        public SubjectProvider(ISubjectRepository subjectRepository)
         {
-            _dataRepository = dataRepository;
+            if (subjectRepository == null)
+            {
+                throw new ArgumentException("subjectRepository is null");
+            }
+            _subjectRepository = subjectRepository;
         }
 
         public IReadOnlyList<SubjectDetails> GetSubjectsByCategoryId(int? categoryId)
         {
-            return _dataRepository.GetSubjectsByCategoryId(categoryId);
+            return _subjectRepository.GetSubjectsByCategoryId(categoryId);
         }
 
         public SubjectDetails GetSubjectInformationByInventoryNumber(int inventoryNumber)
         {
-            var subjects = _dataRepository.GetSubjectInformationByInventoryNumber(inventoryNumber);
+            var subjects = _subjectRepository.GetSubjectInformationByInventoryNumber(inventoryNumber);
             return subjects;
         }
 
         public Subject GetSubjectByInventoryNumber(int inventoryNumber)
         {
-            return _dataRepository.GetSubjectByInventoryNumber(inventoryNumber);
+            return _subjectRepository.GetSubjectByInventoryNumber(inventoryNumber);
         }
 
         public bool IsExistsSubject(int inventoryNumber)
         {
-            return _dataRepository.IsExistsSubject(inventoryNumber);
+            return _subjectRepository.IsExistsSubject(inventoryNumber);
         }
 
         public IReadOnlyCollection<SubjectDetails> GetSubjectsByNameCategoryIdAndStateId(int? categoryId, int? stateId, string subjectName)
         {
-            return _dataRepository.GetSubjectsByNameCategoryIdAndStateId(categoryId, stateId, subjectName);
+            return _subjectRepository.GetSubjectsByNameCategoryIdAndStateId(categoryId, stateId, subjectName);
         }
     }
 }

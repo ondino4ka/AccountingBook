@@ -11,7 +11,7 @@ namespace AccountingBookBL.Services.Implementations
         {
             if (string.IsNullOrEmpty(password))
             {
-                throw new Exception("Password can not be empty");
+                throw new ArgumentException("Password can not be empty");
             }
             byte[] passwordByte = Encoding.Default.GetBytes(password);
             SHA1CryptoServiceProvider cryptoTransformSha1 = new SHA1CryptoServiceProvider();

@@ -20,8 +20,6 @@ namespace AccountingBookWeb.DependencyResolution
 {
     using StructureMap;
     using AccountingBookDependencies.Registries;
-    using AccountingBookBL;
-    using AccountingBookBL.Providers;
 
     public static class IoC
     {
