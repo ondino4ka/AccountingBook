@@ -16,6 +16,10 @@ namespace AccountingBookWeb.Controllers
         private readonly IUserService _userService;
         public UserController(IUserProvider userProvider, IUserService userService)
         {
+            if (userProvider == null || userService == null)
+            {
+                throw new ArgumentNullException();
+            }
             _userProvider = userProvider;
             _userService = userService;
         }

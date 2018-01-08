@@ -15,6 +15,11 @@ namespace AccountingBookWeb.Controllers
         private readonly IStateService _stateService;
         public StateController(IStateProvider stateProvider, IStateService stateService)
         {
+            if (stateProvider == null || stateService == null)
+            {
+                Log.Error("stateProvider or stateService is null");
+                throw new ArgumentNullException();
+            }
             _stateProvider = stateProvider;
             _stateService = stateService;
         }
@@ -45,7 +50,6 @@ namespace AccountingBookWeb.Controllers
                 return Json(null, JsonRequestBehavior.AllowGet);
             }
         }
-
 
         [HttpGet]
         [Authorize(Roles = "Admin, Edit")]
@@ -118,9 +122,8 @@ namespace AccountingBookWeb.Controllers
                     return HttpNotFound();
                 }
             }
-            catch (Exception exception)
+            catch (Exception)
             {
-                ViewBag.Error = exception.Message;
                 return View();
             }
         }
@@ -135,9 +138,8 @@ namespace AccountingBookWeb.Controllers
                 _stateService.DeleteStateById(Id);
                 return RedirectToAction("ListStates");
             }
-            catch (Exception exception)
+            catch (Exception)
             {
-                ViewBag.Error = exception.Message;
                 return View();
             }
         }

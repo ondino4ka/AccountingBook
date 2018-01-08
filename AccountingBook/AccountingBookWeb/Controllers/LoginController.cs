@@ -2,6 +2,7 @@
 using AccountingBookCommon.Enums;
 using AccountingBookWeb.BL.Attributes;
 using AccountingBookWeb.Models;
+using log4net;
 using System;
 using System.Web.Mvc;
 
@@ -9,9 +10,15 @@ namespace AccountingBookWeb.Controllers
 {
     public class LoginController : Controller
     {
+        private static readonly ILog Log = LogManager.GetLogger("LoginController");
         private readonly ILoginService _loginService;
         public LoginController(ILoginService loginService)
         {
+            if (loginService == null)
+            {
+                Log.Error("loginService is null");
+                throw new ArgumentNullException();
+            }
             _loginService = loginService;
         }
         [HttpGet]

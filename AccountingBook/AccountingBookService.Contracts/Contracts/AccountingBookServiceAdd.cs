@@ -35,17 +35,17 @@ namespace AccountingBookService.Contracts.Contracts
                     catch (InvalidOperationException invalidOperationException)
                     {
                         Log.Error(invalidOperationException.Message);
-                        throw new FaultException<ServiceFault>(new ServiceFault(errorMessage), new FaultReason("Internal error"));
+                        throw new FaultException<ServiceFault>(new ServiceFault(ERROR_MESSAGE), new FaultReason(ERROR_MESSAGE_REASON));
                     }
                     catch (SqlException sqlException)
                     {
                         Log.Error(sqlException.Message);
-                        throw new FaultException<ServiceFault>(new ServiceFault(errorMessage), new FaultReason("Internal error"));
+                        throw new FaultException<ServiceFault>(new ServiceFault(ERROR_MESSAGE), new FaultReason(ERROR_MESSAGE_REASON));
                     }
                     catch (Exception exception)
                     {
                         Log.Error(exception.Message);
-                        throw new FaultException<ServiceFault>(new ServiceFault(errorMessage), new FaultReason("Internal error"));
+                        throw new FaultException<ServiceFault>(new ServiceFault(ERROR_MESSAGE), new FaultReason(ERROR_MESSAGE_REASON));
                     }
                     finally
                     {
@@ -147,7 +147,7 @@ namespace AccountingBookService.Contracts.Contracts
         {
             if (string.IsNullOrEmpty(address))
             {
-                throw new FaultException<ServiceFault>(new ServiceFault("Address can not be null or empty"), new FaultReason("External error"));
+                throw new FaultException<ServiceFault>(new ServiceFault("Address can not be null or empty"), new FaultReason(ERROR_MESSAGE_REASON));
             }
             SqlParameter parameter = new SqlParameter
             {
@@ -162,7 +162,8 @@ namespace AccountingBookService.Contracts.Contracts
         {
             if (string.IsNullOrEmpty(stateName))
             {
-                throw new FaultException<ServiceFault>(new ServiceFault("State can not be null or empty"), new FaultReason("External error"));
+                Log.Error("stateName is null or empty");
+                throw new FaultException<ServiceFault>(new ServiceFault("State can not be null or empty"), new FaultReason(ERROR_MESSAGE_REASON));
             }
             SqlParameter parameter = new SqlParameter
             {
@@ -177,7 +178,8 @@ namespace AccountingBookService.Contracts.Contracts
         {
             if (string.IsNullOrEmpty(categoryName))
             {
-                throw new FaultException<ServiceFault>(new ServiceFault("Name can not be null or empty"), new FaultReason("External error"));
+                Log.Error("categoryName is null or empty");
+                throw new FaultException<ServiceFault>(new ServiceFault("Name can not be null or empty"), new FaultReason(ERROR_MESSAGE_REASON));
             }
             SqlParameter[] parameters = {
                 new SqlParameter

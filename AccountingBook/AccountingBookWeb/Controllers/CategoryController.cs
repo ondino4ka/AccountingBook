@@ -15,7 +15,12 @@ namespace AccountingBookWeb.Controllers
         private readonly ICategoryProvider _categoryProvider;
         private readonly ICategoryService _categoryService;
         public CategoryController(ICategoryProvider categoryProvider, ICategoryService categoryService)
-        {
+        {       
+            if (categoryProvider == null || categoryService == null)
+            {
+                Log.Error("categoryProvider or categoryService is null");
+                throw new ArgumentNullException();
+            }
             _categoryProvider = categoryProvider;
             _categoryService = categoryService;
         }
@@ -27,9 +32,8 @@ namespace AccountingBookWeb.Controllers
             {
                 return PartialView(_categoryProvider.GetCategories().ToList());
             }
-            catch (Exception exception)
+            catch (Exception)
             {
-                ViewBag.Error = exception.Message;
                 return PartialView();
             }
         }
@@ -48,13 +52,12 @@ namespace AccountingBookWeb.Controllers
             {
                 return PartialView("Categories", _categoryProvider.GetCategoriesByName(categoryName));
             }
-            catch (Exception exception)
+            catch (Exception)
             {
-                Log.Error(exception.Message);
                 return PartialView("Categories");
             }
         }
-    
+
         [Ajax]
         public JsonResult GetCategoriesByName(string categoryName)
         {
@@ -62,9 +65,8 @@ namespace AccountingBookWeb.Controllers
             {
                 return Json(_categoryProvider.GetCategoriesByName(categoryName), JsonRequestBehavior.AllowGet);
             }
-            catch (Exception exception)
+            catch (Exception)
             {
-                Log.Error(exception.Message);
                 return Json(null, JsonRequestBehavior.AllowGet);
             }
         }
@@ -76,9 +78,8 @@ namespace AccountingBookWeb.Controllers
             {
                 return Json(_categoryProvider.GetCategoriesBesidesCurrent(categoryId), JsonRequestBehavior.AllowGet);
             }
-            catch (Exception exception)
+            catch (Exception)
             {
-                Log.Error(exception.Message);
                 return Json(null, JsonRequestBehavior.AllowGet);
             }
         }
@@ -104,9 +105,8 @@ namespace AccountingBookWeb.Controllers
                     return HttpNotFound();
                 }
             }
-            catch (Exception exception)
+            catch (Exception)
             {
-                ViewBag.Error = exception.Message;
                 return View();
             }
         }
@@ -132,9 +132,8 @@ namespace AccountingBookWeb.Controllers
                 }
                 return RedirectToAction("SearchCategories");
             }
-            catch (Exception exception)
+            catch (Exception)
             {
-                ViewBag.Error = exception.Message;
                 return View(category);
             }
         }
@@ -155,9 +154,8 @@ namespace AccountingBookWeb.Controllers
                     return HttpNotFound();
                 }
             }
-            catch (Exception exception)
+            catch (Exception)
             {
-                ViewBag.Error = exception.Message;
                 return View();
             }
         }
@@ -172,10 +170,8 @@ namespace AccountingBookWeb.Controllers
                 _categoryService.DeleteCategoryByID(categoryId);
                 return RedirectToAction("SearchCategories");
             }
-
-            catch (Exception exception)
+            catch (Exception)
             {
-                ViewBag.Error = exception.Message;
                 return View();
             }
         }

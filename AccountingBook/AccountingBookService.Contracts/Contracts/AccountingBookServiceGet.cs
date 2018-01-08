@@ -18,8 +18,8 @@ namespace AccountingBookService.Contracts.Contracts
         private readonly string connectionString;
         private readonly string connectionStringCacheDependency;
         private readonly Cache cache;
-        private const string errorMessage = "Now the server is unavailable.Try later";
-        private const string errorMessageReason = "Internal error";
+        private const string ERROR_MESSAGE = "Now the server is unavailable.Try later";
+        private const string ERROR_MESSAGE_REASON  = "Internal error";
         private readonly ILog Log;
         public AccountingBookService()
         {
@@ -35,12 +35,12 @@ namespace AccountingBookService.Contracts.Contracts
             catch (NullReferenceException ex)
             {
                 Log.Error(ex.Message);
-                throw new FaultException<ServiceFault>(new ServiceFault(errorMessage), new FaultReason(errorMessageReason));
+                throw new FaultException<ServiceFault>(new ServiceFault(ERROR_MESSAGE), new FaultReason(ERROR_MESSAGE_REASON));
             }
             catch (InvalidOperationException ex)
             {
                 Log.Error(ex.Message);
-                throw new FaultException<ServiceFault>(new ServiceFault(errorMessage), new FaultReason(errorMessageReason));
+                throw new FaultException<ServiceFault>(new ServiceFault(ERROR_MESSAGE), new FaultReason(ERROR_MESSAGE_REASON));
             }
         }
 
@@ -77,12 +77,12 @@ namespace AccountingBookService.Contracts.Contracts
                     catch (FormatException formatException)
                     {
                         Log.Error(formatException.Message);
-                        throw new FaultException<ServiceFault>(new ServiceFault(errorMessage), new FaultReason(errorMessageReason));
+                        throw new FaultException<ServiceFault>(new ServiceFault(ERROR_MESSAGE), new FaultReason(ERROR_MESSAGE_REASON));
                     }
                     catch (SqlException sqlException)
                     {
                         Log.Error(sqlException.Message);
-                        throw new FaultException<ServiceFault>(new ServiceFault(errorMessage), new FaultReason(errorMessageReason));
+                        throw new FaultException<ServiceFault>(new ServiceFault(ERROR_MESSAGE), new FaultReason(ERROR_MESSAGE_REASON));
                     }
                     List<T> resultList = new List<T>();
                     try
@@ -98,7 +98,7 @@ namespace AccountingBookService.Contracts.Contracts
                     catch (InvalidCastException invalidCastException)
                     {
                         Log.Error(invalidCastException.Message);
-                        throw new FaultException<ServiceFault>(new ServiceFault(errorMessage), new FaultReason(errorMessageReason));
+                        throw new FaultException<ServiceFault>(new ServiceFault(ERROR_MESSAGE), new FaultReason(ERROR_MESSAGE_REASON));
                     }
                     return resultList;
                 }
@@ -122,7 +122,7 @@ namespace AccountingBookService.Contracts.Contracts
                 catch (UnauthorizedAccessException exPerm)
                 {
                     Log.Error(exPerm.Message);
-                    throw new FaultException<ServiceFault>(new ServiceFault(errorMessage), new FaultReason(errorMessageReason));
+                    throw new FaultException<ServiceFault>(new ServiceFault(ERROR_MESSAGE), new FaultReason(ERROR_MESSAGE_REASON));
                 }
             }
             catch (TableNotEnabledForNotificationException exTabDis)
@@ -135,7 +135,7 @@ namespace AccountingBookService.Contracts.Contracts
                 catch (SqlException exc)
                 {
                     Log.Error(exc.Message);
-                    throw new FaultException<ServiceFault>(new ServiceFault(errorMessage), new FaultReason(errorMessageReason));
+                    throw new FaultException<ServiceFault>(new ServiceFault(ERROR_MESSAGE), new FaultReason(ERROR_MESSAGE_REASON));
                 }
             }
             finally
@@ -486,17 +486,17 @@ namespace AccountingBookService.Contracts.Contracts
                     catch (SqlException sqlException)
                     {
                         Log.Error(sqlException.Message);
-                        throw new FaultException<ServiceFault>(new ServiceFault(errorMessage), new FaultReason(errorMessageReason));
+                        throw new FaultException<ServiceFault>(new ServiceFault(ERROR_MESSAGE), new FaultReason(ERROR_MESSAGE_REASON));
                     }
                     catch (InvalidOperationException invalidOperationException)
                     {
                         Log.Error(invalidOperationException.Message);
-                        throw new FaultException<ServiceFault>(new ServiceFault(errorMessage), new FaultReason(errorMessageReason));
+                        throw new FaultException<ServiceFault>(new ServiceFault(ERROR_MESSAGE), new FaultReason(ERROR_MESSAGE_REASON));
                     }
                     catch (Exception exception)
                     {
                         Log.Error(exception.Message);
-                        throw new FaultException<ServiceFault>(new ServiceFault(errorMessage), new FaultReason(errorMessageReason));
+                        throw new FaultException<ServiceFault>(new ServiceFault(ERROR_MESSAGE), new FaultReason(ERROR_MESSAGE_REASON));
                     }
                     if ((int)resultPrameter.Value == 1)
                     {

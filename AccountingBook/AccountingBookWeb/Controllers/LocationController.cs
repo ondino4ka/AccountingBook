@@ -2,6 +2,7 @@
 using AccountingBookBL.Services.Interfaces;
 using AccountingBookCommon.Models;
 using AccountingBookWeb.BL.Attributes;
+using log4net;
 using System;
 using System.Web.Mvc;
 
@@ -9,10 +10,16 @@ namespace AccountingBookWeb.Controllers
 {
     public class LocationController : Controller
     {
+        private static readonly ILog Log = LogManager.GetLogger("LocationController");
         private readonly ILocationProvider _locationProvider;
         private readonly ILocationService _locationService;
         public LocationController(ILocationProvider locationProvider, ILocationService locationService)
         {
+            if (locationProvider == null || locationProvider == null)
+            {
+                Log.Error("locationProvider or locationService is null");
+                throw new ArgumentNullException();
+            }
             _locationProvider = locationProvider;
             _locationService = locationService;
         }
@@ -46,9 +53,8 @@ namespace AccountingBookWeb.Controllers
             {
                 return PartialView("Locations", _locationProvider.GetLocationsByAddress(address));
             }
-            catch (Exception exception)
+            catch (Exception)
             {
-                ViewBag.Error = exception.Message;
                 return PartialView("Locations");
             }
         }
@@ -125,9 +131,8 @@ namespace AccountingBookWeb.Controllers
                     return HttpNotFound();
                 }
             }
-            catch (Exception exception)
+            catch (Exception)
             {
-                ViewBag.Error = exception.Message;
                 return View();
             }
         }
@@ -143,9 +148,8 @@ namespace AccountingBookWeb.Controllers
                 return RedirectToAction("SearchLocations");
             }
 
-            catch (Exception exception)
+            catch (Exception)
             {
-                ViewBag.Error = exception.Message;
                 return View();
             }
         }

@@ -3,6 +3,7 @@ using AccountingBookBL.Services.Interfaces;
 using AccountingBookCommon.Models;
 using AccountingBookWeb.BL.Attributes;
 using AccountingBookWeb.Models;
+using log4net;
 using System;
 using System.IO;
 using System.Linq;
@@ -11,13 +12,19 @@ using System.Web.Mvc;
 namespace AccountingBookWeb.Controllers
 {
     public class SubjectController : Controller
-    {      
+    {
+        private static readonly ILog Log = LogManager.GetLogger("SubjectController");
         private readonly ISubjectProvider _subjectProvider;
         private readonly ISubjectService _subjectService;
         private readonly IFileService _fileService;
    
         public SubjectController(ISubjectProvider subjectProvider, ISubjectService subjectService, IFileService uploadService)
         {
+            if (subjectProvider == null || subjectService == null || uploadService == null)
+            {
+                Log.Error("subjectProvider or subjectService or uploadService is null");
+                throw new ArgumentNullException();
+            }
             _subjectProvider = subjectProvider;
             _subjectService = subjectService;
             _fileService = uploadService;           
@@ -30,9 +37,8 @@ namespace AccountingBookWeb.Controllers
             {
                 return PartialView("Subjects", _subjectProvider.GetSubjectsByCategoryId(categoryId));
             }
-            catch (Exception exception)
+            catch (Exception)
             {
-                ViewBag.Error = exception.Message;
                 return PartialView("Subjects");
             }
         }
@@ -50,9 +56,8 @@ namespace AccountingBookWeb.Controllers
             {
                 return PartialView(_subjectProvider.GetSubjectInformationByInventoryNumber(inventoryNumber));
             }
-            catch (Exception exception)
+            catch (Exception)
             {
-                ViewBag.Error = exception.Message;
                 return PartialView();
             }
 
@@ -66,9 +71,8 @@ namespace AccountingBookWeb.Controllers
                 var subjects = _subjectProvider.GetSubjectsByNameCategoryIdAndStateId(categoryId, stateId, subjectName);
                 return PartialView("Subjects", subjects);
             }
-            catch (Exception exception)
-            {
-                ViewBag.Error = exception.Message;
+            catch (Exception)
+            {              
                 return PartialView("Subjects");
             }
         }
@@ -254,9 +258,8 @@ namespace AccountingBookWeb.Controllers
                     return HttpNotFound();
                 }
             }
-            catch (Exception exception)
+            catch (Exception)
             {
-                ViewBag.Error = exception.Message;
                 return View();
             }
         }
@@ -275,9 +278,8 @@ namespace AccountingBookWeb.Controllers
                 }
                 return RedirectToAction("SearchSubjects");
             }
-            catch (Exception exception)
+            catch (Exception)
             {
-                ViewBag.Error = exception.Message;
                 return View();
             }
         }

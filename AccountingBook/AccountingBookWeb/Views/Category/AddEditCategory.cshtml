@@ -46,7 +46,7 @@
 }
 else
 {
-    @ViewBag.Error;
+    <p>Now the server is unavailable.Try later</p>
 }
 
 <div>
@@ -55,6 +55,5 @@ else
 
 
 <script>
-    console.log();
     initSelectsForSubject("selectCategory", '/Category/GetCategoriesBesidesCurrent?categoryId=' + @Model.Id, 'pid', @(Model.Pid == null ? 0 : Model.Pid),  'Name');
 </script>
