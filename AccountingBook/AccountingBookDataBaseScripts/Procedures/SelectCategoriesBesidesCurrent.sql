@@ -10,8 +10,7 @@ CREATE PROCEDURE [dbo].[SelectCategoriesBesidesCurrent]
 )
 AS
 BEGIN
-SELECT [idCategory], [pid], [Name]
+SELECT [idCategory], [pid], isnull(dbo.GetCategoryNameById(pid), ' ') + ' - ' + [Name]
 FROM [dbo].[Categories]
 WHERE idCategory <> @categoryId
 END
-

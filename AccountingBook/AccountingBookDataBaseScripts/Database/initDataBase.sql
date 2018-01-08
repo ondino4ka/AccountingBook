@@ -718,7 +718,26 @@ FROM [dbo].[Categories]
 END
 
 GO
-/****** Object:  StoredProcedure [dbo].[SelectCategoriesBesidesCurrent]    Script Date: 25.12.2017 15:22:11 ******/
+SET ANSI_NULLS ON
+GO
+SET QUOTED_IDENTIFIER ON
+GO
+CREATE FUNCTION [dbo].[GetCategoryNameById]
+(
+@id int
+)
+RETURNS nvarchar (50)
+AS
+BEGIN
+	DECLARE @categoryName nvarchar(50)
+	SET @categoryName = 
+	(SELECT Categories.Name FROM Categories WHERE Categories.idCategory = @id)	
+	RETURN @categoryName
+
+END
+
+GO
+/****** Object:  StoredProcedure [dbo].[SelectCategoriesBesidesCurrent]    Script Date: 08.01.2018 16:43:18 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -729,13 +748,13 @@ CREATE PROCEDURE [dbo].[SelectCategoriesBesidesCurrent]
 )
 AS
 BEGIN
-SELECT [idCategory], [pid], [Name]
+SELECT [idCategory], [pid], isnull(dbo.GetCategoryNameById(pid), ' ') + ' - ' + [Name]
 FROM [dbo].[Categories]
 WHERE idCategory <> @categoryId
 END
 
 GO
-/****** Object:  StoredProcedure [dbo].[SelectCategoriesByName]    Script Date: 25.12.2017 15:22:11 ******/
+/****** Object:  StoredProcedure [dbo].[SelectCategoriesByName]    Script Date: 08.01.2018 20:25:36 ******/
 SET ANSI_NULLS ON
 GO
 SET QUOTED_IDENTIFIER ON
@@ -746,7 +765,7 @@ CREATE PROCEDURE [dbo].[SelectCategoriesByName]
 )
 AS
 BEGIN
-SELECT Categories.idCategory, Categories.Name
+SELECT Categories.idCategory,  isnull(dbo.GetCategoryNameById(pid), ' ') + ' - ' + Categories.Name
 FROM Categories
 WHERE Categories.Name LIKE ISNULL('%' + @categoryName +'%', '%')
 END

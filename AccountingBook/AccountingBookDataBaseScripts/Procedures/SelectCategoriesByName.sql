@@ -10,7 +10,7 @@ CREATE PROCEDURE [dbo].[SelectCategoriesByName]
 )
 AS
 BEGIN
-SELECT Categories.idCategory, Categories.Name
+SELECT Categories.idCategory,  isnull(dbo.GetCategoryNameById(pid), ' ') + ' - ' + Categories.Name
 FROM Categories
 WHERE Categories.Name LIKE ISNULL('%' + @categoryName +'%', '%')
 END
