@@ -14,7 +14,7 @@ namespace AccountingBookData.Repositories.Implementations
         {
             if (subjectClient == null)
             {
-                throw new ArgumentException("subjectClient is null");
+                throw new ArgumentNullException("subjectClient is null");
             }
             _subjectClient = subjectClient;
         }
@@ -53,7 +53,7 @@ namespace AccountingBookData.Repositories.Implementations
             _subjectClient.DeleteSubjectByInventoruNumber(inventoryNumber);
         }
 
-        public IReadOnlyCollection<SubjectDetails> GetSubjectsByNameCategoryIdAndStateId(int? categoryId, int? stateId, string subjectName)
+        public IReadOnlyList<SubjectDetails> GetSubjectsByNameCategoryIdAndStateId(int? categoryId, int? stateId, string subjectName)
         {
             return _subjectClient.GetSubjectsByNameCategoryIdAndStateId(categoryId, stateId, subjectName);
         }

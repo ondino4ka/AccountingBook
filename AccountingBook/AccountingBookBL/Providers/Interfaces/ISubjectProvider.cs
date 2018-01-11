@@ -7,7 +7,7 @@ namespace AccountingBookBL.Providers.Interfaces
     {
         IReadOnlyList<SubjectDetails> GetSubjectsByCategoryId(int? categoryId);
         SubjectDetails GetSubjectInformationByInventoryNumber(int inventoryNumber);
-        IReadOnlyCollection<SubjectDetails> GetSubjectsByNameCategoryIdAndStateId(int? categoryId, int? stateId, string subjectName);
+        IReadOnlyList<SubjectDetails> GetSubjectsByNameCategoryIdAndStateId(int? categoryId, int? stateId, string subjectName);
         Subject GetSubjectByInventoryNumber(int inventoryNumber);
         bool IsExistsSubject(int inventoryNumber);
     }

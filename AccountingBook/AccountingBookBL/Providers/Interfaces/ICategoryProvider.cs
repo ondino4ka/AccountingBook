@@ -7,7 +7,7 @@ namespace AccountingBookBL.Providers.Interfaces
     {
         IReadOnlyList<Category> GetCategories();
         IReadOnlyList<Category> GetCategoriesBesidesCurrent(int categoryId);
-        IReadOnlyCollection<Category> GetCategoriesByName(string category);
+        IReadOnlyList<Category> GetCategoriesByName(string category);
         Category GetCategoryById(int categoryId);
     }
 }

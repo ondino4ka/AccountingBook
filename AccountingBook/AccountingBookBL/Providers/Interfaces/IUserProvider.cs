@@ -8,8 +8,8 @@ namespace AccountingBookBL.Providers.Interfaces
         bool IsValidUser(string userName, string password);
         UserAuthorization GetUserByName(string userName);
         bool IsExistsUser(int userId, string userName);
-        IReadOnlyCollection<Role> GetRoles();
+        IReadOnlyList<Role> GetRoles();
         User GetUserById(int userId);
-        IReadOnlyCollection<User> GetUsersByName(string userName);
+        IReadOnlyList<User> GetUsersByName(string userName);
     }
 }

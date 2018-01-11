@@ -13,7 +13,7 @@ namespace AccountingBookBL.Providers.Implementations
         {
             if (subjectRepository == null)
             {
-                throw new ArgumentException("subjectRepository is null");
+                throw new ArgumentNullException("subjectRepository is null");
             }
             _subjectRepository = subjectRepository;
         }
@@ -39,7 +39,7 @@ namespace AccountingBookBL.Providers.Implementations
             return _subjectRepository.IsExistsSubject(inventoryNumber);
         }
 
-        public IReadOnlyCollection<SubjectDetails> GetSubjectsByNameCategoryIdAndStateId(int? categoryId, int? stateId, string subjectName)
+        public IReadOnlyList<SubjectDetails> GetSubjectsByNameCategoryIdAndStateId(int? categoryId, int? stateId, string subjectName)
         {
             return _subjectRepository.GetSubjectsByNameCategoryIdAndStateId(categoryId, stateId, subjectName);
         }

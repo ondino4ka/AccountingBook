@@ -5,7 +5,7 @@ namespace AccountingBookData.Clients.Interfaces
 {
     public interface IStateClient
     {
-        IReadOnlyCollection<State> GetStates();
+        IReadOnlyList<State> GetStates();
         State GetStateById(int stateId);
         void AddState(string stateName);
         void EditStateById(int stateId, string stateName);

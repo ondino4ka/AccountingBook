@@ -11,7 +11,7 @@ namespace AccountingBookBL.Services.Implementations
         {
             if (stateRepository == null)
             {
-                throw new ArgumentException("stateRepository is null");
+                throw new ArgumentNullException("stateRepository is null");
             }
             _stateRepository = stateRepository;
         }

@@ -13,7 +13,7 @@ namespace AccountingBookData.Repositories.Implementations
         {
             if (userClient == null)
             {
-                throw new ArgumentException("userClient is null");
+                throw new ArgumentNullException("userClient is null");
             }
             _userClient = userClient;
         }
@@ -41,7 +41,7 @@ namespace AccountingBookData.Repositories.Implementations
         {
             _userClient.EditUser(user);
         }
-        public IReadOnlyCollection<Role> GetRoles()
+        public IReadOnlyList<Role> GetRoles()
         {
             return _userClient.GetRoles();
         }
@@ -50,7 +50,7 @@ namespace AccountingBookData.Repositories.Implementations
             return _userClient.GetUserById(userId);
         }
 
-        public IReadOnlyCollection<User> GetUsersByName(string userName)
+        public IReadOnlyList<User> GetUsersByName(string userName)
         {
             return _userClient.GetUsersByName(userName);
         }

@@ -13,12 +13,12 @@ namespace AccountingBookData.Repositories.Implementations
         {
             if (stateClient == null)
             {
-                throw new ArgumentException("stateClient is null");
+                throw new ArgumentNullException("stateClient is null");
             }
             _stateClient = stateClient;
         }
 
-        public IReadOnlyCollection<State> GetStates()
+        public IReadOnlyList<State> GetStates()
         {
             return _stateClient.GetStates();
         }

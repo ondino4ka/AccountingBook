@@ -46,7 +46,7 @@ namespace AccountingBookData.Clients.Implementations
             return result;
         }
 
-        public IReadOnlyCollection<Category> GetCategoriesByName(string categoryName)
+        public IReadOnlyList<Category> GetCategoriesByName(string categoryName)
         {
             bool isClosed = false;
             var result = new List<Category>();

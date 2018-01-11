@@ -12,7 +12,7 @@ namespace AccountingBookData.Clients.Implementations
     {
         private static readonly ILog Log = LogManager.GetLogger("LocationClient");
 
-        public IReadOnlyCollection<Location> GetLocations()
+        public IReadOnlyList<Location> GetLocations()
         {
             bool isClosed = false;
             var result = new List<Location>();
@@ -46,7 +46,7 @@ namespace AccountingBookData.Clients.Implementations
             return result;
         }
 
-        public IReadOnlyCollection<Location> GetLocationsByAddress(string address)
+        public IReadOnlyList<Location> GetLocationsByAddress(string address)
         {
             bool isClosed = false;
             var result = new List<Location>();

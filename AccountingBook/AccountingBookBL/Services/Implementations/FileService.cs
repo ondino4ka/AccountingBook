@@ -13,7 +13,7 @@ namespace AccountingBookBL.Services.Implementations
         {
             if (fileRepository == null)
             {
-                throw new ArgumentException("fileRepository is null");
+                throw new ArgumentNullException("fileRepository is null");
             }
             _fileRepository = fileRepository;
         }

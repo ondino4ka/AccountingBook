@@ -5,8 +5,8 @@ namespace AccountingBookData.Repositories.Interfaces
 {
     public interface ILocationRepository
     {
-        IReadOnlyCollection<Location> GetLocations();
-        IReadOnlyCollection<Location> GetLocationsByAddress(string address);
+        IReadOnlyList<Location> GetLocations();
+        IReadOnlyList<Location> GetLocationsByAddress(string address);
         Location GetLocationsById(int locationId);
         void AddLocation(string address);
         void EditLocationById(int locationId, string address);

@@ -7,7 +7,7 @@ namespace AccountingBookData.Clients.Interfaces
     {
         IReadOnlyList<Category> GetCategories();
         IReadOnlyList<Category> GetCategoriesBesidesCurrent(int categoryId);
-        IReadOnlyCollection<Category> GetCategoriesByName(string categoryName);
+        IReadOnlyList<Category> GetCategoriesByName(string categoryName);
         Category GetCategoryById(int categoryId);
         void AddCategory(int? pid, string categoryName);
         void EditCategoryById(int categoryId, int? pid, string categoryName);

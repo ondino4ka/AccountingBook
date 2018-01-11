@@ -12,7 +12,7 @@ namespace AccountingBookData.Clients.Implementations
     {
         private static readonly ILog Log = LogManager.GetLogger("StateClient");
 
-        public IReadOnlyCollection<State> GetStates()
+        public IReadOnlyList<State> GetStates()
         {
             bool isClosed = false;
             var result = new List<State>();

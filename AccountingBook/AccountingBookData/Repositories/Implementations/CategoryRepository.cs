@@ -13,7 +13,7 @@ namespace AccountingBookData.Repositories.Implementations
         {
             if (categoryClient == null)
             {
-                throw new ArgumentException("categoryClient is null");
+                throw new ArgumentNullException("categoryClient is null");
             }
             _categoryClient = categoryClient;
         }
@@ -31,7 +31,7 @@ namespace AccountingBookData.Repositories.Implementations
             return _categoryClient.GetCategoriesBesidesCurrent(categoryId);
         }
 
-        public IReadOnlyCollection<Category> GetCategoriesByName(string categoryName)
+        public IReadOnlyList<Category> GetCategoriesByName(string categoryName)
         {
             return _categoryClient.GetCategoriesByName(categoryName);
         }

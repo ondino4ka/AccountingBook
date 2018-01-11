@@ -13,17 +13,17 @@ namespace AccountingBookData.Repositories.Implementations
         {
             if (locationClient == null)
             {
-                throw new ArgumentException("locationClient is null");
+                throw new ArgumentNullException("locationClient is null");
             }
             _locationClient = locationClient;
         }
 
-        public IReadOnlyCollection<Location> GetLocations()
+        public IReadOnlyList<Location> GetLocations()
         {
             return _locationClient.GetLocations();
         }
 
-        public IReadOnlyCollection<Location> GetLocationsByAddress(string address)
+        public IReadOnlyList<Location> GetLocationsByAddress(string address)
         {
             return _locationClient.GetLocationsByAddress(address);
         }

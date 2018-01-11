@@ -11,7 +11,7 @@ namespace AccountingBookBL.Services.Implementations
         {
             if (categoryRepository == null)
             {
-                throw new ArgumentException("categoryRepository is null");
+                throw new ArgumentNullException("categoryRepository is null");
             }
             _categoryRepository = categoryRepository;
         }

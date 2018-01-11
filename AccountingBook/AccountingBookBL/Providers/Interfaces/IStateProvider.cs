@@ -5,7 +5,7 @@ namespace AccountingBookBL.Providers.Interfaces
 {
     public interface IStateProvider
     {
-        IReadOnlyCollection<State> GetStates();
+        IReadOnlyList<State> GetStates();
         State GetStateById(int stateId);
     }
 }

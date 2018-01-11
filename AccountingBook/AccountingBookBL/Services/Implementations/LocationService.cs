@@ -11,7 +11,7 @@ namespace AccountingBookBL.Services.Implementations
         {
             if (locationRepository == null)
             {
-                throw new ArgumentException("locationRepository is null");
+                throw new ArgumentNullException("locationRepository is null");
             }
             _locationRepository = locationRepository;
         }

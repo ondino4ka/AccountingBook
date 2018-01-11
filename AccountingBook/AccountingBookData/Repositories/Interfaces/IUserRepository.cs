@@ -11,8 +11,8 @@ namespace AccountingBookData.Repositories.Interfaces
         void EditUser(User user);
         void DeleteUserById(int userId);
         bool IsExistsUser(int userId, string userName);
-        IReadOnlyCollection<Role> GetRoles();
+        IReadOnlyList<Role> GetRoles();
         User GetUserById(int userId);
-        IReadOnlyCollection<User> GetUsersByName(string userName);
+        IReadOnlyList<User> GetUsersByName(string userName);
     }
 }

@@ -5,8 +5,8 @@ namespace AccountingBookBL.Providers.Interfaces
 {
     public interface ILocationProvider
     {
-        IReadOnlyCollection<Location> GetLocations();
-        IReadOnlyCollection<Location> GetLocationsByAddress(string address);
+        IReadOnlyList<Location> GetLocations();
+        IReadOnlyList<Location> GetLocationsByAddress(string address);
         Location GetLocationById(int locationId);
     }
 }

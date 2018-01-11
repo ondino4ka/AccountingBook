@@ -13,6 +13,6 @@ namespace AccountingBookData.Clients.Interfaces
         void EditSubjectInformation(Subject subject);
         void EditSubjectPhoto(int inventoryNumber, string photo);
         void DeleteSubjectByInventoruNumber(int inventoryNumber);
-        IReadOnlyCollection<SubjectDetails> GetSubjectsByNameCategoryIdAndStateId(int? categoryId, int? stateId, string subjectName);
+        IReadOnlyList<SubjectDetails> GetSubjectsByNameCategoryIdAndStateId(int? categoryId, int? stateId, string subjectName);
     }
 }

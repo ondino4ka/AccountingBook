@@ -13,17 +13,17 @@ namespace AccountingBookBL.Providers.Implementations
         {
             if (locationRepository == null)
             {
-                throw new ArgumentException("locationRepository is null");
+                throw new ArgumentNullException("locationRepository is null");
             }
             _locationRepository = locationRepository;
         }
 
-        public IReadOnlyCollection<Location> GetLocations()
+        public IReadOnlyList<Location> GetLocations()
         {
             return _locationRepository.GetLocations();
         }
 
-        public IReadOnlyCollection<Location> GetLocationsByAddress(string address)
+        public IReadOnlyList<Location> GetLocationsByAddress(string address)
         {
             return _locationRepository.GetLocationsByAddress(address);
         }

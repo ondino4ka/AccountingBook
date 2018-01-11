@@ -78,7 +78,7 @@ namespace AccountingBookData.Clients.Implementations
             }
             return result;
         }
-        public IReadOnlyCollection<SubjectDetails> GetSubjectsByNameCategoryIdAndStateId(int? categoryId, int? stateId, string subjectName)
+        public IReadOnlyList<SubjectDetails> GetSubjectsByNameCategoryIdAndStateId(int? categoryId, int? stateId, string subjectName)
         {
             bool isClosed = false;
             var result = new List<SubjectDetails>();

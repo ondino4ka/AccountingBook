@@ -179,7 +179,7 @@ namespace AccountingBookData.Clients.Implementations
             }
         }
 
-        public IReadOnlyCollection<Role> GetRoles()
+        public IReadOnlyList<Role> GetRoles()
         {
             bool isClosed = false;
             var result = new List<Role>();
@@ -247,7 +247,7 @@ namespace AccountingBookData.Clients.Implementations
             return result;
         }
 
-        public IReadOnlyCollection<User> GetUsersByName(string userName)
+        public IReadOnlyList<User> GetUsersByName(string userName)
         {
             bool isClosed = false;
             var result = new List<User>();

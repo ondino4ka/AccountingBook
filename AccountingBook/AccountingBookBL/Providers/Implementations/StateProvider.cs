@@ -13,11 +13,11 @@ namespace AccountingBookBL.Providers.Implementations
         {
             if (stateRepository == null)
             {
-                throw new ArgumentException("stateRepository is null");
+                throw new ArgumentNullException("stateRepository is null");
             }
             _stateRepository = stateRepository;
         }
-        public IReadOnlyCollection<State> GetStates()
+        public IReadOnlyList<State> GetStates()
         {
             return _stateRepository.GetStates();
         }

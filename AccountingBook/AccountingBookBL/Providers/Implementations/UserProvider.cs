@@ -13,7 +13,7 @@ namespace AccountingBookBL.Providers.Implementations
         {
             if (userRepository == null)
             {
-                throw new ArgumentException("userRepository is null");
+                throw new ArgumentNullException("userRepository is null");
             }
             _userRepository = userRepository;
         }
@@ -30,7 +30,7 @@ namespace AccountingBookBL.Providers.Implementations
         {
             return _userRepository.IsExistsUser(userId, userName);
         } 
-        public IReadOnlyCollection<Role> GetRoles()
+        public IReadOnlyList<Role> GetRoles()
         {
             return _userRepository.GetRoles();
         }
@@ -39,7 +39,7 @@ namespace AccountingBookBL.Providers.Implementations
             return _userRepository.GetUserById(userId);
         }
 
-        public IReadOnlyCollection<User> GetUsersByName(string userName)
+        public IReadOnlyList<User> GetUsersByName(string userName)
         {
             return _userRepository.GetUsersByName(userName);
         }

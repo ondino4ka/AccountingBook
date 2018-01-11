@@ -18,7 +18,11 @@ namespace AccountingBookWeb.Controllers
             else if (statusCode == 404)
             {
                 ViewBag.StatusCode = statusCode + " Page not found";
-            }         
+            }
+            else
+            {
+                ViewBag.StatusCode = "Internal server error. Try later";
+            }       
             return View();
         }
     }

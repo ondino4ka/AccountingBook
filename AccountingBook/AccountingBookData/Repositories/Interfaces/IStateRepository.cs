@@ -5,7 +5,7 @@ namespace AccountingBookData.Repositories.Interfaces
 {
     public interface IStateRepository
     {
-        IReadOnlyCollection<State> GetStates();
+        IReadOnlyList<State> GetStates();
         State GetStateById(int stateId);
         void AddState(string stateName);
         void EditStateById(int stateId, string stateName);

@@ -187,8 +187,6 @@ namespace AccountingBookWeb.Controllers
             return View(userViewModel);
         }
 
-
-
         [HttpGet]
         [Admin]
         public ActionResult DeleteUser(int Id)

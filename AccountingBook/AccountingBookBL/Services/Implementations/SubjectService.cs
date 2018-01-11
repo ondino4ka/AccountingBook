@@ -12,7 +12,7 @@ namespace AccountingBookBL.Services.Implementations
         {
             if (subjectRepository == null)
             {
-                throw new ArgumentException("subjectRepository is null");
+                throw new ArgumentNullException("subjectRepository is null");
             }
             _subjectRepository = subjectRepository;
         }

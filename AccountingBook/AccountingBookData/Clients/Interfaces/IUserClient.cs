@@ -9,10 +9,10 @@ namespace AccountingBookData.Clients.Interfaces
         bool IsValidUser(string userName, string password);
         void AddUser(User user);
         bool IsExistsUser(int userId, string userName);
-        IReadOnlyCollection<Role> GetRoles();
+        IReadOnlyList<Role> GetRoles();
         User GetUserById(int userId);
         void EditUser(User user);
-        IReadOnlyCollection<User> GetUsersByName(string userName);
+        IReadOnlyList<User> GetUsersByName(string userName);
         void DeleteUserById(int userId);
     }
 }

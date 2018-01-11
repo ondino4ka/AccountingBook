@@ -13,7 +13,7 @@ namespace AccountingBookBL.Providers.Implementations
         {
             if (categoryRepository == null)
             {
-                throw new ArgumentException("categoryRepository is null");
+                throw new ArgumentNullException("categoryRepository is null");
             }
             _categoryRepository = categoryRepository;
         }
@@ -25,7 +25,7 @@ namespace AccountingBookBL.Providers.Implementations
         {
             return _categoryRepository.GetCategoriesBesidesCurrent(categoryId);
         }
-        public IReadOnlyCollection<Category> GetCategoriesByName(string categoryName)
+        public IReadOnlyList<Category> GetCategoriesByName(string categoryName)
         {
             return _categoryRepository.GetCategoriesByName(categoryName);
         }

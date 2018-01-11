@@ -13,7 +13,7 @@ namespace AccountingBookBL.Services.Implementations
         {
             if (userRepository == null || hashService == null)
             {
-                throw new ArgumentException("userRepository or hashService is null");
+                throw new ArgumentNullException("userRepository or hashService is null");
             }
             _userRepository = userRepository;
             _hashService = hashService;

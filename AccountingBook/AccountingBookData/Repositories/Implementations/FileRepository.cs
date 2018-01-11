@@ -11,7 +11,7 @@ namespace AccountingBookData.Repositories.Implementations
         {
             if (fileClient == null)
             {
-                throw new ArgumentException("fileClient is null");
+                throw new ArgumentNullException("fileClient is null");
             }
             _fileClient = fileClient;
         }
